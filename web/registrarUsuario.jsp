@@ -26,8 +26,14 @@
             <br>
             <input type="text" name="txtDireccion" placeholder="Direccion" required="">
             <br>
-            <input type="number" name="txtEstado" placeholder="Estado" required="">
-            <br>
+            <select name="txtEstado">
+                    <option value="1">
+                        Activo
+                    </option>
+                    <option value="0">
+                        Inactivo
+                    </option>
+                </select><br>
             <input type="password" name="txtContrasena" placeholder="Contraseña" required=""><br>
             <button id="Boton"> Registrar </button>
             <input type="hidden" value="1" name="opcion">
