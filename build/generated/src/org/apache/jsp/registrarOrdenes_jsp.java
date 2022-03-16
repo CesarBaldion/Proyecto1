@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class registrarProducto_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class registrarOrdenes_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -48,20 +48,23 @@ public final class registrarProducto_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>Registrar Producto</title>\n");
+      out.write("        <title>Registrar Ordenes</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        <form class=\"Formulario\" method = \"post\" action = \"Producto\" > \n");
-      out.write("            <h1>Registrar Producto</h1>\n");
-      out.write("            <input type=\"text\" name=\"txtNombre\" placeholder=\"Nombre\" required=\"\" >\n");
-      out.write("            <br>\n");
-      out.write("            <input type=\"number\" name=\"txtEstado\" placeholder=\"Estado\" required=\"\">\n");
-      out.write("            <br>\n");
-      out.write("            <button id=\"Boton\"> Registrar </button>\n");
+      out.write("        <h1>Registrar Orden</h1>\n");
+      out.write("    <center>\n");
+      out.write("        <form method=\"post\" action=\"Ordenes\">\n");
+      out.write("            Usuario<br>\n");
+      out.write("            <input type=\"text\" name=\"txtUsu\" ><br>\n");
+      out.write("            Fecha Registro<br>\n");
+      out.write("            <input type=\"date\" name=\"txtFechaRegistro\" ><br>\n");
+      out.write("            Fecha Entrega<br>\n");
+      out.write("            <input type=\"date\" name=\"txtFechaEntrega\" ><br>\n");
+      out.write("\n");
+      out.write("            <button> Registrar </button>\n");
       out.write("            <input type=\"hidden\" value=\"1\" name=\"opcion\">\n");
-      out.write("            <a href=\"index.jsp\">Iniciar Sesion</a><br>\n");
-      out.write("            \n");
-      out.write("            <div class=\"mensaje\">\n");
+      out.write("\n");
+      out.write("            <div style=\"color: red;\">\n");
       out.write("                ");
 
                 if (request.getAttribute("mensajeError") != null) {
@@ -82,7 +85,8 @@ public final class registrarProducto_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("\n");
       out.write("            </div>\n");
       out.write("        </form>\n");
-      out.write("    </body>\n");
+      out.write("    </center>\n");
+      out.write("</body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){

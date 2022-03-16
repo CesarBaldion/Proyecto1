@@ -36,12 +36,12 @@ public class OrdenesControlador extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String Id_Orden = request.getParameter("txtIdOrden");
         String Id_Usuarios = request.getParameter("txtUsu");
-        String fecha_registro = request.getParameter("txtFechaRegistro"); 
+        String fecha_registro = request.getParameter("txtFechaRegistro");
         String fecha_entrega = request.getParameter("txtFechaEntrega");
-     
+
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         // 2. Quien tiene los datos de forma segura en el sistema? VO
-        OrdenesVo ordVo = new OrdenesVo(Id_Orden,Id_Usuarios, fecha_registro, fecha_entrega);
+        OrdenesVo ordVo = new OrdenesVo(Id_Orden, Id_Usuarios, fecha_registro, fecha_entrega);
 
         // 3. Quien hace las operaciones? DAO
         OrdenesDao ordDao = new OrdenesDao(ordVo);
@@ -53,42 +53,53 @@ public class OrdenesControlador extends HttpServlet {
 
                 if (ordDao.agregarRegistro()) {
 
-                    request.setAttribute("mensajeExito", "El usuario se registro correctamente!");
+                    request.setAttribute("mensajeExito", "La orden se registro correctamente!");
 
                 } else {
 
-                    request.setAttribute("mensajeError", "El usuario no se registro correctamente");
+                    request.setAttribute("mensajeError", "La orden no se registro correctamente");
                 }
-                request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                request.getRequestDispatcher("registrarOrdenes.jsp").forward(request, response);
                 break;
 
             case 2:
 
                 if (ordDao.actualizarRegistro()) {
 
-                    request.setAttribute("mensajeExito", "El usuario se actualizo correctamente!");
+                    request.setAttribute("mensajeExito", "La orden se actualizo correctamente!");
 
                 } else {
 
-                    request.setAttribute("mensajeExito", "El usuario no se actualizo correctamente!");
+                    request.setAttribute("mensajeExito", "La orden no se actualizo correctamente!");
                 }
-                request.getRequestDispatcher("actualizarUsuario.jsp").forward(request, response);
+                request.getRequestDispatcher("actualizarOrdenes.jsp").forward(request, response);
                 break;
 
             case 3:
 
                 if (ordDao.eliminarRegistro()) {
 
-                    request.setAttribute("mensajeExito", "El usuario se elimino correctamente!");
+                    request.setAttribute("mensajeExito", "La orden se elimino correctamente!");
 
                 } else {
 
-                    request.setAttribute("mensajeExito", "El usuario no se elimino correctamente!");
+                    request.setAttribute("mensajeExito", "La orden no se elimino correctamente!");
                 }
                 request.getRequestDispatcher("menu.jsp").forward(request, response);
                 break;
-        }
+
+            case 4: //Consultar por orden
+
+                ordVo = ordDao.consultarOrden(Id_Orden);
+                if (ordVo != null) {
+
+                    request.setAttribute("OrdenConsultada", ordVo);
+                    request.getRequestDispatcher("actualizarOrdenes.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("mensajeExito", "La orden no existe");
+                    request.getRequestDispatcher("consultarOrdenes.jsp").forward(request, response);
+                }
+                break;
         }
     }
-
-
+}
