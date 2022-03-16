@@ -74,11 +74,45 @@ public class ProductoDAO extends Conexion implements Crud{
 
     @Override
     public boolean actualizarRegistro() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            try {
+            
+            sql="update usuario set Nombre=?, Estado=? where usuario Id_Producto=?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Nombre);
+            puente.setString(2, Estado);
+            puente.setString(3, Id_Producto);
+            puente.executeUpdate();
+            operacion = true;
+        } catch (Exception e) {
+            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE,null,e);
+        }finally{
+            try{
+                this.cerrarConexion();
+            }catch (Exception e){
+                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE,null,e);
+            }
+        }
+        return operacion;
     }
 
     @Override
     public boolean eliminarRegistro() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            try {
+            
+            sql="update usuario set Estado=0 where usuario usuId=?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Estado);
+            puente.executeUpdate();
+            operacion = true;
+        } catch (Exception e) {
+            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE,null,e);
+        }finally{
+            try{
+                this.cerrarConexion();
+            }catch (Exception e){
+                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE,null,e);
+            }
+        }
+        return operacion;
     }
 }
