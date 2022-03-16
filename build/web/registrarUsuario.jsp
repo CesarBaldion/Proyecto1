@@ -26,7 +26,9 @@
             <br>
             <input type="text" name="txtDireccion" placeholder="Direccion" required="">
             <br>
+            <input type="password" name="txtContrasena" placeholder="Contraseña" required=""><br>
             <select name="txtEstado">
+                <option>Estado</option>
                     <option value="1">
                         Activo
                     </option>
@@ -34,10 +36,9 @@
                         Inactivo
                     </option>
                 </select><br>
-            <input type="password" name="txtContrasena" placeholder="Contraseña" required=""><br>
             <button id="Boton"> Registrar </button>
             <input type="hidden" value="1" name="opcion">
-            <a href="index.jsp">Iniciar Sesion</a><br>
+            <a href="iniciarSesion.jsp">Iniciar Sesion</a><br>
             
             <div class="mensaje">
                 <%

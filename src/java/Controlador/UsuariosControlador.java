@@ -104,7 +104,7 @@ public class UsuariosControlador extends HttpServlet {
                 } else {
 
                     request.setAttribute("mensajeError", "Corregir datos!");
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                    request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                 }
                 break;
         }
