@@ -34,6 +34,7 @@ public class OrdenesControlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         String Id_Orden = request.getParameter("txtIdOrden");
         String Id_Usuarios = request.getParameter("txtUsu");
         String fecha_registro = request.getParameter("txtFechaRegistro"); 
@@ -53,42 +54,80 @@ public class OrdenesControlador extends HttpServlet {
 
                 if (ordDao.agregarRegistro()) {
 
-                    request.setAttribute("mensajeExito", "El usuario se registro correctamente!");
+                    request.setAttribute("mensajeExito", "La orden se registro correctamente!");
 
                 } else {
 
-                    request.setAttribute("mensajeError", "El usuario no se registro correctamente");
+                    request.setAttribute("mensajeError", "La orden no se registro correctamente");
                 }
-                request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                request.getRequestDispatcher("registrarOrdenes.jsp").forward(request, response);
                 break;
 
             case 2:
 
                 if (ordDao.actualizarRegistro()) {
 
-                    request.setAttribute("mensajeExito", "El usuario se actualizo correctamente!");
+                    request.setAttribute("mensajeExito", "La orden se actualizo correctamente!");
 
                 } else {
 
-                    request.setAttribute("mensajeExito", "El usuario no se actualizo correctamente!");
+                    request.setAttribute("mensajeExito", "La orden no se actualizo correctamente!");
                 }
-                request.getRequestDispatcher("actualizarUsuario.jsp").forward(request, response);
+                request.getRequestDispatcher("actualizarOrdenes.jsp").forward(request, response);
                 break;
 
             case 3:
 
                 if (ordDao.eliminarRegistro()) {
 
-                    request.setAttribute("mensajeExito", "El usuario se elimino correctamente!");
+                    request.setAttribute("mensajeExito", "La orden se elimino correctamente!");
 
                 } else {
 
-                    request.setAttribute("mensajeExito", "El usuario no se elimino correctamente!");
+                    request.setAttribute("mensajeExito", "La orden no se elimino correctamente!");
                 }
                 request.getRequestDispatcher("menu.jsp").forward(request, response);
                 break;
         }
-        }
     }
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
 
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}
