@@ -22,7 +22,7 @@
             Fecha Entrega<br>
             <input type="date" name="txtFechaEntrega" ><br>
 
-            <button> Registrar </button>
+            <button type="submit"> Registrar </button>
             <input type="hidden" value="1" name="opcion">
 
             <div style="color: red;">

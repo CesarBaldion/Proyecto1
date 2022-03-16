@@ -34,6 +34,7 @@ public class OrdenesControlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
         String Id_Orden = request.getParameter("txtIdOrden");
         String Id_Usuarios = request.getParameter("txtUsu");
         String fecha_registro = request.getParameter("txtFechaRegistro");
@@ -99,6 +100,9 @@ public class OrdenesControlador extends HttpServlet {
                     request.setAttribute("mensajeExito", "La orden no existe");
                     request.getRequestDispatcher("consultarOrdenes.jsp").forward(request, response);
                 }
+                break;
+
+            default:
                 break;
         }
     }

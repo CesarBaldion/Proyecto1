@@ -61,7 +61,7 @@ public final class registrarOrdenes_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("            Fecha Entrega<br>\n");
       out.write("            <input type=\"date\" name=\"txtFechaEntrega\" ><br>\n");
       out.write("\n");
-      out.write("            <button> Registrar </button>\n");
+      out.write("            <button type=\"submit\"> Registrar </button>\n");
       out.write("            <input type=\"hidden\" value=\"1\" name=\"opcion\">\n");
       out.write("\n");
       out.write("            <div style=\"color: red;\">\n");

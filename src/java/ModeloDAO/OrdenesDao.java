@@ -39,6 +39,8 @@ public class OrdenesDao extends Conexion implements Crud {
         try {
             // 4. traer al DAO los datos del VO para hacer las operaciones.
 
+            conexion = this.obtenerConexion();
+
             Id_Orden = ordVO.getId_Orden();
             Id_Usuarios = ordVO.getId_Usuarios();
             fecha_registro = ordVO.getFecha_registro();
@@ -65,6 +67,14 @@ public class OrdenesDao extends Conexion implements Crud {
             operacion = true;
         } catch (SQLException ex) {
             Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
         }
 
         return operacion;
@@ -85,14 +95,21 @@ public class OrdenesDao extends Conexion implements Crud {
             operacion = true;
         } catch (SQLException ex) {
             Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } finally {
 
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
         return operacion;
     }
 
     @Override
     public boolean eliminarRegistro() {
-         try {
+        try {
             //Armar sentencia
             sql = "delete from ordenes where Id_Orden" + Id_Orden;
             puente = conexion.prepareStatement(sql);
@@ -102,10 +119,18 @@ public class OrdenesDao extends Conexion implements Crud {
         } catch (SQLException e) {
             Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, e);
 
-        }  
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
         return operacion;
     }
-    
+
     public OrdenesVo consultarOrden(String orden) {
 
         OrdenesVo ordVO = null;
