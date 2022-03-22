@@ -80,7 +80,7 @@ public class UsuariosControlador extends HttpServlet {
 
                     request.setAttribute("mensajeExito", "El usuario no se actualizo correctamente!");
                 }
-                request.getRequestDispatcher("actualizarUsuario.jsp").forward(request, response);
+                request.getRequestDispatcher("actualizarUsuarios.jsp").forward(request, response);
                 break;
 
             case 3:
@@ -105,6 +105,20 @@ public class UsuariosControlador extends HttpServlet {
 
                     request.setAttribute("mensajeError", "Corregir datos!");
                     request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
+                }
+                break;
+                
+                case 5: // consultar por Id
+                
+                usuVO = usuDAO.consultaruSUARIO(Id_Usuarios);
+                if (usuVO != null) {
+                    request.setAttribute("usuarioConsultado", usuVO);
+                    request.getRequestDispatcher("actualizarUsuarios.jsp").forward(request, response);
+                    
+                }else{
+                request.setAttribute("mensajeError", "El Usuario no existe!");
+                request.getRequestDispatcher("consultarUsuarios.jsp").forward(request, response);
+                
                 }
                 break;
         }
