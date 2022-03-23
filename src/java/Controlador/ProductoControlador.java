@@ -78,9 +78,7 @@ public class ProductoControlador extends HttpServlet {
             case 3:
 
                 if (prodDAO.eliminarRegistro()) {
-
                     request.setAttribute("mensajeExito", "El producto se elimino correctamente!");
-
                 } else {
 
                     request.setAttribute("mensajeExito", "El producto no se elimino correctamente!");

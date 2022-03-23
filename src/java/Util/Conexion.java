@@ -23,8 +23,8 @@ public class Conexion {
         driver = "com.mysql.jdbc.Driver";
         user = "root";
         password = "";
-        dataBase = "suitefactor1";
-        urlBd = "jdbc:mysql://localhost:3306/" + dataBase;
+        dataBase = "proyect";
+        urlBd = "jdbc:mysql://localhost:3308/" + dataBase;
 
         try {
             Class.forName(driver).newInstance();
