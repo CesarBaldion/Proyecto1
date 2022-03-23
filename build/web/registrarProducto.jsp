@@ -19,7 +19,7 @@
             <select name="txtEstado">
                 <option>Selecione...</option>
                 <option value="1">Activo</option>
-                <option value="2">Inactivo</option>
+                <option value="0">Inactivo</option>
             </select>
             <br>
             <button id="Boton"> Registrar </button>

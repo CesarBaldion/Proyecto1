@@ -1,0 +1,16 @@
+SMAP
+consultarProducto_jsp.java
+JSP
+*S JSP
+*F
++ 0 consultarProducto.jsp
+consultarProducto.jsp
+*L
+5,36:47
+41,8:84
+48,4:92
+52,2:96,3
+54,2:102
+56:104,3
+57,7:107
+*E

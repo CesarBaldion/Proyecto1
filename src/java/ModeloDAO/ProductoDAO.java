@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -46,6 +47,10 @@ public class ProductoDAO extends Conexion implements Crud{
         } catch (Exception e) {
             Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
         }
+    }
+
+    public ProductoDAO() {
+        
     }
 
     @Override
@@ -114,5 +119,55 @@ public class ProductoDAO extends Conexion implements Crud{
             }
         }
         return operacion;
+    }
+    
+    public ProductoVO consultarProducto(String producto){
+        ProductoVO prodVo = null;
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from producto where id_producto=?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, producto);
+            mensajero = puente.executeQuery();
+            
+            while(mensajero.next()){
+                prodVo = new ProductoVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3));
+            }
+        } catch (Exception e) {
+            Logger.getLogger(ProductoVO.class.getName()).log(Level.SEVERE, null, e);
+        }finally{
+            try{
+                this.cerrarConexion();
+            }catch(Exception e){
+                Logger.getLogger(ProductoVO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return prodVo;
+    }
+    
+    public ArrayList<ProductoVO> Listar(){
+        
+        ArrayList<ProductoVO> listaProductos = new ArrayList();
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from producto";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+            
+            while(mensajero.next()){
+                ProductoVO prodVO = new ProductoVO(mensajero.getString(1),mensajero.getString(2),mensajero.getString(3));
+                
+                listaProductos.add(prodVO);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(ProductoVO.class.getName()).log(Level.SEVERE, null, e);
+        }finally{
+            try{
+                this.cerrarConexion();
+            }catch(Exception e){
+                Logger.getLogger(ProductoVO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return listaProductos;
     }
 }

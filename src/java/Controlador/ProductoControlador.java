@@ -85,8 +85,20 @@ public class ProductoControlador extends HttpServlet {
                 }
                 request.getRequestDispatcher("menu.jsp").forward(request, response);
                 break;
+             
+             case 4:{
+            prodVO = prodDAO.consultarProducto(Id_Producto);
+                    }
+                if (prodVO != null) {
+                    request.setAttribute("vehiculoConsultado", prodVO);
+                    request.getRequestDispatcher("actualizarProducto.jsp").forward(request, response);
+                }else{
+                    request.setAttribute("mensajError", "El vehiculo no existe");
+                    request.getRequestDispatcher("consultarProducto.jsp").forward(request, response);
+                }
+                break;
                 
-            default:
+            default: 
                 break;
         }
     }
