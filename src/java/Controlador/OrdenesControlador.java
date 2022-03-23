@@ -34,15 +34,15 @@ public class OrdenesControlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         String Id_Orden = request.getParameter("txtIdOrden");
         String Id_Usuarios = request.getParameter("txtUsu");
-        String fecha_registro = request.getParameter("txtFechaRegistro"); 
+        String fecha_registro = request.getParameter("txtFechaRegistro");
         String fecha_entrega = request.getParameter("txtFechaEntrega");
-        
+
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         // 2. Quien tiene los datos de forma segura en el sistema? VO
-        OrdenesVo ordVo = new OrdenesVo(Id_Orden,Id_Usuarios, fecha_registro, fecha_entrega);
+        OrdenesVo ordVo = new OrdenesVo(Id_Orden, Id_Usuarios, fecha_registro, fecha_entrega);
 
         // 3. Quien hace las operaciones? DAO
         OrdenesDao ordDao = new OrdenesDao(ordVo);
@@ -87,6 +87,19 @@ public class OrdenesControlador extends HttpServlet {
                     request.setAttribute("mensajeError", "La orden no se elimino correctamente!");
                 }
                 request.getRequestDispatcher("menu.jsp").forward(request, response);
+                break;
+
+            case 4: //Consultar por Orden
+
+                ordVo = ordDao.consultarOrden(Id_Orden);
+                if (ordVo != null) {
+
+                    request.setAttribute("OrdenConsultada", ordVo);
+                    request.getRequestDispatcher("actualizarOrdenes.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("mensajeExito", "La orden no existe");
+                    request.getRequestDispatcher("consultarOrdenes.jsp").forward(request, response);
+                }
                 break;
         }
     }

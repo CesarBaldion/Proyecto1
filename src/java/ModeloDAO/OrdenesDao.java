@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 //import java.util.Date;
@@ -131,5 +132,71 @@ public class OrdenesDao extends Conexion implements Crud {
             }
             return operacion;
         }
+    }
+    
+    
+    public OrdenesVo consultarOrden(String Orden) {
+
+        OrdenesVo ordVo = null;
+
+        try {
+
+            conexion = this.obtenerConexion();
+            sql = "select * from ordenes where Id_Orden = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id_Orden);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+                ordVo = new OrdenesVo(mensajero.getString(1), mensajero.getString(2),
+                        mensajero.getString(3), mensajero.getString(4));
+
+            }
+        } catch (Exception e) {
+            Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return ordVo;
+    }
+
+    public ArrayList<OrdenesVo> listar() {
+
+        ArrayList<OrdenesVo> listaOrdenes = new ArrayList<>();
+        try {
+
+            sql = "select * from ordenes";
+            conexion = this.obtenerConexion();
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+                OrdenesVo ordVo = new OrdenesVo(mensajero.getString(1), mensajero.getString(2),
+                        mensajero.getString(3), mensajero.getString(4));
+
+                listaOrdenes.add(ordVo);
+            }
+        } catch (Exception e) {
+
+            Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return listaOrdenes;
+
     }
 }
