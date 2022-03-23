@@ -9,9 +9,36 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Registrar Ordenes</title>
     </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+    <center>
+        <body>
+            <form method ="post" action="Ordenes"> 
+                <h1>Registrar Orden</h1>
+                Usuario<br>
+                <input type="text" name="txtUsu">
+                <br>
+                Fecha Registro<br>
+                <input type="date" name="txtFechaRegistro">
+                <br>
+                Fecha Entrega<br>
+                <input type="date" name="txtFechaEntrega">
+                <br><br>
+                <button id="Boton"> Registrar </button>
+                <input type="hidden" value="1" name="opcion">
+                <a href="index.jsp">Iniciar Sesion</a><br>
+
+                <div class="mensaje">
+                    <%
+                    if (request.getAttribute("mensajeError") != null) {%>
+                    ${mensajeError}
+
+                    <%   } else {%>
+                    ${mensajeExito}
+
+                    <%}%>
+                </div>
+            </form>
+        </body>
+    </center>
 </html>
