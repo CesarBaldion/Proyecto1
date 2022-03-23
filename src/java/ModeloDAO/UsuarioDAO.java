@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,8 +20,8 @@ import java.util.logging.Logger;
  *
  * @author Juan Pablo
  */
-public class UsuarioDAO extends Conexion implements Crud{
-    
+public class UsuarioDAO extends Conexion implements Crud {
+
     private Connection conexion;
     private PreparedStatement puente;
     private ResultSet mensajero;
@@ -31,6 +32,11 @@ public class UsuarioDAO extends Conexion implements Crud{
     // Declarar variables del modulo(VO)
     private String id_Usuarios = "", Nombre = "", Documento = "", Telefono = "",
             Email = "", Direccion = "", Estado = "", Contrasena = "";
+
+    public UsuarioDAO() {
+    }
+    
+    
 
     //2. Crear metodo principal para recibir los datos del VO
     public UsuarioDAO(UsuarioVO usuVO) {
@@ -95,8 +101,8 @@ public class UsuarioDAO extends Conexion implements Crud{
     public boolean actualizarRegistro() {
 
         try {
-            sql = "update usuarios set ( Nombre = ?, Documento = ?, Telefono = ?, Email = ?"
-                    + ", Direccion = ?, Estado = ?, Contrasena = ?) where id_Usuarios = ? " ;
+            sql = " update usuarios set Nombre = ?, Documento = ?, Telefono = ?, Email = ?"
+                    + ", Direccion = ?, Estado = ?, Contrasena = ? where id_Usuarios = ? ";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Nombre);
             puente.setString(2, Documento);
@@ -148,7 +154,7 @@ public class UsuarioDAO extends Conexion implements Crud{
 
         return operacion;
     }
-    
+
     public boolean iniciarSesion(String Documento, String Contrasena) {
 
         try {
@@ -179,6 +185,75 @@ public class UsuarioDAO extends Conexion implements Crud{
         }
 
         return operacion;
+
+    }
+
+    public UsuarioVO consultaruSUARIO(String Id) {
+
+        UsuarioVO usuVO = null;
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from usuarios where id_usuarios = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+
+                usuVO = new UsuarioVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4),
+                        mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8));
+
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return usuVO;
+
+    }
+
+    public ArrayList<UsuarioVO> Listar() {
+
+        ArrayList<UsuarioVO> listaUsuarios = new ArrayList<>();
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from usuarios";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+
+                UsuarioVO usuVO = new UsuarioVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4),
+                        mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8));
+
+                listaUsuarios.add(usuVO);
+
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioVO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return listaUsuarios;
 
     }
 
