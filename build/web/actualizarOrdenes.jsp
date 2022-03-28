@@ -12,6 +12,22 @@
         <title>Actualizar Ordenes</title>
     </head>
     <body>
+    <center>
         <h1>Actualizar Ordenes</h1>
-    </body>
+        <form  method="post" action="Ordenes"> 
+            <table>
+                <tr>
+                    <th>
+                        Fecha Registro
+                    
+                        Fecha Entrega
+                    
+                        <input type="hidden" value="2" name="opcion">
+                        <button>Actualizar</button>
+                    </th>
+                </tr>
+            </table><br><br>
+        </form>
+    </center>
+</body>
 </html>

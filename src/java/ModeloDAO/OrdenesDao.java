@@ -57,27 +57,25 @@ public class OrdenesDao extends Conexion implements Crud {
     public boolean agregarRegistro() {
         try {
             //Armar sentencia
-            sql = "insert into ordenes(Id_Orden, Id_Usuarios, fecha_registro, fecha_entrega) values (?,?,?,?)";
+            sql = "insert into ordenes(Id_Usuarios, fecha_registro, fecha_entrega) values (?,?,?)";
 
             // crear el camino por donde va la sentencia
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, Id_Orden);
-            puente.setString(2, Id_Usuarios);
-            puente.setString(3, fecha_registro);
-            puente.setString(4, fecha_entrega);
+            puente.setString(1, Id_Usuarios);
+            puente.setString(2, fecha_registro);
+            puente.setString(3, fecha_entrega);
             puente.executeUpdate();
             operacion = true;
         } catch (SQLException ex) {
             Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
+        }finally{
 
-            try {
+            try{
                 this.cerrarConexion();
 
             } catch (SQLException e) {
                 Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, e);
             }
-
             return operacion;
         }
     }

@@ -41,49 +41,49 @@ public final class registrarProducto_jsp extends org.apache.jasper.runtime.HttpJ
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("<!DOCTYPE html>\n");
-      out.write("<html>\n");
-      out.write("    <head>\n");
-      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>Registrar Producto</title>\n");
-      out.write("    </head>\n");
-      out.write("    <body>\n");
-      out.write("        <form class=\"Formulario\" method = \"post\" action = \"Producto\" > \n");
-      out.write("            <h1>Registrar Producto</h1>\n");
-      out.write("            <input type=\"text\" name=\"txtNombre\" placeholder=\"Nombre\" required=\"\" >\n");
-      out.write("            <br>\n");
-      out.write("            <input type=\"number\" name=\"txtEstado\" placeholder=\"Estado\" required=\"\">\n");
-      out.write("            <br>\n");
-      out.write("            <button id=\"Boton\"> Registrar </button>\n");
-      out.write("            <input type=\"hidden\" value=\"1\" name=\"opcion\">\n");
-      out.write("            <a href=\"index.jsp\">Iniciar Sesion</a><br>\n");
-      out.write("            \n");
-      out.write("            <div class=\"mensaje\">\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!DOCTYPE html>\r\n");
+      out.write("<html>\r\n");
+      out.write("    <head>\r\n");
+      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
+      out.write("        <title>Registrar Producto</title>\r\n");
+      out.write("    </head>\r\n");
+      out.write("    <body>\r\n");
+      out.write("        <form class=\"Formulario\" method = \"post\" action = \"Producto\" > \r\n");
+      out.write("            <h1>Registrar Producto</h1>\r\n");
+      out.write("            <input type=\"text\" name=\"txtNombre\" placeholder=\"Nombre\" required=\"\" >\r\n");
+      out.write("            <br>\r\n");
+      out.write("            <input type=\"number\" name=\"txtEstado\" placeholder=\"Estado\" required=\"\">\r\n");
+      out.write("            <br>\r\n");
+      out.write("            <button id=\"Boton\"> Registrar </button>\r\n");
+      out.write("            <input type=\"hidden\" value=\"1\" name=\"opcion\">\r\n");
+      out.write("            <a href=\"index.jsp\">Iniciar Sesion</a><br>\r\n");
+      out.write("            \r\n");
+      out.write("            <div class=\"mensaje\">\r\n");
       out.write("                ");
 
                 if (request.getAttribute("mensajeError") != null) {
-      out.write("\n");
+      out.write("\r\n");
       out.write("                ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeError}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\n");
-      out.write("\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("                ");
    } else {
-      out.write("\n");
+      out.write("\r\n");
       out.write("                ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeExito}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\n");
-      out.write("\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("                ");
 }
-      out.write("\n");
-      out.write("            </div>\n");
-      out.write("        </form>\n");
-      out.write("    </body>\n");
-      out.write("</html>\n");
+      out.write("\r\n");
+      out.write("            </div>\r\n");
+      out.write("        </form>\r\n");
+      out.write("    </body>\r\n");
+      out.write("</html>\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;
