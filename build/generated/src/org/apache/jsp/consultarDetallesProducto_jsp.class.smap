@@ -1,10 +1,10 @@
 SMAP
-consultarOrdenes_jsp.java
+consultarDetallesProducto_jsp.java
 JSP
 *S JSP
 *F
-+ 0 consultarOrdenes.jsp
-consultarOrdenes.jsp
++ 0 consultarDetallesProducto.jsp
+consultarDetallesProducto.jsp
 *L
 5,29:47
 34:77,2

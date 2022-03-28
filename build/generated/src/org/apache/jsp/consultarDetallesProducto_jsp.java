@@ -4,11 +4,10 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import java.util.ArrayList;
-import ModeloVO.LoteProduccionVO;
-import ModeloDAO.LoteProduccionDAO;
-import ModeloVO.LoteProduccionVO;
+import ModeloDAO.DetallesProductoDAO;
+import ModeloVO.DetallesProductoVO;
 
-public final class consultarLoteProduccion_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class consultarDetallesProducto_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -51,7 +50,6 @@ public final class consultarLoteProduccion_jsp extends org.apache.jasper.runtime
       out.write("\n");
       out.write("\n");
       out.write("\n");
-      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -59,18 +57,21 @@ public final class consultarLoteProduccion_jsp extends org.apache.jasper.runtime
       out.write("        <title>JSP Page</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("         <h1>Lote Produccion</h1>\n");
-      out.write("\n");
-      out.write("        <form method=\"post\" action=\"LoteProduccion\">\n");
-      out.write("\n");
-      out.write("            Id\n");
-      out.write("            <input type=\"text\" name=\"txtid_loteProduccion\">\n");
-      out.write("            <br>\n");
-      out.write("            <input type=\"hidden\" value=\"4\" name=\"opcion\">\n");
-      out.write("            <button>Consultar</button>\n");
-      out.write("\n");
+      out.write("    <center>\n");
+      out.write("        <h1>Ordenes</h1>\n");
+      out.write("        <form  method=\"post\" action=\"DetallesProducto\"> \n");
+      out.write("            <table>\n");
+      out.write("                <tr>\n");
+      out.write("                    <th>\n");
+      out.write("                        Detalles Producto\n");
+      out.write("                        <input type=\"text\" name=\"txtIdProducto\" ><br>\n");
+      out.write("                        <input type=\"hidden\" value=\"4\" name=\"opcion\">\n");
+      out.write("                        <button>Consultar</button>\n");
+      out.write("                    </th>\n");
+      out.write("                </tr>\n");
+      out.write("            </table><br><br>\n");
       out.write("        </form>\n");
-      out.write("        <div class=\"mensaje\">\n");
+      out.write("        <div style=\"color: red;\">\n");
       out.write("            ");
 
                 if (request.getAttribute("mensajeError") != null) {
@@ -80,63 +81,67 @@ public final class consultarLoteProduccion_jsp extends org.apache.jasper.runtime
       out.write("\n");
       out.write("\n");
       out.write("            ");
+   } else {
+      out.write("\n");
+      out.write("            ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeExito}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\n");
+      out.write("\n");
+      out.write("            ");
 }
       out.write("\n");
-      out.write("        </div>\n");
-      out.write("        <br>\n");
-      out.write("        <br>\n");
+      out.write("        </div><br><br>\n");
+      out.write("\n");
       out.write("\n");
       out.write("        <form>\n");
       out.write("\n");
       out.write("            <table border=\"1\">\n");
       out.write("\n");
       out.write("                <tr>\n");
-      out.write("                    <th>Id</th>\n");
-      out.write("                    <th>Cantidad</th>\n");
-      out.write("                    <th>Fecha Fabricacion</th>\n");
-      out.write("                    <th>Id orden Detalles</th>\n");
-      out.write("                    <th>Id Usuarios</th>\n");
-      out.write("                </tr>\n");
-      out.write("                ");
-
-                    LoteProduccionVO ltProducVO = new LoteProduccionVO();
-                    LoteProduccionDAO ltProducDAO = new LoteProduccionDAO(ltProducVO);
-
-                    ArrayList<LoteProduccionVO> listaLoteProduccion = ltProducDAO.Listar();
-
-                    for (int i = 0; i < listaLoteProduccion.size(); i++) {
-                        
-                        ltProducVO = listaLoteProduccion.get(i);
-
-                
-      out.write("\n");
-      out.write("                <tr>\n");
-      out.write("                    <td>");
-      out.print(ltProducVO.getId_Lote_Produccion());
-      out.write("</td>\n");
-      out.write("                    <td>");
-      out.print(ltProducVO.getCantidad());
-      out.write("</td>\n");
-      out.write("                    <td>");
-      out.print(ltProducVO.getFecha_Fabricacion());
-      out.write("</td>\n");
-      out.write("                    <td>");
-      out.print(ltProducVO.getId_orden_Detalles());
-      out.write("</td>\n");
-      out.write("                    <td>");
-      out.print(ltProducVO.getId_Usuarios());
-      out.write("</td>\n");
-      out.write(" \n");
+      out.write("                    <th>IdProducto</th>\n");
+      out.write("                    <th>Id Detalles Producto</th>\n");
+      out.write("                    <th>Descripcion</th>\n");
+      out.write("                    <th>Talla</th>\n");
       out.write("                </tr>\n");
       out.write("                \n");
       out.write("                ");
- } 
+
+                DetallesProductoVO detProVO = new DetallesProductoVO();
+                DetallesProductoDAO detProDAO = new DetallesProductoDAO();
+                ArrayList<DetallesProductoVO> listarDetallesProducto = detProDAO.listar();
+                for (int i = 0; i < listarDetallesProducto.size(); i++){
+                
+                    detProVO = listarDetallesProducto.get(i);
+                
+                
       out.write("\n");
+      out.write("                \n");
+      out.write("                \n");
+      out.write("                <tr>\n");
+      out.write("                    <td>");
+      out.print(detProVO.getId_Producto());
+      out.write("</td>\n");
+      out.write("                    <td>");
+      out.print(detProVO.getId_Detalles_Producto());
+      out.write("</td>\n");
+      out.write("                    <td>");
+      out.print(detProVO.getDescripcion());
+      out.write("</td>\n");
+      out.write("                    <td>");
+      out.print(detProVO.getTalla());
+      out.write("</td>\n");
+      out.write("                </tr>\n");
+      out.write("                \n");
+      out.write("                ");
+ }
       out.write("\n");
+      out.write("            \n");
       out.write("            </table>\n");
-      out.write("\n");
+      out.write("            \n");
       out.write("        </form>\n");
-      out.write("    </body>\n");
+      out.write("            \n");
+      out.write("    </center>\n");
+      out.write("</body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
