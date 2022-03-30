@@ -3,7 +3,7 @@
     Created on : 24/03/2022, 08:24:57 AM
     Author     : Sena
 --%>
-
+<%@include file="sesiones.jsp" %>
 <%@page import="ModeloVO.LoteProduccionVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
