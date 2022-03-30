@@ -1,7 +1,7 @@
 <%-- 
     Document   : consultarLoteProduccion
     Created on : 24/03/2022, 08:25:13 AM
-    Author     : Sena
+    Author     : Daniel
 --%>
 <%@include file="sesiones.jsp" %>
 <%@page import="java.util.ArrayList"%>

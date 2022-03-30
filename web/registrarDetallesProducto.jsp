@@ -11,8 +11,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registrar Detalles del Producto</title>
     </head>
-    <center>
+    
         <body>
+            <center>
             <form method ="post" action="DetallesProducto"> 
                 <h1>Registrar Detalles del Producto</h1>
                 Id Producto<br>
@@ -38,6 +39,7 @@
                     <%}%>
                 </div>
             </form>
+                </center>
         </body>
-    </center>
+    
 </html>
