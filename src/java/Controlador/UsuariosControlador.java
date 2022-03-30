@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,18 +38,17 @@ public class UsuariosControlador extends HttpServlet {
         // 1. Recibir datos de la vista
         String Id_Usuarios = request.getParameter("txtId");
         String Documento = request.getParameter("txtDocumento");
-        String Contrasena = request.getParameter("txtContrasena"); 
+        String Contrasena = request.getParameter("txtContrasena");
         String Nombre = request.getParameter("txtNombre");
         String Telefono = request.getParameter("txtTelefono");
         String Email = request.getParameter("txtEmail");
         String Direccion = request.getParameter("txtDireccion");
         String Estado = request.getParameter("txtEstado");
-        
 
         int opcion = Integer.parseInt(request.getParameter("opcion"));
 
         // 2. Quien tiene los datos de forma segura en el sistema? VO
-        UsuarioVO usuVO = new UsuarioVO(Id_Usuarios,Nombre, Documento, Telefono, Email, Direccion,
+        UsuarioVO usuVO = new UsuarioVO(Id_Usuarios, Nombre, Documento, Telefono, Email, Direccion,
                 Estado, Contrasena);
 
         // 3. Quien hace las operaciones? DAO
@@ -97,7 +97,16 @@ public class UsuariosControlador extends HttpServlet {
                 break;
 
             case 4:
-                if (usuDAO.iniciarSesion(Documento, Contrasena)) {
+                usuVO = usuDAO.iniciarSesion(Documento, Contrasena);
+
+                if (usuVO != null) {
+
+                    HttpSession miSesion = request.getSession(true);
+                    String id = usuVO.getIdUsuarios();
+
+                    usuVO = new UsuarioVO(Id_Usuarios, Nombre, Documento, Telefono, Email,
+                            Direccion, Estado, Contrasena);
+                    miSesion.setAttribute("datosUsuario", usuVO);
 
                     request.getRequestDispatcher("menu.jsp").forward(request, response);
 
@@ -107,18 +116,18 @@ public class UsuariosControlador extends HttpServlet {
                     request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                 }
                 break;
-                
-                case 5: // consultar por Id
-                
+
+            case 5: // consultar por Id
+
                 usuVO = usuDAO.consultaruSUARIO(Id_Usuarios);
                 if (usuVO != null) {
                     request.setAttribute("usuarioConsultado", usuVO);
                     request.getRequestDispatcher("actualizarUsuarios.jsp").forward(request, response);
-                    
-                }else{
-                request.setAttribute("mensajeError", "El Usuario no existe!");
-                request.getRequestDispatcher("consultarUsuarios.jsp").forward(request, response);
-                
+
+                } else {
+                    request.setAttribute("mensajeError", "El Usuario no existe!");
+                    request.getRequestDispatcher("consultarUsuarios.jsp").forward(request, response);
+
                 }
                 break;
         }

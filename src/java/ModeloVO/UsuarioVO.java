@@ -18,6 +18,10 @@ public class UsuarioVO {
     public UsuarioVO() {
     }
 
+    public UsuarioVO(String Id_Usuarios) {
+        this.Id_Usuarios = Id_Usuarios;
+    }
+
     public UsuarioVO(String IdUsuarios, String Nombre, String Documento, String Telefono, String Email,
             String Direccion, String Estado, String Contrasena) {
         this.Id_Usuarios = IdUsuarios;
