@@ -3,7 +3,7 @@
     Created on : 24/03/2022, 08:25:13 AM
     Author     : Sena
 --%>
-
+<%@include file="sesiones.jsp" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="ModeloVO.LoteProduccionVO"%>
 <%@page import="ModeloDAO.LoteProduccionDAO"%>

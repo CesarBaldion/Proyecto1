@@ -49,24 +49,24 @@ public final class registrarLoteMateriaPrima_jsp extends org.apache.jasper.runti
 
       out.write('\r');
       out.write('\n');
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("<!DOCTYPE html>\n");
-      out.write("\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!DOCTYPE html>\r\n");
+      out.write("\r\n");
 
     response.setHeader("Pragma", "No-cache");
     response.setHeader("Cache-control", "no-cache, no-store, must-revalidate");
     response.setDateHeader("Expires", 0);
     
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
 
 
     HttpSession buscarSesion = (HttpSession) request.getSession();
-    String documento = "";
+    String nombre = "";
     if (buscarSesion.getAttribute("datosUsuario") == null) {
 
         request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
@@ -74,34 +74,34 @@ public final class registrarLoteMateriaPrima_jsp extends org.apache.jasper.runti
     } else {
         UsuarioVO usuVO = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
         
-        documento = usuVO.getDocumento();
+        nombre = usuVO.getNombre();
 
     }
 
 
 
-      out.write("\n");
-      out.write("\n");
-      out.write("<html>\n");
-      out.write("    <head>\n");
-      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>JSP Page</title>\n");
-      out.write("    </head>\n");
-      out.write("    <body>\n");
-      out.write("        <div>\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<html>\r\n");
+      out.write("    <head>\r\n");
+      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
+      out.write("        <title>JSP Page</title>\r\n");
+      out.write("    </head>\r\n");
+      out.write("    <body>\r\n");
+      out.write("        <div>\r\n");
       out.write("                <h1> Bienvenido: ");
-      out.print(documento);
-      out.write("</h1>\n");
-      out.write("                <form method=\"post\" action=\"Sesiones\">\n");
-      out.write("                    <input type=\"submit\" value=\"Cerrar Sesion\">\n");
-      out.write("                </form>\n");
-      out.write("            </div> <br>\n");
-      out.write("            <br>\n");
-      out.write("            <div></div><br><br>\n");
-      out.write("            <div></div> <br><br>\n");
-      out.write("    </body>\n");
-      out.write("</html>\n");
-      out.write("\n");
+      out.print(nombre);
+      out.write("</h1>\r\n");
+      out.write("                <form method=\"post\" action=\"Sesiones\">\r\n");
+      out.write("                    <input type=\"submit\" value=\"Cerrar Sesion\">\r\n");
+      out.write("                </form>\r\n");
+      out.write("            </div> <br>\r\n");
+      out.write("            <br>\r\n");
+      out.write("            <div></div><br><br>\r\n");
+      out.write("            <div></div> <br><br>\r\n");
+      out.write("    </body>\r\n");
+      out.write("</html>\r\n");
+      out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
