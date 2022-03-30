@@ -1,10 +1,10 @@
 SMAP
-registrarOrdenes_jsp.java
+registrarDetallesProducto_jsp.java
 JSP
 *S JSP
 *F
-+ 0 registrarOrdenes.jsp
-registrarOrdenes.jsp
++ 0 registrarDetallesProducto.jsp
+registrarDetallesProducto.jsp
 + 1 sesiones.jsp
 sesiones.jsp
 *L

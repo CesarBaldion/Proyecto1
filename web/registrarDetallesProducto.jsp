@@ -9,9 +9,35 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Registrar Detalles del Producto</title>
     </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+    <center>
+        <body>
+            <form method ="post" action="DetallesProducto"> 
+                <h1>Registrar Detalles del Producto</h1>
+                Id Producto<br>
+                <input type="text" name="txtIdProducto">
+                <br>
+                Descripcion<br>
+                <input type="text" name="txtDescripcion">
+                <br>
+                Talla<br>
+                <input type="text" name="txtTalla">
+                <br><br>
+                <button id="Boton"> Registrar </button>
+                <input type="hidden" value="1" name="opcion">
+
+                <div class="mensaje" style="color: red;">
+                    <%
+                    if (request.getAttribute("mensajeError") != null) {%>
+                    ${mensajeError}
+
+                    <%   } else {%>
+                    ${mensajeExito}
+
+                    <%}%>
+                </div>
+            </form>
+        </body>
+    </center>
 </html>

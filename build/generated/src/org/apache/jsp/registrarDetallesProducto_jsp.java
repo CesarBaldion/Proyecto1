@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import ModeloVO.UsuarioVO;
 
-public final class registrarOrdenes_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class registrarDetallesProducto_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -108,20 +108,20 @@ public final class registrarOrdenes_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
-      out.write("        <title>Registrar Ordenes</title>\r\n");
+      out.write("        <title>Registrar Detalles del Producto</title>\r\n");
       out.write("    </head>\r\n");
       out.write("    <center>\r\n");
       out.write("        <body>\r\n");
-      out.write("            <form method =\"post\" action=\"Ordenes\"> \r\n");
-      out.write("                <h1>Registrar Orden</h1>\r\n");
-      out.write("                Usuario<br>\r\n");
-      out.write("                <input type=\"text\" name=\"txtUsu\">\r\n");
+      out.write("            <form method =\"post\" action=\"DetallesProducto\"> \r\n");
+      out.write("                <h1>Registrar Detalles del Producto</h1>\r\n");
+      out.write("                Id Producto<br>\r\n");
+      out.write("                <input type=\"text\" name=\"txtIdProducto\">\r\n");
       out.write("                <br>\r\n");
-      out.write("                Fecha Registro<br>\r\n");
-      out.write("                <input type=\"date\" name=\"txtFechaRegistro\">\r\n");
+      out.write("                Descripcion<br>\r\n");
+      out.write("                <input type=\"text\" name=\"txtDescripcion\">\r\n");
       out.write("                <br>\r\n");
-      out.write("                Fecha Entrega<br>\r\n");
-      out.write("                <input type=\"date\" name=\"txtFechaEntrega\">\r\n");
+      out.write("                Talla<br>\r\n");
+      out.write("                <input type=\"text\" name=\"txtTalla\">\r\n");
       out.write("                <br><br>\r\n");
       out.write("                <button id=\"Boton\"> Registrar </button>\r\n");
       out.write("                <input type=\"hidden\" value=\"1\" name=\"opcion\">\r\n");

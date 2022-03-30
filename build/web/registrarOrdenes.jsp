@@ -26,9 +26,8 @@
                 <br><br>
                 <button id="Boton"> Registrar </button>
                 <input type="hidden" value="1" name="opcion">
-                <a href="index.jsp">Iniciar Sesion</a><br>
 
-                <div class="mensaje">
+                <div class="mensaje" style="color: red;">
                     <%
                     if (request.getAttribute("mensajeError") != null) {%>
                     ${mensajeError}
