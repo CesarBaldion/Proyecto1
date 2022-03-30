@@ -35,6 +35,9 @@ public class UsuarioDAO extends Conexion implements Crud {
 
     public UsuarioDAO() {
     }
+
+   
+    
     
     
 
@@ -155,7 +158,9 @@ public class UsuarioDAO extends Conexion implements Crud {
         return operacion;
     }
 
-    public boolean iniciarSesion(String Documento, String Contrasena) {
+    public UsuarioVO iniciarSesion(String Documento, String Contrasena) {
+        
+        UsuarioVO usuVO = null;
 
         try {
             conexion = this.obtenerConexion();
@@ -167,7 +172,7 @@ public class UsuarioDAO extends Conexion implements Crud {
 
             if (mensajero.next()) {
 
-                operacion = true;
+                usuVO = new UsuarioVO(mensajero.getString(1));
 
             }
 
@@ -184,7 +189,7 @@ public class UsuarioDAO extends Conexion implements Crud {
             }
         }
 
-        return operacion;
+        return usuVO;
 
     }
 
