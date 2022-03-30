@@ -57,7 +57,7 @@ public class OrdenesDao extends Conexion implements Crud {
     public boolean agregarRegistro() {
         try {
             //Armar sentencia
-            sql = "insert into ordenes(Id_Usuarios, fecha_registro, fecha_entrega) values (?,?,?)";
+            sql = "insert into ordenes (Id_Usuarios, fecha_registro, fecha_entrega) values (?,?,?)";
 
             // crear el camino por donde va la sentencia
             puente = conexion.prepareStatement(sql);

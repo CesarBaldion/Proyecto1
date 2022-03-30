@@ -1,0 +1,147 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controlador;
+
+import ModeloDAO.MateriaPrimaDAO;
+import ModeloVO.MateriaPrimaVO;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ *
+ * @author Sena
+ */
+@WebServlet(name = "MateriaPrimaControlador", urlPatterns = {"/MateriaPrima"})
+public class MateriaPrimaControlador extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        
+        String Id_materia_Prima = request.getParameter("txtIdMateriaPrima");
+        String Nombre = request.getParameter("txtNombre");
+        String Actualizacion = request.getParameter("txtActualizacion");
+        String Estado = request.getParameter("txtEstado");
+        if(Actualizacion==null){
+            Actualizacion="0";
+        }
+        int opcion = Integer.parseInt(request.getParameter("opcion"));
+        // 2. Quien tiene los datos de forma segura en el sistema? VO
+        MateriaPrimaVO matPriVO = new MateriaPrimaVO(Id_materia_Prima, Nombre, Actualizacion, Estado);
+
+        // 3. Quien hace las operaciones? DAO
+        MateriaPrimaDAO matPriDAO = new MateriaPrimaDAO(matPriVO);
+        
+        switch (opcion) {
+
+            case 1: //Agregar registro
+
+                if (matPriDAO.agregarRegistro()) {
+
+                    request.setAttribute("mensajeExito", "La materia prima se registró correctamente!");
+
+                } else {
+
+                    request.setAttribute("mensajeError", "La materia prima no se registró correctamente");
+                }
+                request.getRequestDispatcher("registrarMateriasPrimas.jsp").forward(request, response);
+                break;
+
+            case 2:
+
+                if (matPriDAO.actualizarRegistro()) {
+
+                    request.setAttribute("mensajeExito", "La materia prima se actualizó correctamente!");
+
+                } else {
+
+                    request.setAttribute("mensajeError", "La materia prima no se actualizó correctamente!");
+                }
+                request.getRequestDispatcher("actualizarMateriaPrima.jsp").forward(request, response);
+                break;
+
+            case 3:
+
+                if (matPriDAO.eliminarRegistro()) {
+
+                    request.setAttribute("mensajeExito", "La materia prima se elimino correctamente!");
+
+                } else {
+
+                    request.setAttribute("mensajeError", "La materia prima no se elimino correctamente!");
+                }
+                request.getRequestDispatcher("menu.jsp").forward(request, response);
+                break;
+
+            case 4: //Consultar por Orden
+
+                matPriVO = matPriDAO.consultarIdMateriaPrima(Id_materia_Prima);
+                if (matPriVO != null) {
+
+                    request.setAttribute("MateriaPrimaConsultada", matPriVO);
+                    request.getRequestDispatcher("actualizarMateriaPrima.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("mensajeExito", "La materia prima no existe");
+                    request.getRequestDispatcher("consultarMateriaPrima.jsp").forward(request, response);
+                }
+                break;
+        }
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}
