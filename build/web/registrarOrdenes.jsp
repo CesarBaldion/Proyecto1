@@ -11,8 +11,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registrar Ordenes</title>
     </head>
-    <center>
+    
         <body>
+            <center>
             <form method ="post" action="Ordenes"> 
                 <h1>Registrar Orden</h1>
                 Usuario<br>
@@ -38,6 +39,7 @@
                     <%}%>
                 </div>
             </form>
+                </center>
         </body>
-    </center>
+    
 </html>

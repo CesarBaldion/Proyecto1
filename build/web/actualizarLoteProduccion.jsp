@@ -1,7 +1,7 @@
 <%-- 
     Document   : actualizarLoteProduccion
     Created on : 24/03/2022, 08:24:57 AM
-    Author     : Sena
+    Author     : Daniel
 --%>
 <%@include file="sesiones.jsp" %>
 <%@page import="ModeloVO.LoteProduccionVO"%>
