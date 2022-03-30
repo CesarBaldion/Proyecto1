@@ -1,11 +1,20 @@
 <%-- 
     Document   : consultarProducto
+<<<<<<< Updated upstream
     Created on : 23/03/2022, 08:59:45 AM
     Author     : Sena
 --%>
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="ModeloDAO.ProductoDAO"%>
+=======
+    Created on : 30/03/2022, 11:14:24 AM
+    Author     : Sena
+--%>
+
+<%@page import="ModeloDAO.ProductoDAO"%>
+<%@page import="java.util.ArrayList"%>
+>>>>>>> Stashed changes
 <%@page import="ModeloVO.ProductoVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -39,11 +48,19 @@
 
                 <%
                     ProductoVO prodVo = new ProductoVO();
+<<<<<<< Updated upstream
                     ProductoDAO prodDao = new ProductoDAO();
 
                     ArrayList<ProductoVO> ListaVehiculo = prodDao.Listar();
                     for (int i = 0; i < ListaVehiculo.size(); i++) {
                         prodVo = ListaVehiculo.get(i);
+=======
+                    //ProductoDAO prodDao = new ProductoDAO();
+
+                    //ArrayList<ProductoVO> ListaVehiculo = prodDao.Listar();
+                    //for (int i = 0; i < ListaVehiculo.size(); i++) {
+                    //    prodVo = ListaVehiculo.get(i);
+>>>>>>> Stashed changes
 
                 %> 
 
@@ -59,4 +76,8 @@
             </table>
         </form>
     </body>
+<<<<<<< Updated upstream
 </html>
+=======
+</html>
+>>>>>>> Stashed changes

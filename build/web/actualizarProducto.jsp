@@ -1,6 +1,10 @@
 <%-- 
     Document   : actualizarProducto
+<<<<<<< Updated upstream
     Created on : 23/03/2022, 08:20:51 AM
+=======
+    Created on : 30/03/2022, 11:12:53 AM
+>>>>>>> Stashed changes
     Author     : Sena
 --%>
 
@@ -12,8 +16,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
+<<<<<<< Updated upstream
     <!-- No funcionando por el momento-->
     <!--<body>
+=======
+    <body>
+>>>>>>> Stashed changes
         
         <%
             ProductoVO prodVo = (ProductoVO) request.getAttribute("productoConsultado");
@@ -31,7 +39,13 @@
                             <option value="<%=prodVo.getEstado()%>">Activo</option>
                             <option value="<%=prodVo.getEstado()%>">Inactivo</option>
                         </select>
+<<<<<<< Updated upstream
                         <br>
+=======
+                        
+                        <br>
+                        
+>>>>>>> Stashed changes
                         <button id="Boton"> Registrar </button>
                         <input type="hidden" value="2" name="opcion">
                         <a href="index.jsp">Iniciar Sesion</a><br>
@@ -52,5 +66,10 @@
         </form>
         <%}%>
 
+<<<<<<< Updated upstream
     </body> -->
 </html>
+=======
+    </body> 
+</html>
+>>>>>>> Stashed changes
