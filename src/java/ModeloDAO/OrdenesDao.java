@@ -38,6 +38,8 @@ public class OrdenesDao extends Conexion implements Crud {
         super();
         //3. Conectarse a la base de datos
         try {
+            
+            conexion = this.obtenerConexion();
             // 4. traer al DAO los datos del VO para hacer las operaciones.
 
             Id_Orden = ordVO.getId_Orden();
@@ -76,8 +78,8 @@ public class OrdenesDao extends Conexion implements Crud {
             } catch (SQLException e) {
                 Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, e);
             }
-            return operacion;
         }
+        return operacion;
     }
 
     @Override

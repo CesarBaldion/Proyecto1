@@ -29,7 +29,7 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
     private boolean operacion = false;
     private String sql;
 
-    private String Id_materia_Prima = "", Nombre = "", Actualizacion = "", Estado = "";
+    private String Id_materia_Prima = "", Nombre = "", Estado = "";
 
     public MateriaPrimaDAO(MateriaPrimaVO matPriVO) {
         super();
@@ -42,7 +42,6 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
 
             Id_materia_Prima = matPriVO.getId_materia_Prima();
             Nombre = matPriVO.getNombre();
-            Actualizacion = matPriVO.getActualizacion();
             Estado = matPriVO.getEstado();
 
         } catch (Exception e) {
@@ -58,13 +57,12 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
     public boolean agregarRegistro() {
         try {
             //Armar sentencia
-            sql = "insert into materia_prima(Nombre, Actualizacion, Estado) values (?,?,?)";
+            sql = "insert into materia_prima(Nombre, Estado) values (?,?)";
             // crear el camino por donde va la sentencia
             puente = conexion.prepareStatement(sql);
 
             puente.setString(1, Nombre);
-            puente.setString(2, Actualizacion);
-            puente.setString(3, Estado);
+            puente.setString(2, Estado);
             puente.executeUpdate();
             operacion = true;
 
@@ -128,7 +126,7 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
             while (mensajero.next()) {
 
                 matPriVO = new MateriaPrimaVO(mensajero.getString(1), mensajero.getString(2),
-                        mensajero.getString(3), mensajero.getString(4));
+                        mensajero.getString(3));
 
             }
 
@@ -160,9 +158,9 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
 
             while (mensajero.next()) {
 
-               MateriaPrimaVO matPriVO = new MateriaPrimaVO(mensajero.getString(1),
-                       mensajero.getString(2), mensajero.getString(3), mensajero.getString(4));
-                listaMateriaPrima.add(matPriVO);
+               MateriaPrimaVO mpVO = new MateriaPrimaVO(mensajero.getString(1),
+                       mensajero.getString(2), mensajero.getString(3));
+                listaMateriaPrima.add(mpVO);
 
             }
 

@@ -8,7 +8,6 @@ package Controlador;
 import ModeloDAO.OrdenesDao;
 import ModeloVO.OrdenesVo;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

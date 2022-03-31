@@ -27,7 +27,7 @@ public class Conexion {
         urlBd = "jdbc:mysql://localhost:3308/" + dataBase;
 
         try {
-            Class.forName(driver).newInstance();
+             Class.forName(driver).newInstance();
             conexion = DriverManager.getConnection(urlBd, user, password);
             System.out.println("Conexion establecida");
 

@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import ModeloVO.UsuarioVO;
 
-public final class registrarOrdenDetalles_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class registrarProducto_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -47,8 +47,8 @@ public final class registrarOrdenDetalles_jsp extends org.apache.jasper.runtime.
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write("\r\n");
-      out.write("\r\n");
+      out.write('\r');
+      out.write('\n');
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -108,46 +108,40 @@ public final class registrarOrdenDetalles_jsp extends org.apache.jasper.runtime.
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
-      out.write("        <title>JSP Page</title>\r\n");
+      out.write("        <title>Registrar Producto</title>\r\n");
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
-      out.write("          <center>\r\n");
-      out.write("            <form method =\"post\" action=\"OrdenDetalles\"> \r\n");
-      out.write("                <h1>Registrar Orden_Detalles</h1>\r\n");
-      out.write("                Id Orden<br>\r\n");
-      out.write("                <input type=\"text\" name=\"txtIdOrden\">\r\n");
-      out.write("                <br>\r\n");
-      out.write("                Id Detalles de Producto<br>\r\n");
-      out.write("                <input type=\"text\" name=\"idDetallesProducto\">\r\n");
-      out.write("                <br>\r\n");
-      out.write("                Cantidad Solicitada<br>\r\n");
-      out.write("                <input type=\"number\" name=\"txtcantidadSolicitada\">\r\n");
-      out.write("                <br><br>\r\n");
-      out.write("                <button id=\"Boton\"> Registrar </button>\r\n");
-      out.write("                <input type=\"hidden\" value=\"1\" name=\"opcion\">\r\n");
-      out.write("\r\n");
-      out.write("                <div class=\"mensaje\" style=\"color: red;\">\r\n");
-      out.write("                    ");
+      out.write("        <form class=\"Formulario\" method = \"post\" action = \"Producto\" > \r\n");
+      out.write("            <h1>Registrar Producto</h1>\r\n");
+      out.write("            <input type=\"text\" name=\"txtNombre\" placeholder=\"Nombre\" required=\"\" >\r\n");
+      out.write("            <br>\r\n");
+      out.write("            <input type=\"number\" name=\"txtEstado\" placeholder=\"Estado\" required=\"\">\r\n");
+      out.write("            <br>\r\n");
+      out.write("            <button id=\"Boton\"> Registrar </button>\r\n");
+      out.write("            <input type=\"hidden\" value=\"1\" name=\"opcion\">\r\n");
+      out.write("            <a href=\"index.jsp\">Iniciar Sesion</a><br>\r\n");
+      out.write("            \r\n");
+      out.write("            <div class=\"mensaje\">\r\n");
+      out.write("                ");
 
-                    if (request.getAttribute("mensajeError") != null) {
+                if (request.getAttribute("mensajeError") != null) {
       out.write("\r\n");
-      out.write("                    ");
+      out.write("                ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeError}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\r\n");
       out.write("\r\n");
-      out.write("                    ");
+      out.write("                ");
    } else {
       out.write("\r\n");
-      out.write("                    ");
+      out.write("                ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeExito}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\r\n");
       out.write("\r\n");
-      out.write("                    ");
+      out.write("                ");
 }
       out.write("\r\n");
-      out.write("                </div>\r\n");
-      out.write("            </form>\r\n");
-      out.write("                </center>\r\n");
+      out.write("            </div>\r\n");
+      out.write("        </form>\r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
     } catch (Throwable t) {

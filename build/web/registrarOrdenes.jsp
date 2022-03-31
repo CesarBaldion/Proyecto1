@@ -3,7 +3,7 @@
     Created on : 9/03/2022, 09:50:34 AM
     Author     : Sena
 --%>
-<%@include file="sesiones.jsp" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

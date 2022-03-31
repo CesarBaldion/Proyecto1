@@ -3,6 +3,10 @@
     Created on : 9/03/2022, 09:06:15 AM
     Author     : Sena
 --%>
+<%@page import="ModeloVO.MateriaPrimaVO"%>
+<%@page import="ModeloDAO.MateriaPrimaDAO"%>
+<%@page import="ModeloVO.loteMateriaPrimaVO"%>
+<%@page import="ModeloDAO.loteMateriaPrimaDAO"%>
 <%@include file="sesiones.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,12 +23,15 @@
             <h1>Registrar Lote Materia Prima</h1>
             
             <select name="txtIdMateriaPrima">
-                <option>Materia Prima</option>
-                <option value="1">Lana</option>
-                <option value="2">Cuero</option>
-                <option value="3">Naylon</option>
-                <option value="4">Poliester</option>
-                <option value="5">Algodon</option>
+                <option>Seleccione...</option>
+                <%
+                 MateriaPrimaDAO mpDAO = new MateriaPrimaDAO();
+                 for (MateriaPrimaVO mpVO:mpDAO.Listar()){
+                
+                    
+                    %>
+                    <option value="<%=mpVO.getId_materia_Prima()%>"><%=mpVO.getNombre()%></option>
+                    <%}%>   
             </select>
             <br>
             <input type="text" name="txtCantidad" placeholder="Cantidad" required="">

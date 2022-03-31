@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -52,6 +53,9 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
         }
 
+    }
+
+    public loteMateriaPrimaDAO() {
     }
 
     @Override
@@ -139,4 +143,44 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
         return operacion;
     }
     
+    public ArrayList<loteMateriaPrimaVO> Listar() {
+
+        ArrayList<loteMateriaPrimaVO> listaloteMateriaPrima = new ArrayList<>();
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from lotemateria_prima";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+            
+            while (mensajero.next()) {
+
+              loteMateriaPrimaVO loteMPVO = new loteMateriaPrimaVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4),
+                        mensajero.getString(5), mensajero.getString(6));
+              
+              listaloteMateriaPrima.add(loteMPVO);
+
+            }  
+            
+        } catch (SQLException e) {
+            Logger.getLogger(loteMateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(loteMateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        
+return listaloteMateriaPrima;
+
+    }
+
+    
+
 }
+
+    
+
