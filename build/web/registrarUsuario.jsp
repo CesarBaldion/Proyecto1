@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registrar Usuario</title>
-        <link rel="stylesheet" href="Css/registrarUsuario.css">
+        <link rel="stylesheet" href="css/registrarUsuario.css">
     </head>
     <body>
 

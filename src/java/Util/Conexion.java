@@ -23,7 +23,7 @@ public class Conexion {
         driver = "com.mysql.jdbc.Driver";
         user = "root";
         password = "";
-        dataBase = "proyect";
+        dataBase = "suitefactor1";
         urlBd = "jdbc:mysql://localhost:3308/" + dataBase;
 
         try {

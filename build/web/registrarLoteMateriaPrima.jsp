@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registrar Lote Materia Prima</title>
-        <link rel="stylesheet" href="Css/registrarLoteMateriaPrima.css">
+        <link rel="stylesheet" href="css/registrarLoteMateriaPrima.css">
         
     </head>
     <body>

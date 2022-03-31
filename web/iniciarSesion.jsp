@@ -1,38 +1,64 @@
 <%-- 
-    Document   : index
-    Created on : 3/03/2022, 09:43:58 PM
-    Author     : Juan Pablo
+    Document   : Prueba
+    Created on : 31/03/2022, 08:21:52 AM
+    Author     : Sena
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Iniciar sesion</title>
-        <link rel="stylesheet" href="Css/iniciarSesion.css">
+
+        <link href="styles/style.css" rel="stylesheet" type="text/css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/IniciarSesion.css" />
+        <title>Login y registro</title>
     </head>
     <body>
+        <div class="container">
+            <div class="forms-container">
+                <div class="signin-signup">
+                    <form action = "Usuarios" class="sign-in-form">
+                        <img src="img/LogoFinal.svg" class="image" alt="" height="115" />
+                        <h2 class="title">Iniciar Sesión</h2>
+                        <div class="input-field">
+                            <i class="fas fa-user"></i>
+                            <input type="text" name="txtDocumento" placeholder="Usuario" />
+                        </div>
+                        <div class="input-field">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" name="txtContrasena" placeholder="Contraseña" />
+                        </div>
+                        <button class="btn solid"> Ingresar </button>
+                        <input type="hidden" value="4" name="opcion">
 
+                        <div class="mensaje">
+                            <%
+                                if (request.getAttribute("mensajeError") != null) {%>
+                            ${mensajeError}                              
 
-        <form class="Formulario" method = "post" action = "Usuarios" > 
-            <h1>Iniciar sesion</h1>
-            <input type="text" name="txtDocumento" placeholder="Usuario" required="">
-            <br>
-            <input type="password" name="txtContrasena" placeholder="Contraseña" required="">
-            <br>
-            <button id="Boton"> Iniciar </button>
-            <input type="hidden" value="4" name="opcion">
-            <a href="registrarUsuario.jsp">Registrarse</a>
-
-            <div class="mensaje">
-                <%
-                    if (request.getAttribute("mensajeError") != null) {%>
-                ${mensajeError}                              
-
-                <%}%>
+                            <%}%>
+                        </div>
+                    </form>
+                </div>
             </div>
 
-        </form>
+            <div class="panels-container">
+                <div class="panel left-panel">
+                    <div class="content">
+                        <h3>¿Nuevo usuario?</h3>
+                        <p>
+                            Si es nuevo usuario y no tiene cuente puede crear una a continuación:
+                        </p>
+                        <button onclick="location.href = 'registrarUsuario.jsp'"  class="btn transparent" id="sign-up-btn">
+                            Registrarse
+                        </button>
+                    </div>
+                    <img src="img/Login.svg" class="image" alt="" />
+                </div>
+            </div>
+        </div>
     </body>
 </html>
