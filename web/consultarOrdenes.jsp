@@ -23,9 +23,8 @@
                     <th>
                         Orden
                         <input type="text" name="txtIdOrden" ><br>
-                        <button>Consultar</button>
                         <input type="hidden" value="4" name="opcion">
-                        
+                        <button>Consultar</button>
                     </th>
                 </tr>
             </table><br><br>

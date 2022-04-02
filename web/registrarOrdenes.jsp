@@ -3,14 +3,7 @@
     Created on : 9/03/2022, 09:50:34 AM
     Author     : Sena
 --%>
-<<<<<<< Updated upstream
 
-=======
-<%@page import="ModeloDAO.UsuarioDAO"%>
-<%@page import="ModeloVO.OrdenesVo"%>
-<%@page import="ModeloDAO.OrdenesDao"%>
-<%@include file="sesiones.jsp" %>
->>>>>>> Stashed changes
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,17 +17,7 @@
             <form method ="post" action="Ordenes"> 
                 <h1>Registrar Orden</h1>
                 Usuario<br>
-                <select name="txtUsu">
-                <option>Seleccione...</option>
-                <%
-                 UsuarioDAO usuDAO = new UsuarioDAO();
-                 for (UsuarioVO usuVO:usuDAO.Listar()){
-                
-                    
-                    %>
-                    <option value="<%=usuVO.getIdUsuarios()%>"><%=usuVO.getNombre()%></option>
-                    <%}%>
-            </select>
+                <input type="text" name="txtUsu">
                 <br>
                 Fecha Registro<br>
                 <input type="date" name="txtFechaRegistro">

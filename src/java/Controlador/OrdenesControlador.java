@@ -93,7 +93,7 @@ public class OrdenesControlador extends HttpServlet {
                 ordVo = ordDao.consultarOrden(Id_Orden);
                 if (ordVo != null) {
 
-                    request.setAttribute("ordenConsultada", ordVo);
+                    request.setAttribute("OrdenConsultada", ordVo);
                     request.getRequestDispatcher("actualizarOrdenes.jsp").forward(request, response);
                 } else {
                     request.setAttribute("mensajeExito", "La orden no existe");

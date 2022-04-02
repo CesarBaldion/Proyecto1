@@ -39,7 +39,7 @@ public class OrdenDetallesControlador extends HttpServlet {
         
        String id_Orden_Detalles = request.getParameter("txtIdOrdenDetalles");
        String id_Orden = request.getParameter("txtIdOrden");
-       String id_Detalles_Producto = request.getParameter("txtidDetallesProducto");
+       String id_Detalles_Producto = request.getParameter("idDetallesProducto");
        String cantidadSolicitada = request.getParameter("txtcantidadSolicitada");
        
        int opcion = Integer.parseInt(request.getParameter("opcion"));
