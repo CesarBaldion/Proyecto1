@@ -115,7 +115,11 @@ public final class registrarProducto_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("            <h1>Registrar Producto</h1>\r\n");
       out.write("            <input type=\"text\" name=\"txtNombre\" placeholder=\"Nombre\" required=\"\" >\r\n");
       out.write("            <br>\r\n");
-      out.write("            <input type=\"number\" name=\"txtEstado\" placeholder=\"Estado\" required=\"\">\r\n");
+      out.write("            <select name=\"txtEstado\">\r\n");
+      out.write("                <option>Elije una opcion</option>\r\n");
+      out.write("                <option value=\"1\">Activo</option>\r\n");
+      out.write("                <option value=\"0\">Inactivo</option>  \r\n");
+      out.write("            </select>\r\n");
       out.write("            <br>\r\n");
       out.write("            <button id=\"Boton\"> Registrar </button>\r\n");
       out.write("            <input type=\"hidden\" value=\"1\" name=\"opcion\">\r\n");

@@ -11,20 +11,29 @@ package ModeloVO;
  */
 public class MateriaPrimaVO {
     
-    String Id_materia_Prima, Nombre, Estado;
+    String Id_materia_Prima, Nombre, Estado, Actualizacion;
     
     
     public MateriaPrimaVO() {
     }
 
-    public MateriaPrimaVO(String Id_materia_Prima, String Nombre, String Estado) {
+    public MateriaPrimaVO(String Id_materia_Prima, String Nombre, String Estado, String Actualizacion) {
         this.Id_materia_Prima = Id_materia_Prima;
         this.Nombre = Nombre;
         this.Estado = Estado;
+        this.Actualizacion = Actualizacion;
     }
 
     public String getId_materia_Prima() {
         return Id_materia_Prima;
+    }
+
+    public String getActualizacion() {
+        return Actualizacion;
+    }
+
+    public void setActualizacion(String Actualizacion) {
+        this.Actualizacion = Actualizacion;
     }
 
     public void setId_materia_Prima(String Id_materia_Prima) {

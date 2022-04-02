@@ -16,7 +16,7 @@
             <h1>Registrar Producto</h1>
             <input type="text" name="txtNombre" placeholder="Nombre" required="" >
             <br>
-            <select name="txtNombre">
+            <select name="txtEstado">
                 <option>Elije una opcion</option>
                 <option value="1">Activo</option>
                 <option value="0">Inactivo</option>  
