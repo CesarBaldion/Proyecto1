@@ -51,6 +51,9 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
         }
         
     }
+
+    public OrdenDetallesDAO() {
+    }
     @Override
     public boolean agregarRegistro() {
         try {
@@ -75,14 +78,16 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
             } catch (SQLException e) {
                 Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, e);
             }
-            return operacion;
+            
         }
+        return operacion;
     }
 
     @Override
     public boolean actualizarRegistro() {
         try {
-            sql = "update orden_detalles set id_orden = ?, id_detalles_Producto = ?,CantidadSolicitada = ? where Id_Orden_Detalles = ? ";
+            sql = "update orden_detalles set id_orden = ?, id_detalles_Producto = ?, "
+                    + "CantidadSolicitada = ? where Id_Orden_Detalles = ? ";
             puente = conexion.prepareStatement(sql);
             puente.setString(1,id_Orden);
             puente.setString(2, id_Detalles_Producto);
@@ -94,14 +99,14 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
             operacion = true;
 
         } catch (SQLException e) {
-            Logger.getLogger(LoteProduccionDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
 
             try {
                 this.cerrarConexion();
 
             } catch (SQLException e) {
-                Logger.getLogger(LoteProduccionDAO.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
             }
         }
         return operacion;

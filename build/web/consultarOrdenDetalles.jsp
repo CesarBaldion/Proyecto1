@@ -15,7 +15,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-         <h1>Lote Produccion</h1>
+         <h1>Detalles orden</h1>
 
         <form method="post" action="OrdenDetalles">
 

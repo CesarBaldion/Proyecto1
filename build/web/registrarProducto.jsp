@@ -16,10 +16,17 @@
             <h1>Registrar Producto</h1>
             <input type="text" name="txtNombre" placeholder="Nombre" required="" >
             <br>
+<<<<<<< Updated upstream
             <select name="txtNombre">
                 <option>Elije una opcion</option>
                 <option value="1">Activo</option>
                 <option value="0">Inactivo</option>  
+=======
+            <select name="txtEstado" required="">
+                <option>Selecciona una opcion..</option>
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
+>>>>>>> Stashed changes
             </select>
             <br>
             <button id="Boton"> Registrar </button>

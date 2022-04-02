@@ -35,12 +35,7 @@ public class UsuarioDAO extends Conexion implements Crud {
 
     public UsuarioDAO() {
     }
-
-   
     
-    
-    
-
     //2. Crear metodo principal para recibir los datos del VO
     public UsuarioDAO(UsuarioVO usuVO) {
         super();

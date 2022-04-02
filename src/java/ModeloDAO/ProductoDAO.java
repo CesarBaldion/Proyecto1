@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -48,6 +49,9 @@ public class ProductoDAO extends Conexion implements Crud{
         }
     }
 
+    public ProductoDAO() {
+    }
+
     @Override
     public boolean agregarRegistro() {
         try {
@@ -76,7 +80,7 @@ public class ProductoDAO extends Conexion implements Crud{
     public boolean actualizarRegistro() {
             try {
             
-            sql="update usuario set Nombre=?, Estado=? where usuario Id_Producto=?";
+            sql="update producto set Nombre=?, Estado=? where Id_Producto=?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Nombre);
             puente.setString(2, Estado);
@@ -115,4 +119,75 @@ public class ProductoDAO extends Conexion implements Crud{
         }
         return operacion;
     }
+    public ProductoVO consultarProducto(String Id) {
+
+        ProductoVO prodVO = null;
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from producto where id_producto = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+
+                prodVO = new ProductoVO(mensajero.getString(1), mensajero.getString(2),
+                        mensajero.getString(3));
+
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return prodVO;
+
+    }
+
+    public ArrayList<ProductoVO> Listar() {
+
+        ArrayList<ProductoVO> listaProductos = new ArrayList<>();
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from producto";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+
+                ProductoVO prodVO = new ProductoVO(mensajero.getString(1), mensajero.getString(2),
+                        mensajero.getString(3));
+
+                listaProductos.add(prodVO);
+
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(ProductoVO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return listaProductos;
+
+    }
+
 }
+
+

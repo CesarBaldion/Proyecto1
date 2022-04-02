@@ -41,6 +41,8 @@ public class OrdenesDao extends Conexion implements Crud {
             
             conexion = this.obtenerConexion();
             // 4. traer al DAO los datos del VO para hacer las operaciones.
+            
+             conexion = this.obtenerConexion();
 
             Id_Orden = ordVO.getId_Orden();
             Id_Usuarios = ordVO.getId_Usuarios();
@@ -79,14 +81,19 @@ public class OrdenesDao extends Conexion implements Crud {
                 Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, e);
             }
         }
+<<<<<<< Updated upstream
         return operacion;
+=======
+         return operacion;
+>>>>>>> Stashed changes
     }
 
     @Override
     public boolean actualizarRegistro() {
         try {
 
-            sql = "update ordenes set (Id_Usuarios = ?, fecha_registro = ?, fecha_entrega = ?) where Id_Orden = ? ";
+            sql = "update ordenes set Id_Usuarios = ?, fecha_registro = ?, fecha_entrega = ?"
+                    + " where Id_Orden = ? ";
 
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Id_Usuarios);

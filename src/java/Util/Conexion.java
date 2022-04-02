@@ -23,8 +23,13 @@ public class Conexion {
         driver = "com.mysql.jdbc.Driver";
         user = "root";
         password = "";
+<<<<<<< Updated upstream
         dataBase = "proyect";
         urlBd = "jdbc:mysql://localhost:3308/" + dataBase;
+=======
+        dataBase = "proyecto";
+        urlBd = "jdbc:mysql://localhost:3306/" + dataBase;
+>>>>>>> Stashed changes
 
         try {
              Class.forName(driver).newInstance();

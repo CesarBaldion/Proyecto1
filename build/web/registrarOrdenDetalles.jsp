@@ -4,6 +4,12 @@
     Author     : Daniel
 --%>
 
+<%@page import="ModeloVO.DetallesProductoVO"%>
+<%@page import="ModeloDAO.DetallesProductoDAO"%>
+<%@page import="ModeloVO.OrdenesVo"%>
+<%@page import="ModeloDAO.OrdenesDao"%>
+<%@page import="ModeloVO.OrdenDetallesVO"%>
+<%@page import="ModeloDAO.OrdenDetallesDAO"%>
 <%@include file="sesiones.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,14 +22,36 @@
           <center>
             <form method ="post" action="OrdenDetalles"> 
                 <h1>Registrar Orden_Detalles</h1>
-                Id Orden<br>
-                <input type="text" name="txtIdOrden">
                 <br>
-                Id Detalles de Producto<br>
-                <input type="text" name="idDetallesProducto">
+                <label>Id orden </label>
                 <br>
-                Cantidad Solicitada<br>
-                <input type="number" name="txtcantidadSolicitada">
+                <select name="txtIdOrden">
+                <option>Seleccione...</option>
+                <%
+                 OrdenesDao orDao = new OrdenesDao(); 
+                 for (OrdenesVo orVO:orDao.listar()){
+                
+                    
+                    %>
+                    <option value="<%=orVO.getId_Orden()%>"><%=orVO.getId_Orden()%></option>
+                    <%}%>
+            </select>
+                <br>
+                <label>Id Detalles producto </label>
+                <br>
+                <select name="txtidDetallesProducto">
+                <option>Seleccione...</option>
+                <%
+                 DetallesProductoDAO dpDAO = new DetallesProductoDAO(); 
+                 for (DetallesProductoVO dpVO:dpDAO.listar()){
+                
+                    
+                    %>
+                    <option value="<%=dpVO.getId_Detalles_Producto()%>"><%=dpVO.getId_Detalles_Producto()%></option>
+                    <%}%>
+            </select>
+            <br>
+                <input type="number" name="txtcantidadSolicitada" placeholder="Cantidad Solicitada">
                 <br><br>
                 <button id="Boton"> Registrar </button>
                 <input type="hidden" value="1" name="opcion">
