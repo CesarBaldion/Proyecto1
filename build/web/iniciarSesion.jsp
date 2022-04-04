@@ -45,7 +45,7 @@
                 </div>
             </div>
 
-            <div class="panels-container">
+                <div class="panels-container">
                 <div class="panel left-panel">
                     <div class="content">
                         <h3>¿Nuevo usuario?</h3>
