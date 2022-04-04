@@ -6,25 +6,39 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registrar Producto</title>
     </head>
     <body>
+        <header>
+            <ul>
+                <li><a href="registrarProducto.jsp">Registar Producto</a></li>
+                <li><a href="consultarProducto.jsp">Consultar Producto</a></li>
+                <li><a href="menu.jsp">Menu</a></li>
+            </ul>
+        </header>
         <form class="Formulario" method = "post" action = "Producto" > 
             <h1>Registrar Producto</h1>
             <input type="text" name="txtNombre" placeholder="Nombre" required="" >
             <br>
+<<<<<<< Updated upstream
             <select name="txtEstado">
                 <option>Selecione...</option>
+=======
+            <select name="txtEstado" required="">
+                <option>Seleccionar...</option>
+>>>>>>> Stashed changes
                 <option value="1">Activo</option>
                 <option value="0">Inactivo</option>
             </select>
             <br>
             <button id="Boton"> Registrar </button>
             <input type="hidden" value="1" name="opcion">
-            <a href="index.jsp">Iniciar Sesion</a><br>
             
             <div class="mensaje">
                 <%

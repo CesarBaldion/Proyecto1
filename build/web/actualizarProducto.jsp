@@ -1,6 +1,7 @@
 <%-- 
     Document   : actualizarProducto
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     Created on : 23/03/2022, 08:20:51 AM
 =======
     Created on : 30/03/2022, 11:12:53 AM
@@ -9,6 +10,12 @@
 --%>
 
 <%@page import="ModeloVO.ProductoVO"%>
+=======
+    Created on : 2/04/2022, 01:49:41 PM
+    Author     : ESCOBAR
+--%>
+<%@include file="sesiones.jsp" %>
+>>>>>>> Stashed changes
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,6 +23,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     <!-- No funcionando por el momento-->
     <!--<body>
@@ -71,5 +79,11 @@
 </html>
 =======
     </body> 
+</html>
+>>>>>>> Stashed changes
+=======
+    <body>
+        <h1>ActualizarProducto</h1>
+    </body>
 </html>
 >>>>>>> Stashed changes

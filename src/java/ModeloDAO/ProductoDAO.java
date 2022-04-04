@@ -50,8 +50,13 @@ public class ProductoDAO extends Conexion implements Crud{
     }
 
     public ProductoDAO() {
+<<<<<<< Updated upstream
         
     }
+=======
+    }
+    
+>>>>>>> Stashed changes
 
     @Override
     public boolean agregarRegistro() {
@@ -104,7 +109,7 @@ public class ProductoDAO extends Conexion implements Crud{
     public boolean eliminarRegistro() {
             try {
             
-            sql="update usuario set Estado=0 where usuario usuId=?";
+            sql="update producto set Estado=0 where Id_Producto=?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Estado);
             puente.executeUpdate();
@@ -121,17 +126,30 @@ public class ProductoDAO extends Conexion implements Crud{
         return operacion;
     }
     
+<<<<<<< Updated upstream
     public ProductoVO consultarProducto(String producto){
         ProductoVO prodVo = null;
+=======
+    public ProductoVO consultarProducto(String placa){
+        ProductoVO prodVO = null;
+>>>>>>> Stashed changes
         try {
             conexion = this.obtenerConexion();
             sql = "select * from producto where id_producto=?";
             puente = conexion.prepareStatement(sql);
+<<<<<<< Updated upstream
             puente.setString(1, producto);
             mensajero = puente.executeQuery();
             
             while(mensajero.next()){
                 prodVo = new ProductoVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3));
+=======
+            puente.setString(1, Id_Producto);
+            mensajero = puente.executeQuery();
+            
+            while(mensajero.next()){
+                prodVO = new ProductoVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3));
+>>>>>>> Stashed changes
             }
         } catch (Exception e) {
             Logger.getLogger(ProductoVO.class.getName()).log(Level.SEVERE, null, e);
@@ -142,10 +160,17 @@ public class ProductoDAO extends Conexion implements Crud{
                 Logger.getLogger(ProductoVO.class.getName()).log(Level.SEVERE, null, e);
             }
         }
+<<<<<<< Updated upstream
         return prodVo;
     }
     
     public ArrayList<ProductoVO> Listar(){
+=======
+        return prodVO;
+    }
+    
+    public ArrayList<ProductoVO> listar(){
+>>>>>>> Stashed changes
         
         ArrayList<ProductoVO> listaProductos = new ArrayList();
         try {

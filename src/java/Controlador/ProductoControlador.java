@@ -98,9 +98,26 @@ public class ProductoControlador extends HttpServlet {
                 }
                 break;
                 
+<<<<<<< Updated upstream
             default: 
+=======
+                case 4:{
+            prodVO = prodDAO.consultarProducto(Nombre);
+                    }
+                if (prodVO != null) {
+                    request.setAttribute("productoCosultado", prodVO);
+                    request.getRequestDispatcher("actualizarProducto.jsp").forward(request, response);
+                }else{
+                    request.setAttribute("mensajError", "El producto no existe");
+                    request.getRequestDispatcher("consultarProducto.jsp").forward(request, response);
+                }
+>>>>>>> Stashed changes
                 break;
-        }
+                
+            default: 
+                break;               
+        }       
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
