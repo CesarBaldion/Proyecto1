@@ -37,15 +37,15 @@ public class ProductoControlador extends HttpServlet {
         String Id_Producto = request.getParameter("txtId");
         String Nombre = request.getParameter("txtNombre");
         String Estado = request.getParameter("txtEstado");
-        
+
         int opcion = Integer.parseInt(request.getParameter("opcion"));
-        
-         //2. Quien tiene los datos de forma segura en el sistema? VO
+
+        //2. Quien tiene los datos de forma segura en el sistema? VO
         ProductoVO prodVO = new ProductoVO(Id_Producto, Nombre, Estado);
-        
+
         // 3. Quien hace las operaciones? DAO
         ProductoDAO prodDAO = new ProductoDAO(prodVO);
-        
+
         // 4. Administrar las operaciones del modulo
         switch (opcion) {
 
@@ -87,9 +87,21 @@ public class ProductoControlador extends HttpServlet {
                 }
                 request.getRequestDispatcher("menu.jsp").forward(request, response);
                 break;
-                
+
             default:
                 break;
+
+            case 4: {
+                prodVO = prodDAO.consultarProducto(Nombre);
+            }
+            if (prodVO != null) {
+                request.setAttribute("productoCosultado", prodVO);
+                request.getRequestDispatcher("actualizarProducto.jsp").forward(request, response);
+            } else {
+                request.setAttribute("mensajError", "El producto no existe");
+                request.getRequestDispatcher("consultarProducto.jsp").forward(request, response);
+            }
+            break;
         }
     }
 
