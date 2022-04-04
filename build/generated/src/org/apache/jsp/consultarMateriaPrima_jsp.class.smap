@@ -1,0 +1,23 @@
+SMAP
+consultarMateriaPrima_jsp.java
+JSP
+*S JSP
+*F
++ 0 consultarMateriaPrima.jsp
+consultarMateriaPrima.jsp
+*L
+5,30:49
+35:80,2
+36:82,3
+37:85
+38,2:86,3
+40:92
+41:93,3
+42,15:96
+57,10:112
+66,4:122
+70,4:126,3
+74,2:138
+76:140,3
+77,9:143
+*E

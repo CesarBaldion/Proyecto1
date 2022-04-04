@@ -54,6 +54,9 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
 
     }
 
+    public loteMateriaPrimaDAO() {
+    }
+
     @Override
     public boolean agregarRegistro() {
         try {
@@ -137,6 +140,42 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
         }
 
         return operacion;
+    }
+    
+    public loteMateriaPrimaVO MostrarExistencias() {
+
+        loteMateriaPrimaVO ltpVO = null;
+        try {
+            conexion = this.obtenerConexion();
+            sql = "SELECT SUM(lotemateria_prima.cantidad) \n" +
+                    "FROM lotemateria_prima "
+                    + "WHERE lotemateria_prima.Id_Materia_Prima = lotemateria_prima.Id_Materia_Prima "
+                    + "GROUP by lotemateria_prima.Id_Materia_Prima;";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+
+                ltpVO = new loteMateriaPrimaVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4),
+                        mensajero.getString(5), mensajero.getString(6));
+
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(loteMateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(loteMateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return ltpVO;
+
     }
     
 }
