@@ -3,13 +3,11 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import ModeloDAO.loteMateriaPrimaDAO;
-import ModeloVO.loteMateriaPrimaVO;
 import java.util.ArrayList;
-import ModeloDAO.MateriaPrimaDAO;
-import ModeloVO.MateriaPrimaVO;
+import ModeloDAO.OrdenesDAO;
+import ModeloVO.OrdenesVO;
 
-public final class consultarMateriaPrima_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class consultarOrdenes_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -52,22 +50,21 @@ public final class consultarMateriaPrima_jsp extends org.apache.jasper.runtime.H
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
-      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
-      out.write("        <title>Consultar materias primas</title>\r\n");
+      out.write("        <title>Consultar Ordenes</title>\r\n");
       out.write("    </head>\r\n");
-      out.write("    <body>\r\n");
+      out.write("      <body>\r\n");
       out.write("    <center>\r\n");
-      out.write("        <h1>Materias Primas</h1>\r\n");
-      out.write("        <form  method=\"post\" action=\"MateriaPrima\"> \r\n");
+      out.write("        <h1>Ordenes</h1>\r\n");
+      out.write("        <form  method=\"post\" action=\"Ordenes\"> \r\n");
       out.write("            <table>\r\n");
       out.write("                <tr>\r\n");
       out.write("                    <th>\r\n");
-      out.write("                        Materia Prima\r\n");
-      out.write("                        <input type=\"text\" name=\"txtIdMateriaPrima\" ><br>\r\n");
+      out.write("                        Orden\r\n");
+      out.write("                        <input type=\"text\" name=\"txtIdOrden\" ><br>\r\n");
       out.write("                        <input type=\"hidden\" value=\"4\" name=\"opcion\">\r\n");
       out.write("                        <button>Consultar</button>\r\n");
       out.write("                    </th>\r\n");
@@ -101,22 +98,20 @@ public final class consultarMateriaPrima_jsp extends org.apache.jasper.runtime.H
       out.write("            <table border=\"1\">\r\n");
       out.write("\r\n");
       out.write("                <tr>\r\n");
-      out.write("                    <th>Id Materia Prima</th>\r\n");
-      out.write("                    <th>Nombre</th>\r\n");
-      out.write("                    <th>Actualizacion</th>\r\n");
-      out.write("                    <th>Estado</th>\r\n");
+      out.write("                    <th>Orden</th>\r\n");
+      out.write("                    <th>Usuario</th>\r\n");
+      out.write("                    <th>Fecha Registro</th>\r\n");
+      out.write("                    <th>Fecha Entrega</th>\r\n");
       out.write("                </tr>\r\n");
       out.write("                \r\n");
       out.write("                ");
 
-                MateriaPrimaVO matPriVO = new MateriaPrimaVO();
-                MateriaPrimaDAO matPriDAO = new MateriaPrimaDAO();
-                loteMateriaPrimaVO lmpVO = new loteMateriaPrimaVO();
-                loteMateriaPrimaDAO lmpDAO = new loteMateriaPrimaDAO();
-                ArrayList<MateriaPrimaVO> listaMateriaPrima = matPriDAO.Listar();
-                for (int i = 0; i < listaMateriaPrima.size(); i++){
+                OrdenesVO ordVO = new OrdenesVO();
+                OrdenesDAO ordDAO = new OrdenesDAO();
+                ArrayList<OrdenesVO> listaOrdenes = ordDAO.listar();
+                for (int i = 0; i < listaOrdenes.size(); i++){
                 
-                    matPriVO = listaMateriaPrima.get(i);
+                    ordVO = listaOrdenes.get(i);
                 
                 
       out.write("\r\n");
@@ -124,16 +119,16 @@ public final class consultarMateriaPrima_jsp extends org.apache.jasper.runtime.H
       out.write("                \r\n");
       out.write("                <tr>\r\n");
       out.write("                    <td>");
-      out.print(matPriVO.getId_materia_Prima());
+      out.print(ordVO.getId_Orden());
       out.write("</td>\r\n");
       out.write("                    <td>");
-      out.print(matPriVO.getNombre());
+      out.print(ordVO.getId_Usuarios());
       out.write("</td>\r\n");
       out.write("                    <td>");
-      out.print(lmpDAO.MostrarExistencias());
+      out.print(ordVO.getFecha_registro());
       out.write("</td>\r\n");
       out.write("                    <td>");
-      out.print(matPriVO.getEstado());
+      out.print(ordVO.getFecha_entrega());
       out.write("</td>\r\n");
       out.write("                </tr>\r\n");
       out.write("                \r\n");

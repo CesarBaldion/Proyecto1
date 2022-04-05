@@ -13,14 +13,14 @@ package ModeloVO;
  *
  * @author Sena
  */
-public class OrdenesVo {
+public class OrdenesVO {
 
     private String Id_Orden, Id_Usuarios, fecha_registro, fecha_entrega;
     
-     public OrdenesVo() {
+     public OrdenesVO() {
     }
 
-    public OrdenesVo(String Id_Orden, String Id_Usuarios, String fecha_registro, String fecha_entrega) {
+    public OrdenesVO(String Id_Orden, String Id_Usuarios, String fecha_registro, String fecha_entrega) {
         this.Id_Orden = Id_Orden;
         this.Id_Usuarios = Id_Usuarios;
         this.fecha_registro = fecha_registro;

@@ -5,10 +5,9 @@
  */
 package Controlador;
 
-import ModeloDAO.OrdenesDao;
-import ModeloVO.OrdenesVo;
+import ModeloDAO.OrdenesDAO;
+import ModeloVO.OrdenesVO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,17 +41,17 @@ public class OrdenesControlador extends HttpServlet {
 
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         // 2. Quien tiene los datos de forma segura en el sistema? VO
-        OrdenesVo ordVo = new OrdenesVo(Id_Orden, Id_Usuarios, fecha_registro, fecha_entrega);
+        OrdenesVO ordVO = new OrdenesVO(Id_Orden, Id_Usuarios, fecha_registro, fecha_entrega);
 
         // 3. Quien hace las operaciones? DAO
-        OrdenesDao ordDao = new OrdenesDao(ordVo);
+        OrdenesDAO ordDAO = new OrdenesDAO(ordVO);
 
         // 4. Administrar las operaciones del modulo
         switch (opcion) {
 
             case 1: //Agregar registro
 
-                if (ordDao.agregarRegistro()) {
+                if (ordDAO.agregarRegistro()) {
 
                     request.setAttribute("mensajeExito", "La orden se registró correctamente!");
 
@@ -65,7 +64,7 @@ public class OrdenesControlador extends HttpServlet {
 
             case 2:
 
-                if (ordDao.actualizarRegistro()) {
+                if (ordDAO.actualizarRegistro()) {
 
                     request.setAttribute("mensajeExito", "La orden se actualizo correctamente!");
 
@@ -78,7 +77,7 @@ public class OrdenesControlador extends HttpServlet {
 
             case 3:
 
-                if (ordDao.eliminarRegistro()) {
+                if (ordDAO.eliminarRegistro()) {
 
                     request.setAttribute("mensajeExito", "La orden se elimino correctamente!");
 
@@ -91,15 +90,18 @@ public class OrdenesControlador extends HttpServlet {
 
             case 4: //Consultar por Orden
 
-                ordVo = ordDao.consultarOrden(Id_Orden);
-                if (ordVo != null) {
+                ordVO = ordDAO.consultarOrden(Id_Orden);
+                if (ordVO != null) {
 
-                    request.setAttribute("OrdenConsultada", ordVo);
+                    request.setAttribute("OrdenConsultada", ordVO);
                     request.getRequestDispatcher("actualizarOrdenes.jsp").forward(request, response);
                 } else {
                     request.setAttribute("mensajeExito", "La orden no existe");
                     request.getRequestDispatcher("consultarOrdenes.jsp").forward(request, response);
                 }
+                break;
+                
+                 default:
                 break;
         }
     }

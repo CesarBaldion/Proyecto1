@@ -22,9 +22,16 @@
         
         <form action="Producto" method="post">
             <h1>Actualizar Productos</h1>
+            
+            <label>Id producto </label>
+            <br>
             <input type="text" name="txtId" value="<%=proVO.getIdProducto()%> " required="" >
             <br>
+            <label>Nombre </label>
+            <br>
             <input type="text" name="txtNombre" value="<%=proVO.getNombre()%> "  required="">
+            <br>
+            <label> Estado </label>
             <br>
             <select name="txtEstado">
                 <option value="<%=proVO.getEstado()%>"><%=proVO.getEstado()%></option>
