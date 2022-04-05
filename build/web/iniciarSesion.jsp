@@ -21,7 +21,9 @@
             <div class="forms-container">
                 <div class="signin-signup">
                     <form action = "Usuarios" class="sign-in-form">
+                        <a href="menu.jsp">
                         <img src="img/LogoFinal.svg" class="image" alt="" height="115" />
+                        </a>
                         <h2 class="title">Iniciar Sesión</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
@@ -56,7 +58,7 @@
                             Registrarse
                         </button>
                     </div>
-                    <img src="img/Login.svg" class="image" alt="" />
+                    <img src="img/Login/Login.svg" class="image" alt="" />
                 </div>
             </div>
         </div>

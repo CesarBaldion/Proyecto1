@@ -8,41 +8,39 @@
 <!DOCTYPE html>
 <html>
     <head>
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link href="styles/style.css" rel="stylesheet" type="text/css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/registrarUsuario.css" />
         <title>Registrar Usuario</title>
-        <link rel="stylesheet" href="css/registrarUsuario.css">
     </head>
     <body>
-
-        <form class="Formulario" method = "post" action = "Usuarios" > 
-            <h1>Registrar Usuario</h1>
-            <input type="text" name="txtNombre" placeholder="Nombres" required="" >
-            <br>
-            <input type="text" name="txtDocumento" placeholder="Documento" required="">
-            <br>
-            <input type="text" name="txtTelefono" placeholder="Telefono" required="">
-            <br>
-            <input type="text" name="txtEmail" placeholder="Email" required="">
-            <br>
-            <input type="text" name="txtDireccion" placeholder="Direccion" required="">
-            <br>
-            <input type="password" name="txtContrasena" placeholder="Contraseña" required=""><br>
+        <form method = "post" action = "Usuarios" > 
+            <h1>Registrese para empezar</h1><br>
+            <h3>Ingrese sus datos</h3>
+            <input type="text" name= "txtNombre" placeholder="Nombres">
+            <input type="text" name= "txtDocumento" placeholder="Documento">
+            <input type="text" name= "txtTelefono" placeholder="Telefono">
+            <input type="text" name= "txtEmail" placeholder="Email">
+            <input type="text" name= "txtDireccion" placeholder="Direccion">
+            <input type="password" name= "txtContrasena" placeholder="Contrasena">
             <select name="txtEstado">
                 <option>Estado</option>
-                    <option value="1">
-                        Activo
-                    </option>
-                    <option value="0">
-                        Inactivo
-                    </option>
-                </select><br>
-            <button id="Boton"> Registrar </button>
-            <input type="hidden" value="1" name="opcion">
-            <a href="iniciarSesion.jsp">Iniciar Sesion</a><br>
-            
+                <option value="1">
+                    Activo
+                </option>
+                <option value="0">
+                    Inactivo
+                </option>
+            </select>
+            <button> Registrarse</button><br>
+            <input type="hidden" value="1" name="opcion"><br>
+            <a href="iniciarSesion.jsp">¿Ya tiene una cuenta?</a><br>
             <div class="mensaje">
                 <%
-                if (request.getAttribute("mensajeError") != null) {%>
+                    if (request.getAttribute("mensajeError") != null) {%>
                 ${mensajeError}
 
                 <%   } else {%>
@@ -51,6 +49,5 @@
                 <%}%>
             </div>
         </form>
-
     </body>
 </html>
