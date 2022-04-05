@@ -39,6 +39,10 @@
                                 <li><a class="dropdown-item font-dark" href="registrarProducto.jsp">Producto</a></li>
                                 <li><a class="dropdown-item font-dark" href="registrarLoteMateriaPrima.jsp">Lote Materia Prima</a></li>
                                 <li><a class="dropdown-item font-dark"  href="registrarLoteProduccion.jsp">Lote Produccion</a></li>
+                                <li><a class="dropdown-item font-dark"  href="registrarOrdenes.jsp.jsp">Ordenes</a></li>
+                                <li><a class="dropdown-item font-dark"  href="consultarOrdenDetalles.jsp.jsp">Ordene Detalles</a></li>
+                                <li><a class="dropdown-item font-dark"  href="registrarUsuario.jsp">Usuarios</a></li>
+                                <li><a class="dropdown-item font-dark"  href="registrarDetallesProducto.jsp">Detalles Producto</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown font-dark">
@@ -50,9 +54,15 @@
                                 <li><a class="dropdown-item font-dark" href="consultarProducto.jsp">Producto</a></li>
                                 <li><a class="dropdown-item font-dark" href="consultarMateriaPrima.jsp">Lote Materia Prima</a></li>
                                 <li><a class="dropdown-item font-dark"  href="consultarLoteProduccion.jsp">Lote Produccion</a></li>
+                                <li><a class="dropdown-item font-dark"  href="consultarOrdenes.jsp">Ordenes</a></li>
+                                <li><a class="dropdown-item font-dark"  href="consultarOrdenDetalles.jsp.jsp">Orden Detalles</a></li>
+                                <li><a class="dropdown-item font-dark"  href="consultarUsuarios.jsp">Usuarios</a></li>
+                                <li><a class="dropdown-item font-dark"  href="consultarDetallesProducto.jsp">Detalles Producto</a></li>
                             </ul>
                         </li>
                 </div>
+            </nav>
+        </div>
             </nav>
             <h1>Lote Materia Prima</h1>
             <form  method="post" action="loteMateriaPrima"> 
