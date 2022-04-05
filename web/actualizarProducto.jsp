@@ -4,6 +4,7 @@
     Author     : Sena
 --%>
 
+<%@page import="ModeloVO.ProductoVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +13,36 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        
+        <% 
+        ProductoVO proVO = (ProductoVO)request.getAttribute("productoConsultado");
+        if(proVO != null){
+        
+        %>
+        
+        <form action="Producto" method="post">
+            <h1>Actualizar Productos</h1>
+            <input type="text" name="txtId" value="<%=proVO.getIdProducto()%> " required="" >
+            <br>
+            <input type="text" name="txtNombre" value="<%=proVO.getNombre()%> "  required="">
+            <br>
+            <select name="txtEstado">
+                <option value="<%=proVO.getEstado()%>"><%=proVO.getEstado()%></option>
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
+            </select>
+            <br>
+            <button id="Boton"> Actualizar </button>
+            <input type="hidden" value="2" name="opcion">
+            <a href="consultarProducto.jsp">Volver</a><br>
+            
+        </form>
+        
+            <% }else{
+request.getRequestDispatcher("consultarProducto.jsp").forward(request, response);
+
+}%>
+        
     </body>
 </html>
+
