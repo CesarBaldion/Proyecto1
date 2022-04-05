@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -70,7 +71,7 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
             operacion = true;
 
         } catch (SQLException e) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(loteMateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
 
         } finally {
 
@@ -78,7 +79,7 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
                 this.cerrarConexion();
 
             } catch (SQLException e) {
-                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(loteMateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
             }
         }
 
@@ -100,14 +101,14 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
             operacion = true;
 
         } catch (SQLException e) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(loteMateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
 
             try {
                 this.cerrarConexion();
 
             } catch (SQLException e) {
-                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(loteMateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
             }
         }
         return operacion;
@@ -124,7 +125,7 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
             operacion = true;
 
         } catch (SQLException e) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(loteMateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
 
         } finally {
 
@@ -132,11 +133,79 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
                 this.cerrarConexion();
 
             } catch (SQLException e) {
-                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(loteMateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
             }
         }
 
         return operacion;
+    }
+    
+      public loteMateriaPrimaVO consultarIdLoteMateriaPrima(String Id) {
+
+        loteMateriaPrimaVO ltMatPriVO = null;
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from lotemateria_prima where Id_loteMateria_Prima = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+
+                ltMatPriVO = new loteMateriaPrimaVO(mensajero.getString(1), mensajero.getString(2),
+                        mensajero.getString(3), mensajero.getString(4),mensajero.getString(5), mensajero.getString(6));
+
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(loteMateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(loteMateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return ltMatPriVO;
+
+    }
+
+    public ArrayList<loteMateriaPrimaVO> Listar() {
+
+        ArrayList<loteMateriaPrimaVO> listaLoteMateriaPrima = new ArrayList<>();
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from lotemateria_prima";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+
+               loteMateriaPrimaVO ltMatPriVO = new loteMateriaPrimaVO(mensajero.getString(1),
+                       mensajero.getString(2), mensajero.getString(3), mensajero.getString(4),mensajero.getString(5), mensajero.getString(6));
+                listaLoteMateriaPrima.add(ltMatPriVO);
+
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(loteMateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(loteMateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return listaLoteMateriaPrima;
+
     }
     
 }

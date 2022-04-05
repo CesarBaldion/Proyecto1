@@ -23,7 +23,7 @@
             <input type="text" name= "txtNombre" placeholder="Nombres">
             <input type="text" name= "txtDocumento" placeholder="Documento">
             <input type="text" name= "txtTelefono" placeholder="Telefono">
-            <input type="text" name= "txtEmail" placeholder="Email">
+            <input type="email" name= "txtEmail" placeholder="Email">
             <input type="text" name= "txtDireccion" placeholder="Direccion">
             <input type="password" name= "txtContrasena" placeholder="Contrasena">
             <select name="txtEstado">

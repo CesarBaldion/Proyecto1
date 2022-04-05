@@ -32,17 +32,17 @@
 
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item active me-4">
-                            <a class="navbar-brand text-dark " href="Index.html">Inicio</a>
+                            <a class="navbar-brand text-dark " href="menu.jsp">Inicio</a>
                         </li>
                         <li class="nav-item dropdown font-dark">
                             <a class="navbar-brand dark-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Registrar
                             </a>
                             <ul class="dropdown-menu " >
-                                <li><a class="dropdown-item font-dark" href="#">Materia Prima</a></li>
-                                <li><a class="dropdown-item font-dark" href="#">Producto</a></li>
-                                <li><a class="dropdown-item font-dark">Lote Materia Prima</a></li>
-                                <li><a class="dropdown-item font-dark"  href="#">Lote Produccion</a></li>
+                                <li><a class="dropdown-item font-dark" href="registrarMateriasPrimas.jsp">Materia Prima</a></li>
+                                <li><a class="dropdown-item font-dark" href="registrarProducto.jsp">Producto</a></li>
+                                <li><a class="dropdown-item font-dark" href="registrarLoteMateriaPrima.jsp">Lote Materia Prima</a></li>
+                                <li><a class="dropdown-item font-dark"  href="registrarLoteProduccion.jsp">Lote Produccion</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown font-dark">
@@ -50,10 +50,10 @@
                                 Consultar
                             </a>
                             <ul class="dropdown-menu " >
-                                <li><a class="dropdown-item font-dark" href="#">Materia Prima</a></li>
-                                <li><a class="dropdown-item font-dark" href="#">Producto</a></li>
-                                <li><a class="dropdown-item font-dark">Lote Materia Prima</a></li>
-                                <li><a class="dropdown-item font-dark"  href="#">Lote Produccion</a></li>
+                                <li><a class="dropdown-item font-dark" href="consultarMateriaPrima.jsp">Materia Prima</a></li>
+                                <li><a class="dropdown-item font-dark" href="consultarProducto.jsp">Producto</a></li>
+                                <li><a class="dropdown-item font-dark" href="consultarMateriaPrima.jsp">Lote Materia Prima</a></li>
+                                <li><a class="dropdown-item font-dark"  href="consultarLoteProduccion.jsp">Lote Produccion</a></li>
                             </ul>
                         </li>
 

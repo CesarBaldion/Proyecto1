@@ -33,14 +33,14 @@ public class loteMateriaPrimaControlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        
         String IdLoteMateriaPrima = request.getParameter("txtIdLoteMateriaPrima");
         String Cantidad = request.getParameter("txtCantidad");
         String Observaciones = request.getParameter("txtObservaciones");
         String FechaIngreso = request.getParameter("txtFechaIngreso");
         String FechaSalida = request.getParameter("txtFechaSalida");
         String IdMateriaPrima = request.getParameter("txtIdMateriaPrima");
-
+        
         int opcion = Integer.parseInt(request.getParameter("opcion"));
 
         // 2. Quien tiene los datos de forma segura en el sistema? VO
@@ -51,48 +51,58 @@ public class loteMateriaPrimaControlador extends HttpServlet {
 
         // 4. Administrar las operaciones del modulo
         switch (opcion) {
-
+            
             case 1: //Agregar registro
 
                 if (loteMPDAO.agregarRegistro()) {
-
+                    
                     request.setAttribute("mensajeExito", "El lote de materia prima se registro correctamente!");
-
+                    
                 } else {
-
+                    
                     request.setAttribute("mensajeError", "No se pudo registrar");
                 }
                 request.getRequestDispatcher("registrarLoteMateriaPrima.jsp").forward(request, response);
                 break;
-
+            
             case 2:
-
+                
                 if (loteMPDAO.actualizarRegistro()) {
-
+                    
                     request.setAttribute("mensajeExito", "El lote de materia prima se actualizo correctamente!");
-
+                    
                 } else {
-
+                    
                     request.setAttribute("mensajeError", "No se pudo actualizar.");
                 }
                 request.getRequestDispatcher("actualizarLoteMateriaPrima.jsp").forward(request, response);
                 break;
-
+            
             case 3:
-
+                
                 if (loteMPDAO.eliminarRegistro()) {
-
+                    
                     request.setAttribute("mensajeExito", "El lote de materia prima se elimino correctamente!");
-
+                    
                 } else {
-
+                    
                     request.setAttribute("mensajeError", "No se pudo eliminar");
                 }
                 request.getRequestDispatcher("menu.jsp").forward(request, response);
                 break;
                 
-                default:
-                    break;
+            case 4: //Consultar por lote
+
+                loteMPVO = loteMPDAO.consultarIdLoteMateriaPrima(IdLoteMateriaPrima);
+                if (loteMPVO != null) {
+                    
+                    request.setAttribute("LoteMateriaPrimaConsultada", loteMPVO);
+                    request.getRequestDispatcher("actualizarLoteMateriaPrima.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("mensajeExito", "La materia prima no existe");
+                    request.getRequestDispatcher("consultarLoteMateriaPrima.jsp").forward(request, response);
+                }
+                break;
         }
     }
 

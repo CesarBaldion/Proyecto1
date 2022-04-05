@@ -1,0 +1,18 @@
+SMAP
+registrarProducto_jsp.java
+JSP
+*S JSP
+*F
++ 0 registrarProducto.jsp
+registrarProducto.jsp
++ 1 sesiones.jsp
+sesiones.jsp
+*L
+5:50,2
+5#1,11:52
+15,4:63
+20,15:68
+34,3:83
+52,3:85
+6#0,92:87
+*E

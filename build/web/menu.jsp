@@ -36,7 +36,7 @@
                         <a class="nav-link" href="#">Contáctanos</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">Funcionalidades</a>
+                        <a class="nav-link" href="">Consultas</a>
                       </li>
                       <li class="nav-item active">
                           <a class="nav-link" aria-current="page" href="iniciarSesion.jsp">Iniciar Sesión</a>
