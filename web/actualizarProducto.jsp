@@ -24,6 +24,7 @@
             <h1>Actualizar Productos</h1>
             <input type="text" name="txtId" value="<%=proVO.getIdProducto()%> " required="" >
             <br>
+            <label>Nombre Producto</label>
             <input type="text" name="txtNombre" value="<%=proVO.getNombre()%> "  required="">
             <br>
             <select name="txtEstado">

@@ -82,7 +82,7 @@ public class ProductoDAO extends Conexion implements Crud{
     public boolean actualizarRegistro() {
             try {
             
-            sql="update usuario set Nombre=?, Estado=? where usuario Id_Producto=?";
+            sql="update producto set Nombre=?, Estado=? where producto Id_Producto=?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Nombre);
             puente.setString(2, Estado);
@@ -105,7 +105,7 @@ public class ProductoDAO extends Conexion implements Crud{
     public boolean eliminarRegistro() {
             try {
             
-            sql="update usuario set Estado=0 where usuario usuId=?";
+            sql="update producto set Estado=0 where producto Id_Producto=?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Estado);
             puente.executeUpdate();
