@@ -60,7 +60,9 @@ public final class iniciarSesion_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("            <div class=\"forms-container\">\r\n");
       out.write("                <div class=\"signin-signup\">\r\n");
       out.write("                    <form action = \"Usuarios\" class=\"sign-in-form\">\r\n");
+      out.write("                        <a href=\"menu.jsp\">\r\n");
       out.write("                        <img src=\"img/LogoFinal.svg\" class=\"image\" alt=\"\" height=\"115\" />\r\n");
+      out.write("                        </a>\r\n");
       out.write("                        <h2 class=\"title\">Iniciar Sesión</h2>\r\n");
       out.write("                        <div class=\"input-field\">\r\n");
       out.write("                            <i class=\"fas fa-user\"></i>\r\n");
@@ -101,7 +103,7 @@ public final class iniciarSesion_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                            Registrarse\r\n");
       out.write("                        </button>\r\n");
       out.write("                    </div>\r\n");
-      out.write("                    <img src=\"img/Login.svg\" class=\"image\" alt=\"\" />\r\n");
+      out.write("                    <img src=\"img/Login/Login.svg\" class=\"image\" alt=\"\" />\r\n");
       out.write("                </div>\r\n");
       out.write("            </div>\r\n");
       out.write("        </div>\r\n");

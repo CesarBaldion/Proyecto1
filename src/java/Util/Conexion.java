@@ -24,7 +24,7 @@ public class Conexion {
         user = "root";
         password = "";
         dataBase = "suitefactor1";
-        urlBd = "jdbc:mysql://localhost:3306/" + dataBase;
+        urlBd = "jdbc:mysql://localhost:3308/" + dataBase;
 
         try {
             Class.forName(driver).newInstance();

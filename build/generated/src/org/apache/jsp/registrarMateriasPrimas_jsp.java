@@ -4,11 +4,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import ModeloVO.UsuarioVO;
-import ModeloVO.UsuarioVO;
-import java.util.ArrayList;
-import java.util.ArrayList;
 
-public final class registrarLoteProduccion_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class registrarMateriasPrimas_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -89,25 +86,21 @@ public final class registrarLoteProduccion_jsp extends org.apache.jasper.runtime
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
-      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
+      out.write("         <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
       out.write("        <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\"\r\n");
       out.write("              integrity=\"sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3\" crossorigin=\"anonymous\">\r\n");
       out.write("        <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js\"\r\n");
       out.write("                integrity=\"sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p\"\r\n");
       out.write("        crossorigin=\"anonymous\"></script>\r\n");
       out.write("        <link rel=\"stylesheet\" href=\"css/\">\r\n");
-      out.write("        <title>JSP Page</title>\r\n");
+      out.write("        <title>Registrar Materia Prima</title>\r\n");
       out.write("    </head>\r\n");
-      out.write("\r\n");
-      out.write("    <body>\r\n");
       out.write("    <center>\r\n");
-      out.write("        <div class=\"col-md-6 \">\r\n");
+      out.write("        <body>\r\n");
+      out.write("             <div class=\"col-md-6 \">\r\n");
       out.write("            <nav class=\"navbar navbar-expand-lg navbar-light col-md-12 \">\r\n");
       out.write("                <div class=\"mx-auto mt-3\" id=\"navbarNav\">\r\n");
       out.write("\r\n");
@@ -140,37 +133,47 @@ public final class registrarLoteProduccion_jsp extends org.apache.jasper.runtime
       out.write("                </div>\r\n");
       out.write("            </nav>\r\n");
       out.write("        </div>\r\n");
-      out.write("        <form action=\"LoteProduccion\" method=\"post\">\r\n");
-      out.write("            <input type=\"number\" name=\"txtcantidad\" placeholder=\"Cantidad\"><br>\r\n");
-      out.write("            <input type=\"date\" name=\"txtfecha_Fabricacion\"><br>\r\n");
-      out.write("            <input type=\"text\" name=\"txtId_orden_detalles\" placeholder=\"Id orden detalles\"><br>\r\n");
-      out.write("            <input type=\"text\" name=\"txtId_Usuarios\" placeholder=\"Id Usuarios\"><br>\r\n");
-      out.write("            <button>Registrar</button>\r\n");
-      out.write("            <input type=\"hidden\" value=\"1\" name=\"opcion\">\r\n");
-      out.write("            <div class=\"\">\r\n");
-      out.write("                ");
+      out.write("            <form method =\"post\" action=\"MateriaPrima\"> \r\n");
+      out.write("                <h1>Registrar Materia Prima</h1>\r\n");
+      out.write("                Nombre<br>\r\n");
+      out.write("                <input type=\"text\" name=\"txtNombre\">\r\n");
+      out.write("                <br><br>\r\n");
+      out.write("                <select name=\"txtEstado\">\r\n");
+      out.write("                <option>Estado</option>\r\n");
+      out.write("                    <option value=\"1\">\r\n");
+      out.write("                        Activo\r\n");
+      out.write("                    </option>\r\n");
+      out.write("                    <option value=\"0\">\r\n");
+      out.write("                        Inactivo\r\n");
+      out.write("                    </option>\r\n");
+      out.write("                </select><br>\r\n");
+      out.write("                <br>\r\n");
+      out.write("                <button id=\"Boton\"> Registrar </button>\r\n");
+      out.write("                <input type=\"hidden\" value=\"1\" name=\"opcion\">\r\n");
+      out.write("\r\n");
+      out.write("                <div class=\"mensaje\" style=\"color: red;\">\r\n");
+      out.write("                    ");
+
                     if (request.getAttribute("mensajeError") != null) {
       out.write("\r\n");
-      out.write("                ");
+      out.write("                    ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeError}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\r\n");
       out.write("\r\n");
-      out.write("                ");
+      out.write("                    ");
    } else {
       out.write("\r\n");
-      out.write("                ");
+      out.write("                    ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeExito}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\r\n");
       out.write("\r\n");
-      out.write("                ");
+      out.write("                    ");
 }
       out.write("\r\n");
-      out.write("            </div>\r\n");
-      out.write("        </form>\r\n");
-      out.write("\r\n");
+      out.write("                </div>\r\n");
+      out.write("            </form>\r\n");
+      out.write("        </body>\r\n");
       out.write("    </center>\r\n");
-      out.write("</body>\r\n");
-      out.write("\r\n");
       out.write("</html>\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){

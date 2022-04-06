@@ -3,6 +3,8 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import ModeloVO.MateriaPrimaVO;
+import ModeloDAO.MateriaPrimaDAO;
 import ModeloVO.UsuarioVO;
 
 public final class registrarLoteMateriaPrima_jsp extends org.apache.jasper.runtime.HttpJspBase
@@ -47,8 +49,9 @@ public final class registrarLoteMateriaPrima_jsp extends org.apache.jasper.runti
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write('\r');
-      out.write('\n');
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -136,15 +139,29 @@ public final class registrarLoteMateriaPrima_jsp extends org.apache.jasper.runti
       out.write("        </div>\r\n");
       out.write("        <form class=\"Formulario\" method = \"post\" action = \"loteMateriaPrima\" > \r\n");
       out.write("            <h1>Registrar Lote Materia Prima</h1>\r\n");
-      out.write("\r\n");
+      out.write("            \r\n");
       out.write("            <select name=\"txtIdMateriaPrima\">\r\n");
-      out.write("                <option>Materia Prima</option>\r\n");
-      out.write("                <option value=\"1\">Lana</option>\r\n");
-      out.write("                <option value=\"2\">Cuero</option>\r\n");
-      out.write("                <option value=\"3\">Naylon</option>\r\n");
-      out.write("                <option value=\"4\">Poliester</option>\r\n");
-      out.write("                <option value=\"5\">Algodon</option>\r\n");
+      out.write("                <option>Seleccione..</option>\r\n");
+      out.write("            ");
+
+                MateriaPrimaDAO matDAO = new MateriaPrimaDAO();
+                for(MateriaPrimaVO matVO:matDAO.ListarDos()){
+                
+                
+      out.write("\r\n");
+      out.write("            \r\n");
+      out.write("           \r\n");
+      out.write("                <option value=\"");
+      out.print(matVO.getId_materia_Prima());
+      out.write('"');
+      out.write('>');
+      out.print(matVO.getNombre());
+      out.write("</option>\r\n");
+      out.write("                ");
+}
+      out.write("\r\n");
       out.write("            </select>\r\n");
+      out.write("\r\n");
       out.write("            <br>\r\n");
       out.write("            <input type=\"text\" name=\"txtCantidad\" placeholder=\"Cantidad\" required=\"\">\r\n");
       out.write("            <br>\r\n");
