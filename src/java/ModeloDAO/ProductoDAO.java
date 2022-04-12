@@ -82,7 +82,7 @@ public class ProductoDAO extends Conexion implements Crud{
     public boolean actualizarRegistro() {
             try {
             
-            sql="update usuario set Nombre=?, Estado=? where usuario Id_Producto=?";
+            sql="update producto set Nombre=?, Estado=? where Id_Producto=?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Nombre);
             puente.setString(2, Estado);
@@ -105,9 +105,9 @@ public class ProductoDAO extends Conexion implements Crud{
     public boolean eliminarRegistro() {
             try {
             
-            sql="update usuario set Estado=0 where usuario usuId=?";
+            sql="DELETE FROM `producto` WHERE id_producto = ?";
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, Estado);
+            puente.setString(1, Id_Producto);
             puente.executeUpdate();
             operacion = true;
         } catch (Exception e) {
@@ -122,13 +122,13 @@ public class ProductoDAO extends Conexion implements Crud{
         return operacion;
     }
     
-    public ProductoVO consultarProducto(String placa){
+    public ProductoVO consultarProducto(String Id){
         ProductoVO prodVO = null;
         try {
             conexion = this.obtenerConexion();
             sql = "select * from producto where id_producto=?";
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, Id_Producto);
+            puente.setString(1, Id);
             mensajero = puente.executeQuery();
             
             while(mensajero.next()){

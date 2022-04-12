@@ -3,19 +3,16 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import ModeloVO.UsuarioVO;
+import java.util.ArrayList;
+import ModeloDAO.ProductoDAO;
+import ModeloVO.ProductoVO;
 
-public final class registrarMateriasPrimas_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class consultarProducto_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
 
   private static java.util.List<String> _jspx_dependants;
-
-  static {
-    _jspx_dependants = new java.util.ArrayList<String>(1);
-    _jspx_dependants.add("/sesiones.jsp");
-  }
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
@@ -47,45 +44,13 @@ public final class registrarMateriasPrimas_jsp extends org.apache.jasper.runtime
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write('\r');
-      out.write('\n');
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
-      out.write("\r\n");
-
-    response.setHeader("Pragma", "No-cache");
-    response.setHeader("Cache-control", "no-cache, no-store, must-revalidate");
-    response.setDateHeader("Expires", 0);
-    
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-
-
-    HttpSession buscarSesion = (HttpSession) request.getSession();
-    String nombre = "";
-    if (buscarSesion.getAttribute("datosUsuario") == null) {
-
-        request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
-
-    } else {
-        UsuarioVO usuVO = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
-        
-        nombre = usuVO.getNombre();
-
-    }
-
-
-
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
@@ -96,11 +61,10 @@ public final class registrarMateriasPrimas_jsp extends org.apache.jasper.runtime
       out.write("                integrity=\"sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p\"\r\n");
       out.write("        crossorigin=\"anonymous\"></script>\r\n");
       out.write("        <link rel=\"stylesheet\" href=\"css/\">\r\n");
-      out.write("        <title>Registrar Materia Prima</title>\r\n");
+      out.write("        <title>Cosultar Producto</title>\r\n");
       out.write("    </head>\r\n");
-      out.write("    <center>\r\n");
-      out.write("        <body>\r\n");
-      out.write("             <div class=\"col-md-6 \">\r\n");
+      out.write("    <body>\r\n");
+      out.write("           <div class=\"col-md-6 \">\r\n");
       out.write("            <nav class=\"navbar navbar-expand-lg navbar-light col-md-12 \">\r\n");
       out.write("                <div class=\"mx-auto mt-3\" id=\"navbarNav\">\r\n");
       out.write("\r\n");
@@ -117,6 +81,10 @@ public final class registrarMateriasPrimas_jsp extends org.apache.jasper.runtime
       out.write("                                <li><a class=\"dropdown-item font-dark\" href=\"registrarProducto.jsp\">Producto</a></li>\r\n");
       out.write("                                <li><a class=\"dropdown-item font-dark\" href=\"registrarLoteMateriaPrima.jsp\">Lote Materia Prima</a></li>\r\n");
       out.write("                                <li><a class=\"dropdown-item font-dark\"  href=\"registrarLoteProduccion.jsp\">Lote Produccion</a></li>\r\n");
+      out.write("                                <li><a class=\"dropdown-item font-dark\"  href=\"registrarOrdenes.jsp.jsp\">Ordenes</a></li>\r\n");
+      out.write("                                <li><a class=\"dropdown-item font-dark\"  href=\"consultarOrdenDetalles.jsp.jsp\">Ordene Detalles</a></li>\r\n");
+      out.write("                                <li><a class=\"dropdown-item font-dark\"  href=\"registrarUsuario.jsp\">Usuarios</a></li>\r\n");
+      out.write("                                <li><a class=\"dropdown-item font-dark\"  href=\"registrarDetallesProducto.jsp\">Detalles Producto</a></li>\r\n");
       out.write("                            </ul>\r\n");
       out.write("                        </li>\r\n");
       out.write("                        <li class=\"nav-item dropdown font-dark\">\r\n");
@@ -128,52 +96,97 @@ public final class registrarMateriasPrimas_jsp extends org.apache.jasper.runtime
       out.write("                                <li><a class=\"dropdown-item font-dark\" href=\"consultarProducto.jsp\">Producto</a></li>\r\n");
       out.write("                                <li><a class=\"dropdown-item font-dark\" href=\"consultarMateriaPrima.jsp\">Lote Materia Prima</a></li>\r\n");
       out.write("                                <li><a class=\"dropdown-item font-dark\"  href=\"consultarLoteProduccion.jsp\">Lote Produccion</a></li>\r\n");
+      out.write("                                <li><a class=\"dropdown-item font-dark\"  href=\"consultarOrdenes.jsp\">Ordenes</a></li>\r\n");
+      out.write("                                <li><a class=\"dropdown-item font-dark\"  href=\"consultarOrdenDetalles.jsp.jsp\">Orden Detalles</a></li>\r\n");
+      out.write("                                <li><a class=\"dropdown-item font-dark\"  href=\"consultarUsuarios.jsp\">Usuarios</a></li>\r\n");
+      out.write("                                <li><a class=\"dropdown-item font-dark\"  href=\"consultarDetallesProducto.jsp\">Detalles Producto</a></li>\r\n");
       out.write("                            </ul>\r\n");
       out.write("                        </li>\r\n");
       out.write("                </div>\r\n");
       out.write("            </nav>\r\n");
       out.write("        </div>\r\n");
-      out.write("            <form method =\"post\" action=\"MateriaPrima\"> \r\n");
-      out.write("                <h1>Registrar Materia Prima</h1>\r\n");
-      out.write("                Nombre<br>\r\n");
-      out.write("                <input type=\"text\" name=\"txtNombre\">\r\n");
-      out.write("                <br><br>\r\n");
-      out.write("                <select name=\"txtEstado\">\r\n");
-      out.write("                <option>Estado</option>\r\n");
-      out.write("                    <option value=\"1\">\r\n");
-      out.write("                        Activo\r\n");
-      out.write("                    </option>\r\n");
-      out.write("                    <option value=\"0\">\r\n");
-      out.write("                        Inactivo\r\n");
-      out.write("                    </option>\r\n");
-      out.write("                </select><br>\r\n");
-      out.write("                <br>\r\n");
-      out.write("                <button id=\"Boton\"> Registrar </button>\r\n");
-      out.write("                <input type=\"hidden\" value=\"1\" name=\"opcion\">\r\n");
-      out.write("\r\n");
-      out.write("                <div class=\"mensaje\" style=\"color: red;\">\r\n");
-      out.write("                    ");
+      out.write("        <center>\r\n");
+      out.write("        <h1>Productos</h1>\r\n");
+      out.write("        <form  method=\"post\" action=\"Producto\"> \r\n");
+      out.write("            <table>\r\n");
+      out.write("                <tr>\r\n");
+      out.write("                    <th>\r\n");
+      out.write("                        Producto\r\n");
+      out.write("                        <input type=\"text\" name=\"txtId\" ><br>\r\n");
+      out.write("                        <input type=\"hidden\" value=\"3\" name=\"opcion\">\r\n");
+      out.write("                        <button>Consultar</button>\r\n");
+      out.write("                        <br>\r\n");
+      out.write("                    </th>\r\n");
+      out.write("                </tr>\r\n");
+      out.write("            </table><br><br>\r\n");
+      out.write("        </form>\r\n");
+      out.write("        <div style=\"color: red;\">\r\n");
+      out.write("            ");
 
-                    if (request.getAttribute("mensajeError") != null) {
+                if (request.getAttribute("mensajeError") != null) {
       out.write("\r\n");
-      out.write("                    ");
+      out.write("            ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeError}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\r\n");
       out.write("\r\n");
-      out.write("                    ");
+      out.write("            ");
    } else {
       out.write("\r\n");
-      out.write("                    ");
+      out.write("            ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeExito}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\r\n");
       out.write("\r\n");
-      out.write("                    ");
+      out.write("            ");
 }
       out.write("\r\n");
-      out.write("                </div>\r\n");
-      out.write("            </form>\r\n");
-      out.write("        </body>\r\n");
+      out.write("        </div><br><br>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("        <form>\r\n");
+      out.write("\r\n");
+      out.write("            <table border=\"1\">\r\n");
+      out.write("\r\n");
+      out.write("                <tr>\r\n");
+      out.write("                    <th>Id</th>\r\n");
+      out.write("                    <th>Nombre Producto</th>\r\n");
+      out.write("                    <th>Estado</th>\r\n");
+      out.write("                </tr>\r\n");
+      out.write("                \r\n");
+      out.write("                ");
+
+                ProductoVO prodVO = new ProductoVO();
+                ProductoDAO prodDAO = new ProductoDAO();
+                ArrayList<ProductoVO> listaProductos = prodDAO.listar();
+                for (int i = 0; i < listaProductos.size(); i++){
+                
+                    prodVO = listaProductos.get(i);
+                
+                
+      out.write("\r\n");
+      out.write("                \r\n");
+      out.write("                \r\n");
+      out.write("                <tr>\r\n");
+      out.write("                    <td>");
+      out.print(prodVO.getIdProducto());
+      out.write("</td>\r\n");
+      out.write("                    <td>");
+      out.print(prodVO.getNombre());
+      out.write("</td>\r\n");
+      out.write("                    <td>");
+      out.print(prodVO.getEstado());
+      out.write("</td>\r\n");
+      out.write("                </tr>\r\n");
+      out.write("                \r\n");
+      out.write("                ");
+ }
+      out.write("\r\n");
+      out.write("            \r\n");
+      out.write("            </table>\r\n");
+      out.write("            \r\n");
+      out.write("        </form>\r\n");
+      out.write("            \r\n");
       out.write("    </center>\r\n");
+      out.write("    </body>\r\n");
       out.write("</html>\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){

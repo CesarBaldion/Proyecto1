@@ -94,7 +94,7 @@
                 <tr>
                     <th>Id Materia Prima</th>
                     <th>Nombre</th>
-                    <th>Actualizacion</th>
+                    <th>Existencias</th>
                     <th>Estado</th>
                 </tr>
                 

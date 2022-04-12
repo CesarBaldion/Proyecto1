@@ -73,6 +73,7 @@
                         <input type="text" name="txtId" ><br>
                         <input type="hidden" value="4" name="opcion">
                         <button>Consultar</button>
+                        <br>
                     </th>
                 </tr>
             </table><br><br>
@@ -94,7 +95,7 @@
             <table border="1">
 
                 <tr>
-                    <th>Producto</th>
+                    <th>Id</th>
                     <th>Nombre Producto</th>
                     <th>Estado</th>
                 </tr>

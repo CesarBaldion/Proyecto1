@@ -75,7 +75,7 @@
                 <form class="form-group" method="post" action="Producto">
                     <input class="form-control" type="text" name="txtNombre" placeholder="Nombre" required="">
                     <br>
-                    <select class="form-select">
+                    <select class="form-select" name="txtEstado">
                         <option selected>Despliega Las Opciones</option>
                         <option value="1">Activo</option>
                         <option value="0">Inactivo</option>

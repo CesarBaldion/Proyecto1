@@ -92,10 +92,10 @@ public class ProductoControlador extends HttpServlet {
                 break;
 
             case 4: {
-                prodVO = prodDAO.consultarProducto(Nombre);
+                prodVO = prodDAO.consultarProducto(Id_Producto);
             }
             if (prodVO != null) {
-                request.setAttribute("productoCosultado", prodVO);
+                request.setAttribute("productoConsultado", prodVO);
                 request.getRequestDispatcher("actualizarProducto.jsp").forward(request, response);
             } else {
                 request.setAttribute("mensajError", "El producto no existe");
