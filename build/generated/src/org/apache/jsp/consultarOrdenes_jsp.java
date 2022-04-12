@@ -4,10 +4,10 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import java.util.ArrayList;
-import ModeloDAO.ProductoDAO;
-import ModeloVO.ProductoVO;
+import ModeloDAO.OrdenesDAO;
+import ModeloVO.OrdenesVO;
 
-public final class consultarProducto_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class consultarOrdenes_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -51,20 +51,20 @@ public final class consultarProducto_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("\r\n");
       out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
-      out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
-      out.write("         <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
+      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
       out.write("        <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\"\r\n");
       out.write("              integrity=\"sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3\" crossorigin=\"anonymous\">\r\n");
       out.write("        <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js\"\r\n");
       out.write("                integrity=\"sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p\"\r\n");
       out.write("        crossorigin=\"anonymous\"></script>\r\n");
       out.write("        <link rel=\"stylesheet\" href=\"css/\">\r\n");
-      out.write("        <title>Cosultar Producto</title>\r\n");
+      out.write("        <title>Consultar Ordenes</title>\r\n");
       out.write("    </head>\r\n");
-      out.write("    <body>\r\n");
-      out.write("           <div class=\"col-md-6 \">\r\n");
+      out.write("      <body>\r\n");
+      out.write("    <center>\r\n");
+      out.write("            <div class=\"col-md-6 \">\r\n");
       out.write("            <nav class=\"navbar navbar-expand-lg navbar-light col-md-12 \">\r\n");
       out.write("                <div class=\"mx-auto mt-3\" id=\"navbarNav\">\r\n");
       out.write("\r\n");
@@ -105,17 +105,15 @@ public final class consultarProducto_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                </div>\r\n");
       out.write("            </nav>\r\n");
       out.write("        </div>\r\n");
-      out.write("        <center>\r\n");
-      out.write("        <h1>Productos</h1>\r\n");
-      out.write("        <form  method=\"post\" action=\"Producto\"> \r\n");
+      out.write("        <h1>Ordenes</h1>\r\n");
+      out.write("        <form  method=\"post\" action=\"Ordenes\"> \r\n");
       out.write("            <table>\r\n");
       out.write("                <tr>\r\n");
       out.write("                    <th>\r\n");
-      out.write("                        Producto\r\n");
-      out.write("                        <input type=\"text\" name=\"txtId\" ><br>\r\n");
+      out.write("                        Orden\r\n");
+      out.write("                        <input type=\"text\" name=\"txtIdOrden\" ><br>\r\n");
       out.write("                        <input type=\"hidden\" value=\"4\" name=\"opcion\">\r\n");
       out.write("                        <button>Consultar</button>\r\n");
-      out.write("                        <br>\r\n");
       out.write("                    </th>\r\n");
       out.write("                </tr>\r\n");
       out.write("            </table><br><br>\r\n");
@@ -147,19 +145,20 @@ public final class consultarProducto_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("            <table border=\"1\">\r\n");
       out.write("\r\n");
       out.write("                <tr>\r\n");
-      out.write("                    <th>Id</th>\r\n");
-      out.write("                    <th>Nombre Producto</th>\r\n");
-      out.write("                    <th>Estado</th>\r\n");
+      out.write("                    <th>Orden</th>\r\n");
+      out.write("                    <th>Usuario</th>\r\n");
+      out.write("                    <th>Fecha Registro</th>\r\n");
+      out.write("                    <th>Fecha Entrega</th>\r\n");
       out.write("                </tr>\r\n");
       out.write("                \r\n");
       out.write("                ");
 
-                ProductoVO prodVO = new ProductoVO();
-                ProductoDAO prodDAO = new ProductoDAO();
-                ArrayList<ProductoVO> listaProductos = prodDAO.listar();
-                for (int i = 0; i < listaProductos.size(); i++){
+                OrdenesVO ordVO = new OrdenesVO();
+                OrdenesDAO ordDAO = new OrdenesDAO();
+                ArrayList<OrdenesVO> listaOrdenes = ordDAO.listar();
+                for (int i = 0; i < listaOrdenes.size(); i++){
                 
-                    prodVO = listaProductos.get(i);
+                    ordVO = listaOrdenes.get(i);
                 
                 
       out.write("\r\n");
@@ -167,13 +166,16 @@ public final class consultarProducto_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                \r\n");
       out.write("                <tr>\r\n");
       out.write("                    <td>");
-      out.print(prodVO.getIdProducto());
+      out.print(ordVO.getId_Orden());
       out.write("</td>\r\n");
       out.write("                    <td>");
-      out.print(prodVO.getNombre());
+      out.print(ordVO.getId_Usuarios());
       out.write("</td>\r\n");
       out.write("                    <td>");
-      out.print(prodVO.getEstado());
+      out.print(ordVO.getFecha_registro());
+      out.write("</td>\r\n");
+      out.write("                    <td>");
+      out.print(ordVO.getFecha_entrega());
       out.write("</td>\r\n");
       out.write("                </tr>\r\n");
       out.write("                \r\n");
@@ -186,7 +188,7 @@ public final class consultarProducto_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("        </form>\r\n");
       out.write("            \r\n");
       out.write("    </center>\r\n");
-      out.write("    </body>\r\n");
+      out.write("</body>\r\n");
       out.write("</html>\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){

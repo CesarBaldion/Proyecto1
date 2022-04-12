@@ -156,7 +156,7 @@ public final class registrarProducto_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("                <form class=\"form-group\" method=\"post\" action=\"Producto\">\r\n");
       out.write("                    <input class=\"form-control\" type=\"text\" name=\"txtNombre\" placeholder=\"Nombre\" required=\"\">\r\n");
       out.write("                    <br>\r\n");
-      out.write("                    <select class=\"form-select\">\r\n");
+      out.write("                    <select class=\"form-select\" name=\"txtEstado\">\r\n");
       out.write("                        <option selected>Despliega Las Opciones</option>\r\n");
       out.write("                        <option value=\"1\">Activo</option>\r\n");
       out.write("                        <option value=\"0\">Inactivo</option>\r\n");

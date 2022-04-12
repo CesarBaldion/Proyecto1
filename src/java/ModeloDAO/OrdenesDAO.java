@@ -5,7 +5,7 @@
  */
 package ModeloDAO;
 
-import ModeloVO.OrdenesVo;
+import ModeloVO.OrdenesVO;
 import Util.Conexion;
 import Util.Crud;
 import java.sql.Connection;
@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  *
  * @author Sena
  */
-public class OrdenesDao extends Conexion implements Crud {
+public class OrdenesDAO extends Conexion implements Crud {
 
     private Connection conexion;
     private PreparedStatement puente;
@@ -34,10 +34,12 @@ public class OrdenesDao extends Conexion implements Crud {
     private String Id_Orden = "", Id_Usuarios = "", fecha_registro = "", fecha_entrega = "";
 
     //2. Crear metodo principal para recibir los datos del VO
-    public OrdenesDao(OrdenesVo ordVO) {
+    public OrdenesDAO(OrdenesVO ordVO) {
         super();
         //3. Conectarse a la base de datos
         try {
+            
+            conexion = this.obtenerConexion();
             // 4. traer al DAO los datos del VO para hacer las operaciones.
 
             Id_Orden = ordVO.getId_Orden();
@@ -46,11 +48,11 @@ public class OrdenesDao extends Conexion implements Crud {
             fecha_entrega = ordVO.getFecha_entrega();
 
         } catch (Exception e) {
-            Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
-    public OrdenesDao() {
+    public OrdenesDAO() {
     }
 
     @Override
@@ -67,24 +69,24 @@ public class OrdenesDao extends Conexion implements Crud {
             puente.executeUpdate();
             operacion = true;
         } catch (SQLException ex) {
-            Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
 
             try{
                 this.cerrarConexion();
 
             } catch (SQLException e) {
-                Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
             }
-            return operacion;
         }
+         return operacion;
     }
 
     @Override
     public boolean actualizarRegistro() {
         try {
 
-            sql = "update ordenes set (Id_Usuarios = ?, fecha_registro = ?, fecha_entrega = ?) where Id_Orden = ? ";
+            sql = "update ordenes set Id_Usuarios = ?, fecha_registro = ?, fecha_entrega = ? where Id_Orden = ? ";
 
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Id_Usuarios);
@@ -94,18 +96,18 @@ public class OrdenesDao extends Conexion implements Crud {
             puente.executeUpdate();
             operacion = true;
         } catch (SQLException ex) {
-            Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
 
             try {
                 this.cerrarConexion();
 
             } catch (SQLException e) {
-                Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
             }
 
-            return operacion;
         }
+        return operacion;
     }
 
     @Override
@@ -118,7 +120,7 @@ public class OrdenesDao extends Conexion implements Crud {
             operacion = true;
 
         } catch (SQLException e) {
-            Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
 
         } finally {
 
@@ -126,16 +128,16 @@ public class OrdenesDao extends Conexion implements Crud {
                 this.cerrarConexion();
 
             } catch (SQLException e) {
-                Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
             }
             return operacion;
         }
     }
     
     
-    public OrdenesVo consultarOrden(String Orden) {
+    public OrdenesVO consultarOrden(String Orden) {
 
-        OrdenesVo ordVo = null;
+        OrdenesVO ordVo = null;
 
         try {
 
@@ -146,12 +148,12 @@ public class OrdenesDao extends Conexion implements Crud {
             mensajero = puente.executeQuery();
 
             while (mensajero.next()) {
-                ordVo = new OrdenesVo(mensajero.getString(1), mensajero.getString(2),
+                ordVo = new OrdenesVO(mensajero.getString(1), mensajero.getString(2),
                         mensajero.getString(3), mensajero.getString(4));
 
             }
         } catch (Exception e) {
-            Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
 
         } finally {
 
@@ -159,15 +161,15 @@ public class OrdenesDao extends Conexion implements Crud {
                 this.cerrarConexion();
 
             } catch (SQLException e) {
-                Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
             }
         }
         return ordVo;
     }
 
-    public ArrayList<OrdenesVo> listar() {
+    public ArrayList<OrdenesVO> listar() {
 
-        ArrayList<OrdenesVo> listaOrdenes = new ArrayList<>();
+        ArrayList<OrdenesVO> listaOrdenes = new ArrayList<>();
         try {
 
             sql = "select * from ordenes";
@@ -176,21 +178,21 @@ public class OrdenesDao extends Conexion implements Crud {
             mensajero = puente.executeQuery();
 
             while (mensajero.next()) {
-                OrdenesVo ordVo = new OrdenesVo(mensajero.getString(1), mensajero.getString(2),
+                OrdenesVO ordVo = new OrdenesVO(mensajero.getString(1), mensajero.getString(2),
                         mensajero.getString(3), mensajero.getString(4));
 
                 listaOrdenes.add(ordVo);
             }
         } catch (Exception e) {
 
-            Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
 
             try {
                 this.cerrarConexion();
 
             } catch (SQLException e) {
-                Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
             }
         }
 

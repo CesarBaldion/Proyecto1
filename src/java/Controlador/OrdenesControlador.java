@@ -5,8 +5,8 @@
  */
 package Controlador;
 
-import ModeloDAO.OrdenesDao;
-import ModeloVO.OrdenesVo;
+import ModeloDAO.OrdenesDAO;
+import ModeloVO.OrdenesVO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -42,10 +42,10 @@ public class OrdenesControlador extends HttpServlet {
 
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         // 2. Quien tiene los datos de forma segura en el sistema? VO
-        OrdenesVo ordVo = new OrdenesVo(Id_Orden, Id_Usuarios, fecha_registro, fecha_entrega);
+        OrdenesVO ordVo = new OrdenesVO(Id_Orden, Id_Usuarios, fecha_registro, fecha_entrega);
 
         // 3. Quien hace las operaciones? DAO
-        OrdenesDao ordDao = new OrdenesDao(ordVo);
+        OrdenesDAO ordDao = new OrdenesDAO(ordVo);
 
         // 4. Administrar las operaciones del modulo
         switch (opcion) {
@@ -94,7 +94,7 @@ public class OrdenesControlador extends HttpServlet {
                 ordVo = ordDao.consultarOrden(Id_Orden);
                 if (ordVo != null) {
 
-                    request.setAttribute("OrdenConsultada", ordVo);
+                    request.setAttribute("ordenConsultada", ordVo);
                     request.getRequestDispatcher("actualizarOrdenes.jsp").forward(request, response);
                 } else {
                     request.setAttribute("mensajeExito", "La orden no existe");

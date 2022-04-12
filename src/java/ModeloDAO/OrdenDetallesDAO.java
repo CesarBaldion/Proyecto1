@@ -66,14 +66,14 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
             puente.executeUpdate();
             operacion = true;
         } catch (SQLException ex) {
-            Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
 
             try{
                 this.cerrarConexion();
 
             } catch (SQLException e) {
-                Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
             }
             return operacion;
         }

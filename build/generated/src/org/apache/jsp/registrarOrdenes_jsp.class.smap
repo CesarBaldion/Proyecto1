@@ -1,0 +1,22 @@
+SMAP
+registrarOrdenes_jsp.java
+JSP
+*S JSP
+*F
++ 0 registrarOrdenes.jsp
+registrarOrdenes.jsp
+*L
+5,20:46
+25,4:67
+28,3:71
+31:74,6
+32:80,3
+33,13:83
+46:97,2
+47:99,3
+48:102
+49,2:103,3
+51:109
+52:110,3
+53,7:113
+*E
