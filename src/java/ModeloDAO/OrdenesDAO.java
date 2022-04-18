@@ -130,8 +130,9 @@ public class OrdenesDAO extends Conexion implements Crud {
             } catch (SQLException e) {
                 Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
             }
-            return operacion;
+            
         }
+        return operacion;
     }
     
     

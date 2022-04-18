@@ -39,7 +39,7 @@
                                 <li><a class="dropdown-item font-dark" href="registrarLoteMateriaPrima.jsp">Lote Materia Prima</a></li>
                                 <li><a class="dropdown-item font-dark"  href="registrarLoteProduccion.jsp">Lote Produccion</a></li>
                                 <li><a class="dropdown-item font-dark"  href="registrarOrdenes.jsp.jsp">Ordenes</a></li>
-                                <li><a class="dropdown-item font-dark"  href="consultarOrdenDetalles.jsp.jsp">Ordene Detalles</a></li>
+                                <li><a class="dropdown-item font-dark"  href="registrarOrdenDetalles.jsp">Ordenes Detalles</a></li>
                                 <li><a class="dropdown-item font-dark"  href="registrarUsuario.jsp">Usuarios</a></li>
                                 <li><a class="dropdown-item font-dark"  href="registrarDetallesProducto.jsp">Detalles Producto</a></li>
                             </ul>
@@ -62,7 +62,7 @@
                 </div>
             </nav>
         </div>
-         <h1>Lote Produccion</h1>
+         <h1>Orden Detalles</h1>
 
         <form method="post" action="OrdenDetalles">
 
@@ -97,11 +97,11 @@
                     OrdenDetallesVO OrdenDetallVO = new OrdenDetallesVO();
                     OrdenDetallesDAO OrdenDetallDAO = new OrdenDetallesDAO(OrdenDetallVO);
 
-                    ArrayList<OrdenDetallesVO> listaLOrdenDetalles = OrdenDetallDAO.Listar();
+                    ArrayList<OrdenDetallesVO> listaOrdenDetalles = OrdenDetallDAO.Listar();
 
-                    for (int i = 0; i < listaLOrdenDetalles.size(); i++) {
+                    for (int i = 0; i < listaOrdenDetalles.size(); i++) {
                         
-                        OrdenDetallVO = listaLOrdenDetalles.get(i);
+                        OrdenDetallVO = listaOrdenDetalles.get(i);
 
                 %>
                 <tr>

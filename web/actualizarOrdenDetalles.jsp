@@ -4,6 +4,11 @@
     Author     : Sena
 --%>
 
+<%@page import="ModeloDAO.OrdenDetallesDAO"%>
+<%@page import="ModeloVO.DetallesProductoVO"%>
+<%@page import="ModeloDAO.DetallesProductoDAO"%>
+<%@page import="ModeloVO.OrdenesVO"%>
+<%@page import="ModeloDAO.OrdenesDAO"%>
 <%@page import="ModeloVO.OrdenDetallesVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,20 +18,42 @@
         <title>JSP Page</title>
     </head>
     <body>
-         <%
+        
+       <%
             OrdenDetallesVO ordenDetallVO = (OrdenDetallesVO) request.getAttribute("OrdenDetallesConsultada");
             if (ordenDetallVO != null) {
-
+        
         %>
-
+        
         <form action="OrdenDetalles" method="post">
-            <h1>Actualizar Usuarios</h1>
+             <h1>Actualizar orden detalles</h1>
+             <label>Id orden detalles </label>
             <input type="hidden" name="txtIdOrdenDetalles" value="<%=ordenDetallVO.getId_Orden_Detalles()%>">
              Id Orden<br>
-             <input type="text" name="txtIdOrden" value="<%=ordenDetallVO.getId_Orden()%>">
+             <select name="txtIdOrden">
+                 <option value="<%=ordenDetallVO.getId_Orden()%>"><%=ordenDetallVO.getId_Orden()%></option>
+                  <%
+                OrdenesDAO ordDAO = new OrdenesDAO();
+                for(OrdenesVO ordVO:ordDAO.listar()){
+                
+                %>
+            
+                <option value="<%=ordVO.getId_Orden()%>"><%=ordVO.getId_Orden()%></option>
+                <%}%>
+             </select>
                 <br>
                 Id Detalles de Producto<br>
-                <input type="text" name="idDetallesProducto" value="<%=ordenDetallVO.getId_Detalles_Producto()%>">
+                <select name="idDetallesProducto">
+                    <option value="<%=ordenDetallVO.getId_Detalles_Producto()%>"><%=ordenDetallVO.getId_Detalles_Producto()%></option>
+                    <%
+                DetallesProductoDAO dpDAO = new DetallesProductoDAO();
+                for(DetallesProductoVO dpVO:dpDAO.listar()){
+                
+                %>
+            
+                <option value="<%=dpVO.getId_Detalles_Producto()%>"><%=dpVO.getId_Detalles_Producto()%></option>
+                <%}%>
+                </select>
                 <br>
                 Cantidad Solicitada<br>
                 <input type="number" name="txtcantidadSolicitada" value="<%=ordenDetallVO.getCantidadSolicitada()%>">
@@ -35,21 +62,13 @@
             <button>Actualizar</button>
             <input type="hidden" value="2" name="opcion">
             <a href="consultarOrdenDetalles.jsp">Volver</a><br>
-            <div class="">
-                <%
-                if (request.getAttribute("mensajeError") != null) {%>
-                ${mensajeError}
-
-                <%   } else {%>
-                ${mensajeExito}
-
-                <%}%>
-            </div>
+            
         </form>
+        
+            <% }else{
+request.getRequestDispatcher("consultarOrdenDetalles.jsp").forward(request, response);
 
-        <% } else {
-                request.getRequestDispatcher("consultarOrdenDetalles.jsp").forward(request, response);
-
-            }%>
+}%>
+        
     </body>
 </html>

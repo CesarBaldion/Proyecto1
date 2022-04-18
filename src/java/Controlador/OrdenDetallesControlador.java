@@ -5,12 +5,10 @@
  */
 package Controlador;
 
-import ModeloDAO.LoteProduccionDAO;
+
 import ModeloDAO.OrdenDetallesDAO;
-import ModeloVO.LoteProduccionVO;
 import ModeloVO.OrdenDetallesVO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
