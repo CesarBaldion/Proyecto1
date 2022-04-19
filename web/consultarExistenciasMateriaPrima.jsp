@@ -1,8 +1,9 @@
 <%-- 
-    Document   : consultarMateriaPrima
-    Created on : 30/03/2022, 11:51:35 AM
-    Author     : Sena
+    Document   : consultarExistenciasMateriaPrima
+    Created on : 18/04/2022, 05:48:18 PM
+    Author     : Juan Pablo
 --%>
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="ModeloDAO.MateriaPrimaDAO"%>
 <%@page import="ModeloVO.MateriaPrimaVO"%>
@@ -62,31 +63,8 @@
                 </div>
             </nav>
         </div>
-        <h1>Materias Primas</h1>
-        <form  method="post" action="MateriaPrima"> 
-            <table>
-                <tr>
-                    <th>
-                        Materia Prima
-                        <input type="text" name="txtIdMateriaPrima" ><br>
-                        <input type="hidden" value="4" name="opcion">
-                        <button>Consultar</button>
-                    </th>
-                </tr>
-            </table><br><br>
-        </form>
-        <div style="color: red;">
-            <%
-                if (request.getAttribute("mensajeError") != null) {%>
-            ${mensajeError}
-
-            <%   } else {%>
-            ${mensajeExito}
-
-            <%}%>
-        </div><br><br>
-
-
+        <br><br>
+      
         <form>
 
             <table border="1">
@@ -94,13 +72,14 @@
                 <tr>
                     <th>Id Materia Prima</th>
                     <th>Nombre</th>
+                    <th>Existencias</th>
                     <th>Estado</th>
                 </tr>
                 
                 <%
                 MateriaPrimaVO matPriVO = new MateriaPrimaVO();
                 MateriaPrimaDAO matPriDAO = new MateriaPrimaDAO();
-                ArrayList<MateriaPrimaVO> listaMateriaPrima = matPriDAO.ListarDos();
+                ArrayList<MateriaPrimaVO> listaMateriaPrima = matPriDAO.Listar();
                 for (int i = 0; i < listaMateriaPrima.size(); i++){
                 
                     matPriVO = listaMateriaPrima.get(i);
@@ -111,8 +90,8 @@
                 <tr>
                     <td><%=matPriVO.getId_materia_Prima()%></td>
                     <td><%=matPriVO.getNombre()%></td>
+                    <td><%=matPriVO.getActualizacion()%></td>
                     <td><%=matPriVO.getEstado()%></td>
-                    
                 </tr>
                 
                 <% }%>
@@ -124,3 +103,4 @@
     </center>
 </body>
 </html>
+

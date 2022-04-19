@@ -8,7 +8,7 @@ package Controlador;
 import ModeloDAO.MateriaPrimaDAO;
 import ModeloVO.MateriaPrimaVO;
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -100,6 +100,19 @@ public class MateriaPrimaControlador extends HttpServlet {
                 } else {
                     request.setAttribute("mensajeExito", "La materia prima no existe");
                     request.getRequestDispatcher("consultarMateriaPrima.jsp").forward(request, response);
+                }
+                break;
+                
+                case 5: //Consultar por Orden
+
+                matPriVO = matPriDAO.consultarIdMateriaPrima(Id_materia_Prima);
+                if (matPriVO != null) {
+
+                    request.setAttribute("MateriaPrimaConsultada", matPriVO);
+                    request.getRequestDispatcher("actualizarExistenciasMateriaPrima.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("mensajeExito", "La materia prima no existe");
+                    request.getRequestDispatcher("consultarExistenciasMateriaPrima.jsp").forward(request, response);
                 }
                 break;
         }
