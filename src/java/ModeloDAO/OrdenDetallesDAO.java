@@ -47,9 +47,12 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
             cantidadSolicitada = ordDetallVO.getCantidadSolicitada();
             
         } catch (Exception e) {
-            Logger.getLogger(LoteProduccionDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
         }
         
+    }
+
+    public OrdenDetallesDAO() {
     }
     @Override
     public boolean agregarRegistro() {
@@ -66,42 +69,42 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
             puente.executeUpdate();
             operacion = true;
         } catch (SQLException ex) {
-            Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
 
             try{
                 this.cerrarConexion();
 
             } catch (SQLException e) {
-                Logger.getLogger(OrdenesDao.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
             }
-            return operacion;
+            
         }
+        return operacion;
     }
 
     @Override
     public boolean actualizarRegistro() {
         try {
-            sql = "update orden_detalles set id_orden = ?, id_detalles_Producto = ?,CantidadSolicitada = ? where Id_Orden_Detalles = ? ";
+            sql = "update orden_detalles set id_orden = ?, id_detalles_Producto = ?, "
+                    + "CantidadSolicitada = ? where Id_Orden_Detalles = ? ";
             puente = conexion.prepareStatement(sql);
             puente.setString(1,id_Orden);
             puente.setString(2, id_Detalles_Producto);
             puente.setString(3, cantidadSolicitada);
             puente.setString(4, id_Orden_Detalles);
-            
-         
             puente.executeUpdate();
             operacion = true;
 
         } catch (SQLException e) {
-            Logger.getLogger(LoteProduccionDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
 
             try {
                 this.cerrarConexion();
 
             } catch (SQLException e) {
-                Logger.getLogger(LoteProduccionDAO.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
             }
         }
         return operacion;

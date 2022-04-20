@@ -3,10 +3,10 @@
     Created on : 23/03/2022, 08:38:26 AM
     Author     : Sena
 --%>
-<%@include file="sesiones.jsp" %>
+
 <%@page import="java.util.ArrayList"%>
-<%@page import="ModeloDAO.OrdenesDao"%>
-<%@page import="ModeloVO.OrdenesVo"%>
+<%@page import="ModeloDAO.OrdenesDAO"%>
+<%@page import="ModeloVO.OrdenesVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -100,21 +100,21 @@
                 </tr>
                 
                 <%
-                OrdenesVo ordVo = new OrdenesVo();
-                OrdenesDao ordDao = new OrdenesDao();
-                ArrayList<OrdenesVo> listaOrdenes = ordDao.listar();
+                OrdenesVO ordVO = new OrdenesVO();
+                OrdenesDAO ordDAO = new OrdenesDAO();
+                ArrayList<OrdenesVO> listaOrdenes = ordDAO.listar();
                 for (int i = 0; i < listaOrdenes.size(); i++){
                 
-                    ordVo = listaOrdenes.get(i);
+                    ordVO = listaOrdenes.get(i);
                 
                 %>
                 
                 
                 <tr>
-                    <td><%=ordVo.getId_Orden()%></td>
-                    <td><%=ordVo.getId_Usuarios()%></td>
-                    <td><%=ordVo.getFecha_registro()%></td>
-                    <td><%=ordVo.getFecha_entrega()%></td>
+                    <td><%=ordVO.getId_Orden()%></td>
+                    <td><%=ordVO.getId_Usuarios()%></td>
+                    <td><%=ordVO.getFecha_registro()%></td>
+                    <td><%=ordVO.getFecha_entrega()%></td>
                 </tr>
                 
                 <% }%>

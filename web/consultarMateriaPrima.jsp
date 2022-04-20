@@ -94,14 +94,13 @@
                 <tr>
                     <th>Id Materia Prima</th>
                     <th>Nombre</th>
-                    <th>Actualizacion</th>
                     <th>Estado</th>
                 </tr>
                 
                 <%
                 MateriaPrimaVO matPriVO = new MateriaPrimaVO();
                 MateriaPrimaDAO matPriDAO = new MateriaPrimaDAO();
-                ArrayList<MateriaPrimaVO> listaMateriaPrima = matPriDAO.Listar();
+                ArrayList<MateriaPrimaVO> listaMateriaPrima = matPriDAO.ListarDos();
                 for (int i = 0; i < listaMateriaPrima.size(); i++){
                 
                     matPriVO = listaMateriaPrima.get(i);
@@ -112,8 +111,8 @@
                 <tr>
                     <td><%=matPriVO.getId_materia_Prima()%></td>
                     <td><%=matPriVO.getNombre()%></td>
-                    <td><%=matPriVO.getActualizacion()%></td>
                     <td><%=matPriVO.getEstado()%></td>
+                    
                 </tr>
                 
                 <% }%>
