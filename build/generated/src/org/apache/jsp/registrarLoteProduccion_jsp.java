@@ -3,14 +3,14 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import ModeloDAO.OrdenDetallesDAO;
-import ModeloVO.DetallesProductoVO;
-import ModeloDAO.DetallesProductoDAO;
-import ModeloVO.OrdenesVO;
-import ModeloDAO.OrdenesDAO;
 import ModeloVO.OrdenDetallesVO;
+import ModeloDAO.OrdenDetallesDAO;
+import ModeloDAO.UsuarioDAO;
+import ModeloVO.UsuarioVO;
+import java.util.ArrayList;
+import java.util.ArrayList;
 
-public final class actualizarOrdenDetalles_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class registrarLoteProduccion_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -52,11 +52,6 @@ public final class actualizarOrdenDetalles_jsp extends org.apache.jasper.runtime
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -123,104 +118,101 @@ public final class actualizarOrdenDetalles_jsp extends org.apache.jasper.runtime
       out.write("    </body>\n");
       out.write("</html>\n");
       out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
+      out.write("\r\n");
       out.write("        <title>JSP Page</title>\r\n");
       out.write("    </head>\r\n");
+      out.write("\r\n");
       out.write("    <body>\r\n");
-      out.write("        \r\n");
-      out.write("       ");
-
-            OrdenDetallesVO ordenDetallVO = (OrdenDetallesVO) request.getAttribute("OrdenDetallesConsultada");
-            if (ordenDetallVO != null) {
-        
-        
       out.write("\r\n");
-      out.write("        \r\n");
-      out.write("        <form action=\"OrdenDetalles\" method=\"post\">\r\n");
-      out.write("             <h1>Actualizar orden detalles</h1>\r\n");
-      out.write("             <label>Id orden detalles </label>\r\n");
-      out.write("             <br>\r\n");
-      out.write("            <input type=\"hidden\" name=\"txtIdOrdenDetalles\" value=\"");
-      out.print(ordenDetallVO.getId_Orden_Detalles());
-      out.write("\">\r\n");
-      out.write("             Id Orden<br>\r\n");
-      out.write("             <select name=\"txtIdOrden\">\r\n");
-      out.write("                 <option value=\"");
-      out.print(ordenDetallVO.getId_Orden());
-      out.write('"');
-      out.write('>');
-      out.print(ordenDetallVO.getId_Orden());
-      out.write("</option>\r\n");
-      out.write("                  ");
+      out.write("        <form action=\"LoteProduccion\" method=\"post\">\r\n");
+      out.write("            <label>Id usuario</label>\r\n");
+      out.write("            <br>\r\n");
+      out.write("            <select name=\"txtId_Usuarios\">\r\n");
+      out.write("                <option>Seleccione...</option>\r\n");
+      out.write("\r\n");
+      out.write("                ");
 
-                OrdenesDAO ordDAO = new OrdenesDAO();
-                for(OrdenesVO ordVO:ordDAO.listar()){
-                
+                    UsuarioDAO usuDAO = new UsuarioDAO();
+                    for (UsuarioVO usuVO : usuDAO.Listar()) {
+
                 
       out.write("\r\n");
-      out.write("            \r\n");
       out.write("                <option value=\"");
-      out.print(ordVO.getId_Orden());
+      out.print(usuVO.getIdUsuarios());
       out.write('"');
       out.write('>');
-      out.print(ordVO.getId_Orden());
+      out.print(usuVO.getNombre());
       out.write("</option>\r\n");
       out.write("                ");
 }
       out.write("\r\n");
-      out.write("             </select>\r\n");
-      out.write("                <br>\r\n");
-      out.write("                Id Detalles de Producto<br>\r\n");
-      out.write("                <select name=\"idDetallesProducto\">\r\n");
-      out.write("                    <option value=\"");
-      out.print(ordenDetallVO.getId_Detalles_Producto());
-      out.write('"');
-      out.write('>');
-      out.print(ordenDetallVO.getId_Detalles_Producto());
-      out.write("</option>\r\n");
-      out.write("                    ");
+      out.write("            </select>\r\n");
+      out.write("            <label>Id orden detalles</label>\r\n");
+      out.write("            <br>\r\n");
+      out.write("            <select name=\"txtId_orden_detalles\">\r\n");
+      out.write("                <option>Seleccione...</option>\r\n");
+      out.write("                ");
 
-                DetallesProductoDAO dpDAO = new DetallesProductoDAO();
-                for(DetallesProductoVO dpVO:dpDAO.listar()){
-                
+                    OrdenDetallesDAO odDAO = new OrdenDetallesDAO();
+                    for (OrdenDetallesVO odVO : odDAO.Listar()) {
                 
       out.write("\r\n");
-      out.write("            \r\n");
       out.write("                <option value=\"");
-      out.print(dpVO.getId_Detalles_Producto());
+      out.print(odVO.getId_Orden_Detalles());
       out.write('"');
       out.write('>');
-      out.print(dpVO.getId_Detalles_Producto());
+      out.print(odVO.getId_Orden_Detalles());
       out.write("</option>\r\n");
       out.write("                ");
 }
       out.write("\r\n");
-      out.write("                </select>\r\n");
-      out.write("                <br>\r\n");
-      out.write("                Cantidad Solicitada<br>\r\n");
-      out.write("                <input type=\"number\" name=\"txtcantidadSolicitada\" value=\"");
-      out.print(ordenDetallVO.getCantidadSolicitada());
-      out.write("\">\r\n");
-      out.write("                <br><br>\r\n");
-      out.write("                \r\n");
-      out.write("            <button>Actualizar</button>\r\n");
-      out.write("            <input type=\"hidden\" value=\"2\" name=\"opcion\">\r\n");
-      out.write("            <a href=\"consultarOrdenDetalles.jsp\">Volver</a><br>\r\n");
-      out.write("            \r\n");
+      out.write("            </select>\r\n");
+      out.write("            <br>\r\n");
+      out.write("            <label>Cantidad</label>\r\n");
+      out.write("            <br>\r\n");
+      out.write("            <input type=\"number\" name=\"txtcantidad\" placeholder=\"Cantidad\">\r\n");
+      out.write("            <br>\r\n");
+      out.write("            <label>Fecha de fabricacion</label>\r\n");
+      out.write("            <br>\r\n");
+      out.write("            <input type=\"date\" name=\"txtfecha_Fabricacion\">\r\n");
+      out.write("            <br>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("            <button>Registrar</button>\r\n");
+      out.write("            <input type=\"hidden\" value=\"1\" name=\"opcion\">\r\n");
+      out.write("            <div class=\"\">\r\n");
+      out.write("                ");
+if (request.getAttribute("mensajeError") != null) {
+      out.write("\r\n");
+      out.write("                ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeError}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("                ");
+   } else {
+      out.write("\r\n");
+      out.write("                ");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeExito}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("                ");
+}
+      out.write("\r\n");
+      out.write("            </div>\r\n");
       out.write("        </form>\r\n");
-      out.write("        \r\n");
-      out.write("            ");
- }else{
-request.getRequestDispatcher("consultarOrdenDetalles.jsp").forward(request, response);
-
-}
       out.write("\r\n");
-      out.write("        \r\n");
+      out.write("\r\n");
       out.write("    </body>\r\n");
-      out.write("</html>");
+      out.write("\r\n");
+      out.write("</html>\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

@@ -28,7 +28,7 @@ public class CantidadNecesariaDAO extends Conexion implements Crud {
     private boolean operacion = false;
     private String sql;
     
-    private String Id_Materia_Prima, Id_Detalles_Producto, CatidadNecesaria;
+    private String Id_Materia_Prima, Id_Detalles_Producto, materiaprimaenproducto;
     
     public CantidadNecesariaDAO(CantidadNecesariaVO cantNecVO){
         super();
@@ -40,7 +40,7 @@ public class CantidadNecesariaDAO extends Conexion implements Crud {
             
             Id_Materia_Prima = cantNecVO.getId_Materia_Prima();
             Id_Detalles_Producto = cantNecVO.getId_Detalles_Producto();
-            CatidadNecesaria = cantNecVO.getCatidadNecesaria();
+            materiaprimaenproducto = cantNecVO.getMateriaprimaenproducto();
         } catch (Exception e) {
             Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
         }

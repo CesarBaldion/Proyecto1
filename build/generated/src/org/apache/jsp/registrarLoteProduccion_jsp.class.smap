@@ -1,0 +1,30 @@
+SMAP
+registrarLoteProduccion_jsp.java
+JSP
+*S JSP
+*F
++ 0 registrarLoteProduccion.jsp
+registrarLoteProduccion.jsp
++ 1 navegacion.jsp
+navegacion.jsp
+*L
+5,5:55
+5#1,62:59
+9#0,22:120
+31,4:143
+34:147
+35:148,6
+36:154,3
+37,6:157
+43,3:164
+45:167
+46:168,6
+47:174,3
+48,15:177
+63,2:192,3
+65:198
+66,2:199,3
+68:205
+69:206,3
+70,8:209
+*E

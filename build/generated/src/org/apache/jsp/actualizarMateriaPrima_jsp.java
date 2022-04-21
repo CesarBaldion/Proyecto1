@@ -72,9 +72,9 @@ public final class actualizarMateriaPrima_jsp extends org.apache.jasper.runtime.
       out.write("            <br>\n");
       out.write("            <label>Nombre</label>\n");
       out.write("            <br>\n");
-      out.write("            <input type=\"text\" value=\"");
+      out.write("            <input type=\"text\" name=\"txtNombre\" value=\"");
       out.print(mpVO.getNombre());
-      out.write("\">\n");
+      out.write("\" required=\"\">\n");
       out.write("            <br>\n");
       out.write("            <label>Estado</label>\n");
       out.write("            <br>\n");

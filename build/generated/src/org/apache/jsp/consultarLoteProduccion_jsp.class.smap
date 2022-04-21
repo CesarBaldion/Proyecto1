@@ -1,0 +1,21 @@
+SMAP
+consultarLoteProduccion_jsp.java
+JSP
+*S JSP
+*F
++ 0 consultarLoteProduccion.jsp
+consultarLoteProduccion.jsp
+*L
+5,28:48
+33:77,2
+34:79,3
+35:82
+36:83,3
+37,18:86
+55,10:105
+64,2:115
+66,5:117,3
+71,5:132
+76:137,3
+77,7:140
+*E

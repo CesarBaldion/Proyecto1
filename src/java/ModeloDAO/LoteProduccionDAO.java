@@ -6,7 +6,6 @@
 package ModeloDAO;
 
 import ModeloVO.LoteProduccionVO;
-import ModeloVO.UsuarioVO;
 import Util.Conexion;
 import Util.Crud;
 import java.sql.Connection;
@@ -29,7 +28,7 @@ public class LoteProduccionDAO extends Conexion implements Crud{
     private boolean operacion = false;
     private String sql;
     
-    private String id_Lote_Produccion="",id_orden_Detalles="",id_Usuarios="",fecha_Fabricacion="";
+    private String id_Usuarios="", id_Lote_Produccion="",id_orden_Detalles="",fecha_Fabricacion="";
     private int cantidad;
     
     public LoteProduccionDAO(LoteProduccionVO loteVO) {
@@ -59,14 +58,14 @@ public class LoteProduccionDAO extends Conexion implements Crud{
     public boolean agregarRegistro() {
         try {
             //Armar sentencia
-            sql = "insert into lote_produccion(  Cantidad, Fecha_Fabricacion, Id_orden_detalles, Id_Usuarios) values (?,?,?,?)";
+            sql = "insert into lote_produccion(  Id_Usuarios,Id_orden_detalles,Cantidad, Fecha_Fabricacion  ) values (?,?,?,?)";
             // crear el camino por donde va la sentencia
             puente = conexion.prepareStatement(sql);
             
-            puente.setInt(1, cantidad);
-            puente.setString(2, fecha_Fabricacion);
-            puente.setString(3, id_orden_Detalles);
-            puente.setString(4, id_Usuarios);
+            puente.setInt(3, cantidad);
+            puente.setString(4, fecha_Fabricacion);
+            puente.setString(2, id_orden_Detalles);
+            puente.setString(1, id_Usuarios);
             puente.executeUpdate();
             operacion = true;
 
@@ -114,12 +113,12 @@ public class LoteProduccionDAO extends Conexion implements Crud{
     @Override
     public boolean actualizarRegistro() {
         try {
-            sql = "update lote_produccion set  Cantidad = ?, Fecha_Fabricacion = ?,Id_orden_detalles = ?, Id_Usuarios = ? where Id_Lote_Produccion = ? ";
+            sql = "update lote_produccion set Id_Usuarios = ?,Id_orden_detalles = ?, Cantidad = ?, Fecha_Fabricacion = ? where Id_Lote_Produccion = ? ";
             puente = conexion.prepareStatement(sql);
-            puente.setInt(1, cantidad);
-            puente.setString(2, fecha_Fabricacion);
-            puente.setString(3, id_orden_Detalles);
-            puente.setString(4, id_Usuarios);
+            puente.setInt(3, cantidad);
+            puente.setString(4, fecha_Fabricacion);
+            puente.setString(2, id_orden_Detalles);
+            puente.setString(1, id_Usuarios);
             puente.setString(5, id_Lote_Produccion);
          
             puente.executeUpdate();
@@ -150,8 +149,8 @@ public class LoteProduccionDAO extends Conexion implements Crud{
 
             while (mensajero.next()) {
 
-                ltProducVO = new LoteProduccionVO(mensajero.getString(1), mensajero.getInt(2), mensajero.getString(3), mensajero.getString(4),
-                        mensajero.getString(5));
+                ltProducVO = new LoteProduccionVO(mensajero.getString(1),mensajero.getString(2), mensajero.getString(3),
+                        mensajero.getInt(4),mensajero.getString(5));
 
             }
 
@@ -183,8 +182,7 @@ public class LoteProduccionDAO extends Conexion implements Crud{
 
             while (mensajero.next()) {
 
-               LoteProduccionVO ltProducVO = new LoteProduccionVO(mensajero.getString(1), mensajero.getInt(2), mensajero.getString(3), mensajero.getString(4),
-                        mensajero.getString(5));
+               LoteProduccionVO ltProducVO = new LoteProduccionVO(mensajero.getString(1),mensajero.getString(2),mensajero.getString(3),mensajero.getInt(4), mensajero.getString(5));
                 listaLoteProduccion.add(ltProducVO);
 
             }

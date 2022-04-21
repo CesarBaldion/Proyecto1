@@ -34,15 +34,16 @@ public class CantidadNecesariaControlador extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String Id_Producto = request.getParameter("Id_Materia_Prima");
-        String Nombre = request.getParameter("Id_Detalles_Producto");
-        String Estado = request.getParameter("CatidadNecesaria");
+        String id_materia_prima = request.getParameter("Id_Materia_Prima");
+        String id_detalles_producto = request.getParameter("Id_Detalles_Producto");
+        String materiaprimaenproducto = request.getParameter("materiaprimaenproducto");
         
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         
-        CantidadNecesariaVO cantNecVO = new CantidadNecesariaVO(Id_Materia_Prima,Id_Detalles_Producto,CatidadNecesaria);
-        
-        CantidadNecesariaDAO cantNecDAO new CantidadNecesariaDAO(cantNecDAO);
+      CantidadNecesariaVO cantNecVO = new CantidadNecesariaVO(id_materia_prima, id_detalles_producto, materiaprimaenproducto);
+
+        // 3. Quien hace las operaciones? DAO
+        CantidadNecesariaDAO cantNecDAO = new CantidadNecesariaDAO(cantNecVO);
         
         switch (opcion) {
 
@@ -89,7 +90,7 @@ public class CantidadNecesariaControlador extends HttpServlet {
                 break;
 
             case 4: {
-                cantNecVO = cantNecDAO.consultarCantidadNecesaria(Nombre);
+                cantNecVO = cantNecDAO.consultarCantidadNecesaria(id_materia_prima);
             }
             if (cantNecVO != null) {
                 request.setAttribute("productoCosultado", cantNecVO);

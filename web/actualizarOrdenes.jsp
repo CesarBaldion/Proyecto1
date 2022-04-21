@@ -45,11 +45,11 @@
             <br>
             <label>Fecha registro</label>
             <br>
-            <input type="text" name="txtFechaRegistro" value="<%=ordVO.getFecha_registro()%> "  required="">
+            <input type="date" name="txtFechaRegistro" value="<%=ordVO.getFecha_registro()%>">
             <br>
             <label>Fecha Entrega</label>
             <br>
-            <input type="text" name="txtFechaEntrega" value="<%=ordVO.getFecha_entrega()%> "  required="">
+            <input type="date" name="txtFechaEntrega" value="<%=ordVO.getFecha_entrega()%>">
             <br>
             <button id="Boton"> Actualizar </button>
             <input type="hidden" value="2" name="opcion">

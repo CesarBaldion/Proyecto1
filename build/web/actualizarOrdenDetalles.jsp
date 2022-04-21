@@ -11,6 +11,7 @@
 <%@page import="ModeloDAO.OrdenesDAO"%>
 <%@page import="ModeloVO.OrdenDetallesVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="navegacion.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,8 +29,11 @@
         <form action="OrdenDetalles" method="post">
              <h1>Actualizar orden detalles</h1>
              <label>Id orden detalles </label>
-            <input type="hidden" name="txtIdOrdenDetalles" value="<%=ordenDetallVO.getId_Orden_Detalles()%>">
-             Id Orden<br>
+             <br>
+             <input type="text" name="txtIdOrdenDetalles" value="<%=ordenDetallVO.getId_Orden_Detalles()%>">
+             <br>
+             Id Orden
+             <br>
              <select name="txtIdOrden">
                  <option value="<%=ordenDetallVO.getId_Orden()%>"><%=ordenDetallVO.getId_Orden()%></option>
                   <%
