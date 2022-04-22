@@ -8,6 +8,7 @@
 <%@page import="ModeloVO.LoteProduccionVO"%>
 <%@page import="ModeloDAO.LoteProduccionDAO"%>
 <%@page import="ModeloVO.LoteProduccionVO"%>
+<%@include file="navegacion.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,30 +18,25 @@
         <title>JSP Page</title>
     </head>
     <body>
-         <h1>Lote Produccion</h1>
+        <div class="col-md-4 justify-content-center mx-auto mt-4">
+            <h1 class="text-center">Lote Produccion</h1>
+            <div class="col-md-4 mx-auto ">
+                <form method="post" action="LoteProduccion" class="form-group"> 
+                    <input type="text" name="txtid_loteProduccion" placeholder="Id" class="form-control d-flex">
+                    <input type="hidden" value="4" name="opcion">
+                    <button class="btn">Consultar</button>
+                </form>
+                <div class="mensaje">
+                    <%
+                        if (request.getAttribute("mensajeError") != null) {%>
+                    ${mensajeError}
 
-        <form method="post" action="LoteProduccion">
-
-            Id
-            <input type="text" name="txtid_loteProduccion">
-            <br>
-            <input type="hidden" value="4" name="opcion">
-            <button>Consultar</button>
-
-        </form>
-        <div class="mensaje">
-            <%
-                if (request.getAttribute("mensajeError") != null) {%>
-            ${mensajeError}
-
-            <%}%>
+                    <%}%>
+                </div>
+            </div>
         </div>
-        <br>
-        <br>
-
-        <form>
-
-            <table border="1">
+        <div class="col-md-9 mx-auto justify-content-center mt-4">
+            <table class="table table-light table-hover table-striped text-center">
 
                 <tr>
                     <th>Id</th>
@@ -48,8 +44,8 @@
                     <th>Id orden Detalles</th>
                     <th>Cantidad</th>
                     <th>Fecha Fabricacion</th>
-                   
-                    
+
+
                 </tr>
                 <%
                     LoteProduccionVO ltProducVO = new LoteProduccionVO();
@@ -58,7 +54,7 @@
                     ArrayList<LoteProduccionVO> listaLoteProduccion = ltProducDAO.Listar();
 
                     for (int i = 0; i < listaLoteProduccion.size(); i++) {
-                        
+
                         ltProducVO = listaLoteProduccion.get(i);
 
                 %>
@@ -68,15 +64,12 @@
                     <td><%=ltProducVO.getId_orden_Detalles()%></td>
                     <td><%=ltProducVO.getCantidad()%></td>
                     <td><%=ltProducVO.getFecha_Fabricacion()%></td>
-                    
-                    
- 
                 </tr>
-                
-                <% } %>
+
+                <% }%>
 
             </table>
+        </div>
 
-        </form>
     </body>
 </html>

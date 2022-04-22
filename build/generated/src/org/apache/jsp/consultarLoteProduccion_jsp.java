@@ -60,36 +60,31 @@ public final class consultarLoteProduccion_jsp extends org.apache.jasper.runtime
       out.write("        <title>JSP Page</title>\r\n");
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
-      out.write("         <h1>Lote Produccion</h1>\r\n");
-      out.write("\r\n");
-      out.write("        <form method=\"post\" action=\"LoteProduccion\">\r\n");
-      out.write("\r\n");
-      out.write("            Id\r\n");
-      out.write("            <input type=\"text\" name=\"txtid_loteProduccion\">\r\n");
-      out.write("            <br>\r\n");
-      out.write("            <input type=\"hidden\" value=\"4\" name=\"opcion\">\r\n");
-      out.write("            <button>Consultar</button>\r\n");
-      out.write("\r\n");
-      out.write("        </form>\r\n");
-      out.write("        <div class=\"mensaje\">\r\n");
-      out.write("            ");
+      out.write("        <div class=\"col-md-4 justify-content-center mx-auto mt-4\">\r\n");
+      out.write("            <h1 class=\"text-center\">Lote Produccion</h1>\r\n");
+      out.write("            <div class=\"col-md-4 mx-auto \">\r\n");
+      out.write("                <form method=\"post\" action=\"LoteProduccion\" class=\"form-group\"> \r\n");
+      out.write("                    <input type=\"text\" name=\"txtid_loteProduccion\" placeholder=\"Id\" class=\"form-control d-flex\">\r\n");
+      out.write("                    <input type=\"hidden\" value=\"4\" name=\"opcion\">\r\n");
+      out.write("                    <button class=\"btn\">Consultar</button>\r\n");
+      out.write("                </form>\r\n");
+      out.write("                <div class=\"mensaje\">\r\n");
+      out.write("                    ");
 
-                if (request.getAttribute("mensajeError") != null) {
+                        if (request.getAttribute("mensajeError") != null) {
       out.write("\r\n");
-      out.write("            ");
+      out.write("                    ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeError}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\r\n");
       out.write("\r\n");
-      out.write("            ");
+      out.write("                    ");
 }
       out.write("\r\n");
+      out.write("                </div>\r\n");
+      out.write("            </div>\r\n");
       out.write("        </div>\r\n");
-      out.write("        <br>\r\n");
-      out.write("        <br>\r\n");
-      out.write("\r\n");
-      out.write("        <form>\r\n");
-      out.write("\r\n");
-      out.write("            <table border=\"1\">\r\n");
+      out.write("        <div class=\"col-md-9 mx-auto justify-content-center mt-4\">\r\n");
+      out.write("            <table class=\"table table-light table-hover table-striped text-center\">\r\n");
       out.write("\r\n");
       out.write("                <tr>\r\n");
       out.write("                    <th>Id</th>\r\n");
@@ -97,8 +92,8 @@ public final class consultarLoteProduccion_jsp extends org.apache.jasper.runtime
       out.write("                    <th>Id orden Detalles</th>\r\n");
       out.write("                    <th>Cantidad</th>\r\n");
       out.write("                    <th>Fecha Fabricacion</th>\r\n");
-      out.write("                   \r\n");
-      out.write("                    \r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("                </tr>\r\n");
       out.write("                ");
 
@@ -108,7 +103,7 @@ public final class consultarLoteProduccion_jsp extends org.apache.jasper.runtime
                     ArrayList<LoteProduccionVO> listaLoteProduccion = ltProducDAO.Listar();
 
                     for (int i = 0; i < listaLoteProduccion.size(); i++) {
-                        
+
                         ltProducVO = listaLoteProduccion.get(i);
 
                 
@@ -129,18 +124,15 @@ public final class consultarLoteProduccion_jsp extends org.apache.jasper.runtime
       out.write("                    <td>");
       out.print(ltProducVO.getFecha_Fabricacion());
       out.write("</td>\r\n");
-      out.write("                    \r\n");
-      out.write("                    \r\n");
-      out.write(" \r\n");
       out.write("                </tr>\r\n");
-      out.write("                \r\n");
+      out.write("\r\n");
       out.write("                ");
- } 
+ }
       out.write("\r\n");
       out.write("\r\n");
       out.write("            </table>\r\n");
+      out.write("        </div>\r\n");
       out.write("\r\n");
-      out.write("        </form>\r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
     } catch (Throwable t) {

@@ -17,7 +17,7 @@ public class LoteProduccionVO {
     public LoteProduccionVO() {
     }
 
-    public LoteProduccionVO(String id_Lote_Produccion, String id_Usuarios, String id_orden_Detalles, int cantidad, String fecha_Fabricacion) {
+    public LoteProduccionVO(String id_Lote_Produccion, int cantidad, String fecha_Fabricacion, String id_Usuarios, String id_orden_Detalles) {
         this.id_Lote_Produccion = id_Lote_Produccion;
         this.id_Usuarios = id_Usuarios;
         this.id_orden_Detalles = id_orden_Detalles;

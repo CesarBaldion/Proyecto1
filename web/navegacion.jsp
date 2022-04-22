@@ -17,49 +17,60 @@
         <link rel="stylesheet" href="css/">
         
     </head>
-    <body>
-        <center>
-          <div class="col-md-6 ">
-            <nav class="navbar navbar-expand-lg navbar-light col-md-12 ">
-                <div class="mx-auto mt-3" id="navbarNav">
-
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item active me-4">
-                            <a class="navbar-brand text-dark " href="menu.jsp">Inicio</a>
-                        </li>
-                        <li class="nav-item dropdown font-dark">
-                            <a class="navbar-brand dark-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Registrar
-                            </a>
-                            <ul class="dropdown-menu " >
-                                <li><a class="dropdown-item font-dark" href="registrarMateriasPrimas.jsp">Materia Prima</a></li>
-                                <li><a class="dropdown-item font-dark" href="registrarProducto.jsp">Producto</a></li>
-                                <li><a class="dropdown-item font-dark" href="registrarLoteMateriaPrima.jsp">Lote Materia Prima</a></li>
-                                <li><a class="dropdown-item font-dark"  href="registrarLoteProduccion.jsp">Lote Produccion</a></li>
-                                <li><a class="dropdown-item font-dark"  href="registrarOrdenes.jsp.jsp">Ordenes</a></li>
-                                <li><a class="dropdown-item font-dark"  href="consultarOrdenDetalles.jsp.jsp">Ordene Detalles</a></li>
-                                <li><a class="dropdown-item font-dark"  href="registrarUsuario.jsp">Usuarios</a></li>
-                                <li><a class="dropdown-item font-dark"  href="registrarDetallesProducto.jsp">Detalles Producto</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown font-dark">
-                            <a class="navbar-brand dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Consultar
-                            </a>
-                            <ul class="dropdown-menu " >
-                                <li><a class="dropdown-item font-dark" href="consultarMateriaPrima.jsp">Materia Prima</a></li>
-                                <li><a class="dropdown-item font-dark" href="consultarProducto.jsp">Producto</a></li>
-                                <li><a class="dropdown-item font-dark" href="consultarMateriaPrima.jsp">Lote Materia Prima</a></li>
-                                <li><a class="dropdown-item font-dark"  href="consultarLoteProduccion.jsp">Lote Produccion</a></li>
-                                <li><a class="dropdown-item font-dark"  href="consultarOrdenes.jsp">Ordenes</a></li>
-                                <li><a class="dropdown-item font-dark"  href="consultarOrdenDetalles.jsp.jsp">Orden Detalles</a></li>
-                                <li><a class="dropdown-item font-dark"  href="consultarUsuarios.jsp">Usuarios</a></li>
-                                <li><a class="dropdown-item font-dark"  href="consultarDetallesProducto.jsp">Detalles Producto</a></li>
-                            </ul>
-                        </li>
-                </div>
-            </nav>
+    <body class="row">
+        
+        <nav class="navbar navbar-light  col-md-4 text-light">
+        <div class="container-fluid">
+            <a class="navbar-brand text-light nav-link" href="menu.jsp">
+                <img src="img/LogoFinal.svg" height="55" class="d-inline-block align-text-top mt-2">
+            </a>
         </div>
-        <br><br>
+        </nav>
+        <div class="col-md-4">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="mt-4 mx-auto " id="navbarNav">
+                    <ul class="navbar-nav fs-4">
+                            <li class="nav-item active ">
+                                <a class="navbar-brand text-dark " href="index.jsp">Inicio</a>
+                            </li>
+                            <li class="nav-item dropdown font-dark">
+                                <a class="navbar-brand dark-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  Registrar
+                                </a>
+                                <ul class="dropdown-menu " >
+                                  <li><a class="dropdown-item font-dark" href="registrarMateriasPrimas.jsp">Materia Prima</a></li>
+                                    <li><a class="dropdown-item font-dark" href="registrarProducto.jsp">Producto</a></li>
+                                    <li><a class="dropdown-item font-dark" href="registrarLoteMateriaPrima.jsp">Lote Materia Prima</a></li>
+                                    <li><a class="dropdown-item font-dark"  href="registrarLoteProduccion.jsp">Lote Produccion</a></li>
+                                    <li><a class="dropdown-item font-dark"  href="registrarOrdenes.jsp.jsp">Ordenes</a></li>
+                                    <li><a class="dropdown-item font-dark"  href="consultarOrdenDetalles.jsp.jsp">Ordene Detalles</a></li>
+                                    <li><a class="dropdown-item font-dark"  href="registrarUsuario.jsp">Usuarios</a></li>
+                                    <li><a class="dropdown-item font-dark"  href="registrarDetallesProducto.jsp">Detalles Producto</a></li>
+                                </ul>
+                              </li>
+                              <li class="nav-item dropdown font-dark ">
+                                <a class="navbar-brand dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  Consultar
+                                </a>
+                                <ul class="dropdown-menu " >
+                                  <li><a class="dropdown-item font-dark" href="consultarMateriaPrima.jsp">Materia Prima</a></li>
+                                    <li><a class="dropdown-item font-dark" href="consultarProducto.jsp">Producto</a></li>
+                                    <li><a class="dropdown-item font-dark" href="consultarMateriaPrima.jsp">Lote Materia Prima</a></li>
+                                    <li><a class="dropdown-item font-dark"  href="consultarLoteProduccion.jsp">Lote Produccion</a></li>
+                                    <li><a class="dropdown-item font-dark"  href="consultarOrdenes.jsp">Ordenes</a></li>
+                                    <li><a class="dropdown-item font-dark"  href="consultarOrdenDetalles.jsp.jsp">Orden Detalles</a></li>
+                                    <li><a class="dropdown-item font-dark"  href="consultarUsuarios.jsp">Usuarios</a></li>
+                                    <li><a class="dropdown-item font-dark"  href="consultarDetallesProducto.jsp">Detalles Producto</a></li>
+                                </ul>
+                              </li>
+
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-md-4 mt-2  b">
+                <button  class="btn b1">Cerrar sesion</button>    
+            </div>
+       
     </body>
 </html>

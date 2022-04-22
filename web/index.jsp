@@ -3,7 +3,7 @@
     Created on : 3/03/2022, 09:40:36 PM
     Author     : Juan Pablo
 --%>
-<%@include file="sesiones.jsp" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -36,7 +36,7 @@
                         <a class="nav-link" href="#">Contáctanos</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="">Consultas</a>
+                        <a class="nav-link" href="consultarUsuarios.jsp">Consultas</a>
                       </li>
                       <li class="nav-item active">
                           <a class="nav-link" aria-current="page" href="iniciarSesion.jsp">Iniciar Sesión</a>

@@ -17,61 +17,58 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <title>JSP Page</title>
+        <link rel="stylesheet" href="css/registrarLoteProduccion.css" >
     </head>
 
     <body>
 
-        <form action="LoteProduccion" method="post">
-            <label>Id usuario</label>
-            <br>
-            <select name="txtId_Usuarios">
-                <option>Seleccione...</option>
+        <div class="col-md-3 mx-auto mt-4 justify-content-center border border-info caja">
+            <h1 class="text-center h1 mt-1">Registrar <br>Lote Produccion</h1>
+            <div class="col-md-10 mx-auto">
+                <form action="LoteProduccion" method="post" class="form-group mt-5">
+                <select class="form-select mt-2" name="txtId_Usuarios">
+                    <option>Seleccione un Usuario...</option>
 
-                <%
-                    UsuarioDAO usuDAO = new UsuarioDAO();
-                    for (UsuarioVO usuVO : usuDAO.Listar()) {
+                    <%
+                        UsuarioDAO usuDAO = new UsuarioDAO();
+                        for (UsuarioVO usuVO : usuDAO.Listar()) {
 
-                %>
-                <option value="<%=usuVO.getIdUsuarios()%>"><%=usuVO.getNombre()%></option>
-                <%}%>
-            </select>
-            <br>
-            <label>Id orden detalles</label>
-            <br>
-            <select name="txtId_orden_detalles">
-                <option>Seleccione...</option>
-                <%
-                    OrdenDetallesDAO odDAO = new OrdenDetallesDAO();
-                    for (OrdenDetallesVO odVO : odDAO.Listar()) {
-                %>
-                <option value="<%=odVO.getId_Orden_Detalles()%>"><%=odVO.getId_Orden_Detalles()%></option>
-                <%}%>
-            </select>
-            <br>
-            <label>Cantidad</label>
-            <br>
-            <input type="number" name="txtcantidad" placeholder="Cantidad">
-            <br>
-            <label>Fecha de fabricacion</label>
-            <br>
-            <input type="date" name="txtfecha_Fabricacion">
-            <br>
+                    %>
+                    <option value="<%=usuVO.getIdUsuarios()%>"><%=usuVO.getNombre()%></option>
+                    <%}%>
+                </select>
+                <select name="txtId_orden_detalles" class="form-select mt-2">
+                    <option>Seleccione Id orden detalles...</option>
+                    <%
+                        OrdenDetallesDAO odDAO = new OrdenDetallesDAO();
+                        for (OrdenDetallesVO odVO : odDAO.Listar()) {
+                    %>
+                    <option value="<%=odVO.getId_Orden_Detalles()%>"><%=odVO.getId_Orden_Detalles()%></option>
+                    <%}%>
+                </select>
+                <input type="number" name="txtcantidad" placeholder="Cantidad" class="form-control mt-2">
 
+                <label class="ms-2">Fecha de fabricacion</label>
 
-            <button>Registrar</button>
-            <input type="hidden" value="1" name="opcion">
-            <div class="">
-                <%if (request.getAttribute("mensajeError") != null) {%>
-                ${mensajeError}
+                <input type="date" name="txtfecha_Fabricacion" class="form-control mt-2">
 
-                <%   } else {%>
-                ${mensajeExito}
+                <div>
+                    <button  class="boton btn mt-2">Registrar</button>
+                </div>
+                <input type="hidden" value="1" name="opcion">
+                <div class="">
+                    <%if (request.getAttribute("mensajeError") != null) {%>
+                    ${mensajeError}
 
-                <%}%>
+                    <%   } else {%>
+                    ${mensajeExito}
+
+                    <%}%>
+                </div>
+                </form>
             </div>
-        </form>
-
-
+    </div>
+       
     </body>
 
 </html>

@@ -108,7 +108,7 @@ public class UsuariosControlador extends HttpServlet {
                             Direccion, Estado, Contrasena);
                     miSesion.setAttribute("datosUsuario", usuVO);
 
-                    request.getRequestDispatcher("menu.jsp").forward(request, response);
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
 
                 } else {
 
