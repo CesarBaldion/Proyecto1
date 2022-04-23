@@ -9,6 +9,7 @@
 <%@page import="ModeloDAO.LoteProduccionDAO"%>
 <%@page import="ModeloVO.LoteProduccionVO"%>
 <%@include file="navegacion.jsp" %>
+<%@include file="sesiones.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -36,7 +37,7 @@
             </div>
         </div>
         <div class="col-md-9 mx-auto justify-content-center mt-4">
-            <table class="table table-light table-hover table-striped text-center">
+                <table class="table table-light table-hover table-striped text-center">
 
                 <tr>
                     <th>Id</th>

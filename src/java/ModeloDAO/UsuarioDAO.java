@@ -8,13 +8,21 @@ package ModeloDAO;
 import ModeloVO.UsuarioVO;
 import Util.Conexion;
 import Util.Crud;
+import java.security.MessageDigest;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import com.sun.org.apache.xml.internal.security.utils.Base64;
+;
+
 
 /**
  *
@@ -25,22 +33,19 @@ public class UsuarioDAO extends Conexion implements Crud {
     private Connection conexion;
     private PreparedStatement puente;
     private ResultSet mensajero;
-
+    
     private boolean operacion = false;
     private String sql;
 
     // Declarar variables del modulo(VO)
     private String id_Usuarios = "", Nombre = "", Documento = "", Telefono = "",
             Email = "", Direccion = "", Estado = "", Contrasena = "";
+    
+    //Llave Encriptacion de Contraseña
+    private String llave = "SuiteFactor";
 
     public UsuarioDAO() {
     }
-
-   
-    
-    
-    
-
     //2. Crear metodo principal para recibir los datos del VO
     public UsuarioDAO(UsuarioVO usuVO) {
         super();
@@ -80,7 +85,8 @@ public class UsuarioDAO extends Conexion implements Crud {
             puente.setString(4, Email);
             puente.setString(5, Direccion);
             puente.setString(6, Estado);
-            puente.setString(7, Contrasena);
+            
+            puente.setString(7,Encriptar(Contrasena));
             puente.executeUpdate();
             operacion = true;
 
@@ -260,6 +266,56 @@ public class UsuarioDAO extends Conexion implements Crud {
 
         return listaUsuarios;
 
+    }
+    
+    public SecretKeySpec crearClave(String llave){
+        
+        try { 
+             byte[] cadena = llave.getBytes("UTF-8");
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            cadena = md.digest(cadena);
+            cadena = Arrays.copyOf(cadena, 16);
+            SecretKeySpec secretKeySpec = new SecretKeySpec(cadena, "AES");
+            return secretKeySpec;
+        } catch (Exception e) {
+            return null;
+        }
+        
+    }
+    
+    public String Encriptar(String encriptar) {
+     
+        try {
+            SecretKeySpec secretKeySpec = crearClave(llave);
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
+            byte[] cadena = encriptar.getBytes("UTF-8");
+            byte[] encriptada = cipher.doFinal(cadena);
+            String cadena_encriptada = Base64.encode(encriptada);
+            return cadena_encriptada;
+            
+            
+            
+        } catch (Exception e) {
+            return "";
+        }
+    }
+    
+    public String Desencriptar(String desencriptar) {
+     
+        try {
+            SecretKeySpec secretKeySpec = crearClave(llave);
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
+            
+            byte[] cadena = Base64.decode(desencriptar);
+            byte[] desencriptacioon = cipher.doFinal(cadena);
+            String cadena_desencriptada = new String(desencriptacioon);
+            return cadena_desencriptada;
+            
+        } catch (Exception e) {
+            return "";
+        }
     }
 
 }

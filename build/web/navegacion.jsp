@@ -54,11 +54,12 @@
                                 </a>
                                 <ul class="dropdown-menu " >
                                   <li><a class="dropdown-item font-dark" href="consultarMateriaPrima.jsp">Materia Prima</a></li>
+                                  <li><a class="dropdown-item font-dark" href="consultarExistenciasMateriaPrima.jsp">Existencias Materia Prima</a></li>
                                     <li><a class="dropdown-item font-dark" href="consultarProducto.jsp">Producto</a></li>
-                                    <li><a class="dropdown-item font-dark" href="consultarMateriaPrima.jsp">Lote Materia Prima</a></li>
+                                    <li><a class="dropdown-item font-dark" href="consultarLoteMateriaPrima.jsp">Lote Materia Prima</a></li>
                                     <li><a class="dropdown-item font-dark"  href="consultarLoteProduccion.jsp">Lote Produccion</a></li>
                                     <li><a class="dropdown-item font-dark"  href="consultarOrdenes.jsp">Ordenes</a></li>
-                                    <li><a class="dropdown-item font-dark"  href="consultarOrdenDetalles.jsp.jsp">Orden Detalles</a></li>
+                                    <li><a class="dropdown-item font-dark"  href="consultarOrdenDetalles.jsp">Orden Detalles</a></li>
                                     <li><a class="dropdown-item font-dark"  href="consultarUsuarios.jsp">Usuarios</a></li>
                                     <li><a class="dropdown-item font-dark"  href="consultarDetallesProducto.jsp">Detalles Producto</a></li>
                                 </ul>
@@ -68,7 +69,7 @@
                     </div>
                 </nav>
             </div>
-            <div class="col-md-4 mt-2  b">
+            <div class="col-md-4 mt-3  justify-content-center d-flex">
                 <button  class="btn b1">Cerrar sesion</button>    
             </div>
        

@@ -17,8 +17,9 @@ public class loteMateriaPrimaVO {
     public loteMateriaPrimaVO() {
     }
 
-    public loteMateriaPrimaVO(String IdloteMateriaPrima, String Cantidad, String Observaciones, String FechaIngreso, String FechaSalida,
-            String IdMateriaPrima) {
+    public loteMateriaPrimaVO(String IdloteMateriaPrima,String IdMateriaPrima, 
+            String Cantidad, String Observaciones, String FechaIngreso, String FechaSalida
+            ) {
         this.Id_loteMateria_Prima = IdloteMateriaPrima;
         this.cantidad = Cantidad;
         this.observaciones = Observaciones;

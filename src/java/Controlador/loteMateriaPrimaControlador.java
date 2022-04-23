@@ -44,7 +44,7 @@ public class loteMateriaPrimaControlador extends HttpServlet {
         int opcion = Integer.parseInt(request.getParameter("opcion"));
 
         // 2. Quien tiene los datos de forma segura en el sistema? VO
-        loteMateriaPrimaVO loteMPVO = new loteMateriaPrimaVO(IdLoteMateriaPrima, Cantidad, Observaciones, FechaIngreso, FechaSalida, IdMateriaPrima);
+        loteMateriaPrimaVO loteMPVO = new loteMateriaPrimaVO(IdLoteMateriaPrima,IdMateriaPrima,Cantidad, Observaciones,FechaIngreso,FechaSalida);
 
         // 3. Quien hace las operaciones? DAO
         loteMateriaPrimaDAO loteMPDAO = new loteMateriaPrimaDAO(loteMPVO);

@@ -8,124 +8,75 @@
 <%@page import="ModeloDAO.UsuarioDAO"%>
 <%@page import="ModeloVO.UsuarioVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="navegacion.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-              integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
         <link rel="stylesheet" href="css/">
         <title>JSP Page</title>
     </head>
-        
+
     <body>
-            <div class="col-md-6 ">
-            <nav class="navbar navbar-expand-lg navbar-light col-md-12 ">
-                <div class="mx-auto mt-3" id="navbarNav">
+        <div class="col-md-4 justify-content-center mx-auto mt-4">
+            <h1 class="text-center">Usuarios</h1>
+            <div class="col-md-6 mx-auto ">
+                <form method="post" action="Usuarios" class="form-group">
+                    <input type="text" name="txtId" class="form-control" placeholder="Id Usuarios">
+                    <input type="hidden" value="5" name="opcion">
+                    <button class="btn">Consultar</button>
+                </form>
+                <div class="mensaje">
+                    <%                if (request.getAttribute("mensajeError") != null) {%>
+                    ${mensajeError}
 
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item active me-4">
-                            <a class="navbar-brand text-dark " href="menu.jsp">Inicio</a>
-                        </li>
-                        <li class="nav-item dropdown font-dark">
-                            <a class="navbar-brand dark-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Registrar
-                            </a>
-                            <ul class="dropdown-menu " >
-                                <li><a class="dropdown-item font-dark" href="registrarMateriasPrimas.jsp">Materia Prima</a></li>
-                                <li><a class="dropdown-item font-dark" href="registrarProducto.jsp">Producto</a></li>
-                                <li><a class="dropdown-item font-dark" href="registrarLoteMateriaPrima.jsp">Lote Materia Prima</a></li>
-                                <li><a class="dropdown-item font-dark"  href="registrarLoteProduccion.jsp">Lote Produccion</a></li>
-                                <li><a class="dropdown-item font-dark"  href="registrarOrdenes.jsp.jsp">Ordenes</a></li>
-                                <li><a class="dropdown-item font-dark"  href="consultarOrdenDetalles.jsp.jsp">Ordene Detalles</a></li>
-                                <li><a class="dropdown-item font-dark"  href="registrarUsuario.jsp">Usuarios</a></li>
-                                <li><a class="dropdown-item font-dark"  href="registrarDetallesProducto.jsp">Detalles Producto</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown font-dark">
-                            <a class="navbar-brand dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Consultar
-                            </a>
-                            <ul class="dropdown-menu " >
-                                <li><a class="dropdown-item font-dark" href="consultarMateriaPrima.jsp">Materia Prima</a></li>
-                                <li><a class="dropdown-item font-dark" href="consultarProducto.jsp">Producto</a></li>
-                                <li><a class="dropdown-item font-dark" href="consultarMateriaPrima.jsp">Lote Materia Prima</a></li>
-                                <li><a class="dropdown-item font-dark"  href="consultarLoteProduccion.jsp">Lote Produccion</a></li>
-                                <li><a class="dropdown-item font-dark"  href="consultarOrdenes.jsp">Ordenes</a></li>
-                                <li><a class="dropdown-item font-dark"  href="consultarOrdenDetalles.jsp.jsp">Orden Detalles</a></li>
-                                <li><a class="dropdown-item font-dark"  href="consultarUsuarios.jsp">Usuarios</a></li>
-                                <li><a class="dropdown-item font-dark"  href="consultarDetallesProducto.jsp">Detalles Producto</a></li>
-                            </ul>
-                        </li>
+                    <%}%>
                 </div>
-            </nav>
+            </div>
+        </div>   
+        <div class="col-md-11 mx-auto justify-content-center mt-4">
+            <div class="col-md-7 mx-auto justify-content-center">
+                <table class="table table-light table-hover table-striped text-center">
+
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombres</th>
+                        <th>Documento</th>
+                        <th>Telefono</th>
+                        <th>Email</th>
+                        <th>Direccion</th>
+                        <th>Estado</th>
+                        <th>Contraseña</th>
+
+                    </tr>
+                    <%
+                        UsuarioVO usuVO = new UsuarioVO();
+                        UsuarioDAO usuDAO = new UsuarioDAO();
+
+                        ArrayList<UsuarioVO> ListaUsuarios = usuDAO.Listar();
+
+                        for (int i = 0; i < ListaUsuarios.size(); i++) {
+
+                            usuVO = ListaUsuarios.get(i);
+
+                    %>
+                    <tr>
+                        <td><%=usuVO.getIdUsuarios()%></td>
+                        <td><%=usuVO.getNombre()%></td>
+                        <td><%=usuVO.getDocumento()%></td>
+                        <td><%=usuVO.getTelefono()%></td>
+                        <td><%=usuVO.getEmail()%></td>
+                        <td><%=usuVO.getDireccion()%></td>
+                        <td><%=usuVO.getEstado()%></td>
+                        <td><%=usuVO.getContrasena()%></td>
+
+                    </tr>
+
+                    <% }%>
+
+                </table>
+
+            </div>
         </div>
-        <h1>Usuarios</h1>
-
-        <form method="post" action="Usuarios">
-
-            Id
-            <input type="text" name="txtId">
-            <br>
-            <input type="hidden" value="5" name="opcion">
-            <button>Consultar</button>
-
-        </form>
-        <div class="mensaje">
-            <%
-                if (request.getAttribute("mensajeError") != null) {%>
-            ${mensajeError}
-
-            <%}%>
-        </div>
-        <br>
-        <br>
-
-        <form>
-
-            <table border="1">
-
-                <tr>
-                    <th>Id</th>
-                    <th>Nombres</th>
-                    <th>Documento</th>
-                    <th>Telefono</th>
-                    <th>Email</th>
-                    <th>Direcciom</th>
-                    <th>Estado</th>
-                    <th>Contraseña</th>
-
-                </tr>
-                <%
-                    UsuarioVO usuVO = new UsuarioVO();
-                    UsuarioDAO usuDAO = new UsuarioDAO();
-
-                    ArrayList<UsuarioVO> ListaUsuarios = usuDAO.Listar();
-
-                    for (int i = 0; i < ListaUsuarios.size(); i++) {
-                        
-                        usuVO = ListaUsuarios.get(i);
-
-                %>
-                <tr>
-                    <td><%=usuVO.getIdUsuarios()%></td>
-                    <td><%=usuVO.getNombre()%></td>
-                    <td><%=usuVO.getDocumento()%></td>
-                    <td><%=usuVO.getTelefono()%></td>
-                    <td><%=usuVO.getEmail()%></td>
-                    <td><%=usuVO.getDireccion()%></td>
-                    <td><%=usuVO.getEstado()%></td>
-                    <td><%=usuVO.getContrasena()%></td>
-                    
-                </tr>
-                
-                <% } %>
-
-            </table>
-
-        </form>
     </body>
 </html>
