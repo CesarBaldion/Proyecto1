@@ -5,7 +5,7 @@
 --%>
 <%@page import="ModeloVO.MateriaPrimaVO"%>
 <%@page import="ModeloDAO.MateriaPrimaDAO"%>
-<%@include file="sesiones.jsp" %>
+
 <%@include file="navegacion.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

@@ -30,7 +30,7 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
     private String sql;
 
     // Declarar variables del modulo(VO)
-    private String Id_loteMateria_Prima = "",cantidad = "", observaciones = "", fecha_ingreso = "", fecha_salida = "", Id_Materia_Prima = "";
+    private String Id_loteMateria_Prima = "", Id_Materia_Prima = "",cantidad = "", observaciones = "", fecha_ingreso = "", fecha_salida = "";
 
     //2. Crear metodo principal para recibir los datos del VO
     public loteMateriaPrimaDAO(loteMateriaPrimaVO loteMPVO) {
@@ -43,11 +43,12 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
             // 4. traer al DAO los datos del VO para hacer las operaciones.
 
             Id_loteMateria_Prima = loteMPVO.getId_loteMateria_Prima();
+            Id_Materia_Prima = loteMPVO.getId_Materia_Prima();
             cantidad = loteMPVO.getCantidad();
             observaciones = loteMPVO.getObservaciones();
             fecha_ingreso = loteMPVO.getFecha_ingreso();
             fecha_salida = loteMPVO.getFecha_salida();
-            Id_Materia_Prima = loteMPVO.getId_Materia_Prima();
+            
 
         } catch (Exception e) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -59,14 +60,15 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
     public boolean agregarRegistro() {
         try {
             //Armar sentencia
-            sql = "insert into lotemateria_prima( cantidad, observaciones, fecha_ingreso, fecha_salida, Id_Materia_Prima) values (?,?,?,?,?)";
+            sql = "insert into lotemateria_prima(Id_Materia_Prima,cantidad, observaciones, fecha_ingreso, fecha_salida) values (?,?,?,?,?)";
             // crear el camino por donde va la sentencia
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, cantidad);
-            puente.setString(2, observaciones);
-            puente.setString(3, fecha_ingreso);
-            puente.setString(4, fecha_salida);
-            puente.setString(5, Id_Materia_Prima);
+            puente.setString(1, Id_Materia_Prima);
+            puente.setString(2, cantidad);
+            puente.setString(3, observaciones);
+            puente.setString(4, fecha_ingreso);
+            puente.setString(5, fecha_salida);
+            
             puente.executeUpdate();
             operacion = true;
 
@@ -90,13 +92,14 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
     public boolean actualizarRegistro() {
 
         try {
-            sql = "update lotemateria_prima set ( cantidad = ?, observaciones = ? fecha_ingreso = ?, fecha_salida = ?) where Id_loteMateria_Prima = ? " ;
+            sql = "update lotemateria_prima set id_materia_prima = ?, cantidad = ?, observaciones = ?, fecha_ingreso = ?, fecha_salida = ? where Id_loteMateria_Prima = ? ";
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, cantidad);
-            puente.setString(2, observaciones);
-            puente.setString(3, fecha_ingreso);
-            puente.setString(4, fecha_salida);
-            puente.setString(5, Id_loteMateria_Prima);
+            puente.setString(1, Id_Materia_Prima);
+            puente.setString(2, cantidad);
+            puente.setString(3, observaciones);
+            puente.setString(4, fecha_ingreso);
+            puente.setString(5, fecha_salida);
+            puente.setString(6, Id_loteMateria_Prima);
             puente.executeUpdate();
             operacion = true;
 

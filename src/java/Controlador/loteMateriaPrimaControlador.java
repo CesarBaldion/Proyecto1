@@ -35,11 +35,11 @@ public class loteMateriaPrimaControlador extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         String IdLoteMateriaPrima = request.getParameter("txtIdLoteMateriaPrima");
+        String IdMateriaPrima = request.getParameter("txtIdMateriaPrima");
         String Cantidad = request.getParameter("txtCantidad");
         String Observaciones = request.getParameter("txtObservaciones");
         String FechaIngreso = request.getParameter("txtFechaIngreso");
         String FechaSalida = request.getParameter("txtFechaSalida");
-        String IdMateriaPrima = request.getParameter("txtIdMateriaPrima");
         
         int opcion = Integer.parseInt(request.getParameter("opcion"));
 

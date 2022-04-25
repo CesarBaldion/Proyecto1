@@ -11,7 +11,7 @@ package ModeloVO;
  */
 public class loteMateriaPrimaVO {
 
-    private String Id_loteMateria_Prima,cantidad, observaciones, fecha_ingreso, fecha_salida, Id_Materia_Prima;
+    private String Id_loteMateria_Prima,Id_Materia_Prima,cantidad, observaciones, fecha_ingreso, fecha_salida;
 
     // Declarar constructor vacio para enviar datos.
     public loteMateriaPrimaVO() {
@@ -21,11 +21,12 @@ public class loteMateriaPrimaVO {
             String Cantidad, String Observaciones, String FechaIngreso, String FechaSalida
             ) {
         this.Id_loteMateria_Prima = IdloteMateriaPrima;
+        this.Id_Materia_Prima = IdMateriaPrima;
         this.cantidad = Cantidad;
         this.observaciones = Observaciones;
         this.fecha_ingreso = FechaIngreso;
         this.fecha_salida = FechaSalida;
-        this.Id_Materia_Prima = IdMateriaPrima;
+        
     }
 
     public String getId_loteMateria_Prima() {
@@ -34,6 +35,14 @@ public class loteMateriaPrimaVO {
 
     public void setId_loteMateria_Prima(String Id_loteMateria_Prima) {
         this.Id_loteMateria_Prima = Id_loteMateria_Prima;
+    }
+    
+    public String getId_Materia_Prima() {
+        return Id_Materia_Prima;
+    }
+
+    public void setId_Materia_Prima(String Id_Materia_Prima) {
+        this.Id_Materia_Prima = Id_Materia_Prima;
     }
 
     public String getCantidad() {
@@ -68,12 +77,6 @@ public class loteMateriaPrimaVO {
         this.fecha_salida = fecha_salida;
     }
 
-    public String getId_Materia_Prima() {
-        return Id_Materia_Prima;
-    }
-
-    public void setId_Materia_Prima(String Id_Materia_Prima) {
-        this.Id_Materia_Prima = Id_Materia_Prima;
-    }
+    
     
 }

@@ -43,11 +43,12 @@
 
                     <tr>
                         <th>Id</th>
+                        <th>Id Materia Prima</th>
                         <th>Cantidad</th>
                         <th>Observaciones</th>
                         <th>Fecha Ingreso</th>
                         <th>Fecha Salida</th>
-                        <th>Id Materia Prima</th>
+                        
                     </tr>
                     <%
                         loteMateriaPrimaVO ltMatPriVO = new loteMateriaPrimaVO();
@@ -62,11 +63,12 @@
                     %>
                     <tr>
                         <td><%=ltMatPriVO.getId_loteMateria_Prima()%></td>
+                        <td><%=ltMatPriVO.getId_Materia_Prima()%></td>
                         <td><%=ltMatPriVO.getCantidad()%></td>
                         <td><%=ltMatPriVO.getObservaciones()%></td>
                         <td><%=ltMatPriVO.getFecha_ingreso()%></td>
                         <td><%=ltMatPriVO.getFecha_salida()%></td>
-                        <td><%=ltMatPriVO.getId_Materia_Prima()%></td>
+                        
 
                     </tr>
 
