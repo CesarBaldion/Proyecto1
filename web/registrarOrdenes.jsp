@@ -5,54 +5,43 @@
 --%>
 <%@page import="ModeloVO.UsuarioVO"%>
 <%@page import="ModeloDAO.UsuarioDAO"%>
-
+<%@include file="navegacion.jsp" %>
+<%@include file="sesiones.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registrar Ordenes</title>
+        <link rel="stylesheet" href="css/estilos.css">
     </head>
-    
-        <body>
-            <center>
-            <form method ="post" action="Ordenes"> 
-                <h1>Registrar Orden</h1>
-                Usuario<br>
-                <select name="txtUsu">
-                <option>Seleccione..</option>
-            <%
-                UsuarioDAO usuDAO = new UsuarioDAO();
-                for(UsuarioVO usuVO:usuDAO.Listar()){
-                
-                %>
-            
-           
-                <option value="<%=usuVO.getIdUsuarios()%>"><%=usuVO.getNombre()%></option>
+
+    <body>
+
+        <div class="col-md-3 justify-content-center mx-auto caja border border-info mt-4">
+            <h1 class="text-center fs-2 mt-2">Registrar Orden</h1>
+            <div class="mx-auto justify-content-center">
+                <%if (request.getAttribute("mensajeError") != null) {%>
+                <p class="text-danger text-center fs-5">${mensajeError}</p>
+                <%   } else {%>
+                <p class="text-success text-center fs-5">${mensajeExito}</p>
                 <%}%>
-            </select>
-                <br>
-                Fecha Registro<br>
-                <input type="date" name="txtFechaRegistro">
-                <br>
-                Fecha Entrega<br>
-                <input type="date" name="txtFechaEntrega">
-                <br><br>
-                <button id="Boton"> Registrar </button>
-                <input type="hidden" value="1" name="opcion">
+            </div>
+            <div class="col-md-10 mx-auto mt-3">
+                <form method ="post" action="Ordenes" class="form-group"> 
+                    <input type="hidden" value="<%=usuVO1.getIdUsuarios()%>" name="txtUsu">
+                    <label>Fecha Registro</label>
+                    <input type="date" name="txtFechaRegistro" class="form-control">
+                    <label>Fecha Entrega</label>
+                    <input type="date" name="txtFechaEntrega" class="form-control">
+                    <div class="mt-3 mb-2">
+                        <button class="btn boton"> Registrar </button>
+                        <input type="hidden" value="1" name="opcion">
+                    </div>
+                </form>
+            </div>
+        </div>
 
-                <div class="mensaje" style="color: red;">
-                    <%
-                    if (request.getAttribute("mensajeError") != null) {%>
-                    ${mensajeError}
+    </body>
 
-                    <%   } else {%>
-                    ${mensajeExito}
-
-                    <%}%>
-                </div>
-            </form>
-                </center>
-        </body>
-    
 </html>

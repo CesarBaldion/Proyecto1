@@ -18,36 +18,13 @@
 <%
 
     HttpSession buscarSesion = (HttpSession) request.getSession();
-    String nombre = "";
+    UsuarioVO usuVO1 = null;
     if (buscarSesion.getAttribute("datosUsuario") == null) {
 
         request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
 
-    } else {
-        UsuarioVO usuVO = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
-        
-        nombre = usuVO.getNombre();
-
-    }
-
+    }else{
+         usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
+    } 
 
 %>
-
-<%--<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <div>
-                <h1> Bienvenido: <%=nombre%></h1>
-                <form method="post" action="Sesiones">
-                    <input type="submit" value="Cerrar Sesion">
-                </form>
-            </div> <br>
-            <br>
-            <div></div><br><br>
-            <div></div> <br><br>
-    </body>
-</html>--%>
-

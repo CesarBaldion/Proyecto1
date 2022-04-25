@@ -34,10 +34,17 @@ public class Sesiones extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        HttpSession buscarSesion = request.getSession();
-        buscarSesion.removeAttribute("datosUsuario");
-        buscarSesion.invalidate();
-        request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
+       int opcion = Integer.parseInt(request.getParameter("opcion"));
+
+        switch (opcion) {
+            case 1:
+                HttpSession buscarSesion = request.getSession();
+                buscarSesion.removeAttribute("datosUsuario");
+                buscarSesion.invalidate();
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                break;
+                
+        }
        
     }
 

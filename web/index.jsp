@@ -4,7 +4,15 @@
     Author     : Juan Pablo
 --%>
 
+<%@page import="ModeloVO.UsuarioVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% HttpSession buscarSesion = (HttpSession) request.getSession();
+    UsuarioVO usuVO = new UsuarioVO();
+    if (buscarSesion.getAttribute("datosUsuario") == null) {
+        usuVO = null;
+    } else {
+        usuVO = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
+    }%> 
 <!DOCTYPE html>
 <html>
  <body>
@@ -38,13 +46,21 @@
                       <li class="nav-item">
                         <a class="nav-link" href="consultarUsuarios.jsp">Consultas</a>
                       </li>
-                      <li class="nav-item active">
-                          <a class="nav-link" aria-current="page" href="iniciarSesion.jsp">Iniciar Sesión</a>
-                      </li>
-                      <li class="nav-item2 active2">
-                          <a class="nav-link" aria-current="page" href="registrarUsuario.jsp">Registro</a>
-                      </li>
-                    </ul>
+                      <% if (usuVO == null) {%>
+                            <li class="nav-item active">
+                                <a class="nav-link" aria-current="page" href="iniciarSesion.jsp">Iniciar Sesión</a>
+                            </li>
+                            <li class="nav-item2 active2">
+                                <a class="nav-link" aria-current="page" href="registrarUsuario.jsp">Registro</a>
+                            </li>
+
+                        </ul>
+                        <%} else {%>
+                        <form action="Sesiones" method="post">
+                            <button  class="btn b1">Cerrar sesion</button>
+                            <input type="hidden" value="1" name="opcion">
+                        </form>
+                        <%}%>
                   </div>
                 </div>
               </nav>

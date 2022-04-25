@@ -7,6 +7,7 @@
 <%@page import="ModeloDAO.OrdenDetallesDAO"%>
 <%@page import="ModeloDAO.UsuarioDAO"%>
 <%@include file="navegacion.jsp" %>
+<%@include file="sesiones.jsp" %>
 <%@page import="ModeloVO.UsuarioVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.ArrayList"%>
@@ -17,17 +18,27 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <title>JSP Page</title>
-        <link rel="stylesheet" href="css/registrarLoteProduccion.css" >
+        <link rel="stylesheet" href="css/estilos.css" >
     </head>
 
     <body>
 
         <div class="col-md-3 mx-auto mt-4 justify-content-center border border-info caja">
             <h1 class="text-center h1 mt-1">Registrar <br>Lote Produccion</h1>
+            <div class="mx-auto justify-content-center">
+                <%if (request.getAttribute("mensajeError") != null) {%>
+                <p class="text-danger text-center fs-5">${mensajeError}</p>
+
+                <%   } else {%>
+                <p class="text-success text-center fs-5">${mensajeExito}</p>
+
+                <%}%>
+            </div>
             <div class="col-md-10 mx-auto">
                 <form action="LoteProduccion" method="post" class="form-group mt-5">
-                <select class="form-select mt-2" name="txtId_Usuarios">
-                    <option>Seleccione un Usuario...</option>
+                    <input type="hidden" value="<%=usuVO1.getIdUsuarios()%>" name="txtId_Usuarios">
+                    <%--<select class="form-select mt-2" name="txtId_Usuarios">
+                     <option>Seleccione un Usuario...</option>
 
                     <%
                         UsuarioDAO usuDAO = new UsuarioDAO();
@@ -36,7 +47,7 @@
                     %>
                     <option value="<%=usuVO.getIdUsuarios()%>"><%=usuVO.getNombre()%></option>
                     <%}%>
-                </select>
+                    </select>--%> 
                 <select name="txtId_orden_detalles" class="form-select mt-2">
                     <option>Seleccione Id orden detalles...</option>
                     <%
@@ -56,15 +67,6 @@
                     <button  class="boton btn mt-2">Registrar</button>
                 </div>
                 <input type="hidden" value="1" name="opcion">
-                <div class="">
-                    <%if (request.getAttribute("mensajeError") != null) {%>
-                    ${mensajeError}
-
-                    <%   } else {%>
-                    ${mensajeExito}
-
-                    <%}%>
-                </div>
                 </form>
             </div>
     </div>

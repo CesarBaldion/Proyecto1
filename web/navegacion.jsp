@@ -14,7 +14,9 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="css/">
+        <link rel="icon" href="img/LogoFinal.svg" >
+        <link rel="stylesheet" href="css/estilos.css">
+        
         
     </head>
     <body class="row">
@@ -42,8 +44,8 @@
                                     <li><a class="dropdown-item font-dark" href="registrarProducto.jsp">Producto</a></li>
                                     <li><a class="dropdown-item font-dark" href="registrarLoteMateriaPrima.jsp">Lote Materia Prima</a></li>
                                     <li><a class="dropdown-item font-dark"  href="registrarLoteProduccion.jsp">Lote Produccion</a></li>
-                                    <li><a class="dropdown-item font-dark"  href="registrarOrdenes.jsp.jsp">Ordenes</a></li>
-                                    <li><a class="dropdown-item font-dark"  href="consultarOrdenDetalles.jsp.jsp">Ordene Detalles</a></li>
+                                    <li><a class="dropdown-item font-dark"  href="registrarOrdenes.jsp">Ordenes</a></li>
+                                    <li><a class="dropdown-item font-dark"  href="registrarOrdenDetalles.jsp">Orden Detalles</a></li>
                                     <li><a class="dropdown-item font-dark"  href="registrarUsuario.jsp">Usuarios</a></li>
                                     <li><a class="dropdown-item font-dark"  href="registrarDetallesProducto.jsp">Detalles Producto</a></li>
                                 </ul>
@@ -70,7 +72,11 @@
                 </nav>
             </div>
             <div class="col-md-4 mt-3  justify-content-center d-flex">
-                <button  class="btn b1">Cerrar sesion</button>    
+                <form action="Sesiones" method="post">
+                    <button  class="btn boton mt-3">Cerrar sesion</button>
+                    <input type="hidden" value="1" name="opcion">
+                </form>
+                 
             </div>
        
     </body>

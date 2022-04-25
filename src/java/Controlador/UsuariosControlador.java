@@ -42,7 +42,7 @@ public class UsuariosControlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        UsuarioDAO usuDao = new UsuarioDAO();
         // 1. Recibir datos de la vista
         String Id_Usuarios = request.getParameter("txtId");
         String Documento = request.getParameter("txtDocumento");
@@ -88,7 +88,7 @@ public class UsuariosControlador extends HttpServlet {
         }
 
         // 3. Quien hace las operaciones? DAO
-        UsuarioDAO usuDao = new UsuarioDAO();
+        
         /*Contrasena = usuDao.Encriptar(Contrasena);
         System.out.println(Contrasena);
         Contrasena = usuDao.Desencriptar(Contrasena);
@@ -125,17 +125,19 @@ public class UsuariosControlador extends HttpServlet {
                     }else if (usuDAO.agregarRegistro()) {
 
                         request.setAttribute("mensajeExito", "El usuario se registro correctamente!");
+                        request.getRequestDispatcher("index.jsp").forward(request, response);
 
                     } else {
 
                         request.setAttribute("mensajeError", "El usuario no se registro correctamente");
+                        request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
                     }
 
                 } else {
                     request.setAttribute("NoValida", "Contraseña debe contener 1 numero,1 minuscula,1 mayuscula,1 caracter especial y minimo 8 caracteres");
                 }
 
-                request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                
                 break;
 
             case 2:
@@ -165,15 +167,12 @@ public class UsuariosControlador extends HttpServlet {
                 break;
 
             case 4:
-                usuVO = usuDAO.iniciarSesion(Documento,usuDAO.Encriptar(Contrasena));
+                usuVO = usuDAO.iniciarSesion(Documento,usuDao.Encriptar(Contrasena));
 
                 if (usuVO != null) {
 
-                    HttpSession miSesion = request.getSession(true);
-                    String id = usuVO.getIdUsuarios();
-
-                    usuVO = new UsuarioVO(Id_Usuarios, Nombre, Documento, Telefono, Email,
-                            Direccion, Estado, Contrasena);
+                    HttpSession miSesion = request.getSession();
+ 
                     miSesion.setAttribute("datosUsuario", usuVO);
 
                     request.getRequestDispatcher("index.jsp").forward(request, response);

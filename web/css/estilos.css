@@ -4,20 +4,14 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 22-abr-2022, 17:49:45
+    Created on : 25-abr-2022, 15:18:43
     Author     : SALA
 */
 
-.caja{
-    
-    border-color:#094e75 ;
-    
-    height: 27em;
-    border-radius: 5%;
-}
-
 .boton{
     background-color: #32A5E7;
-    height: 3em;
     color: white;
+}
+.caja{
+    border-radius: 5%;
 }

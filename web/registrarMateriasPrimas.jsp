@@ -5,82 +5,42 @@
 --%>
 <%@include file="sesiones.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="navegacion.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
-         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-              integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="css/">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/estilos.css">
         <title>Registrar Materia Prima</title>
     </head>
-    <center>
-        <body>
-             <div class="col-md-6 ">
-            <nav class="navbar navbar-expand-lg navbar-light col-md-12 ">
-                <div class="mx-auto mt-3" id="navbarNav">
-
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item active me-4">
-                            <a class="navbar-brand text-dark " href="menu.jsp">Inicio</a>
-                        </li>
-                        <li class="nav-item dropdown font-dark">
-                            <a class="navbar-brand dark-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Registrar
-                            </a>
-                            <ul class="dropdown-menu " >
-                                <li><a class="dropdown-item font-dark" href="registrarMateriasPrimas.jsp">Materia Prima</a></li>
-                                <li><a class="dropdown-item font-dark" href="registrarProducto.jsp">Producto</a></li>
-                                <li><a class="dropdown-item font-dark" href="registrarLoteMateriaPrima.jsp">Lote Materia Prima</a></li>
-                                <li><a class="dropdown-item font-dark"  href="registrarLoteProduccion.jsp">Lote Produccion</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown font-dark">
-                            <a class="navbar-brand dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Consultar
-                            </a>
-                            <ul class="dropdown-menu " >
-                                <li><a class="dropdown-item font-dark" href="consultarMateriaPrima.jsp">Materia Prima</a></li>
-                                <li><a class="dropdown-item font-dark" href="consultarProducto.jsp">Producto</a></li>
-                                <li><a class="dropdown-item font-dark" href="consultarMateriaPrima.jsp">Lote Materia Prima</a></li>
-                                <li><a class="dropdown-item font-dark"  href="consultarLoteProduccion.jsp">Lote Produccion</a></li>
-                            </ul>
-                        </li>
-                </div>
-            </nav>
+    <body>
+        <div class="col-md-3 justify-content-center mx-auto  caja border border-info mt-4">
+            <h1 class="text-center fs-3 mt-2">Registrar<br> Materia Prima</h1>
+            <div class="mx-auto justify-content-center">
+                <%if (request.getAttribute("mensajeError") != null) {%>
+                <p class="text-danger text-center fs-5">${mensajeError}</p>
+                <%   } else {%>
+                <p class="text-success text-center fs-5">${mensajeExito}</p>
+                <%}%>
+            </div>
+            <div class="col-md-11 mx-auto mt-4 formulario mt-2">
+                <form method ="post" action="MateriaPrima" class="form-group"> 
+                    <input type="text" name="txtNombre" class="form-control mt-2" required="" placeholder="Nombre">
+                    <select name="txtEstado" class="form-select mt-2" required="">
+                        <option selected>Estado</option>
+                        <option value="1">
+                            Activo
+                        </option>
+                        <option value="0">
+                            Inactivo
+                        </option>
+                    </select>
+                    <button class="btn boton mt-2 mb-3"> Registrar </button>
+                    <input type="hidden" value="1" name="opcion">
+                </form>
+            </div>
         </div>
-            <form method ="post" action="MateriaPrima"> 
-                <h1>Registrar Materia Prima</h1>
-                Nombre<br>
-                <input type="text" name="txtNombre">
-                <br><br>
-                <select name="txtEstado">
-                <option>Estado</option>
-                    <option value="1">
-                        Activo
-                    </option>
-                    <option value="0">
-                        Inactivo
-                    </option>
-                </select><br>
-                <br>
-                <button id="Boton"> Registrar </button>
-                <input type="hidden" value="1" name="opcion">
-
-                <div class="mensaje" style="color: red;">
-                    <%
-                    if (request.getAttribute("mensajeError") != null) {%>
-                    ${mensajeError}
-
-                    <%   } else {%>
-                    ${mensajeExito}
-
-                    <%}%>
-                </div>
-            </form>
-        </body>
-    </center>
+    </body>
 </html>

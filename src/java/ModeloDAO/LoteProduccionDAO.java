@@ -183,7 +183,7 @@ public class LoteProduccionDAO extends Conexion implements Crud{
             while (mensajero.next()) {
 
                LoteProduccionVO ltProducVO = new LoteProduccionVO(mensajero.getString(1),mensajero.getInt(2), mensajero.getString(3),
-                        mensajero.getString(4),mensajero.getString(5));
+                        mensajero.getString(5),mensajero.getString(4));
                listaLoteProduccion.add(ltProducVO);
 
             }
@@ -205,3 +205,4 @@ public class LoteProduccionDAO extends Conexion implements Crud{
 
     }
 }
+

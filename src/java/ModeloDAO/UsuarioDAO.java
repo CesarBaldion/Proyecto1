@@ -178,7 +178,8 @@ public class UsuarioDAO extends Conexion implements Crud {
 
             if (mensajero.next()) {
 
-                usuVO = new UsuarioVO(mensajero.getString(1));
+                usuVO = new UsuarioVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4),
+                        mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8));
 
             }
 
