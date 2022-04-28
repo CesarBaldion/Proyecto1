@@ -31,7 +31,7 @@
                         </div>
                         <div class="input-field d">
                             <i class="fas fa-lock"></i>
-                            <input ID="txtContrasena" type="Password" Class="" placeholder="Contraseña">
+                            <input ID="txtContrasena" name="txtContrasena" type="Password" Class="" placeholder="Contraseña">
                         </div>
                         <div>
                             ver
