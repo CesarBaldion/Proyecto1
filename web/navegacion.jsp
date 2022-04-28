@@ -48,6 +48,7 @@
                                     <li><a class="dropdown-item font-dark"  href="registrarOrdenDetalles.jsp">Orden Detalles</a></li>
                                     <li><a class="dropdown-item font-dark"  href="registrarUsuario.jsp">Usuarios</a></li>
                                     <li><a class="dropdown-item font-dark"  href="registrarDetallesProducto.jsp">Detalles Producto</a></li>
+                                    <li><a class="dropdown-item font-dark" href="registrarRol.jsp">Rol</a></li>
                                 </ul>
                               </li>
                               <li class="nav-item dropdown font-dark ">
@@ -64,6 +65,7 @@
                                     <li><a class="dropdown-item font-dark"  href="consultarOrdenDetalles.jsp">Orden Detalles</a></li>
                                     <li><a class="dropdown-item font-dark"  href="consultarUsuarios.jsp">Usuarios</a></li>
                                     <li><a class="dropdown-item font-dark"  href="consultarDetallesProducto.jsp">Detalles Producto</a></li>
+                                    <li><a class="dropdown-item font-dark" href="consultarRol.jsp">Rol</a></li>
                                 </ul>
                               </li>
 

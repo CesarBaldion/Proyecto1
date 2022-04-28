@@ -29,7 +29,7 @@ public class DetallesProductoDAO extends Conexion implements Crud {
     private boolean operacion = false;
     private String sql;
     
-    String Id_Detalles_Producto = "", Id_Producto = "", Descripcion = "", Talla = "";
+    String Id_Detalles_Producto = "", Id_Producto = "", Talla = "",Descripcion = "";
     
     public DetallesProductoDAO(DetallesProductoVO detProVO) {
         
@@ -43,8 +43,9 @@ public class DetallesProductoDAO extends Conexion implements Crud {
 
             Id_Detalles_Producto = detProVO.getId_Detalles_Producto();
             Id_Producto = detProVO.getId_Producto();
-            Descripcion = detProVO.getDescripcion();
             Talla = detProVO.getTalla();
+            Descripcion = detProVO.getDescripcion();
+            
             
         } catch (Exception e) {
             Logger.getLogger(LoteProduccionDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -58,13 +59,13 @@ public class DetallesProductoDAO extends Conexion implements Crud {
     @Override
     public boolean agregarRegistro() {
         try {
-            sql = "inset into detlles_producto(Id_Produccion, Descripcion, Talla) values (?,?,?)";
+            sql = "inset into detlles_producto(Id_Producto, Talla, Descripcion) values (?,?,?)";
             
             puente = conexion.prepareStatement(sql);
             
             puente.setString(1, Id_Producto);
-            puente.setString(2, Descripcion);
-            puente.setString(3, Talla);
+            puente.setString(2, Talla);
+            puente.setString(3, Descripcion);
             puente.executeUpdate();
             operacion = true;
         } catch (SQLException e) {
@@ -83,12 +84,12 @@ public class DetallesProductoDAO extends Conexion implements Crud {
     @Override
     public boolean actualizarRegistro() {
         try {
-            sql = "update detalles_producto set Id_Producto = ?, Descripcion = ?,Talla = ? where Id_Detalles_Producto = ? ";
+            sql = "update detalles_producto set Id_Producto = ?, Talla = ?,Descripcion = ? where Id_Detalles_Producto = ? ";
             puente = conexion.prepareStatement(sql);
             
             puente.setString(1, Id_Producto);
-            puente.setString(2, Descripcion);
-            puente.setString(3, Talla);
+            puente.setString(2, Talla);
+            puente.setString(3, Descripcion);
             
             puente.executeUpdate();
             operacion = true;

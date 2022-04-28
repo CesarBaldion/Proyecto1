@@ -34,7 +34,7 @@
                         <option value="<%=lmpVO.getId_Materia_Prima()%>"><%=lmpVO.getId_Materia_Prima()%></option>
                         <%
                             MateriaPrimaDAO mpDAO = new MateriaPrimaDAO();
-                            for (MateriaPrimaVO mpVO : mpDAO.Listar()) {
+                            for (MateriaPrimaVO mpVO : mpDAO.ListarDos()) {
                         %>
                         <option value="<%=mpVO.getId_materia_Prima()%>"><%=mpVO.getNombre()%></option>
                         <%}%>

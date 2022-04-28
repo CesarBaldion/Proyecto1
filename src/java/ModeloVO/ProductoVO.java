@@ -13,7 +13,7 @@ public class ProductoVO {
     
     private String Id_Producto, Nombre, Estado;
     
-    //Declaracion de constructor vacion para enciar datos
+    //Declaracion de constructor vacio para enciar datos
     public ProductoVO(){
         
     }

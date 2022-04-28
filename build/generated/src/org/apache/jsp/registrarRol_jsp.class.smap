@@ -1,0 +1,20 @@
+SMAP
+registrarRol_jsp.java
+JSP
+*S JSP
+*F
++ 0 registrarRol.jsp
+registrarRol.jsp
++ 1 navegacion.jsp
+navegacion.jsp
+*L
+5,4:49
+5#1,80:52
+8#0,11:131
+19,2:142,3
+21:148
+22,2:149,3
+24:155
+25:156,3
+26,16:159
+*E

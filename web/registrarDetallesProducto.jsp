@@ -5,7 +5,7 @@
 --%>
 <%@page import="ModeloVO.ProductoVO"%>
 <%@page import="ModeloDAO.ProductoDAO"%>
-<%@include file="sesiones.jsp" %>
+
 <%@include file="navegacion.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -30,7 +30,7 @@
             </div>
             <div class="col-md-10 mx-auto mt-4">
                 <form method ="post" action="DetallesProducto" class="form-group mt-2"> 
-                    <select name="txtNombre" class="form-select mt-2">
+                    <select name="txtIdProducto" class="form-select mt-2">
                         <option selected>Seleccione un Producto..</option>
                         <%
                             ProductoDAO proDAO = new ProductoDAO();
@@ -40,8 +40,9 @@
                         <option value="<%=proVO.getIdProducto()%>"><%=proVO.getNombre()%></option>
                         <%}%>
                     </select>
+                     <input type="text" name="txtTalla" required="" placeholder="Talla" class="form-control mt-2">
                     <input type="text" name="txtDescripcion" required="" placeholder="Descripcion" class="form-control mt-2">
-                    <input type="text" name="txtTalla" required="" placeholder="Talla" class="form-control mt-2">
+                   
                     <div class="mt-2 mb-3">
                         <button class="btn boton"> Registrar </button>
                         <input type="hidden" value="1" name="opcion">     
