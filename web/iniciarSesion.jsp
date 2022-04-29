@@ -10,11 +10,11 @@
     <head>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
         <link href="styles/style.css" rel="stylesheet" type="text/css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="css/IniciarSesion.css" />
         <title>Login y registro</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>s
     </head>
     <body>
         <div class="container">
@@ -22,23 +22,30 @@
                 <div class="signin-signup">
                     <form action = "Usuarios" class="sign-in-form">
                         <a href="menu.jsp">
-                        <img src="img/LogoFinal.svg" class="image" alt="" height="115" />
+                            <img src="img/LogoFinal.svg" class="image" alt="" height="115" />
                         </a>
                         <h2 class="title">Iniciar Sesión</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
                             <input type="text" name="txtDocumento" placeholder="Usuario" />
                         </div>
-                        <div class="input-field">
+                        <div class="input-field d">
                             <i class="fas fa-lock"></i>
-                            <input type="password" name="txtContrasena" placeholder="Contraseña" />
+                            <input ID="txtContrasena" name="txtContrasena" type="Password" Class="" placeholder="Contraseña">
                         </div>
+                        <div>
+                            ver
+                            <button id="show_password" type="button"
+                            onclick="mostrarPassword()" class="Boton"><img src="img/ver.svg" height="30"> <span class="fa fa-eye-slash icon"></span> </button>
+                            
+                        </div>
+
                         <button class="btn solid"> Ingresar </button>
                         <input type="hidden" value="4" name="opcion">
 
                         <div class="mensaje">
                             <%
-                                if (request.getAttribute("mensajeError") != null) {%>
+                        if (request.getAttribute("mensajeError") != null) {%>
                             ${mensajeError}                              
 
                             <%}%>
@@ -47,7 +54,7 @@
                 </div>
             </div>
 
-                <div class="panels-container">
+            <div class="panels-container">
                 <div class="panel left-panel">
                     <div class="content">
                         <h3>¿Nuevo usuario?</h3>
@@ -62,5 +69,24 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+            function mostrarPassword() {
+                var cambio = document.getElementById("txtContrasena");
+                if (cambio.type == "password") {
+                    cambio.type = "text";
+                    $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+                } else {
+                    cambio.type = "password";
+                    $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+                }
+            }
+
+            $(document).ready(function () {
+                //CheckBox mostrar contraseña
+                $('#ShowPassword').click(function () {
+                    $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
+                });
+            });
+        </script>
     </body>
 </html>
