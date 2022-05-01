@@ -8,25 +8,14 @@ package Controlador;
 import ModeloDAO.UsuarioDAO;
 import ModeloVO.UsuarioVO;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Properties;
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
-import javax.mail.BodyPart;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 
 /**
  *
@@ -34,51 +23,7 @@ import javax.mail.internet.MimeMultipart;
  */
 @WebServlet(name = "UsuariosControlador", urlPatterns = {"/Usuarios"})
 public class UsuariosControlador extends HttpServlet {
-    
-    public boolean enviarCorreo(String correoDestino ) {
 
-        String correo = "suitefactorgestion@gmail.com";
-        String contrasena = "qjoy zefu tctf tbyd";
-
-        Properties p = new Properties();
-        p.put("mail.smtp.host", "smtp.gmail.com");
-        p.put("mail.smtp.starttls.enable", "true");
-        p.put("mail.smtp.trust", "smtp.gmail.com");
-        p.setProperty("mail.smtp.port", "587");
-        p.setProperty("mail.smtp.user", correo);
-        p.setProperty("mail.smtp.auth", "true");
-
-        Session s = Session.getDefaultInstance(p);
-        MimeMessage mensaje = new MimeMessage(s);
-        try {
-            mensaje.setFrom(new InternetAddress(correo));
-            mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(correoDestino));
-            mensaje.setSubject("Registro");
-            mensaje.setText("Usted Se ha registrado en el proyecto de Suitefactor, Gracias!");
-
-            Transport t = s.getTransport("smtp");
-            t.connect(correo, contrasena);
-            t.sendMessage(mensaje, mensaje.getAllRecipients());
-            t.close();
-
-            
-            return true;
-        } catch (Exception e) {
-            
-            return false;
-            
-        }
-
-    }
-    
-    public boolean ValidarNumero(String cadena) {
-        try {
-            Integer.parseInt(cadena);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -96,97 +41,104 @@ public class UsuariosControlador extends HttpServlet {
         String Id_Usuarios = request.getParameter("txtId");
         String Documento = request.getParameter("txtDocumento");
         String Contrasena = request.getParameter("txtContrasena");
+        String Contrasena2 = request.getParameter("txtContrasena2");
         String Nombre = request.getParameter("txtNombre");
         String Telefono = request.getParameter("txtTelefono");
         String Email = request.getParameter("txtEmail");
+        String Email2 = request.getParameter("txtEmail2");
         String Direccion = request.getParameter("txtDireccion");
         String Estado = request.getParameter("txtEstado");
+        String codigo = request.getParameter("txtcodigo");
 
-        final int MAX = 8;
-
-        // Especificando el número de letras mayúsculas en la contraseña
-        final int min_Mayus = 1;
-        // Especificando el mínimo de minúsculas en la contraseña
-        final int min_Minus = 1;
-        // Especificando el número de dígitos en una contraseña
-        final int num_Numeros = 1;
-        // Especificar el número mínimo de letras en mayúsculas y minúsculas
-        final int min_CaracterEspecial = 1;
-        // Contar el número de letras mayúsculas en una contraseña
-        int mayusculas = 0;
-        // Contador de letras minúsculas en una contraseña
-        int minusculas = 0;
-        // Contar numeros en una contraseña
-        int numeros = 0;
-        // Contar caracteres especiales en una constraseña
-        int caracterEspecial = 0;
-
-        for (int i = 0; i < Contrasena.length(); i++) {
-            char c = Contrasena.charAt(i);
-            if (Character.isUpperCase(c)) {
-                mayusculas++;
-            } else if (Character.isLowerCase(c)) {
-                minusculas++;
-            } else if (Character.isDigit(c)) {
-                numeros++;
-            }
-            if (c >= 33 && c <= 46 || c == 64) {
-                caracterEspecial++;
-            }
-
-        }
-
-        // 3. Quien hace las operaciones? DAO
-        
-        /*Contrasena = usuDao.Encriptar(Contrasena);
-        System.out.println(Contrasena);
-        Contrasena = usuDao.Desencriptar(Contrasena);
-        System.out.println(Contrasena);*/
         int opcion = Integer.parseInt(request.getParameter("opcion"));
 
         // 2. Quien tiene los datos de forma segura en el sistema? VO
         UsuarioVO usuVO = new UsuarioVO(Id_Usuarios, Nombre, Documento, Telefono, Email, Direccion,
                 Estado, Contrasena);
-
+        // 3. Quien hace las operaciones? DAO
         UsuarioDAO usuDAO = new UsuarioDAO(usuVO);
-        
+        //Generar codigo
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yy/MM/dd");
+        String codigo2 = String.valueOf(dtf.format(LocalDateTime.now()));
+        codigo2 = usuDao.Encriptar(codigo2);
+
         // 4. Administrar las operaciones del modulo
         switch (opcion) {
 
             case 1: //Agregar registro
-                if (Contrasena.length() >= MAX && mayusculas >= min_Mayus
-                        && minusculas >= min_Minus && numeros >= num_Numeros && caracterEspecial >= min_CaracterEspecial) {
-                    request.setAttribute("Valida", "Contraseña es Valida");
-                    if (Documento.equals("")) {
+                if (!"".equals(Id_Usuarios)) {
+                    if (!"".equals(Documento)) {
+                        if (!"".equals(Contrasena)) {
+                            if (Contrasena.equals(Contrasena2)) {
+                                if (!"".equals(Nombre)) {
+                                    if (!"".equals(Telefono)) {
+                                        if (!"".equals(Email)) {
+                                            if (Email.equals(Email2)) {
+                                                if (!"".equals(Direccion)) {
+                                                    if (!"".equals(Estado)) {
+                                                        if (usuDao.validarContrasena(Contrasena) == true) {
+                                                            usuDAO.Encriptar(Contrasena);
+                                                            if (usuDao.ValidarNumero(Documento) == true) {
+                                                                if (usuDAO.agregarRegistro() == true) {
+                                                                    usuDao.enviarCorreoRegistro(Email);
+                                                                    request.setAttribute("Bien", "Se ha registrado");
+                                                                    request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
 
-                    }else if (ValidarNumero(Documento) == false) {
+                                                                } else {
+                                                                    request.setAttribute("Error", "Error al Registrar!");
+                                                                    request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
 
-                    }else if (Nombre.equals("")){
-                        
-                    }else if (Direccion.equals("")){
-                        
-                    }else if (Telefono.equals("")){
-                        
-                    }else if(Email.equals("")){
-                        
-                    }else if(Estado.equals("")){
-                    
-                    }else if (usuDAO.agregarRegistro()) {
-                        enviarCorreo(Email);
-                        request.setAttribute("mensajeExito", "El usuario se registro correctamente!");
-                        request.getRequestDispatcher("index.jsp").forward(request, response);
+                                                                }
+                                                            } else {
+                                                                request.setAttribute("error", "Ingrese un documento valido");
+                                                                request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                                            }
+                                                        } else {
+                                                            request.setAttribute("error", "Ingrese una contraseña valida");
+                                                            request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                                        }
+                                                    } else {
+                                                        request.setAttribute("error", "Complete el campo de estado");
+                                                        request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                                    }
+                                                } else {
+                                                    request.setAttribute("error", "Complete el campo de Direccion");
+                                                    request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                                }
+                                            } else {
+                                                request.setAttribute("error", "Los campos Email no coinciden");
+                                                request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                            }
+                                        } else {
+                                            request.setAttribute("error", "Complete el campo de Email");
+                                            request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                        }
+                                    } else {
+                                        request.setAttribute("error", "Complete el campo de Telefono");
+                                        request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                    }
+                                } else {
+                                    request.setAttribute("error", "Complete el campo de Nombre");
+                                    request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                }
+                            } else {
 
+                                request.setAttribute("error", "Las contraseñas no coinciden");
+                                request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                            }
+                        } else {
+                            request.setAttribute("error", "Complete el campo de Contraseña");
+                            request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                        }
                     } else {
-
-                        request.setAttribute("mensajeError", "El usuario no se registro correctamente");
+                        request.setAttribute("error", "Complete el campo de Documento");
                         request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
                     }
-
                 } else {
-                    request.setAttribute("NoValida", "Contraseña debe contener 1 numero,1 minuscula,1 mayuscula,1 caracter especial y minimo 8 caracteres");
+                    request.setAttribute("error", "Complete el campo Id");
+                    request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
                 }
 
-                
                 break;
 
             case 2:
@@ -216,12 +168,12 @@ public class UsuariosControlador extends HttpServlet {
                 break;
 
             case 4:
-                usuVO = usuDAO.iniciarSesion(Documento,usuDao.Encriptar(Contrasena));
+                usuVO = usuDAO.iniciarSesion(Documento, usuDao.Encriptar(Contrasena));
 
                 if (usuVO != null) {
 
                     HttpSession miSesion = request.getSession();
- 
+
                     miSesion.setAttribute("datosUsuario", usuVO);
 
                     request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -246,8 +198,56 @@ public class UsuariosControlador extends HttpServlet {
 
                 }
                 break;
-        }
 
+            case 6:
+                usuVO = usuDAO.RecuperacionContraseña(Email);
+                if (usuVO != null) {
+                    usuDAO.enviarCorreoRecuperacionContraseña(usuVO.getEmail(), codigo2);
+                    HttpSession miSesion = request.getSession();
+                    miSesion.setAttribute("datosUsuario", usuVO);
+                    request.getRequestDispatcher("VerificacionCodigo.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("mensajeError", "No encontramos ningun Usuario asociado a este email");
+                    request.getRequestDispatcher("VerificacionCodigo.jsp").forward(request, response);
+                }
+
+                break;
+            case 7:
+                if (codigo.equals(codigo2)) {
+                    request.getRequestDispatcher("actualizarContrasena.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("error", "Los codigos no coinciden, "
+                            + "vuelva a realizar la solicitud de codigo de recuperacion de Contraseña");
+                    request.getRequestDispatcher("actualizarContrasena.jsp").forward(request, response);
+                }
+                break;
+            case 8:
+                usuVO = usuDAO.RecuperacionContraseña(Email);
+
+                if (Contrasena.equals(Contrasena2)) {
+                    if (usuDao.validarContrasena(Contrasena) == true) {
+                        if (usuVO != null) {
+                            usuDAO.actualizarContraseña(usuVO.getIdUsuarios(), usuDao.Encriptar(Contrasena));
+                            HttpSession buscarSesion = request.getSession();
+                            buscarSesion.removeAttribute("datosUsuario");
+                            buscarSesion.invalidate();
+                            request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
+
+                        } else {
+                            request.setAttribute("error", "Erro al actualizar, Haga la solicitud de nuevo");
+                            request.getRequestDispatcher("actualizarContrasena.jsp").forward(request, response);
+                        }
+                    } else {
+                        request.setAttribute("error", "Ingrese una contraseña valida");
+                        request.getRequestDispatcher("actualizarContrasena.jsp").forward(request, response);
+
+                    }
+                } else {
+                    request.setAttribute("error", "Las contraseñas no coinciden");
+                    request.getRequestDispatcher("actualizarContrasena.jsp").forward(request, response);
+                }
+
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

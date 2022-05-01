@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="css/IniciarSesion.css" />
         <title>Login y registro</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>s
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
     <body>
         <div class="container">
@@ -36,13 +36,13 @@
                         <div>
                             ver
                             <button id="show_password" type="button"
-                            onclick="mostrarPassword()" class="Boton"><img src="img/ver.svg" height="30"> <span class="fa fa-eye-slash icon"></span> </button>
+                            onclick="mostrarPassword()" class="Boton"><img src="img/ver.svg" height="30"> </button>
                             
                         </div>
 
                         <button class="btn solid"> Ingresar </button>
                         <input type="hidden" value="4" name="opcion">
-
+                        <a href="recuperarContrasenaUsuario.jsp">¿Olvido su Contraseña?</a>
                         <div class="mensaje">
                             <%
                         if (request.getAttribute("mensajeError") != null) {%>
@@ -74,19 +74,12 @@
                 var cambio = document.getElementById("txtContrasena");
                 if (cambio.type == "password") {
                     cambio.type = "text";
-                    $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+                    
                 } else {
                     cambio.type = "password";
-                    $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+                    
                 }
             }
-
-            $(document).ready(function () {
-                //CheckBox mostrar contraseña
-                $('#ShowPassword').click(function () {
-                    $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
-                });
-            });
         </script>
     </body>
 </html>

@@ -21,6 +21,12 @@ import java.util.logging.Logger;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 ;
 
 
@@ -317,6 +323,174 @@ public class UsuarioDAO extends Conexion implements Crud {
         } catch (Exception e) {
             return "";
         }
+    }
+     public boolean validarContrasena(String Contrasena) {
+        final int MAX = 8;
+        // Especificando el número de letras mayúsculas en la contraseña
+        final int min_Mayus = 1;
+        // Especificando el mínimo de minúsculas en la contraseña
+        final int min_Minus = 1;
+        // Especificando el número de dígitos en una contraseña
+        final int num_Numeros = 1;
+        // Especificar el número mínimo de letras en mayúsculas y minúsculas
+        final int min_CaracterEspecial = 1;
+        // Contar el número de letras mayúsculas en una contraseña
+        int mayusculas = 0;
+        // Contador de letras minúsculas en una contraseña
+        int minusculas = 0;
+        // Contar numeros en una contraseña
+        int numeros = 0;
+        // Contar caracteres especiales en una constraseña
+        int caracterEspecial = 0;
+
+        for (int i = 0; i < Contrasena.length(); i++) {
+            char c = Contrasena.charAt(i);
+            if (Character.isUpperCase(c)) {
+                mayusculas++;
+            } else if (Character.isLowerCase(c)) {
+                minusculas++;
+            } else if (Character.isDigit(c)) {
+                numeros++;
+            }
+            if (c >= 33 && c <= 46 || c == 64) {
+                caracterEspecial++;
+
+            }
+        }
+        if (Contrasena.length() >= MAX && mayusculas >= min_Mayus
+                && minusculas >= min_Minus && numeros >= num_Numeros && caracterEspecial >= min_CaracterEspecial) {
+            return true; //request.setAttribute("Valida", "Contraseña es Valida");
+        } else {
+
+            return false;
+        }
+
+    }
+     public boolean ValidarNumero(String cadena) {
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+     public boolean enviarCorreoRegistro(String correoDestino ) {
+
+        String correo = "suitefactorgestion@gmail.com";
+        String contrasena = "qjoy zefu tctf tbyd";
+
+        Properties p = new Properties();
+        p.put("mail.smtp.host", "smtp.gmail.com");
+        p.put("mail.smtp.starttls.enable", "true");
+        p.put("mail.smtp.trust", "smtp.gmail.com");
+        p.setProperty("mail.smtp.port", "587");
+        p.setProperty("mail.smtp.user", correo);
+        p.setProperty("mail.smtp.auth", "true");
+
+        Session s = Session.getDefaultInstance(p);
+        MimeMessage mensaje = new MimeMessage(s);
+        try {
+            mensaje.setFrom(new InternetAddress(correo));
+            mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(correoDestino));
+            mensaje.setSubject("Registro");
+            mensaje.setText("Usted Se ha registrado en el proyecto de Suitefactor, Gracias!");
+
+            Transport t = s.getTransport("smtp");
+            t.connect(correo, contrasena);
+            t.sendMessage(mensaje, mensaje.getAllRecipients());
+            t.close();
+
+            
+            return true;
+        } catch (Exception e) {
+            
+            return false;
+            
+        }
+
+    }
+     public UsuarioVO RecuperacionContraseña(String Email) {
+        
+        UsuarioVO usuVO = null;
+
+        try {
+            sql = "select * from usuarios where Email = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Email);
+            mensajero = puente.executeQuery();
+
+            if (mensajero.next()) {
+
+                usuVO = new UsuarioVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4),
+                        mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8));
+
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } 
+
+        return usuVO;
+
+    }
+     public boolean enviarCorreoRecuperacionContraseña(String correoDestino,String codigo ) {
+
+        String correo = "suitefactorgestion@gmail.com";
+        String contrasena = "qjoy zefu tctf tbyd";
+
+        Properties p = new Properties();
+        p.put("mail.smtp.host", "smtp.gmail.com");
+        p.put("mail.smtp.starttls.enable", "true");
+        p.put("mail.smtp.trust", "smtp.gmail.com");
+        p.setProperty("mail.smtp.port", "587");
+        p.setProperty("mail.smtp.user", correo);
+        p.setProperty("mail.smtp.auth", "true");
+
+        Session s = Session.getDefaultInstance(p);
+        MimeMessage mensaje = new MimeMessage(s);
+        try {
+            mensaje.setFrom(new InternetAddress(correo));
+            mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(correoDestino));
+            mensaje.setSubject("Recuperacion Contraseña");
+            mensaje.setText("Este es su codigo de Recuperacion de contrseña "+codigo+" No lo comparta con nadie");
+
+            Transport t = s.getTransport("smtp");
+            t.connect(correo, contrasena);
+            t.sendMessage(mensaje, mensaje.getAllRecipients());
+            t.close();
+
+            
+            return true;
+        } catch (Exception e) {
+            
+            return false;
+            
+        }
+
+    }
+     public boolean actualizarContraseña(String id,String contrasena) {
+
+        try {
+            
+            sql = " update usuarios set contrasena = ? where id_Usuarios = ? ";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, contrasena);
+            puente.setString(2, id);
+            puente.executeUpdate();
+            operacion = true;
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return operacion;
     }
 
 }
