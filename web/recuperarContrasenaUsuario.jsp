@@ -23,12 +23,8 @@
         <div class="col-md-3 justify-content-center mx-auto caja border border-info  m">
             <h1 class="text-center fs-4 mt-2">Ingrese su Email</h1>
             <div class="mx-auto justify-content-center">
-                <%if (request.getAttribute("mensajeError") != null) {%>
-                <p class="text-danger text-center fs-5">${mensajeError}</p>
-
-                <%   } else {%>
-                <p class="text-success text-center fs-5">${mensajeExito}</p>
-
+                <%if (request.getAttribute("error") != null) {%>
+                <p class="text-danger text-center fs-5">${error}p>
                 <%}%>
             </div>
             <div class="col-md-10 mx-auto mt-4">

@@ -199,26 +199,26 @@ public class UsuariosControlador extends HttpServlet {
                 }
                 break;
 
-            case 6:
+            case 6://verificacion que existe el usuarui para cambiar contraseña
                 usuVO = usuDAO.RecuperacionContraseña(Email);
                 if (usuVO != null) {
                     usuDAO.enviarCorreoRecuperacionContraseña(usuVO.getEmail(), codigo2);
                     HttpSession miSesion = request.getSession();
-                    miSesion.setAttribute("datosUsuario", usuVO);
+                    miSesion.setAttribute("datosUsuarioRecuperarContrasena", usuVO);
+                    request.setAttribute("envioCorreo","Se ha enviado un Codigo de confirmacion a su correo");
                     request.getRequestDispatcher("VerificacionCodigo.jsp").forward(request, response);
                 } else {
-                    request.setAttribute("mensajeError", "No encontramos ningun Usuario asociado a este email");
-                    request.getRequestDispatcher("VerificacionCodigo.jsp").forward(request, response);
+                    request.setAttribute("error", "No encontramos ningun Usuario asociado a este email");
+                    request.getRequestDispatcher("recuperarContrasenaUsuario.jsp").forward(request, response);
                 }
 
                 break;
-            case 7:
+            case 7://verificacion de codigo para recuperacion de contraseña 
                 if (codigo.equals(codigo2)) {
                     request.getRequestDispatcher("actualizarContrasena.jsp").forward(request, response);
                 } else {
-                    request.setAttribute("error", "Los codigos no coinciden, "
-                            + "vuelva a realizar la solicitud de codigo de recuperacion de Contraseña");
-                    request.getRequestDispatcher("actualizarContrasena.jsp").forward(request, response);
+                    request.setAttribute("error", "Los codigos no coinciden");
+                    request.getRequestDispatcher("VerificacionCodigo.jsp").forward(request, response);
                 }
                 break;
             case 8:
@@ -229,7 +229,7 @@ public class UsuariosControlador extends HttpServlet {
                         if (usuVO != null) {
                             usuDAO.actualizarContraseña(usuVO.getIdUsuarios(), usuDao.Encriptar(Contrasena));
                             HttpSession buscarSesion = request.getSession();
-                            buscarSesion.removeAttribute("datosUsuario");
+                            buscarSesion.removeAttribute("datosUsuarioRecuperarContrasena");
                             buscarSesion.invalidate();
                             request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
 

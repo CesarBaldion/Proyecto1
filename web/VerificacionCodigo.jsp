@@ -8,12 +8,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%HttpSession buscarSesion = (HttpSession) request.getSession();
     UsuarioVO usuVO1 = null;
-    if (buscarSesion.getAttribute("datosUsuario") == null) {
-
+    if (buscarSesion.getAttribute("datosUsuarioRecuperarContrasena") == null) {
         request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
-
-    }else{
-         usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
+    } else {
+        usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
     } %>
 <!DOCTYPE html>
 <html>
@@ -33,12 +31,17 @@
                 <form  class="form-group" action="Usuarios" method="post"> 
                     <h1 class="text-center fs-4 mb-4">Ingrese el Codigo</h1>
                     <div class="mx-auto justify-content-center">
+                        <%if (request.getAttribute("envioCorreo") != null) {%>
+                        <p class="text-success text-center fs-5">${envioCorreo}</p>
+                        <%}%>
+                    </div>
+                    <div class="mx-auto justify-content-center">
                         <%if (request.getAttribute("error") != null) {%>
                         <div class="container-fluid d-inline-block d-flex mx-auto">
                             <img src="img/error.svg" height="100">
                             <p class="text-danger text-center fs-5 mt-5">${error}</p>
                         </div>
-                        <%   } %>
+                        <%   }%>
                     </div>
                     <div class="col-md-12">
                         <input type="text"  name= "txtcodigo" placeholder="Codigo" required="" class="form-control ms-1 mt-2">   

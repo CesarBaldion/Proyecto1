@@ -37,17 +37,6 @@
             <div class="col-md-10 mx-auto">
                 <form action="LoteProduccion" method="post" class="form-group mt-5">
                     <input type="hidden" value="<%=usuVO1.getIdUsuarios()%>" name="txtId_Usuarios">
-                    <%--<select class="form-select mt-2" name="txtId_Usuarios">
-                     <option>Seleccione un Usuario...</option>
-
-                    <%
-                        UsuarioDAO usuDAO = new UsuarioDAO();
-                        for (UsuarioVO usuVO : usuDAO.Listar()) {
-
-                    %>
-                    <option value="<%=usuVO.getIdUsuarios()%>"><%=usuVO.getNombre()%></option>
-                    <%}%>
-                    </select>--%> 
                 <select name="txtId_orden_detalles" class="form-select mt-2">
                     <option>Seleccione Id orden detalles...</option>
                     <%

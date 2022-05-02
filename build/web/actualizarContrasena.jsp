@@ -7,10 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%HttpSession buscarSesion = (HttpSession) request.getSession();
     UsuarioVO usuVO1 = null;
-    if (buscarSesion.getAttribute("datosUsuario") == null) {
-
+    if (buscarSesion.getAttribute("datosUsuarioRecuperarContrasena") == null) {
         request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
-
     }else{
          usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
     } %>
