@@ -3,10 +3,11 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import ModeloVO.UsuarioVO;
 import ModeloVO.Usuario_rolVO;
+import ModeloDAO.UsuarioRolDAO;
+import ModeloVO.UsuarioVO;
 
-public final class registrarUsuarioRol_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class registrarMateriasPrimas_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -14,7 +15,8 @@ public final class registrarUsuarioRol_jsp extends org.apache.jasper.runtime.Htt
   private static java.util.List<String> _jspx_dependants;
 
   static {
-    _jspx_dependants = new java.util.ArrayList<String>(1);
+    _jspx_dependants = new java.util.ArrayList<String>(2);
+    _jspx_dependants.add("/sesiones.jsp");
     _jspx_dependants.add("/navegacion.jsp");
   }
 
@@ -48,9 +50,46 @@ public final class registrarUsuarioRol_jsp extends org.apache.jasper.runtime.Htt
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write('\r');
+      out.write('\n');
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!DOCTYPE html>\r\n");
+      out.write("\r\n");
+
+    response.setHeader("Pragma", "No-cache");
+    response.setHeader("Cache-control", "no-cache, no-store, must-revalidate");
+    response.setDateHeader("Expires", 0);
+    
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+
+
+     HttpSession buscarSesion = (HttpSession) request.getSession();
+    UsuarioVO usuVO1 = null;
+    if (buscarSesion.getAttribute("datosUsuario") == null) {
+
+        request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
+
+    }else{
+        UsuarioRolDAO uRDAO = new UsuarioRolDAO();
+         usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
+         Usuario_rolVO uRVO2 = uRDAO.consultarRol(usuVO1.getIdUsuarios());
+         String id = uRVO2.getId_Rol();
+         if(id.equals("1")){
+             
+         }else{
+             request.getRequestDispatcher("index.jsp").forward(request, response);
+         }
+         
+    } 
+
+
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -139,18 +178,14 @@ public final class registrarUsuarioRol_jsp extends org.apache.jasper.runtime.Htt
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
+      out.write("        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\r\n");
+      out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n");
       out.write("        <link rel=\"stylesheet\" href=\"css/estilos.css\">\r\n");
-      out.write("        <title>JSP Page</title>\r\n");
+      out.write("        <title>Registrar Materia Prima</title>\r\n");
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
-      out.write("        ");
-
-             UsuarioVO usuVO = (UsuarioVO)request.getAttribute("uRoles");
-            if(usuVO != null){
-        
-      out.write("\r\n");
-      out.write("        <div class=\"col-md-3 justify-content-center mx-auto caja border border-info mt-4\">\r\n");
-      out.write("            <h1 class=\"text-center fs-2 mt-2\">Actualizar UsuarioRol</h1>\r\n");
+      out.write("        <div class=\"col-md-3 justify-content-center mx-auto  caja border border-info mt-4\">\r\n");
+      out.write("            <h1 class=\"text-center fs-3 mt-2\">Registrar<br> Materia Prima</h1>\r\n");
       out.write("            <div class=\"mx-auto justify-content-center\">\r\n");
       out.write("                ");
 if (request.getAttribute("mensajeError") != null) {
@@ -168,66 +203,25 @@ if (request.getAttribute("mensajeError") != null) {
 }
       out.write("\r\n");
       out.write("            </div>\r\n");
-      out.write("            <div class=\"col-md-10 mx-auto mt-4\">\r\n");
-      out.write("                <form action=\"UsuarioRol\" method=\"post\" class=\"form-group\">\r\n");
-      out.write("                    <label name=\"txtId\" value=\"");
-      out.print(usuVO.getIdUsuarios());
-      out.write(" \" class=\"label\">");
-      out.print(usuVO.getIdUsuarios());
-      out.write("</label>\r\n");
-      out.write("                    <label name=\"txtNombre\" value=\"");
-      out.print(usuVO.getNombre());
-      out.write(" \">");
-      out.print(usuVO.getNombre());
-      out.write("</label>\r\n");
-      out.write("                    <label name=\"txtDocumento\" value=\"");
-      out.print(usuVO.getDocumento());
-      out.write('"');
-      out.write('>');
-      out.print(usuVO.getDocumento());
-      out.write("</label>\r\n");
-      out.write("                    <label name=\"txtTelefono\" value=\"");
-      out.print(usuVO.getTelefono());
-      out.write('"');
-      out.write('>');
-      out.print(usuVO.getTelefono());
-      out.write("</label>\r\n");
-      out.write("                    <label name=\"txtEmail\" value=\"");
-      out.print(usuVO.getEmail());
-      out.write('"');
-      out.write('>');
-      out.print(usuVO.getEmail());
-      out.write("</label>\r\n");
-      out.write("                    <label name=\"txtDireccion\" value=\"");
-      out.print(usuVO.getDireccion());
-      out.write('"');
-      out.write('>');
-      out.print(usuVO.getDireccion());
-      out.write("</label>\r\n");
-      out.write("                    <label name=\"txtEstado\" value=\"");
-      out.print(usuVO.getEstado());
-      out.write('"');
-      out.write('>');
-      out.print(usuVO.getEstado());
-      out.write("</label>\r\n");
-      out.write("                    <div class=\"d-flex mt-3 mb-2\">\r\n");
-      out.write("                        <button class=\"btn boton\"> Actualizar </button>\r\n");
-      out.write("                        <input type=\"hidden\" value=\"2\" name=\"opcion\">\r\n");
-      out.write("                        <a href=\"consultarUsuarioRol.jsp\" class=\"nav-item ms-3\">Volver</a>\r\n");
-      out.write("                    </div>\r\n");
+      out.write("            <div class=\"col-md-11 mx-auto mt-4 formulario mt-2\">\r\n");
+      out.write("                <form method =\"post\" action=\"MateriaPrima\" class=\"form-group\"> \r\n");
+      out.write("                    <input type=\"text\" name=\"txtNombre\" class=\"form-control mt-2\" required=\"\" placeholder=\"Nombre\">\r\n");
+      out.write("                    <select name=\"txtEstado\" class=\"form-select mt-2\" required=\"\">\r\n");
+      out.write("                        <option selected>Estado</option>\r\n");
+      out.write("                        <option value=\"1\">\r\n");
+      out.write("                            Activo\r\n");
+      out.write("                        </option>\r\n");
+      out.write("                        <option value=\"0\">\r\n");
+      out.write("                            Inactivo\r\n");
+      out.write("                        </option>\r\n");
+      out.write("                    </select>\r\n");
+      out.write("                    <button class=\"btn boton mt-2 mb-3\"> Registrar </button>\r\n");
+      out.write("                    <input type=\"hidden\" value=\"1\" name=\"opcion\">\r\n");
       out.write("                </form>\r\n");
-      out.write("\r\n");
-      out.write("                ");
- } else {
-                        request.getRequestDispatcher("consultarRol.jsp").forward(request, response);
-
-                    }
-      out.write("\r\n");
       out.write("            </div>\r\n");
       out.write("        </div>\r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
-      out.write("\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

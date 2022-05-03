@@ -8,7 +8,6 @@
 <%@page import="ModeloDAO.UsuarioRolDAO"%>
 <%@page import="ModeloVO.Usuario_rolVO"%>
 <%@include file="navegacion.jsp" %>
-<%@include file="sesionesAlmacenista.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

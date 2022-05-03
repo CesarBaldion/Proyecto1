@@ -26,7 +26,7 @@
          usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
          Usuario_rolVO uRVO2 = uRDAO.consultarRol(usuVO1.getIdUsuarios());
          String id = uRVO2.getId_Rol();
-         if(id.equals("2") || id.equals("1")){
+         if(id.equals("2") || id.equals("1")|| id.equals("3")){
              
          }else{
              request.getRequestDispatcher("index.jsp").forward(request, response);

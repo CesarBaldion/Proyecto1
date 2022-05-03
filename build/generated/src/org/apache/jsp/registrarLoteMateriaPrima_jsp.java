@@ -3,8 +3,10 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import ModeloVO.MateriaPrimaVO;
+import ModeloDAO.MateriaPrimaDAO;
 
-public final class registrarRol_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class registrarLoteMateriaPrima_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -46,6 +48,7 @@ public final class registrarRol_jsp extends org.apache.jasper.runtime.HttpJspBas
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -131,15 +134,18 @@ public final class registrarRol_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
       out.write("\r\n");
+      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
-      out.write("        <title>JSP Page</title>\r\n");
+      out.write("        <title>Registrar Lote Materia Prima</title>\r\n");
+      out.write("        <link rel=\"stylesheet\" href=\"css/estilos.css\">\r\n");
+      out.write("\r\n");
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
       out.write("        <div class=\"col-md-3 justify-content-center mx-auto caja border border-info mt-4\">\r\n");
-      out.write("            <h1 class=\"text-center fs-2 mt-2\">Registrar Rol</h1>\r\n");
+      out.write("            <h1 class=\"text-center fs-2 mt-2\">Registrar<br> Lote Materia Prima</h1>\r\n");
       out.write("            <div class=\"mx-auto justify-content-center\">\r\n");
       out.write("                ");
 if (request.getAttribute("mensajeError") != null) {
@@ -160,19 +166,44 @@ if (request.getAttribute("mensajeError") != null) {
       out.write("\r\n");
       out.write("            </div>\r\n");
       out.write("            <div class=\"col-md-10 mx-auto mt-4\">\r\n");
-      out.write("                <form method =\"post\" action=\"Rol\" class=\"form-group mt-2\"> \r\n");
-      out.write("                    <input type=\"text\" name=\"txtroltipo\" required=\"\" placeholder=\"Tipo de rol\" class=\"form-control mt-2\">\r\n");
+      out.write("                <form class=\"Formulario\" method = \"post\" action = \"loteMateriaPrima\" class=\"form-group mt-2\" > \r\n");
+      out.write("                    <select name=\"txtIdMateriaPrima\" class=\"form-select mt-2\">\r\n");
+      out.write("                        <option>Seleccione Id Materia Prima..</option>\r\n");
+      out.write("                        ");
+
+                            MateriaPrimaDAO matDAO = new MateriaPrimaDAO();
+                            for (MateriaPrimaVO matVO : matDAO.ListarDos()) {
+
+                        
       out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("                        <option value=\"");
+      out.print(matVO.getId_materia_Prima());
+      out.write('"');
+      out.write('>');
+      out.print(matVO.getNombre());
+      out.write("</option>\r\n");
+      out.write("                        ");
+}
+      out.write("\r\n");
+      out.write("                    </select>\r\n");
+      out.write("                    <input type=\"text\" name=\"txtCantidad\" placeholder=\"Cantidad\" required=\"\" class=\"form-control mt-2\">\r\n");
+      out.write("                    <label class=\"mt-2\">Fecha de ingreso</label>\r\n");
+      out.write("                    <input type=\"date\" name=\"txtFechaIngreso\" placeholder=\"Fecha de ingreso\" required=\"\" class=\" mt-2 form-control\">\r\n");
+      out.write("                    <label class=\"mt-2\">Fecha de salida</label>\r\n");
+      out.write("                    <input type=\"date\" name=\"txtFechaSalida\" placeholder=\"Fecha de salida\" required=\"\" class=\" mt-2 form-control\">\r\n");
+      out.write("                    <textarea name=\"txtObservaciones\" placeholder=\"Observaciones\" class=\"form-control mt-2\"></textarea>\r\n");
       out.write("                    <div class=\"mt-2 mb-3\">\r\n");
-      out.write("                        <button class=\"btn boton\"> Registrar </button>\r\n");
-      out.write("                        <input type=\"hidden\" value=\"1\" name=\"opcion\">     \r\n");
+      out.write("                        <button class=\"btn boton\"> Registrar</button>\r\n");
+      out.write("                        <input type=\"hidden\" value=\"1\" name=\"opcion\">\r\n");
       out.write("                    </div>\r\n");
+      out.write("\r\n");
       out.write("                </form>\r\n");
       out.write("            </div>\r\n");
       out.write("        </div>\r\n");
       out.write("    </body>\r\n");
-      out.write("\r\n");
-      out.write("</html>\r\n");
+      out.write("</html>");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

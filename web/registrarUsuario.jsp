@@ -15,7 +15,7 @@
 
         <link rel="stylesheet" href="css/estilos.css">
     </head>
-    <body >
+    <body>
         
             <div class="col-md-5 mx-auto justify-content-center border-5 border border-info mt-3 caja">
                 <div class="col-md-11 mx-auto justify-content-center mt-5">

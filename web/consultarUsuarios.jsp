@@ -3,7 +3,7 @@
     Created on : 22/03/2022, 08:37:29 AM
     Author     : Sena
 --%>
-<%@include file="sesiones.jsp" %>
+<%@include file="sesionesAdmin.jsp" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="ModeloDAO.UsuarioDAO"%>
 <%@page import="ModeloVO.UsuarioVO"%>
@@ -46,7 +46,6 @@
                         <th>Email</th>
                         <th>Direccion</th>
                         <th>Estado</th>
-                        <th>Contraseña</th>
 
                     </tr>
                     <%
@@ -68,8 +67,20 @@
                         <td><%=usuVO.getEmail()%></td>
                         <td><%=usuVO.getDireccion()%></td>
                         <td><%=usuVO.getEstado()%></td>
-                        <td><%=usuVO.getContrasena()%></td>
-
+                        <td>
+                            <form action="Usuarios" method="post">
+                                <input type="hidden" value="<%=usuVO.getIdUsuarios()%>" name="txtId">
+                                <input type="hidden" value="<%=usuVO.getNombre()%>"  name= "txtNombre" class="form-control ms-1  mt-2" >
+                                <input type="hidden" value="<%=usuVO.getDocumento()%>" name= "txtDocumento"  class=" form-control  ms-3 mt-2" >
+                                <input type="hidden" value="<%=usuVO.getTelefono()%>" name= "txtTelefono"  class="form-control  ms-1  mt-2">
+                                <input type="hidden" value="<%=usuVO.getDireccion()%>" name= "txtDireccion"  class="form-control ms-3 mt-2">
+                                <input type="hidden" value="<%=usuVO.getEmail()%>" name= "txtEmail"  class="form-control ms-1 mt-2">
+                                <input type="hidden" value=<%=usuVO.getEstado()%>"" name= "txtEstado"  class="form-control ms-1 mt-2">
+                                <input type="hidden" value=<%=usuVO.getContrasena()%>"" name= "txtEstado"  class="form-control ms-1 mt-2">
+                                <button class="btn boton">Añadir Rol</button>
+                                <input type="hidden" value="9" name="opcion">
+                            </form>
+                        </td>
                     </tr>
 
                     <% }%>

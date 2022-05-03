@@ -133,7 +133,7 @@ public class UsuarioRolDAO extends Conexion implements Crud {
         ArrayList<Usuario_rolVO> listaUsuarioRol = new ArrayList();
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from usuario_rol";
+            sql = "select * from usuariosroles";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
             

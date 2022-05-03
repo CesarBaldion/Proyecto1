@@ -1,21 +1,13 @@
 <%-- 
-    Document   : sesionesAlmacenista
-    Created on : 01-may-2022, 20:09:45
-    Author     : 1Usuario
+    Document   : sesionesJefeProduccion
+    Created on : 3/05/2022, 02:08:39 PM
+    Author     : AdminSena
 --%>
 <%@page import="ModeloVO.Usuario_rolVO"%>
 <%@page import="ModeloDAO.UsuarioRolDAO"%>
 <%@page import="ModeloVO.UsuarioVO"%>
 <%
-    response.setHeader("Pragma", "No-cache");
-    response.setHeader("Cache-control", "no-cache, no-store, must-revalidate");
-    response.setDateHeader("Expires", 0);
-    %>
-
-
-<%
-
-    HttpSession buscarSesion = (HttpSession) request.getSession();
+HttpSession buscarSesion = (HttpSession) request.getSession();
     UsuarioVO usuVO1 = null;
     if (buscarSesion.getAttribute("datosUsuario") == null) {
 
@@ -26,12 +18,11 @@
          usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
          Usuario_rolVO uRVO2 = uRDAO.consultarRol(usuVO1.getIdUsuarios());
          String id = uRVO2.getId_Rol();
-         if(id.equals("2") || id.equals("1")|| id.equals("3")){
+         if(id.equals("3") || id.equals("1")){
              
          }else{
              request.getRequestDispatcher("index.jsp").forward(request, response);
          }
          
     } 
-
 %>

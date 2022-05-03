@@ -64,7 +64,6 @@ public class UsuariosControlador extends HttpServlet {
 
         // 4. Administrar las operaciones del modulo
         switch (opcion) {
-
             case 1: //Agregar registro
                 if (!"".equals(Id_Usuarios)) {
                     if (!"".equals(Documento)) {
@@ -83,11 +82,9 @@ public class UsuariosControlador extends HttpServlet {
                                                                     usuDao.enviarCorreoRegistro(Email);
                                                                     request.setAttribute("Bien", "Se ha registrado");
                                                                     request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
-
                                                                 } else {
                                                                     request.setAttribute("Error", "Error al Registrar!");
                                                                     request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
-
                                                                 }
                                                             } else {
                                                                 request.setAttribute("error", "Ingrese un documento valido");
@@ -246,7 +243,17 @@ public class UsuariosControlador extends HttpServlet {
                     request.setAttribute("error", "Las contraseñas no coinciden");
                     request.getRequestDispatcher("actualizarContrasena.jsp").forward(request, response);
                 }
-
+                break;
+            case 9:
+                //RegistrarRol
+                if (!"".equals(usuVO)){
+                    request.setAttribute("uRoles", usuVO);
+                    request.getRequestDispatcher("registrarUsuarioRol.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("mensajeError", "El Usuario no existe!");
+                    request.getRequestDispatcher("consultarUsuarios.jsp").forward(request, response);
+                }
+                break;
         }
     }
 

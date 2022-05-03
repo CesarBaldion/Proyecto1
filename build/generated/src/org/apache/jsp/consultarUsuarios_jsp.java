@@ -3,10 +3,14 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import ModeloVO.UsuarioVO;
 import ModeloVO.Usuario_rolVO;
+import ModeloDAO.UsuarioRolDAO;
+import ModeloVO.UsuarioVO;
+import java.util.ArrayList;
+import ModeloDAO.UsuarioDAO;
+import ModeloVO.UsuarioVO;
 
-public final class registrarUsuarioRol_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class consultarUsuarios_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -14,7 +18,8 @@ public final class registrarUsuarioRol_jsp extends org.apache.jasper.runtime.Htt
   private static java.util.List<String> _jspx_dependants;
 
   static {
-    _jspx_dependants = new java.util.ArrayList<String>(1);
+    _jspx_dependants = new java.util.ArrayList<String>(2);
+    _jspx_dependants.add("/sesionesAdmin.jsp");
     _jspx_dependants.add("/navegacion.jsp");
   }
 
@@ -47,6 +52,46 @@ public final class registrarUsuarioRol_jsp extends org.apache.jasper.runtime.Htt
       out = pageContext.getOut();
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
+
+      out.write('\r');
+      out.write('\n');
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!DOCTYPE html>\r\n");
+      out.write("\r\n");
+
+    response.setHeader("Pragma", "No-cache");
+    response.setHeader("Cache-control", "no-cache, no-store, must-revalidate");
+    response.setDateHeader("Expires", 0);
+    
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+
+
+     HttpSession buscarSesion = (HttpSession) request.getSession();
+    UsuarioVO usuVO1 = null;
+    if (buscarSesion.getAttribute("datosUsuario") == null) {
+
+        request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
+
+    }else{
+        UsuarioRolDAO uRDAO = new UsuarioRolDAO();
+         usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
+         Usuario_rolVO uRVO2 = uRDAO.consultarRol(usuVO1.getIdUsuarios());
+         String id = uRVO2.getId_Rol();
+         if(id.equals("1")){
+             
+         }else{
+             request.getRequestDispatcher("index.jsp").forward(request, response);
+         }
+         
+    } 
+
 
       out.write("\r\n");
       out.write("\r\n");
@@ -139,95 +184,124 @@ public final class registrarUsuarioRol_jsp extends org.apache.jasper.runtime.Htt
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
-      out.write("        <link rel=\"stylesheet\" href=\"css/estilos.css\">\r\n");
+      out.write("        <link rel=\"stylesheet\" href=\"css/\">\r\n");
       out.write("        <title>JSP Page</title>\r\n");
       out.write("    </head>\r\n");
+      out.write("\r\n");
       out.write("    <body>\r\n");
-      out.write("        ");
-
-             UsuarioVO usuVO = (UsuarioVO)request.getAttribute("uRoles");
-            if(usuVO != null){
-        
+      out.write("        <div class=\"col-md-4 justify-content-center mx-auto mt-4\">\r\n");
+      out.write("            <h1 class=\"text-center\">Usuarios</h1>\r\n");
+      out.write("            <div class=\"col-md-6 mx-auto \">\r\n");
+      out.write("                <form method=\"post\" action=\"Usuarios\" class=\"form-group\">\r\n");
+      out.write("                    <input type=\"text\" name=\"txtId\" class=\"form-control\" placeholder=\"Id Usuarios\">\r\n");
+      out.write("                    <input type=\"hidden\" value=\"5\" name=\"opcion\">\r\n");
+      out.write("                    <button class=\"btn\">Consultar</button>\r\n");
+      out.write("                </form>\r\n");
+      out.write("                <div class=\"mensaje\">\r\n");
+      out.write("                    ");
+                if (request.getAttribute("mensajeError") != null) {
       out.write("\r\n");
-      out.write("        <div class=\"col-md-3 justify-content-center mx-auto caja border border-info mt-4\">\r\n");
-      out.write("            <h1 class=\"text-center fs-2 mt-2\">Actualizar UsuarioRol</h1>\r\n");
-      out.write("            <div class=\"mx-auto justify-content-center\">\r\n");
-      out.write("                ");
-if (request.getAttribute("mensajeError") != null) {
-      out.write("\r\n");
-      out.write("                <p class=\"text-danger text-center fs-5\">");
+      out.write("                    ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeError}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("</p>\r\n");
-      out.write("                ");
-   } else {
       out.write("\r\n");
-      out.write("                <p class=\"text-success text-center fs-5\">");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeExito}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("</p>\r\n");
-      out.write("                ");
+      out.write("\r\n");
+      out.write("                    ");
 }
       out.write("\r\n");
+      out.write("                </div>\r\n");
       out.write("            </div>\r\n");
-      out.write("            <div class=\"col-md-10 mx-auto mt-4\">\r\n");
-      out.write("                <form action=\"UsuarioRol\" method=\"post\" class=\"form-group\">\r\n");
-      out.write("                    <label name=\"txtId\" value=\"");
-      out.print(usuVO.getIdUsuarios());
-      out.write(" \" class=\"label\">");
-      out.print(usuVO.getIdUsuarios());
-      out.write("</label>\r\n");
-      out.write("                    <label name=\"txtNombre\" value=\"");
-      out.print(usuVO.getNombre());
-      out.write(" \">");
-      out.print(usuVO.getNombre());
-      out.write("</label>\r\n");
-      out.write("                    <label name=\"txtDocumento\" value=\"");
-      out.print(usuVO.getDocumento());
-      out.write('"');
-      out.write('>');
-      out.print(usuVO.getDocumento());
-      out.write("</label>\r\n");
-      out.write("                    <label name=\"txtTelefono\" value=\"");
-      out.print(usuVO.getTelefono());
-      out.write('"');
-      out.write('>');
-      out.print(usuVO.getTelefono());
-      out.write("</label>\r\n");
-      out.write("                    <label name=\"txtEmail\" value=\"");
-      out.print(usuVO.getEmail());
-      out.write('"');
-      out.write('>');
-      out.print(usuVO.getEmail());
-      out.write("</label>\r\n");
-      out.write("                    <label name=\"txtDireccion\" value=\"");
-      out.print(usuVO.getDireccion());
-      out.write('"');
-      out.write('>');
-      out.print(usuVO.getDireccion());
-      out.write("</label>\r\n");
-      out.write("                    <label name=\"txtEstado\" value=\"");
-      out.print(usuVO.getEstado());
-      out.write('"');
-      out.write('>');
-      out.print(usuVO.getEstado());
-      out.write("</label>\r\n");
-      out.write("                    <div class=\"d-flex mt-3 mb-2\">\r\n");
-      out.write("                        <button class=\"btn boton\"> Actualizar </button>\r\n");
-      out.write("                        <input type=\"hidden\" value=\"2\" name=\"opcion\">\r\n");
-      out.write("                        <a href=\"consultarUsuarioRol.jsp\" class=\"nav-item ms-3\">Volver</a>\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                </form>\r\n");
+      out.write("        </div>   \r\n");
+      out.write("        <div class=\"col-md-11 mx-auto justify-content-center mt-4\">\r\n");
+      out.write("            <div class=\"col-md-7 mx-auto justify-content-center\">\r\n");
+      out.write("                <table class=\"table table-light table-hover table-striped text-center\">\r\n");
       out.write("\r\n");
-      out.write("                ");
- } else {
-                        request.getRequestDispatcher("consultarRol.jsp").forward(request, response);
+      out.write("                    <tr>\r\n");
+      out.write("                        <th>Id</th>\r\n");
+      out.write("                        <th>Nombres</th>\r\n");
+      out.write("                        <th>Documento</th>\r\n");
+      out.write("                        <th>Telefono</th>\r\n");
+      out.write("                        <th>Email</th>\r\n");
+      out.write("                        <th>Direccion</th>\r\n");
+      out.write("                        <th>Estado</th>\r\n");
+      out.write("\r\n");
+      out.write("                    </tr>\r\n");
+      out.write("                    ");
 
-                    }
+                        UsuarioVO usuVO = new UsuarioVO();
+                        UsuarioDAO usuDAO = new UsuarioDAO();
+
+                        ArrayList<UsuarioVO> ListaUsuarios = usuDAO.Listar();
+
+                        for (int i = 0; i < ListaUsuarios.size(); i++) {
+
+                            usuVO = ListaUsuarios.get(i);
+
+                    
+      out.write("\r\n");
+      out.write("                    <tr>\r\n");
+      out.write("                        <td>");
+      out.print(usuVO.getIdUsuarios());
+      out.write("</td>\r\n");
+      out.write("                        <td>");
+      out.print(usuVO.getNombre());
+      out.write("</td>\r\n");
+      out.write("                        <td>");
+      out.print(usuVO.getDocumento());
+      out.write("</td>\r\n");
+      out.write("                        <td>");
+      out.print(usuVO.getTelefono());
+      out.write("</td>\r\n");
+      out.write("                        <td>");
+      out.print(usuVO.getEmail());
+      out.write("</td>\r\n");
+      out.write("                        <td>");
+      out.print(usuVO.getDireccion());
+      out.write("</td>\r\n");
+      out.write("                        <td>");
+      out.print(usuVO.getEstado());
+      out.write("</td>\r\n");
+      out.write("                        <td>\r\n");
+      out.write("                            <form action=\"Usuarios\" method=\"post\">\r\n");
+      out.write("                                <input type=\"hidden\" value=\"");
+      out.print(usuVO.getIdUsuarios());
+      out.write("\" name=\"txtId\">\r\n");
+      out.write("                                <input type=\"hidden\" value=\"");
+      out.print(usuVO.getNombre());
+      out.write("\"  name= \"txtNombre\" class=\"form-control ms-1  mt-2\" >\r\n");
+      out.write("                                <input type=\"hidden\" value=\"");
+      out.print(usuVO.getDocumento());
+      out.write("\" name= \"txtDocumento\"  class=\" form-control  ms-3 mt-2\" >\r\n");
+      out.write("                                <input type=\"hidden\" value=\"");
+      out.print(usuVO.getTelefono());
+      out.write("\" name= \"txtTelefono\"  class=\"form-control  ms-1  mt-2\">\r\n");
+      out.write("                                <input type=\"hidden\" value=\"");
+      out.print(usuVO.getDireccion());
+      out.write("\" name= \"txtDireccion\"  class=\"form-control ms-3 mt-2\">\r\n");
+      out.write("                                <input type=\"hidden\" value=\"");
+      out.print(usuVO.getEmail());
+      out.write("\" name= \"txtEmail\"  class=\"form-control ms-1 mt-2\">\r\n");
+      out.write("                                <input type=\"hidden\" value=");
+      out.print(usuVO.getEstado());
+      out.write("\"\" name= \"txtEstado\"  class=\"form-control ms-1 mt-2\">\r\n");
+      out.write("                                <input type=\"hidden\" value=");
+      out.print(usuVO.getContrasena());
+      out.write("\"\" name= \"txtEstado\"  class=\"form-control ms-1 mt-2\">\r\n");
+      out.write("                                <button class=\"btn boton\">Añadir Rol</button>\r\n");
+      out.write("                                <input type=\"hidden\" value=\"9\" name=\"opcion\">\r\n");
+      out.write("                            </form>\r\n");
+      out.write("                        </td>\r\n");
+      out.write("                    </tr>\r\n");
+      out.write("\r\n");
+      out.write("                    ");
+ }
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("                </table>\r\n");
       out.write("\r\n");
       out.write("            </div>\r\n");
       out.write("        </div>\r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
-      out.write("\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;
