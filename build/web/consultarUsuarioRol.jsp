@@ -3,7 +3,7 @@
     Created on : 01-may-2022, 16:37:37
     Author     : 1Usuario
 --%>
-
+<%@include file="sesionesAdmin.jsp" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="ModeloDAO.UsuarioRolDAO"%>
 <%@page import="ModeloVO.Usuario_rolVO"%>
@@ -24,10 +24,9 @@
                     <input type="hidden" value="4" name="opcion">
                     <button class="btn">Consultar</button>
                 </form>
-                <div class="mensaje">
-                    <%
-                        if (request.getAttribute("mensajeError") != null) {%>
-                    ${mensajeError}
+                <div class="mx-auto justify-content-center">
+                    <%if (request.getAttribute("bien") != null) {%>
+                    <p class="text-success text-center fs-5 mt-2">${bien}</p>
                     <%}%>
                 </div>
             </div>
@@ -57,9 +56,7 @@
                     </tr>
                     <% }%>
                 </table>
-
             </div>
-
         </div>
     </body>
 </html>

@@ -9,7 +9,7 @@
 <%@page import="ModeloDAO.LoteProduccionDAO"%>
 <%@page import="ModeloVO.LoteProduccionVO"%>
 <%@include file="navegacion.jsp" %>
-<%@include file="sesiones.jsp" %>
+<%@include file="sesionesAlmacenista.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

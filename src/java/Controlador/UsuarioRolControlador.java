@@ -52,13 +52,15 @@ public class UsuarioRolControlador extends HttpServlet {
 
                 if (uRDAO.agregarRegistro()) {
 
-                    request.setAttribute("mensajeExito", "El rol se registro correctamente!");
+                    request.setAttribute("bien", "El rol se registro correctamente!");
+                    request.getRequestDispatcher("consultarUsuarioRol.jsp").forward(request, response);
 
                 } else {
 
-                    request.setAttribute("mensajeError", "El rol no se registro correctamente");
+                    request.setAttribute("error", "El rol no se registro correctamente");
+                    request.getRequestDispatcher("registrarRol.jsp").forward(request, response);
                 }
-                request.getRequestDispatcher("registrarRol.jsp").forward(request, response);
+                
                 break;
 
             case 2:

@@ -7,6 +7,7 @@
 <%@page import="ModeloVO.UsuarioVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="navegacion.jsp" %>
+<%@include file="sesionesAdmin.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>

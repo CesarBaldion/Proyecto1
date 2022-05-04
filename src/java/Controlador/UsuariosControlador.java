@@ -78,12 +78,17 @@ public class UsuariosControlador extends HttpServlet {
                                                         if (usuDao.validarContrasena(Contrasena) == true) {
                                                             usuDAO.Encriptar(Contrasena);
                                                             if (usuDao.ValidarNumero(Documento) == true) {
-                                                                if (usuDAO.agregarRegistro() == true) {
-                                                                    usuDao.enviarCorreoRegistro(Email);
-                                                                    request.setAttribute("Bien", "Se ha registrado");
-                                                                    request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                                                if (usuDao.verificarUsuario(Documento) == false) {
+                                                                    if (usuDAO.agregarRegistro() == true) {
+                                                                        usuDao.enviarCorreoRegistro(Email);
+                                                                        request.setAttribute("Bien", "Se ha registrado");
+                                                                        request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                                                    } else {
+                                                                        request.setAttribute("Error", "Error al Registrar!");
+                                                                        request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                                                    }
                                                                 } else {
-                                                                    request.setAttribute("Error", "Error al Registrar!");
+                                                                    request.setAttribute("error", "El usuario ya existe");
                                                                     request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
                                                                 }
                                                             } else {
@@ -135,7 +140,6 @@ public class UsuariosControlador extends HttpServlet {
                     request.setAttribute("error", "Complete el campo Id");
                     request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
                 }
-
                 break;
 
             case 2:
@@ -202,7 +206,7 @@ public class UsuariosControlador extends HttpServlet {
                     usuDAO.enviarCorreoRecuperacionContraseña(usuVO.getEmail(), codigo2);
                     HttpSession miSesion = request.getSession();
                     miSesion.setAttribute("datosUsuarioRecuperarContrasena", usuVO);
-                    request.setAttribute("envioCorreo","Se ha enviado un Codigo de confirmacion a su correo");
+                    request.setAttribute("envioCorreo", "Se ha enviado un Codigo de confirmacion a su correo");
                     request.getRequestDispatcher("VerificacionCodigo.jsp").forward(request, response);
                 } else {
                     request.setAttribute("error", "No encontramos ningun Usuario asociado a este email");
@@ -246,7 +250,7 @@ public class UsuariosControlador extends HttpServlet {
                 break;
             case 9:
                 //RegistrarRol
-                if (!"".equals(usuVO)){
+                if (!"".equals(usuVO)) {
                     request.setAttribute("uRoles", usuVO);
                     request.getRequestDispatcher("registrarUsuarioRol.jsp").forward(request, response);
                 } else {

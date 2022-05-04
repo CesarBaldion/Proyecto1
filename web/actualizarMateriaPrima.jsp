@@ -3,7 +3,7 @@
     Created on : 18/04/2022, 09:18:02 PM
     Author     : Juan Pablo
 --%>
-
+<%@include file="sesionesAlmacenista.jsp" %>
 <%@page import="ModeloVO.MateriaPrimaVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

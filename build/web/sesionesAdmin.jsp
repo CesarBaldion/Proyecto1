@@ -14,28 +14,28 @@
     response.setHeader("Pragma", "No-cache");
     response.setHeader("Cache-control", "no-cache, no-store, must-revalidate");
     response.setDateHeader("Expires", 0);
-    %>
+%>
 
 
 <%
-
-     HttpSession buscarSesion = (HttpSession) request.getSession();
+    HttpSession buscarSesion = (HttpSession) request.getSession();
     UsuarioVO usuVO1 = null;
     if (buscarSesion.getAttribute("datosUsuario") == null) {
 
         request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
 
-    }else{
+    } else {
         UsuarioRolDAO uRDAO = new UsuarioRolDAO();
-         usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
-         Usuario_rolVO uRVO2 = uRDAO.consultarRol(usuVO1.getIdUsuarios());
-         String id = uRVO2.getId_Rol();
-         if(id.equals("1")){
-             
-         }else{
-             request.getRequestDispatcher("index.jsp").forward(request, response);
-         }
-         
-    } 
+        usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
+        Usuario_rolVO uRVO2 = uRDAO.consultarRol(usuVO1.getIdUsuarios());
+        String id = uRVO2.getId_Rol();
+        if (id.equals("1")) {
+
+        } else {
+            request.getRequestDispatcher("errorPermisos.jsp").forward(request, response);
+
+        }
+
+    }
 
 %>

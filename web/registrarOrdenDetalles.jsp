@@ -3,7 +3,7 @@
     Created on : 30/03/2022, 10:39:11 AM
     Author     : Daniel
 --%>
-
+<%@include file="sesionesAlmacenista.jsp" %>
 <%@page import="ModeloDAO.OrdenesDAO"%>
 <%@page import="ModeloVO.DetallesProductoVO"%>
 <%@page import="ModeloDAO.DetallesProductoDAO"%>

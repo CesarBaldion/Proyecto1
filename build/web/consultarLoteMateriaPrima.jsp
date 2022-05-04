@@ -3,7 +3,7 @@
     Created on : 04-abr-2022, 20:52:14
     Author     : cesar
 --%>
-
+<%@include file="sesionesAlmacenista.jsp" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="ModeloDAO.loteMateriaPrimaDAO"%>
 <%@page import="ModeloVO.loteMateriaPrimaVO"%>

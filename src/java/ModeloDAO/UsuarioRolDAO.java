@@ -53,7 +53,7 @@ public class UsuarioRolDAO extends Conexion implements Crud {
 
     @Override
     public boolean agregarRegistro() {
-        sql = "insert into usuario_rol values (?,?,?)";
+        sql = "insert into usuario_rol(Id_Rol,Id_Usuarios,Estado) values (?,?,?)";
         try {
             //Sentencia
             puente = conexion.prepareStatement(sql);

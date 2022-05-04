@@ -3,7 +3,7 @@
     Created on : 5/04/2022, 07:17:55 AM
     Author     : ESCOBAR
 --%>
-
+<%@include file="sesionesAlmacenista.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

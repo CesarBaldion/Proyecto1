@@ -3,7 +3,7 @@
     Created on : 9/03/2022, 09:28:13 AM
     Author     : Andrex
 --%>
-
+<%@include file="sesionesJefeProduccion.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="navegacion.jsp" %>
 <%@include file="sesiones.jsp" %>

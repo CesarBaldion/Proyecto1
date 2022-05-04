@@ -9,7 +9,6 @@ import ModeloVO.UsuarioVO;
 import Util.Conexion;
 import Util.Crud;
 import java.security.MessageDigest;
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,8 +26,8 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-;
 
+;
 
 /**
  *
@@ -39,19 +38,20 @@ public class UsuarioDAO extends Conexion implements Crud {
     private Connection conexion;
     private PreparedStatement puente;
     private ResultSet mensajero;
-    
+
     private boolean operacion = false;
     private String sql;
 
     // Declarar variables del modulo(VO)
     private String id_Usuarios = "", Nombre = "", Documento = "", Telefono = "",
             Email = "", Direccion = "", Estado = "", Contrasena = "";
-    
+
     //Llave Encriptacion de Contraseña
     private String llave = "SuiteFactor";
 
     public UsuarioDAO() {
     }
+
     //2. Crear metodo principal para recibir los datos del VO
     public UsuarioDAO(UsuarioVO usuVO) {
         super();
@@ -91,8 +91,8 @@ public class UsuarioDAO extends Conexion implements Crud {
             puente.setString(4, Email);
             puente.setString(5, Direccion);
             puente.setString(6, Estado);
-            
-            puente.setString(7,Encriptar(Contrasena));
+
+            puente.setString(7, Encriptar(Contrasena));
             puente.executeUpdate();
             operacion = true;
 
@@ -171,7 +171,7 @@ public class UsuarioDAO extends Conexion implements Crud {
     }
 
     public UsuarioVO iniciarSesion(String Documento, String Contrasena) {
-        
+
         UsuarioVO usuVO = null;
 
         try {
@@ -274,11 +274,11 @@ public class UsuarioDAO extends Conexion implements Crud {
         return listaUsuarios;
 
     }
-    
-    public SecretKeySpec crearClave(String llave){
-        
-        try { 
-             byte[] cadena = llave.getBytes("UTF-8");
+
+    public SecretKeySpec crearClave(String llave) {
+
+        try {
+            byte[] cadena = llave.getBytes("UTF-8");
             MessageDigest md = MessageDigest.getInstance("SHA-1");
             cadena = md.digest(cadena);
             cadena = Arrays.copyOf(cadena, 16);
@@ -287,11 +287,11 @@ public class UsuarioDAO extends Conexion implements Crud {
         } catch (Exception e) {
             return null;
         }
-        
+
     }
-    
+
     public String Encriptar(String encriptar) {
-     
+
         try {
             SecretKeySpec secretKeySpec = crearClave(llave);
             Cipher cipher = Cipher.getInstance("AES");
@@ -300,31 +300,30 @@ public class UsuarioDAO extends Conexion implements Crud {
             byte[] encriptada = cipher.doFinal(cadena);
             String cadena_encriptada = Base64.encode(encriptada);
             return cadena_encriptada;
-            
-            
-            
+
         } catch (Exception e) {
             return "";
         }
     }
-    
+
     public String Desencriptar(String desencriptar) {
-     
+
         try {
             SecretKeySpec secretKeySpec = crearClave(llave);
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
-            
+
             byte[] cadena = Base64.decode(desencriptar);
             byte[] desencriptacioon = cipher.doFinal(cadena);
             String cadena_desencriptada = new String(desencriptacioon);
             return cadena_desencriptada;
-            
+
         } catch (Exception e) {
             return "";
         }
     }
-     public boolean validarContrasena(String Contrasena) {
+
+    public boolean validarContrasena(String Contrasena) {
         final int MAX = 8;
         // Especificando el número de letras mayúsculas en la contraseña
         final int min_Mayus = 1;
@@ -366,7 +365,8 @@ public class UsuarioDAO extends Conexion implements Crud {
         }
 
     }
-     public boolean ValidarNumero(String cadena) {
+
+    public boolean ValidarNumero(String cadena) {
         try {
             Integer.parseInt(cadena);
             return true;
@@ -374,7 +374,8 @@ public class UsuarioDAO extends Conexion implements Crud {
             return false;
         }
     }
-     public boolean enviarCorreoRegistro(String correoDestino ) {
+
+    public boolean enviarCorreoRegistro(String correoDestino) {
 
         String correo = "suitefactorgestion@gmail.com";
         String contrasena = "qjoy zefu tctf tbyd";
@@ -400,17 +401,17 @@ public class UsuarioDAO extends Conexion implements Crud {
             t.sendMessage(mensaje, mensaje.getAllRecipients());
             t.close();
 
-            
             return true;
         } catch (Exception e) {
-            
+
             return false;
-            
+
         }
 
     }
-     public UsuarioVO RecuperacionContraseña(String Email) {
-        
+
+    public UsuarioVO RecuperacionContraseña(String Email) {
+
         UsuarioVO usuVO = null;
 
         try {
@@ -429,12 +430,13 @@ public class UsuarioDAO extends Conexion implements Crud {
         } catch (SQLException e) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
 
-        } 
+        }
 
         return usuVO;
 
     }
-     public boolean enviarCorreoRecuperacionContraseña(String correoDestino,String codigo ) {
+
+    public boolean enviarCorreoRecuperacionContraseña(String correoDestino, String codigo) {
 
         String correo = "suitefactorgestion@gmail.com";
         String contrasena = "qjoy zefu tctf tbyd";
@@ -453,26 +455,26 @@ public class UsuarioDAO extends Conexion implements Crud {
             mensaje.setFrom(new InternetAddress(correo));
             mensaje.addRecipient(Message.RecipientType.TO, new InternetAddress(correoDestino));
             mensaje.setSubject("Recuperacion Contraseña");
-            mensaje.setText("Este es su codigo de Recuperacion de contrseña "+codigo+" No lo comparta con nadie");
+            mensaje.setText("Este es su codigo de Recuperacion de contrseña " + codigo + " No lo comparta con nadie");
 
             Transport t = s.getTransport("smtp");
             t.connect(correo, contrasena);
             t.sendMessage(mensaje, mensaje.getAllRecipients());
             t.close();
 
-            
             return true;
         } catch (Exception e) {
-            
+
             return false;
-            
+
         }
 
     }
-     public boolean actualizarContraseña(String id,String contrasena) {
+
+    public boolean actualizarContraseña(String id, String contrasena) {
 
         try {
-            
+
             sql = " update usuarios set contrasena = ? where id_Usuarios = ? ";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, contrasena);
@@ -481,6 +483,7 @@ public class UsuarioDAO extends Conexion implements Crud {
             operacion = true;
         } catch (SQLException e) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            operacion = false;
         } finally {
 
             try {
@@ -491,6 +494,42 @@ public class UsuarioDAO extends Conexion implements Crud {
             }
         }
         return operacion;
+    }
+
+    public boolean verificarUsuario(String Documento) {
+
+        UsuarioVO usuVO = null;
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from usuarios where documento = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Documento);
+            mensajero = puente.executeQuery();
+            while (mensajero.next()) {
+                usuVO = new UsuarioVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4),
+                        mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8));
+            }
+            if(usuVO==null){
+                operacion = false;
+            }else{
+                operacion = true;
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return operacion;
+
     }
 
 }

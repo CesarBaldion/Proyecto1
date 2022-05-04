@@ -75,18 +75,15 @@
                                 <input type="hidden" value="<%=usuVO.getTelefono()%>" name= "txtTelefono"  class="form-control  ms-1  mt-2">
                                 <input type="hidden" value="<%=usuVO.getDireccion()%>" name= "txtDireccion"  class="form-control ms-3 mt-2">
                                 <input type="hidden" value="<%=usuVO.getEmail()%>" name= "txtEmail"  class="form-control ms-1 mt-2">
-                                <input type="hidden" value=<%=usuVO.getEstado()%>"" name= "txtEstado"  class="form-control ms-1 mt-2">
-                                <input type="hidden" value=<%=usuVO.getContrasena()%>"" name= "txtEstado"  class="form-control ms-1 mt-2">
+                                <input type="hidden" value="<%=usuVO.getEstado()%>" name= "txtEstado"  class="form-control ms-1 mt-2">
+                                <input type="hidden" value="<%=usuVO.getContrasena()%>" name= "txtEstado"  class="form-control ms-1 mt-2">
                                 <button class="btn boton">Añadir Rol</button>
                                 <input type="hidden" value="9" name="opcion">
                             </form>
                         </td>
                     </tr>
-
                     <% }%>
-
                 </table>
-
             </div>
         </div>
     </body>
