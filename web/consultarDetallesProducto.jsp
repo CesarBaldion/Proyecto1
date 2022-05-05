@@ -45,8 +45,8 @@
                         
                         <th>Id</th>
                         <th>IdProducto</th>
-                        <th>Descripcion</th>
                         <th>Talla</th>
+                        <th>Descripcion</th>
                     </tr>
 
                     <%
@@ -63,8 +63,9 @@
                     <tr>
                         <td><%=detProVO.getId_Detalles_Producto()%></td>
                         <td><%=detProVO.getId_Producto()%></td>
-                        <td><%=detProVO.getDescripcion()%></td>
                         <td><%=detProVO.getTalla()%></td>
+                        <td><%=detProVO.getDescripcion()%></td>
+                        
                     </tr>
                     <% }%>
                 </table>

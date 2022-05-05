@@ -41,9 +41,9 @@ public class LoteProduccionDAO extends Conexion implements Crud{
             // 4. traer al DAO los datos del VO para hacer las operaciones.
 
             id_Lote_Produccion = loteVO.getId_Lote_Produccion();
+             id_Usuarios = loteVO.getId_Usuarios();
+            id_orden_Detalles = loteVO.getId_orden_Detalles();       
             cantidad = loteVO.getCantidad();
-            id_orden_Detalles = loteVO.getId_orden_Detalles();
-            id_Usuarios = loteVO.getId_Usuarios();
             fecha_Fabricacion = loteVO.getFecha_Fabricacion();
             
             
@@ -149,8 +149,8 @@ public class LoteProduccionDAO extends Conexion implements Crud{
 
             while (mensajero.next()) {
 
-                ltProducVO = new LoteProduccionVO(mensajero.getString(1),mensajero.getInt(2), mensajero.getString(3),
-                        mensajero.getString(4),mensajero.getString(5));
+                ltProducVO = new LoteProduccionVO(mensajero.getString(1), mensajero.getString(2),
+                        mensajero.getString(3),mensajero.getInt(4),mensajero.getString(5));
 
             }
 
@@ -176,14 +176,14 @@ public class LoteProduccionDAO extends Conexion implements Crud{
         ArrayList<LoteProduccionVO> listaLoteProduccion = new ArrayList<>();
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from lote_produccion";
+            sql = "select * from LoteProduccion";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
 
             while (mensajero.next()) {
 
-               LoteProduccionVO ltProducVO = new LoteProduccionVO(mensajero.getString(1),mensajero.getInt(2), mensajero.getString(3),
-                        mensajero.getString(5),mensajero.getString(4));
+               LoteProduccionVO ltProducVO = new LoteProduccionVO(mensajero.getString(1), mensajero.getString(2),
+                        mensajero.getString(3),mensajero.getInt(4),mensajero.getString(5));
                listaLoteProduccion.add(ltProducVO);
 
             }

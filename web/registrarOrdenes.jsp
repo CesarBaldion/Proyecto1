@@ -7,7 +7,6 @@
 <%@page import="ModeloVO.UsuarioVO"%>
 <%@page import="ModeloDAO.UsuarioDAO"%>
 <%@include file="navegacion.jsp" %>
-<%@include file="sesiones.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

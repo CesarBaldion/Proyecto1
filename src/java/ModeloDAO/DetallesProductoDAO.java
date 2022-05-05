@@ -59,10 +59,9 @@ public class DetallesProductoDAO extends Conexion implements Crud {
     @Override
     public boolean agregarRegistro() {
         try {
-            sql = "inset into detlles_producto(Id_Producto, Talla, Descripcion) values (?,?,?)";
+            sql = "insert into detalles_producto(Id_Producto, talla, Descripcion)values(?,?,?)";
             
             puente = conexion.prepareStatement(sql);
-            
             puente.setString(1, Id_Producto);
             puente.setString(2, Talla);
             puente.setString(3, Descripcion);
@@ -151,7 +150,7 @@ public class DetallesProductoDAO extends Conexion implements Crud {
         ArrayList<DetallesProductoVO> listarDetallesProducto = new ArrayList<>();
         try {
             
-            sql = "select * from detalles_producto";
+            sql = "select * from DetallesProductoView";
             conexion = this.obtenerConexion();
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();

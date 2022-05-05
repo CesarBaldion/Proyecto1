@@ -16,11 +16,11 @@ public class DetallesProductoVO {
     public DetallesProductoVO() {
     }
 
-    public DetallesProductoVO(String Id_Detalles_Producto, String Id_Producto, String Descripcion, String Talla) {
+    public DetallesProductoVO(String Id_Detalles_Producto, String Id_Producto,String Talla, String Descripcion) {
         this.Id_Detalles_Producto = Id_Detalles_Producto;
         this.Id_Producto = Id_Producto;
-        this.Descripcion = Descripcion;
         this.Talla = Talla;
+        this.Descripcion = Descripcion;
     }
 
     public String getId_Detalles_Producto() {

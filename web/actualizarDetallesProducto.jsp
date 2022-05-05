@@ -4,7 +4,6 @@
     Author     : Sena
 --%>
 <%@include file="sesionesJefeProduccion.jsp" %>
-<%@include file="sesiones.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

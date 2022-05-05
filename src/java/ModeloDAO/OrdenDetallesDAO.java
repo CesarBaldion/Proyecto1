@@ -153,7 +153,7 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
         ArrayList<OrdenDetallesVO> listaOrdenDetalles = new ArrayList<>();
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from orden_detalles";
+            sql = "select * from ordendetallesview";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
 
