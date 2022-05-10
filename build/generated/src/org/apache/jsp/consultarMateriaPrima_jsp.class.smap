@@ -1,0 +1,32 @@
+SMAP
+consultarMateriaPrima_jsp.java
+JSP
+*S JSP
+*F
++ 0 consultarMateriaPrima.jsp
+consultarMateriaPrima.jsp
++ 1 sesionesAlmacenista.jsp
+sesionesAlmacenista.jsp
++ 2 navegacion.jsp
+navegacion.jsp
+*L
+5:56,2
+5#1,9:58
+13,25:67
+37:92,2
+6#0,6:94
+5#2,82:99
+11#0,18:180
+29,2:198,3
+31:204
+32:205,3
+33,16:208
+49,8:225
+56,4:233
+60,2:237,3
+62,5:243
+67:248,3
+68,9:251
+77:260,3
+78,7:263
+*E

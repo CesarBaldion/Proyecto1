@@ -6,13 +6,11 @@ import javax.servlet.jsp.*;
 import ModeloVO.Usuario_rolVO;
 import ModeloDAO.UsuarioRolDAO;
 import ModeloVO.UsuarioVO;
-import ModeloVO.UsuarioVO;
-import ModeloVO.OrdenDetallesVO;
-import ModeloDAO.OrdenDetallesDAO;
-import ModeloDAO.UsuarioDAO;
-import ModeloVO.LoteProduccionVO;
+import java.util.ArrayList;
+import ModeloDAO.MateriaPrimaDAO;
+import ModeloVO.MateriaPrimaVO;
 
-public final class actualizarLoteProduccion_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class consultarMateriaPrima_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -21,7 +19,7 @@ public final class actualizarLoteProduccion_jsp extends org.apache.jasper.runtim
 
   static {
     _jspx_dependants = new java.util.ArrayList<String>(2);
-    _jspx_dependants.add("/sesionesAdmin.jsp");
+    _jspx_dependants.add("/sesionesAlmacenista.jsp");
     _jspx_dependants.add("/navegacion.jsp");
   }
 
@@ -61,10 +59,6 @@ public final class actualizarLoteProduccion_jsp extends org.apache.jasper.runtim
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("<!DOCTYPE html>\r\n");
-      out.write("\r\n");
 
     response.setHeader("Pragma", "No-cache");
     response.setHeader("Cache-control", "no-cache, no-store, must-revalidate");
@@ -85,7 +79,7 @@ public final class actualizarLoteProduccion_jsp extends org.apache.jasper.runtim
         usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
         Usuario_rolVO uRVO2 = uRDAO.consultarRol(usuVO1.getIdUsuarios());
         String id = uRVO2.getId_Rol();
-        if (id.equals("1")) {
+        if (id.equals("2") || id.equals("1") || id.equals("3")) {
 
         } else {
             request.getRequestDispatcher("errorPermisos.jsp").forward(request, response);
@@ -95,6 +89,8 @@ public final class actualizarLoteProduccion_jsp extends org.apache.jasper.runtim
     }
 
 
+      out.write('\r');
+      out.write('\n');
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -182,124 +178,92 @@ public final class actualizarLoteProduccion_jsp extends org.apache.jasper.runtim
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
       out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
-      out.write("        <title>JSP Page</title>\r\n");
-      out.write("        <link rel=\"stylesheet\" href=\"css/actualizarLoteProduccion.css\" >\r\n");
+      out.write("        <link rel=\"stylesheet\" href=\"css/\">\r\n");
+      out.write("        <title>Consultar materias primas</title>\r\n");
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
-      out.write(" \r\n");
-      out.write("           ");
-
-            LoteProduccionVO ltProducVO = (LoteProduccionVO)request.getAttribute("LoteProduccionConsultada");
-            if (ltProducVO != null) {
-
-        
+      out.write("        <div class=\"col-md-4 justify-content-center mx-auto mt-4\">\r\n");
+      out.write("            <h1 class=\"text-center\">Materias Primas</h1>\r\n");
+      out.write("            <div class=\"col-md-4 mx-auto \">\r\n");
+      out.write("                <form method=\"post\" action=\"MateriaPrima\" class=\"form-group\"> \r\n");
+      out.write("                    <input type=\"text\" name=\"txtIdMateriaPrima\" placeholder=\"Id\" class=\"form-control d-flex\">\r\n");
+      out.write("                    <input type=\"hidden\" value=\"4\" name=\"opcion\">\r\n");
+      out.write("                    <button class=\"btn\">Consultar</button>\r\n");
+      out.write("                </form>\r\n");
+      out.write("                <div class=\"mensaje\">\r\n");
+      out.write("                    ");
+                        if (request.getAttribute("mensajeError") != null) {
       out.write("\r\n");
-      out.write("        <div class=\"col-md-3 mx-auto mt-4 justify-content-center border border-info caja\">\r\n");
-      out.write("            <h1 class=\"text-center h1 mt-1\">Actualizar<br> Lote Produccion</h1>\r\n");
-      out.write("            <div class=\"col-md-10 mx-auto\">    \r\n");
-      out.write("                <form action=\"LoteProduccion\" method=\"post\" class=\"form-group\">\r\n");
-      out.write("                    <label>Id</label>\r\n");
-      out.write("                    <input type=\"text\" name=\"txtid_loteProduccion\" value=\"");
-      out.print(ltProducVO.getId_Lote_Produccion());
-      out.write("\" class=\"form-control\">\r\n");
-      out.write("                    <label>Id Usuarios</label>\r\n");
-      out.write("                    <select name=\"txtId_Usuarios\" class=\"form-select\">\r\n");
-      out.write("                        <option value=\"");
-      out.print(ltProducVO.getId_Usuarios());
-      out.write('"');
-      out.write('>');
-      out.print(ltProducVO.getId_Usuarios());
-      out.write("</option>\r\n");
-      out.write("                        ");
-
-                            UsuarioDAO usuDAO = new UsuarioDAO();
-                            for (UsuarioVO usuVO : usuDAO.Listar()) {
-                        
-      out.write("\r\n");
-      out.write("                        <option value=\"");
-      out.print(usuVO.getIdUsuarios());
-      out.write('"');
-      out.write('>');
-      out.print(usuVO.getNombre());
-      out.write("</option>\r\n");
-      out.write("                        ");
-}
-      out.write("\r\n");
-      out.write("                    </select>\r\n");
-      out.write("                    <label>Id Orden Detalles </label>\r\n");
-      out.write("                    <select name=\"txtId_orden_detalles\" class=\"form-select\">\r\n");
-      out.write("                        <option value=\"");
-      out.print(ltProducVO.getId_orden_Detalles());
-      out.write('"');
-      out.write('>');
-      out.print(ltProducVO.getId_orden_Detalles());
-      out.write("</option>\r\n");
-      out.write("                        ");
-
-                            OrdenDetallesDAO odDAO = new OrdenDetallesDAO();
-                            for (OrdenDetallesVO odVO : odDAO.Listar()) {
-                        
-      out.write("\r\n");
-      out.write("                        <option value=\"");
-      out.print(odVO.getId_Orden_Detalles());
-      out.write('"');
-      out.write('>');
-      out.print(odVO.getId_Orden_Detalles());
-      out.write("</option>\r\n");
-      out.write("                        ");
-}
-      out.write("\r\n");
-      out.write("                    </select>\r\n");
-      out.write("                    <label>Cantidad</label>\r\n");
-      out.write("                    <input type=\"number\" name=\"txtcantidad\" placeholder=\"Cantidad\" value=\"");
-      out.print(ltProducVO.getCantidad());
-      out.write("\" class=\"form-control\">\r\n");
-      out.write("                    <label>Fecha de fabricacion</label>\r\n");
-      out.write("                    <input type=\"date\" name=\"txtfecha_Fabricacion\" value=\"");
-      out.print(ltProducVO.getFecha_Fabricacion());
-      out.write("\" class=\"form-control\">\r\n");
-      out.write("                    <div class=\"d-flex\">\r\n");
-      out.write("                        <button class=\"btn boton mt-2\">Actualizar</button>\r\n");
-      out.write("                        <input type=\"hidden\" value=\"2\" name=\"opcion\">\r\n");
-      out.write("                        <a href=\"consultarLoteProduccion.jsp\" class=\"nav-item nav-link ms-5 mt-2\">Volver</a><br>\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                    <div class=\"\">\r\n");
-      out.write("                        ");
-
-                            if (request.getAttribute("mensajeError") != null) {
-      out.write("\r\n");
-      out.write("                        ");
+      out.write("                    ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeError}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("\r\n");
       out.write("\r\n");
-      out.write("                        ");
-   } else {
-      out.write("\r\n");
-      out.write("                        ");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeExito}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("                        ");
+      out.write("                    ");
 }
       out.write("\r\n");
-      out.write("                    </div>\r\n");
-      out.write("                </form>\r\n");
+      out.write("                </div>\r\n");
       out.write("            </div>\r\n");
       out.write("        </div>\r\n");
       out.write("\r\n");
       out.write("\r\n");
-      out.write("        ");
- } else {
-                request.getRequestDispatcher("consultarLoteProduccion.jsp").forward(request, response);
-
-            }
+      out.write("        <div class=\"col-md-9 mx-auto  mt-4\">\r\n");
+      out.write("            <div class=\"col-md-7 mx-auto justify-content-center\">\r\n");
+      out.write("                <table class=\"table table-light table-hover table-striped text-center\">\r\n");
       out.write("\r\n");
+      out.write("                    <tr>\r\n");
+      out.write("                        <th>Id <br>Materia Prima</th>\r\n");
+      out.write("                        <th>Nombre</th>\r\n");
+      out.write("\r\n");
+      out.write("                    </tr>\r\n");
+      out.write("\r\n");
+      out.write("                    ");
+
+                        MateriaPrimaVO matPriVO = new MateriaPrimaVO();
+                        MateriaPrimaDAO matPriDAO = new MateriaPrimaDAO();
+                        ArrayList<MateriaPrimaVO> listaMateriaPrima = matPriDAO.ListarDos();
+                        for (int i = 0; i < listaMateriaPrima.size(); i++) {
+
+                            matPriVO = listaMateriaPrima.get(i);
+
+                    
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("                    <tr>\r\n");
+      out.write("                        <td>");
+      out.print(matPriVO.getId_materia_Prima());
+      out.write("</td>\r\n");
+      out.write("                        <td>");
+      out.print(matPriVO.getNombre());
+      out.write("</td>\r\n");
+      out.write("\r\n");
+      out.write("                        <td>\r\n");
+      out.write("\r\n");
+      out.write("                            <form action=\"MateriaPrima\" method=\"post\">\r\n");
+      out.write("                                <input type=\"hidden\" name=\"txtEstado\" value=\"0\">\r\n");
+      out.write("                                <input type=\"hidden\" name=\"txtIdMateriaPrima\" value=\"");
+      out.print(matPriVO.getId_materia_Prima());
+      out.write("\"\r\n");
+      out.write("                                       <input type=\"hidden\" value=\"3\" name=\"opcion\">\r\n");
+      out.write("                                <button>Desactivar</button>\r\n");
+      out.write("                            </form>\r\n");
+      out.write("\r\n");
+      out.write("                        </td>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("                    </tr>\r\n");
+      out.write("\r\n");
+      out.write("                    ");
+ }
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("                </table>\r\n");
+      out.write("            </div>\r\n");
+      out.write("        </div>\r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
     } catch (Throwable t) {

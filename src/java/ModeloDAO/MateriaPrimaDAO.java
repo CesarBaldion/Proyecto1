@@ -110,7 +110,25 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
 
     @Override
     public boolean eliminarRegistro() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            sql = "UPDATE `materia_prima` SET `Estado`= 0 WHERE Id_materia_Prima = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id_materia_Prima);
+            puente.executeUpdate();
+            operacion = true;
+            
+        } catch (SQLException e) {
+            Logger.getLogger(MateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(MateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return operacion;
     }
     
     public MateriaPrimaVO consultarIdMateriaPrima(String Id) {

@@ -26,16 +26,15 @@
                     <button class="btn">Consultar</button>
                 </form>
                 <div class="mensaje">
-                    <%
-                        if (request.getAttribute("mensajeError") != null) {%>
+                    <%                        if (request.getAttribute("mensajeError") != null) {%>
                     ${mensajeError}
 
                     <%}%>
                 </div>
             </div>
         </div>
-        
-                
+
+
         <div class="col-md-9 mx-auto  mt-4">
             <div class="col-md-7 mx-auto justify-content-center">
                 <table class="table table-light table-hover table-striped text-center">
@@ -43,16 +42,16 @@
                     <tr>
                         <th>Id <br>Materia Prima</th>
                         <th>Nombre</th>
-                       
+
                     </tr>
 
                     <%
-                    MateriaPrimaVO matPriVO = new MateriaPrimaVO();
-                    MateriaPrimaDAO matPriDAO = new MateriaPrimaDAO();
-                    ArrayList<MateriaPrimaVO> listaMateriaPrima = matPriDAO.ListarDos();
-                    for (int i = 0; i < listaMateriaPrima.size(); i++){
+                        MateriaPrimaVO matPriVO = new MateriaPrimaVO();
+                        MateriaPrimaDAO matPriDAO = new MateriaPrimaDAO();
+                        ArrayList<MateriaPrimaVO> listaMateriaPrima = matPriDAO.ListarDos();
+                        for (int i = 0; i < listaMateriaPrima.size(); i++) {
 
-                        matPriVO = listaMateriaPrima.get(i);
+                            matPriVO = listaMateriaPrima.get(i);
 
                     %>
 
@@ -60,7 +59,18 @@
                     <tr>
                         <td><%=matPriVO.getId_materia_Prima()%></td>
                         <td><%=matPriVO.getNombre()%></td>
-                        
+
+                        <td>
+
+                            <form action="MateriaPrima" method="post">
+                                <input type="hidden" name="txtEstado" value="0">
+                                <input type="hidden" name="txtIdMateriaPrima" value="<%=matPriVO.getId_materia_Prima()%>"
+                                       <input type="hidden" value="3" name="opcion">
+                                <button>Desactivar</button>
+                            </form>
+
+                        </td>
+
 
                     </tr>
 
@@ -69,5 +79,5 @@
                 </table>
             </div>
         </div>
-</body>
+    </body>
 </html>
