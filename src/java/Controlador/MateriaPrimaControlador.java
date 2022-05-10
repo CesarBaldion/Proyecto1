@@ -80,7 +80,6 @@ public class MateriaPrimaControlador extends HttpServlet {
             case 3:
 
                 if (matPriDAO.eliminarRegistro()) {
-
                     request.setAttribute("mensajeExito", "La materia prima se elimino correctamente!");
                     request.getRequestDispatcher("consultarMateriaPrima.jsp").forward(request, response);
 
@@ -91,7 +90,7 @@ public class MateriaPrimaControlador extends HttpServlet {
                 
                 break;
 
-            case 4: //Consultar por Orden
+            case 4: //Consultar por Ordens
 
                 matPriVO = matPriDAO.consultarIdMateriaPrima(Id_materia_Prima);
                 if (matPriVO != null) {

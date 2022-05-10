@@ -310,12 +310,10 @@ public class UsuarioDAO extends Conexion implements Crud {
             SecretKeySpec secretKeySpec = crearClave(llave);
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
-
             byte[] cadena = Base64.decode(desencriptar);
             byte[] desencriptacioon = cipher.doFinal(cadena);
             String cadena_desencriptada = new String(desencriptacioon);
             return cadena_desencriptada;
-
         } catch (Exception e) {
             return "";
         }

@@ -67,7 +67,6 @@ public class ProductoDAO extends Conexion implements Crud {
 
             try {
                 this.cerrarConexion();
-
             } catch (SQLException e) {
                 Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
             }
@@ -190,14 +189,6 @@ public class ProductoDAO extends Conexion implements Crud {
         } catch (SQLException e) {
             Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
 
-        } finally {
-
-            try {
-                this.cerrarConexion();
-
-            } catch (SQLException e) {
-                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
-            }
         }
 
         return operacion;
