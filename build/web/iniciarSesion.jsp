@@ -20,7 +20,7 @@
         <div class="container">
             <div class="forms-container">
                 <div class="signin-signup">
-                    <form action = "Usuarios" class="sign-in-form">
+                    <form action = "Usuarios" class="sign-in-form" method="post">
                         <a href="menu.jsp">
                             <img src="img/LogoFinal.svg" class="image" alt="" height="115" />
                         </a>
