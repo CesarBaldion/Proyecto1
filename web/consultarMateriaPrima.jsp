@@ -3,7 +3,7 @@
     Created on : 30/03/2022, 11:51:35 AM
     Author     : Sena
 --%>
-<%@include file="sesionesAlmacenista.jsp" %>
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="ModeloDAO.MateriaPrimaDAO"%>
 <%@page import="ModeloVO.MateriaPrimaVO"%>
@@ -20,11 +20,6 @@
         <div class="col-md-4 justify-content-center mx-auto mt-4">
             <h1 class="text-center">Materias Primas</h1>
             <div class="col-md-4 mx-auto ">
-                <form method="post" action="MateriaPrima" class="form-group"> 
-                    <input type="text" name="txtIdMateriaPrima" placeholder="Id" class="form-control d-flex">
-                    <input type="hidden" value="4" name="opcion">
-                    <button class="btn">Consultar</button>
-                </form>
                 <div class="mensaje">
                     <%                        if (request.getAttribute("mensajeError") != null) {%>
                     ${mensajeError}
@@ -61,14 +56,12 @@
                         <td><%=matPriVO.getNombre()%></td>
 
                         <td>
-
                             <form action="MateriaPrima" method="post">
                                 <input type="hidden" name="txtEstado" value="0">
-                                <input type="hidden" name="txtIdMateriaPrima" value="<%=matPriVO.getId_materia_Prima()%>"
-                                       <input type="hidden" value="3" name="opcion">
+                                <input type="hidden" name="txtIdMateriaPrima" value="<%=matPriVO.getId_materia_Prima()%>">
                                 <button>Desactivar</button>
+                                <input type="hidden" value="3" name="opcion">
                             </form>
-
                         </td>
 
 

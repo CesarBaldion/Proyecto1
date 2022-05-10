@@ -82,12 +82,13 @@ public class MateriaPrimaControlador extends HttpServlet {
                 if (matPriDAO.eliminarRegistro()) {
 
                     request.setAttribute("mensajeExito", "La materia prima se elimino correctamente!");
+                    request.getRequestDispatcher("consultarMateriaPrima.jsp").forward(request, response);
 
                 } else {
 
                     request.setAttribute("mensajeError", "La materia prima no se elimino correctamente!");
                 }
-                request.getRequestDispatcher("menu.jsp").forward(request, response);
+                
                 break;
 
             case 4: //Consultar por Orden
