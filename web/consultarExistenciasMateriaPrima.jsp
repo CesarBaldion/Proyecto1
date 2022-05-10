@@ -25,7 +25,7 @@
                     <th>Id Materia Prima</th>
                     <th>Nombre</th>
                     <th>Existencias</th>
-                    <th>Estado</th>
+                   
                 </tr>
                 
                 <%
@@ -43,7 +43,7 @@
                     <td><%=matPriVO.getId_materia_Prima()%></td>
                     <td><%=matPriVO.getNombre()%></td>
                     <td><%=matPriVO.getActualizacion()%></td>
-                    <td><%=matPriVO.getEstado()%></td>
+                    
                 </tr>
                 
                 <% }%>

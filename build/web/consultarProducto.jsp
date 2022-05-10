@@ -47,7 +47,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Nombre Producto</th>
-                        <th>Estado</th>
+                        
                     </tr>
 
                     <%
@@ -64,7 +64,7 @@
                     <tr>
                         <td><%=prodVO.getIdProducto()%></td>
                         <td><%=prodVO.getNombre()%></td>
-                        <td><%=prodVO.getEstado()%></td>
+                        
                     </tr>
 
                     <% }%>

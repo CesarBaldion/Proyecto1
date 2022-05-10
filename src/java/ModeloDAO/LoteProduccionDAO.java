@@ -176,7 +176,7 @@ public class LoteProduccionDAO extends Conexion implements Crud{
         ArrayList<LoteProduccionVO> listaLoteProduccion = new ArrayList<>();
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from LoteProduccion";
+            sql = "select * from LoteProduccionview";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
 

@@ -28,15 +28,6 @@
             <div class="col-md-11 mx-auto mt-4 formulario mt-2">
                 <form method ="post" action="MateriaPrima" class="form-group"> 
                     <input type="text" name="txtNombre" class="form-control mt-2" required="" placeholder="Nombre">
-                    <select name="txtEstado" class="form-select mt-2" required="">
-                        <option selected>Estado</option>
-                        <option value="1">
-                            Activo
-                        </option>
-                        <option value="0">
-                            Inactivo
-                        </option>
-                    </select>
                     <button class="btn boton mt-2 mb-3"> Registrar </button>
                     <input type="hidden" value="1" name="opcion">
                 </form>

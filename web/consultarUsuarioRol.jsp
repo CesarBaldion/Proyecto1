@@ -37,7 +37,7 @@
                     <tr>
                         <th>Rol</th>
                         <th>Usuario</th>
-                        <th>Estado</th>
+                        
                     </tr>
                     <%
                         Usuario_rolVO uRVO = new Usuario_rolVO();
@@ -52,7 +52,7 @@
                     <tr>
                         <td><%=uRVO.getId_Rol()%></td>
                         <td><%=uRVO.getId_Usuarios()%></td>
-                        <td><%=uRVO.getEstado()%></td>
+                        
                     </tr>
                     <% }%>
                 </table>

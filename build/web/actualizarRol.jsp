@@ -3,7 +3,7 @@
     Created on : 28/04/2022, 01:04:42 PM
     Author     : Juan Pablo
 --%>
-<%@include file="sesionesAdmin.jsp" %>
+<%@include file="sesionesAlmacenista.jsp" %>
 <%@page import="ModeloVO.RolVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="navegacion.jsp" %>

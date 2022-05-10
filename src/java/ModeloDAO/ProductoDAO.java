@@ -20,27 +20,28 @@ import java.util.logging.Logger;
  *
  * @author Andrex
  */
-public class ProductoDAO extends Conexion implements Crud{
+public class ProductoDAO extends Conexion implements Crud {
+
     private Connection conexion;
     private PreparedStatement puente;
     private ResultSet mensajero;
 
     private boolean operacion = false;
     private String sql;
-    
+
     //Traer variables del modulo VO
-    private String Id_Producto = "", Nombre ="", Estado="";
-    
+    private String Id_Producto = "", Nombre = "", Estado = "";
+
     //Metodo para recibir  los datos del vo
-    public ProductoDAO(ProductoVO prodVO){
+    public ProductoDAO(ProductoVO prodVO) {
         super();
-        
+
         //Conexion a bd
         try {
-            
+
             conexion = this.obtenerConexion();
             //Traer datos para operar
-            
+
             Id_Producto = prodVO.getIdProducto();
             Nombre = prodVO.getNombre();
             Estado = prodVO.getEstado();
@@ -52,21 +53,17 @@ public class ProductoDAO extends Conexion implements Crud{
     public ProductoDAO() {
     }
 
-    
-    
     @Override
     public boolean agregarRegistro() {
         try {
-            sql = "insert into Producto(Nombre , Estado) values (?,?)";
-            //Sentencia
+            sql = "insert into Producto(Nombre)values(?)";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Nombre);
-            puente.setString(2, Estado);
             puente.executeUpdate();
             operacion = true;
         } catch (SQLException e) {
             Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
-        }finally {
+        } finally {
 
             try {
                 this.cerrarConexion();
@@ -80,9 +77,9 @@ public class ProductoDAO extends Conexion implements Crud{
 
     @Override
     public boolean actualizarRegistro() {
-            try {
-            
-            sql="update producto set Nombre=?, Estado=? where producto Id_Producto=?";
+        try {
+
+            sql = "update producto set Nombre=?, Estado=? where producto Id_Producto=?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Nombre);
             puente.setString(2, Estado);
@@ -90,12 +87,12 @@ public class ProductoDAO extends Conexion implements Crud{
             puente.executeUpdate();
             operacion = true;
         } catch (Exception e) {
-            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE,null,e);
-        }finally{
-            try{
+            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
                 this.cerrarConexion();
-            }catch (Exception e){
-                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE,null,e);
+            } catch (Exception e) {
+                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
             }
         }
         return operacion;
@@ -103,26 +100,26 @@ public class ProductoDAO extends Conexion implements Crud{
 
     @Override
     public boolean eliminarRegistro() {
-            try {
-            
-            sql="update producto set Estado=0 where producto Id_Producto=?";
+        try {
+
+            sql = "update producto set Estado=0 where producto Id_Producto=?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Estado);
             puente.executeUpdate();
             operacion = true;
         } catch (Exception e) {
-            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE,null,e);
-        }finally{
-            try{
+            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
                 this.cerrarConexion();
-            }catch (Exception e){
-                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE,null,e);
+            } catch (Exception e) {
+                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
             }
         }
         return operacion;
     }
-    
-    public ProductoVO consultarProducto(String placa){
+
+    public ProductoVO consultarProducto(String placa) {
         ProductoVO prodVO = null;
         try {
             conexion = this.obtenerConexion();
@@ -130,45 +127,81 @@ public class ProductoDAO extends Conexion implements Crud{
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Id_Producto);
             mensajero = puente.executeQuery();
-            
-            while(mensajero.next()){
+
+            while (mensajero.next()) {
                 prodVO = new ProductoVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3));
             }
         } catch (Exception e) {
             Logger.getLogger(ProductoVO.class.getName()).log(Level.SEVERE, null, e);
-        }finally{
-            try{
+        } finally {
+            try {
                 this.cerrarConexion();
-            }catch(Exception e){
+            } catch (Exception e) {
                 Logger.getLogger(ProductoVO.class.getName()).log(Level.SEVERE, null, e);
             }
         }
         return prodVO;
     }
-    
-    public ArrayList<ProductoVO> listar(){
-        
+
+    public ArrayList<ProductoVO> listar() {
+
         ArrayList<ProductoVO> listaProductos = new ArrayList();
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from producto";
+            sql = "select * from productoview";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
-            
-            while(mensajero.next()){
-                ProductoVO prodVO = new ProductoVO(mensajero.getString(1),mensajero.getString(2),mensajero.getString(3));
-                
+
+            while (mensajero.next()) {
+                ProductoVO prodVO = new ProductoVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3));
+
                 listaProductos.add(prodVO);
             }
         } catch (Exception e) {
             Logger.getLogger(ProductoVO.class.getName()).log(Level.SEVERE, null, e);
-        }finally{
-            try{
+        } finally {
+            try {
                 this.cerrarConexion();
-            }catch(Exception e){
+            } catch (Exception e) {
                 Logger.getLogger(ProductoVO.class.getName()).log(Level.SEVERE, null, e);
             }
         }
         return listaProductos;
     }
+
+    public boolean verificarProducto(String Nombre) {
+
+        ProductoVO proVO = null;
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from producto where Nombre = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Nombre);
+            mensajero = puente.executeQuery();
+            while (mensajero.next()) {
+                proVO = new ProductoVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3));
+            }
+            if (proVO == null) {
+                operacion = false;
+            } else {
+                operacion = true;
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return operacion;
+
+    }
+
 }

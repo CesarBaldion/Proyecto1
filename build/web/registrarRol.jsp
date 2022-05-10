@@ -3,11 +3,11 @@
     Created on : 28/04/2022, 12:53:12 PM
     Author     : Juan Pablo
 --%>
-
-<%@page import="ModeloVO.UsuarioVO"%>
+<%@page import="ModeloVO.RolVO"%>
+<%@include file="sesionesAdmin.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="navegacion.jsp" %>
-<%@include file="sesionesAdmin.jsp" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,12 +15,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%
-
-            UsuarioVO usuVO = (UsuarioVO) request.getAttribute("usuarioConsultado");
-            if (usuVO != null) {
-
-        %>
         <div class="col-md-3 justify-content-center mx-auto caja border border-info mt-4">
             <h1 class="text-center fs-2 mt-2">Registrar Rol</h1>
             <div class="mx-auto justify-content-center">
@@ -43,10 +37,6 @@
                 </form>
             </div>
         </div>
-        <% } else {
-                request.getRequestDispatcher("consultarUsuarios.jsp").forward(request, response);
-
-            }%>
     </body>
 
 </html>

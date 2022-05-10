@@ -3,7 +3,7 @@
     Created on : 23/03/2022, 08:48:09 AM
     Author     : Sena
 --%>
-<%@include file="sesionesJefeProduccion.jsp" %>
+<%@include file="sesionesAlmacenista.jsp" %>
 <%@page import="ModeloVO.UsuarioVO"%>
 <%@page import="ModeloDAO.UsuarioDAO"%>
 <%@page import="ModeloVO.OrdenesVO"%>

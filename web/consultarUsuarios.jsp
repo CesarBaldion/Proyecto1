@@ -45,7 +45,7 @@
                         <th>Telefono</th>
                         <th>Email</th>
                         <th>Direccion</th>
-                        <th>Estado</th>
+                        
 
                     </tr>
                     <%
@@ -66,7 +66,7 @@
                         <td><%=usuVO.getTelefono()%></td>
                         <td><%=usuVO.getEmail()%></td>
                         <td><%=usuVO.getDireccion()%></td>
-                        <td><%=usuVO.getEstado()%></td>
+                        
                         <td>
                             <form action="Usuarios" method="post">
                                 <input type="hidden" value="<%=usuVO.getIdUsuarios()%>" name="txtId">

@@ -102,7 +102,7 @@ public class LoteProduccionControlador extends HttpServlet {
                     request.setAttribute("LoteProduccionConsultada", ltProducVO);
                     request.getRequestDispatcher("actualizarLoteProduccion.jsp").forward(request, response);
                 } else {
-                    request.setAttribute("mensajeExito", "El lote de Produccion no existe");
+                    request.setAttribute("mensajeError", "El lote de Produccion no existe");
                     request.getRequestDispatcher("consultarLoteProduccion.jsp").forward(request, response);
                 }
                 break;

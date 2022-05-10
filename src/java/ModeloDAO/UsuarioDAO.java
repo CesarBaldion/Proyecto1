@@ -81,8 +81,8 @@ public class UsuarioDAO extends Conexion implements Crud {
     public boolean agregarRegistro() {
         try {
             //Armar sentencia
-            sql = "insert into usuarios( Nombre, Documento, Telefono, Email, Direccion,"
-                    + " Estado, Contrasena) values (?,?,?,?,?,?,?)";
+            sql = "insert into usuarios( Nombre, Documento, Telefono, Email, Direccion, Contrasena)"
+                    + "values (?,?,?,?,?,?)";
             // crear el camino por donde va la sentencia
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Nombre);
@@ -90,9 +90,7 @@ public class UsuarioDAO extends Conexion implements Crud {
             puente.setString(3, Telefono);
             puente.setString(4, Email);
             puente.setString(5, Direccion);
-            puente.setString(6, Estado);
-
-            puente.setString(7, Encriptar(Contrasena));
+            puente.setString(6, Encriptar(Contrasena));
             puente.executeUpdate();
             operacion = true;
 
@@ -245,7 +243,7 @@ public class UsuarioDAO extends Conexion implements Crud {
         ArrayList<UsuarioVO> listaUsuarios = new ArrayList<>();
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from usuarios";
+            sql = "select * from usuariosview";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
 

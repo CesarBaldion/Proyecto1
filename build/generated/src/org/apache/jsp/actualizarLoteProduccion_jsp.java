@@ -21,7 +21,7 @@ public final class actualizarLoteProduccion_jsp extends org.apache.jasper.runtim
 
   static {
     _jspx_dependants = new java.util.ArrayList<String>(2);
-    _jspx_dependants.add("/sesionesJefeProduccion.jsp");
+    _jspx_dependants.add("/sesionesAdmin.jsp");
     _jspx_dependants.add("/navegacion.jsp");
   }
 
@@ -61,23 +61,39 @@ public final class actualizarLoteProduccion_jsp extends org.apache.jasper.runtim
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!DOCTYPE html>\r\n");
+      out.write("\r\n");
 
-HttpSession buscarSesion = (HttpSession) request.getSession();
+    response.setHeader("Pragma", "No-cache");
+    response.setHeader("Cache-control", "no-cache, no-store, must-revalidate");
+    response.setDateHeader("Expires", 0);
+
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+
+    HttpSession buscarSesion = (HttpSession) request.getSession();
     UsuarioVO usuVO1 = null;
     if (buscarSesion.getAttribute("datosUsuario") == null) {
+
         request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
-    }else{
+
+    } else {
         UsuarioRolDAO uRDAO = new UsuarioRolDAO();
-         usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
-         Usuario_rolVO uRVO2 = uRDAO.consultarRol(usuVO1.getIdUsuarios());
-         String id = uRVO2.getId_Rol();
-         if(id.equals("2") || id.equals("1")){
-             
-         }else{
-             request.getRequestDispatcher("errorPermisos.jsp").forward(request, response);
-         }
-         
-    } 
+        usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
+        Usuario_rolVO uRVO2 = uRDAO.consultarRol(usuVO1.getIdUsuarios());
+        String id = uRVO2.getId_Rol();
+        if (id.equals("1")) {
+
+        } else {
+            request.getRequestDispatcher("errorPermisos.jsp").forward(request, response);
+
+        }
+
+    }
+
 
       out.write("\r\n");
       out.write("\r\n");

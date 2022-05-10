@@ -43,7 +43,7 @@
                     <tr>
                         <th>Id <br>Materia Prima</th>
                         <th>Nombre</th>
-                        <th>Estado</th>
+                       
                     </tr>
 
                     <%
@@ -60,7 +60,7 @@
                     <tr>
                         <td><%=matPriVO.getId_materia_Prima()%></td>
                         <td><%=matPriVO.getNombre()%></td>
-                        <td><%=matPriVO.getEstado()%></td>
+                        
 
                     </tr>
 

@@ -45,21 +45,26 @@ public class ProductoControlador extends HttpServlet {
 
         // 3. Quien hace las operaciones? DAO
         ProductoDAO prodDAO = new ProductoDAO(prodVO);
+        
 
         // 4. Administrar las operaciones del modulo
         switch (opcion) {
 
             case 1: //Agregar registro
-
-                if (prodDAO.agregarRegistro()) {
-
-                    request.setAttribute("mensajeExito", "El producto se registro correctamente!");
-
+                if (prodDAO.verificarProducto(Nombre) == false) {
+                    if (prodDAO.agregarRegistro() == true) {
+                        
+                        request.setAttribute("Bien", "Se ha registrado");
+                        request.getRequestDispatcher("registrarProducto.jsp").forward(request, response);
+                    } else {
+                        request.setAttribute("Error", "Error al Registrar!");
+                        request.getRequestDispatcher("registrarProducto.jsp").forward(request, response);
+                    }
                 } else {
-
-                    request.setAttribute("mensajeError", "El producto no se registro correctamente");
+                    request.setAttribute("error", "El producto ya existe");
+                    request.getRequestDispatcher("registrarProducto.jsp").forward(request, response);
                 }
-                request.getRequestDispatcher("registrarProducto.jsp").forward(request, response);
+
                 break;
 
             case 2:

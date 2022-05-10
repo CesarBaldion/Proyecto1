@@ -3,7 +3,7 @@
     Created on : 24/03/2022, 08:24:57 AM
     Author     : Daniel
 --%>
-<%@include file="sesionesJefeProduccion.jsp" %>
+<%@include file="sesionesAlmacenista.jsp" %>
 <%@page import="ModeloVO.UsuarioVO"%>
 <%@page import="ModeloVO.OrdenDetallesVO"%>
 <%@page import="ModeloDAO.OrdenDetallesDAO"%>

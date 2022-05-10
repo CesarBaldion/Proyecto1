@@ -30,14 +30,7 @@
             <br>
             <input type="text" name="txtNombre" value="<%=mpVO.getNombre()%>" required="">
             <br>
-            <label>Estado</label>
-            <br>
-            <select name="txtEstado">
-                <option value="<%=mpVO.getEstado()%>"><%=mpVO.getEstado()%></option>
-                <option value="0">Inactivo</option>
-                <option value="1">Activo</option>
-            </select>
-            <br>
+           
             <button id="Boton"> Actualizar </button>
             <input type="hidden" value="2" name="opcion">
             <a href="consultarMateriaPrima.jsp">Volver</a><br>

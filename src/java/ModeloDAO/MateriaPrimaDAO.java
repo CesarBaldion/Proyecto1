@@ -58,13 +58,11 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
     public boolean agregarRegistro() {
         try {
             //Armar sentencia
-            sql = "insert into materia_prima(Nombre, Actualizacion, Estado) values (?,?,?)";
+            sql = "insert into materia_prima(Nombre, Actualizacion)values (?,?)";
             // crear el camino por donde va la sentencia
             puente = conexion.prepareStatement(sql);
-
             puente.setString(1, Nombre);
             puente.setString(2, Actualizacion);
-            puente.setString(3, Estado);
             puente.executeUpdate();
             operacion = true;
 
@@ -87,11 +85,11 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
     @Override
     public boolean actualizarRegistro() {
         try {
-            sql = "update materia_prima set Nombre = ?, Estado = ? where Id_materia_Prima = ? ";
+            sql = "update materia_prima set Nombre = ? where Id_materia_Prima = ? ";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Nombre);
-            puente.setString(2, Estado);
-            puente.setString(3, Id_materia_Prima);
+            
+            puente.setString(2, Id_materia_Prima);
 
             puente.executeUpdate();
             operacion = true;
@@ -156,7 +154,7 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
             conexion = this.obtenerConexion();
             sql = "SELECT materia_prima.Id_materia_Prima,materia_prima.Nombre,"
                     + " calculadora.existencias,materia_prima.Estado FROM calculadora,"
-                    + "materia_prima WHERE materia_prima.Id_materia_Prima = calculadora.Id_Materia_Prima";
+                    + "materia_prima WHERE materia_prima.Id_materia_Prima = calculadora.Id_Materia_Prima and materia_prima.estado =1";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
 
@@ -189,7 +187,7 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
         ArrayList<MateriaPrimaVO> listaMateriaPrima = new ArrayList<>();
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from materia_prima";
+            sql = "select * from materiaprimaview";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
 

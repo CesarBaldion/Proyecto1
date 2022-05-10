@@ -182,7 +182,7 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
         ArrayList<loteMateriaPrimaVO> listaLoteMateriaPrima = new ArrayList<>();
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from LoteMateriaPrima";
+            sql = "select * from LoteMateriaPrimaview";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
 

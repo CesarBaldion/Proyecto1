@@ -3,12 +3,12 @@
     Created on : 10/03/2022, 08:21:00 AM
     Author     : Sena
 --%>
+
 <%@include file="sesionesAlmacenista.jsp" %>
 <%@page import="ModeloVO.OrdenDetallesVO"%>
 <%@page import="ModeloDAO.OrdenDetallesDAO"%>
 <%@page import="ModeloDAO.UsuarioDAO"%>
 <%@include file="navegacion.jsp" %>
-<%@include file="sesiones.jsp" %>
 <%@page import="ModeloVO.UsuarioVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.ArrayList"%>
