@@ -40,6 +40,7 @@ public class loteMateriaPrimaControlador extends HttpServlet {
         String Observaciones = request.getParameter("txtObservaciones");
         String FechaIngreso = request.getParameter("txtFechaIngreso");
         String FechaSalida = request.getParameter("txtFechaSalida");
+        String Estado = request.getParameter("txtEstado");
         
         int opcion = Integer.parseInt(request.getParameter("opcion"));
 
@@ -83,6 +84,7 @@ public class loteMateriaPrimaControlador extends HttpServlet {
                 if (loteMPDAO.eliminarRegistro()) {
                     
                     request.setAttribute("mensajeExito", "El lote de materia prima se elimino correctamente!");
+                    request.getRequestDispatcher("consultarLoteMateriaPrima.jsp").forward(request, response);
                     
                 } else {
                     

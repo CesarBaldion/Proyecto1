@@ -7,10 +7,10 @@ import ModeloVO.Usuario_rolVO;
 import ModeloDAO.UsuarioRolDAO;
 import ModeloVO.UsuarioVO;
 import java.util.ArrayList;
-import ModeloDAO.MateriaPrimaDAO;
-import ModeloVO.MateriaPrimaVO;
+import ModeloDAO.OrdenDetallesDAO;
+import ModeloVO.OrdenDetallesVO;
 
-public final class consultarMateriaPrima_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class consultarOrdenDetalles_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -183,19 +183,21 @@ public final class consultarMateriaPrima_jsp extends org.apache.jasper.runtime.H
       out.write("    <head>\r\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
       out.write("        <link rel=\"stylesheet\" href=\"css/\">\r\n");
-      out.write("        <title>Consultar materias primas</title>\r\n");
+      out.write("        <title>JSP Page</title>\r\n");
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
       out.write("        <div class=\"col-md-4 justify-content-center mx-auto mt-4\">\r\n");
-      out.write("            <h1 class=\"text-center\">Materias Primas</h1>\r\n");
-      out.write("            <div class=\"col-md-4 mx-auto \">\r\n");
-      out.write("                <form method=\"post\" action=\"MateriaPrima\" class=\"form-group\"> \r\n");
-      out.write("                    <input type=\"text\" name=\"txtIdMateriaPrima\" placeholder=\"Id\" class=\"form-control d-flex\">\r\n");
+      out.write("            <h1 class=\"text-center\">Orden Detalles</h1>\r\n");
+      out.write("            <div class=\"col-md-6 mx-auto \">\r\n");
+      out.write("                <form method=\"post\" action=\"OrdenDetalles\" class=\"form-group\">\r\n");
+      out.write("                    <input type=\"text\" name=\"txtIdOrdenDetalles\" placeholder=\"Id Orden Detalles\" class=\"form-control\">\r\n");
       out.write("                    <input type=\"hidden\" value=\"4\" name=\"opcion\">\r\n");
       out.write("                    <button class=\"btn\">Consultar</button>\r\n");
+      out.write("\r\n");
       out.write("                </form>\r\n");
       out.write("                <div class=\"mensaje\">\r\n");
       out.write("                    ");
+
                         if (request.getAttribute("mensajeError") != null) {
       out.write("\r\n");
       out.write("                    ");
@@ -209,50 +211,42 @@ public final class consultarMateriaPrima_jsp extends org.apache.jasper.runtime.H
       out.write("            </div>\r\n");
       out.write("        </div>\r\n");
       out.write("\r\n");
-      out.write("\r\n");
-      out.write("        <div class=\"col-md-9 mx-auto  mt-4\">\r\n");
+      out.write("        <div class=\"col-md-9 mx-auto justify-content-center mt-4\">\r\n");
       out.write("            <div class=\"col-md-7 mx-auto justify-content-center\">\r\n");
       out.write("                <table class=\"table table-light table-hover table-striped text-center\">\r\n");
       out.write("\r\n");
       out.write("                    <tr>\r\n");
-      out.write("                        <th>Id <br>Materia Prima</th>\r\n");
-      out.write("                        <th>Nombre</th>\r\n");
-      out.write("\r\n");
+      out.write("                        <th>Id</th>\r\n");
+      out.write("                        <th>Id Orden</th>\r\n");
+      out.write("                        <th>Id Detalles Producto</th>\r\n");
+      out.write("                        <th>Cantidad Solicitada</th>\r\n");
       out.write("                    </tr>\r\n");
-      out.write("\r\n");
       out.write("                    ");
 
-                        MateriaPrimaVO matPriVO = new MateriaPrimaVO();
-                        MateriaPrimaDAO matPriDAO = new MateriaPrimaDAO();
-                        ArrayList<MateriaPrimaVO> listaMateriaPrima = matPriDAO.ListarDos();
-                        for (int i = 0; i < listaMateriaPrima.size(); i++) {
+                        OrdenDetallesVO OrdenDetallVO = new OrdenDetallesVO();
+                        OrdenDetallesDAO OrdenDetallDAO = new OrdenDetallesDAO(OrdenDetallVO);
 
-                            matPriVO = listaMateriaPrima.get(i);
+                        ArrayList<OrdenDetallesVO> listaOrdenDetalles = OrdenDetallDAO.Listar();
+
+                        for (int i = 0; i < listaOrdenDetalles.size(); i++) {
+
+                            OrdenDetallVO = listaOrdenDetalles.get(i);
 
                     
       out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
       out.write("                    <tr>\r\n");
       out.write("                        <td>");
-      out.print(matPriVO.getId_materia_Prima());
+      out.print(OrdenDetallVO.getId_Orden_Detalles());
       out.write("</td>\r\n");
       out.write("                        <td>");
-      out.print(matPriVO.getNombre());
+      out.print(OrdenDetallVO.getId_Orden());
       out.write("</td>\r\n");
-      out.write("\r\n");
-      out.write("                        <td>\r\n");
-      out.write("\r\n");
-      out.write("                            <form action=\"MateriaPrima\" method=\"post\">\r\n");
-      out.write("                                <input type=\"hidden\" name=\"txtEstado\" value=\"0\">\r\n");
-      out.write("                                <input type=\"hidden\" name=\"txtIdMateriaPrima\" value=\"");
-      out.print(matPriVO.getId_materia_Prima());
-      out.write("\"\r\n");
-      out.write("                                       <input type=\"hidden\" value=\"3\" name=\"opcion\">\r\n");
-      out.write("                                <button>Desactivar</button>\r\n");
-      out.write("                            </form>\r\n");
-      out.write("\r\n");
-      out.write("                        </td>\r\n");
+      out.write("                        <td>");
+      out.print(OrdenDetallVO.getId_Detalles_Producto());
+      out.write("</td>\r\n");
+      out.write("                        <td>");
+      out.print(OrdenDetallVO.getCantidadSolicitada());
+      out.write("</td>\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("                    </tr>\r\n");
@@ -262,7 +256,9 @@ public final class consultarMateriaPrima_jsp extends org.apache.jasper.runtime.H
       out.write("\r\n");
       out.write("\r\n");
       out.write("                </table>\r\n");
+      out.write("\r\n");
       out.write("            </div>\r\n");
+      out.write("\r\n");
       out.write("        </div>\r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");

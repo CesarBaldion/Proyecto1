@@ -115,6 +115,18 @@ public class MateriaPrimaControlador extends HttpServlet {
                     request.getRequestDispatcher("consultarExistenciasMateriaPrima.jsp").forward(request, response);
                 }
                 break;
+                case 6:
+
+                if (matPriDAO.eliminarRegistro()) {
+                    request.setAttribute("mensajeExito", "La materia prima se elimino correctamente!");
+                    request.getRequestDispatcher("consultarExistenciasMateriaPrima.jsp").forward(request, response);
+
+                } else {
+
+                    request.setAttribute("mensajeError", "La materia prima no se elimino correctamente!");
+                }
+                
+                break;
         }
     }
 

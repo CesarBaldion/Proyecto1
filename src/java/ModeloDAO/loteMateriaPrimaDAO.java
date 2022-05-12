@@ -49,6 +49,7 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
             fecha_ingreso = loteMPVO.getFecha_ingreso();
             fecha_salida = loteMPVO.getFecha_salida();
             
+            
 
         } catch (Exception e) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -122,7 +123,8 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
 
         try {
             //Armar sentencia
-            sql = "delete from lotemateria_prima where Id_loteMateria_Prima" + Id_loteMateria_Prima;
+            sql = "UPDATE `lote_materiaprima` SET `Estado`= 0 WHERE Id_lotemateria_prima = ?";
+            puente.setString(1, Id_loteMateria_Prima);
             puente = conexion.prepareStatement(sql);
             puente.executeUpdate();
             operacion = true;

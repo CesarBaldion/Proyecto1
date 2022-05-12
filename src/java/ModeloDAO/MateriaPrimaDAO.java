@@ -88,7 +88,6 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
             sql = "update materia_prima set Nombre = ? where Id_materia_Prima = ? ";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Nombre);
-            
             puente.setString(2, Id_materia_Prima);
 
             puente.executeUpdate();

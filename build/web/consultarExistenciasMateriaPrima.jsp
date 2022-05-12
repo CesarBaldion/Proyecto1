@@ -43,6 +43,7 @@
                     <td><%=matPriVO.getId_materia_Prima()%></td>
                     <td><%=matPriVO.getNombre()%></td>
                     <td><%=matPriVO.getActualizacion()%></td>
+                      
                     
                 </tr>
                 

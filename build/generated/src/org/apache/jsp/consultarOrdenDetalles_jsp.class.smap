@@ -1,0 +1,31 @@
+SMAP
+consultarOrdenDetalles_jsp.java
+JSP
+*S JSP
+*F
++ 0 consultarOrdenDetalles.jsp
+consultarOrdenDetalles.jsp
++ 1 sesionesAlmacenista.jsp
+sesionesAlmacenista.jsp
++ 2 navegacion.jsp
+navegacion.jsp
+*L
+5:56,2
+5#1,9:58
+13,25:67
+37:92,2
+6#0,6:94
+5#2,82:99
+11#0,20:180
+31:201,2
+32:203,3
+33:206
+34:207,3
+35,15:210
+50,10:226
+59,2:236
+61,4:238,3
+65,4:250
+69:254,3
+70,9:257
+*E

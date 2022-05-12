@@ -11,7 +11,7 @@ package ModeloVO;
  */
 public class loteMateriaPrimaVO {
 
-    private String Id_loteMateria_Prima,Id_Materia_Prima,cantidad, observaciones, fecha_ingreso, fecha_salida;
+    private String Id_loteMateria_Prima,Id_Materia_Prima,cantidad, observaciones, fecha_ingreso, fecha_salida, Estado;
 
     // Declarar constructor vacio para enviar datos.
     public loteMateriaPrimaVO() {
@@ -26,6 +26,7 @@ public class loteMateriaPrimaVO {
         this.observaciones = Observaciones;
         this.fecha_ingreso = FechaIngreso;
         this.fecha_salida = FechaSalida;
+       
         
     }
 
@@ -76,6 +77,9 @@ public class loteMateriaPrimaVO {
     public void setFecha_salida(String fecha_salida) {
         this.fecha_salida = fecha_salida;
     }
+
+  
+    
 
     
     

@@ -65,6 +65,15 @@
                         <td><%=prodVO.getIdProducto()%></td>
                         <td><%=prodVO.getNombre()%></td>
                         
+                         <td>
+                            <form action="Producto" method="post">
+                                <input type="hidden" name="txtEstado" value="0">
+                                <input type="hidden" name="txtId" value="<%=prodVO.getIdProducto()%>">
+                                <button>Desactivar</button>
+                                <input type="hidden" value="3" name="opcion">
+                            </form>
+                        </td>
+                        
                     </tr>
 
                     <% }%>

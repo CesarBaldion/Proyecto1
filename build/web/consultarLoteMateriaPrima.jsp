@@ -69,6 +69,8 @@
                         <td><%=ltMatPriVO.getFecha_ingreso()%></td>
                         <td><%=ltMatPriVO.getFecha_salida()%></td>
                         
+                        
+                        
 
                     </tr>
 

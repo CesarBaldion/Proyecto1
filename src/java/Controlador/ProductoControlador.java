@@ -85,10 +85,11 @@ public class ProductoControlador extends HttpServlet {
                 if (prodDAO.eliminarRegistro()) {
 
                     request.setAttribute("mensajeExito", "El producto se elimino correctamente!");
+                    request.getRequestDispatcher("consultarProducto.jsp").forward(request, response);
 
                 } else {
 
-                    request.setAttribute("mensajeExito", "El producto no se elimino correctamente!");
+                    request.setAttribute("mensajeError", "El producto no se elimino correctamente!");
                 }
                 request.getRequestDispatcher("menu.jsp").forward(request, response);
                 break;
