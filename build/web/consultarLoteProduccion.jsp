@@ -65,6 +65,15 @@
                     <td><%=ltProducVO.getId_orden_Detalles()%></td>
                     <td><%=ltProducVO.getCantidad()%></td>
                     <td><%=ltProducVO.getFecha_Fabricacion()%></td>
+                    
+                    <td>
+                            <form action="LoteProduccion" method="post">
+                                <input type="hidden" name="txtEstado" value="0">
+                                <input type="hidden" name="txtid_loteProduccion" value="<%=ltProducVO.getId_Lote_Produccion()%>">
+                                <button>Desactivar</button>
+                                <input type="hidden" value="3" name="opcion">
+                            </form>
+                        </td>
                 </tr>
 
                 <% }%>

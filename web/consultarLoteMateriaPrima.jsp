@@ -68,10 +68,16 @@
                         <td><%=ltMatPriVO.getObservaciones()%></td>
                         <td><%=ltMatPriVO.getFecha_ingreso()%></td>
                         <td><%=ltMatPriVO.getFecha_salida()%></td>
+                   
+                        <td>
+                            <form action="loteMateriaPrima" method="post">
+                                <input type="hidden" name="txtEstado" value="0">
+                                <input type="hidden" name="txtIdLoteMateriaPrima" value="<%=ltMatPriVO.getId_loteMateria_Prima()%>">
+                                <button>Desactivar</button>
+                                <input type="hidden" value="3" name="opcion">
+                            </form>
+                        </td>
                         
-                        
-                        
-
                     </tr>
 
                     <% }%>

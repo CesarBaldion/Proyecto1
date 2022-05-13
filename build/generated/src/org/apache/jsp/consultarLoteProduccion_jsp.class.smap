@@ -1,0 +1,33 @@
+SMAP
+consultarLoteProduccion_jsp.java
+JSP
+*S JSP
+*F
++ 0 consultarLoteProduccion.jsp
+consultarLoteProduccion.jsp
++ 1 navegacion.jsp
+navegacion.jsp
++ 2 sesionesAlmacenista.jsp
+sesionesAlmacenista.jsp
+*L
+5,7:57
+5#1,82:63
+11#0:144,2
+5#2,9:146
+13,25:155
+37:180,2
+12#0,20:182
+32:203,2
+33:205,3
+34:208
+35:209,3
+36,16:212
+52,10:229
+61,2:239
+63,5:241,3
+68,4:256
+72:260,3
+73,6:263
+79:269,3
+80,7:272
+*E

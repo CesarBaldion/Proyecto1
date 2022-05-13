@@ -28,7 +28,7 @@ public class LoteProduccionDAO extends Conexion implements Crud{
     private boolean operacion = false;
     private String sql;
     
-    private String id_Usuarios="", id_Lote_Produccion="",id_orden_Detalles="",fecha_Fabricacion="";
+    private String id_Usuarios="", id_Lote_Produccion="",id_orden_Detalles="",fecha_Fabricacion="", Estado = "";
     private int cantidad;
     
     public LoteProduccionDAO(LoteProduccionVO loteVO) {
@@ -45,6 +45,7 @@ public class LoteProduccionDAO extends Conexion implements Crud{
             id_orden_Detalles = loteVO.getId_orden_Detalles();       
             cantidad = loteVO.getCantidad();
             fecha_Fabricacion = loteVO.getFecha_Fabricacion();
+            Estado = loteVO.getEstado();
             
             
 
@@ -89,8 +90,9 @@ public class LoteProduccionDAO extends Conexion implements Crud{
     public boolean eliminarRegistro() {
         try {
             //Armar sentencia
-            sql = "delete from lote_produccion where Id_Lote_Produccion =" + id_Lote_Produccion;
+           sql = "UPDATE `lote_produccion` SET `Estado`= 0 WHERE Id_lote_produccion = ?";
             puente = conexion.prepareStatement(sql);
+            puente.setString(1, id_Lote_Produccion);
             puente.executeUpdate();
             operacion = true;
 
@@ -150,7 +152,7 @@ public class LoteProduccionDAO extends Conexion implements Crud{
             while (mensajero.next()) {
 
                 ltProducVO = new LoteProduccionVO(mensajero.getString(1), mensajero.getString(2),
-                        mensajero.getString(3),mensajero.getInt(4),mensajero.getString(5));
+                        mensajero.getString(3),mensajero.getInt(4),mensajero.getString(5),mensajero.getString(6));
 
             }
 
@@ -183,7 +185,7 @@ public class LoteProduccionDAO extends Conexion implements Crud{
             while (mensajero.next()) {
 
                LoteProduccionVO ltProducVO = new LoteProduccionVO(mensajero.getString(1), mensajero.getString(2),
-                        mensajero.getString(3),mensajero.getInt(4),mensajero.getString(5));
+                        mensajero.getString(3),mensajero.getInt(4),mensajero.getString(5),mensajero.getString(6));
                listaLoteProduccion.add(ltProducVO);
 
             }

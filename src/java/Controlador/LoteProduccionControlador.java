@@ -40,6 +40,7 @@ public class LoteProduccionControlador extends HttpServlet {
         String fecha_Fabricacion = request.getParameter("txtfecha_Fabricacion");
         String Id_orden_detalles = request.getParameter("txtId_orden_detalles");
         String Id_Usuarios = request.getParameter("txtId_Usuarios");
+        String Estado = request.getParameter("txtEstado");
         
         if(cantidad==null){
             cantidad ="0";
@@ -47,7 +48,7 @@ public class LoteProduccionControlador extends HttpServlet {
         ;
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         // 2. Quien tiene los datos de forma segura en el sistema? VO
-       LoteProduccionVO ltProducVO = new LoteProduccionVO(id_loteProduccion,Id_Usuarios,Id_orden_detalles, Integer.parseInt(cantidad),fecha_Fabricacion);
+       LoteProduccionVO ltProducVO = new LoteProduccionVO(id_loteProduccion,Id_Usuarios,Id_orden_detalles, Integer.parseInt(cantidad),fecha_Fabricacion,Estado);
 
         // 3. Quien hace las operaciones? DAO
         LoteProduccionDAO ltProducDAO = new LoteProduccionDAO(ltProducVO);
@@ -86,6 +87,8 @@ public class LoteProduccionControlador extends HttpServlet {
                 if (ltProducDAO.eliminarRegistro()) {
 
                     request.setAttribute("mensajeExito", "El lote de Produccion se elimino correctamente!");
+                     request.getRequestDispatcher("consultarLoteProduccion.jsp").forward(request, response);
+
 
                 } else {
 

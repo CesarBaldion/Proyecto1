@@ -10,19 +10,20 @@ package ModeloVO;
  * @author Sena
  */
 public class LoteProduccionVO {
-    private String id_Lote_Produccion,id_Usuarios,id_orden_Detalles,fecha_Fabricacion;
+    private String id_Lote_Produccion,id_Usuarios,id_orden_Detalles,fecha_Fabricacion,Estado;
     private int cantidad;
     //private Date fecha_Fabricacion;
     
     public LoteProduccionVO() {
     }
 
-    public LoteProduccionVO(String id_Lote_Produccion,String id_Usuarios, String id_orden_Detalles,int cantidad,String fecha_Fabricacion) {
+    public LoteProduccionVO(String id_Lote_Produccion,String id_Usuarios, String id_orden_Detalles,int cantidad,String fecha_Fabricacion, String Estado) {
         this.id_Lote_Produccion = id_Lote_Produccion;
         this.id_Usuarios = id_Usuarios;
         this.id_orden_Detalles = id_orden_Detalles;
         this.cantidad = cantidad;
         this.fecha_Fabricacion = fecha_Fabricacion;
+        this.Estado = Estado;
     }
     
      public String getId_Lote_Produccion() {
@@ -63,6 +64,15 @@ public class LoteProduccionVO {
     public void setFecha_Fabricacion(String fecha_Fabricacion) {
         this.fecha_Fabricacion = fecha_Fabricacion;
     }
+
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
+    }
+    
     
 }
 

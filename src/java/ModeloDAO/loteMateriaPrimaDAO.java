@@ -20,9 +20,9 @@ import java.util.logging.Logger;
  *
  * @author Sena
  */
-public class loteMateriaPrimaDAO extends Conexion implements Crud{
-    
-     private Connection conexion;
+public class loteMateriaPrimaDAO extends Conexion implements Crud {
+
+    private Connection conexion;
     private PreparedStatement puente;
     private ResultSet mensajero;
 
@@ -30,7 +30,8 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
     private String sql;
 
     // Declarar variables del modulo(VO)
-    private String Id_loteMateria_Prima = "", Id_Materia_Prima = "",cantidad = "", observaciones = "", fecha_ingreso = "", fecha_salida = "";
+    private String Id_loteMateria_Prima = "", Id_Materia_Prima = "", cantidad = "", observaciones = "",
+            fecha_ingreso = "", fecha_salida = "", Estado = "";
 
     //2. Crear metodo principal para recibir los datos del VO
     public loteMateriaPrimaDAO(loteMateriaPrimaVO loteMPVO) {
@@ -48,8 +49,7 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
             observaciones = loteMPVO.getObservaciones();
             fecha_ingreso = loteMPVO.getFecha_ingreso();
             fecha_salida = loteMPVO.getFecha_salida();
-            
-            
+            Estado = loteMPVO.getEstado();
 
         } catch (Exception e) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -69,7 +69,7 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
             puente.setString(3, observaciones);
             puente.setString(4, fecha_ingreso);
             puente.setString(5, fecha_salida);
-            
+
             puente.executeUpdate();
             operacion = true;
 
@@ -123,9 +123,9 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
 
         try {
             //Armar sentencia
-            sql = "UPDATE `lote_materiaprima` SET `Estado`= 0 WHERE Id_lotemateria_prima = ?";
-            puente.setString(1, Id_loteMateria_Prima);
+            sql = "UPDATE `lotemateria_prima` SET `Estado`= 0 WHERE Id_lotemateria_prima = ?";
             puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id_loteMateria_Prima);
             puente.executeUpdate();
             operacion = true;
 
@@ -144,8 +144,8 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
 
         return operacion;
     }
-    
-      public loteMateriaPrimaVO consultarIdLoteMateriaPrima(String Id) {
+
+    public loteMateriaPrimaVO consultarIdLoteMateriaPrima(String Id) {
 
         loteMateriaPrimaVO ltMatPriVO = null;
         try {
@@ -158,7 +158,8 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
             while (mensajero.next()) {
 
                 ltMatPriVO = new loteMateriaPrimaVO(mensajero.getString(1), mensajero.getString(2),
-                        mensajero.getString(3), mensajero.getString(4),mensajero.getString(5), mensajero.getString(6));
+                        mensajero.getString(3), mensajero.getString(4), mensajero.getString(5),
+                        mensajero.getString(6), mensajero.getString(7));
 
             }
 
@@ -184,14 +185,15 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
         ArrayList<loteMateriaPrimaVO> listaLoteMateriaPrima = new ArrayList<>();
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from LoteMateriaPrimaview";
+            sql = "select * from lotemateriaprimaview";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
 
             while (mensajero.next()) {
 
-               loteMateriaPrimaVO ltMatPriVO = new loteMateriaPrimaVO(mensajero.getString(1),
-                       mensajero.getString(2), mensajero.getString(3), mensajero.getString(4),mensajero.getString(5), mensajero.getString(6));
+                loteMateriaPrimaVO ltMatPriVO = new loteMateriaPrimaVO(mensajero.getString(1),
+                        mensajero.getString(2), mensajero.getString(3), mensajero.getString(4),
+                        mensajero.getString(5), mensajero.getString(6), mensajero.getString(7));
                 listaLoteMateriaPrima.add(ltMatPriVO);
 
             }
@@ -212,5 +214,5 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud{
         return listaLoteMateriaPrima;
 
     }
-    
+
 }

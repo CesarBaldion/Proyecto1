@@ -18,7 +18,7 @@ public class loteMateriaPrimaVO {
     }
 
     public loteMateriaPrimaVO(String IdloteMateriaPrima,String IdMateriaPrima, 
-            String Cantidad, String Observaciones, String FechaIngreso, String FechaSalida
+            String Cantidad, String Observaciones, String FechaIngreso, String FechaSalida, String Estado
             ) {
         this.Id_loteMateria_Prima = IdloteMateriaPrima;
         this.Id_Materia_Prima = IdMateriaPrima;
@@ -26,6 +26,7 @@ public class loteMateriaPrimaVO {
         this.observaciones = Observaciones;
         this.fecha_ingreso = FechaIngreso;
         this.fecha_salida = FechaSalida;
+        this.Estado = Estado;
        
         
     }
@@ -77,6 +78,16 @@ public class loteMateriaPrimaVO {
     public void setFecha_salida(String fecha_salida) {
         this.fecha_salida = fecha_salida;
     }
+
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
+    }
+    
+    
 
   
     
