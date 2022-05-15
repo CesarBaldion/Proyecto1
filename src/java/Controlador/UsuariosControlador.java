@@ -7,15 +7,26 @@ package Controlador;
 
 import ModeloDAO.UsuarioDAO;
 import ModeloVO.UsuarioVO;
+import Util.Conexion;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import net.sf.jasperreports.engine.JRExporter;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.util.JRLoader;
 
 /**
  *
@@ -258,10 +269,36 @@ public class UsuariosControlador extends HttpServlet {
                     request.getRequestDispatcher("consultarUsuarios.jsp").forward(request, response);
                 }
                 break;
+
+            case 10:
+                //generarReporte
+                response.setHeader("Content-Disposition", "attachment; filename=\"reporteUsuarios.pdf\";");
+                response.setHeader("Cache-Control", "no-cache");
+                response.setHeader("Pragma", "no-cache");
+                response.setDateHeader("Expires", 0);
+                response.setContentType("application/pdf");
+
+                ServletOutputStream out = response.getOutputStream();
+                try {
+                    Conexion conexion = new Conexion();
+                    JasperReport reporte = (JasperReport) JRLoader.loadObject(getServletContext().getRealPath("reportes/reporteUsuario.jasper"));
+
+                    Map parametros = new HashMap();
+                    parametros.put("estado", usuVO.getEstado());
+
+                    JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, conexion.obtenerConexion());
+
+                    JRExporter exporter = new JRPdfExporter();
+                    exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+                    exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, out);
+                    exporter.exportReport();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
