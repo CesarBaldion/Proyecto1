@@ -8,7 +8,7 @@
 <%@page import="ModeloDAO.ProductoDAO"%>
 <%@page import="ModeloVO.ProductoVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="navegacion.jsp" %>
+<%@include file="navegacion.jsp"%>
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html>

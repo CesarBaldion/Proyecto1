@@ -9,6 +9,7 @@
 <%@page import="ModeloVO.OrdenesVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="navegacion.jsp" %>
+<%@include file="css-paginacion.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,7 +43,7 @@
 
         <div class="col-md-9 mx-auto justify-content-center mt-4">
             <div class="col-md-7 mx-auto justify-content-center">
-                <table class="table table-light table-hover table-striped text-center">
+                <table id="datos" number-per-page="10" class="table table-light table-hover table-striped text-center">
                     <tr>
                         <th>Orden</th>
                         <th>Usuario</th>

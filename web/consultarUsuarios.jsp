@@ -9,6 +9,7 @@
 <%@page import="ModeloVO.UsuarioVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="navegacion.jsp" %>
+<%@include file="css-paginacion.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,12 +22,16 @@
         <h1 class="text-center">Usuarios</h1>
         <div class="col-md-4 justify-content-center mx-auto mt-4 d-flex">
             <div class="col-md-6 me-3 ">
-                <label>Consultar Por Id</label>
-                <form method="post" action="Usuarios" class="form-group">
-                    <input type="text" name="txtId" class="form-control" placeholder="Id Usuarios">
-                    <input type="hidden" value="5" name="opcion">
-                    <button class="btn boton mt-3">Consultar</button>
-                </form>
+                <label>Consultar</label>
+                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                    <label class="mdl-button mdl-js-button mdl-button--icon" for="buscar">
+                        <i class="zmdi zmdi-search"></i>
+                    </label>
+                    <div class="mdl-textfield__expandable-holder">
+                        <input type="text" onkeyup="doSearch()" class="mdl-textfield__input"  id="buscar">
+                        <label class="mdl-textfield__label"></label>
+                    </div>
+                </div>
                 <div class="mensaje">
                     <%                if (request.getAttribute("mensajeError") != null) {%>
                     ${mensajeError}
@@ -49,7 +54,7 @@
         </div>   
         <div class="col-md-11 mx-auto justify-content-center mt-4">
             <div class="col-md-7 mx-auto justify-content-center">
-                <table class="table table-light table-hover table-striped text-center">
+                <table id="datos" number-per-page="10" class="table table-light table-hover table-striped text-center">
 
                     <tr>
                         <th>Id</th>
@@ -101,5 +106,45 @@
 
             </div> 
         </div>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.js"
+                integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
+        </script>
+        <!-- DATATABLES -->
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js">
+        </script>
+        <!-- BOOTSTRAP -->
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js">
+        </script>
+        <script>
+            $(document).ready(function () {
+                $('#tablax').DataTable({
+                    language: {
+                        processing: "Tratamiento en curso...",
+                        search: "Buscar&nbsp;:",
+                        lengthMenu: "Agrupar de _MENU_ items",
+                        info: "Mostrando del item _START_ al _END_ de un total de _TOTAL_ items",
+                        infoEmpty: "No existen datos.",
+                        infoFiltered: "(filtrado de _MAX_ elementos en total)",
+                        infoPostFix: "",
+                        loadingRecords: "Cargando...",
+                        zeroRecords: "No se encontraron datos con tu busqueda",
+                        emptyTable: "No hay datos disponibles en la tabla.",
+                        paginate: {
+                            first: "Primero",
+                            previous: "Anterior",
+                            next: "Siguiente",
+                            last: "Ultimo"
+                        },
+                        aria: {
+                            sortAscending: ": active para ordenar la columna en orden ascendente",
+                            sortDescending: ": active para ordenar la columna en orden descendente"
+                        }
+                    },
+                    scrollY: 400,
+                    lengthMenu: [[10, 25, -1], [10, 25, "All"]];
+                });
+            });
+        </script>
     </body>
 </html>

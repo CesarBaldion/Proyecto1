@@ -9,6 +9,7 @@
 <%@page import="ModeloVO.MateriaPrimaVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="navegacion.jsp" %>
+<%@include file="css-paginacion.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,11 +33,21 @@
 
         <div class="col-md-9 mx-auto  mt-4">
             <div class="col-md-7 mx-auto justify-content-center">
-                <table class="table table-light table-hover table-striped text-center">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                    <label class="mdl-button mdl-js-button mdl-button--icon" for="buscar">
+                        <i class="zmdi zmdi-search"></i>
+                    </label>
+                    <div class="mdl-textfield__expandable-holder">
+                        <input type="text" onkeyup="doSearch()" class="mdl-textfield__input"  id="buscar">
+                        <label class="mdl-textfield__label"></label>
+                    </div>
+                </div>
+                <table id="datos" number-per-page="10" class="table table-light table-hover table-striped text-center">
 
                     <tr>
-                        <th>Id <br>Materia Prima</th>
+                        <th>Id</th>
                         <th>Nombre</th>
+                        <th>Estado</th>
 
                     </tr>
 
