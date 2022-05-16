@@ -48,13 +48,13 @@ public class MateriaPrimaControlador extends HttpServlet {
         String Nombre = request.getParameter("txtNombre");
         String Actualizacion = request.getParameter("txtActualizacion");
         String Estado = request.getParameter("txtEstado");
+        String reporteOpcion = request.getParameter("txtreporte");
         if (Actualizacion == null) {
             Actualizacion = "0";
         }
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         // 2. Quien tiene los datos de forma segura en el sistema? VO
         MateriaPrimaVO matPriVO = new MateriaPrimaVO(Id_materia_Prima, Nombre, Actualizacion, Estado);
-
         // 3. Quien hace las operaciones? DAO
         MateriaPrimaDAO matPriDAO = new MateriaPrimaDAO(matPriVO);
 
@@ -137,25 +137,49 @@ public class MateriaPrimaControlador extends HttpServlet {
 
                 break;
             case 10:
-                response.setHeader("Content-Disposition", "attachment; filename=\"reporteMateriaPrima.pdf\";");
-                response.setHeader("Cache-Control", "no-cache");
-                response.setHeader("Pragma", "no-cache");
-                response.setDateHeader("Expires", 0);
-                response.setContentType("application/pdf");
 
-                ServletOutputStream out = response.getOutputStream();
-                try {
-                    Conexion conexion = new Conexion();
-                    JasperReport reporte = (JasperReport) JRLoader.loadObject(getServletContext().getRealPath("reportes/reportesMateriasPrimas/reporteMateriaPrima.jasper"));
-                    JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, null, conexion.obtenerConexion());
+                if (reporteOpcion.equals("2")) {
+                    response.setHeader("Content-Disposition", "attachment; filename=\"reporteExistenciasMateriaPrima.pdf\";");
+                    response.setHeader("Cache-Control", "no-cache");
+                    response.setHeader("Pragma", "no-cache");
+                    response.setDateHeader("Expires", 0);
+                    response.setContentType("application/pdf");
 
-                    JRExporter exporter = new JRPdfExporter();
-                    exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
-                    exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, out);
-                    exporter.exportReport();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    ServletOutputStream out = response.getOutputStream();
+                    try {
+                        Conexion conexion = new Conexion();
+                        JasperReport reporte = (JasperReport) JRLoader.loadObject(getServletContext().getRealPath("reportes/reportesMateriasPrimas/reporteExistenciasMateriaPrima.jasper"));
+                        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, null, conexion.obtenerConexion());
+
+                        JRExporter exporter = new JRPdfExporter();
+                        exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+                        exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, out);
+                        exporter.exportReport();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    response.setHeader("Content-Disposition", "attachment; filename=\"reporteMateriaPrima.pdf\";");
+                    response.setHeader("Cache-Control", "no-cache");
+                    response.setHeader("Pragma", "no-cache");
+                    response.setDateHeader("Expires", 0);
+                    response.setContentType("application/pdf");
+
+                    ServletOutputStream out = response.getOutputStream();
+                    try {
+                        Conexion conexion = new Conexion();
+                        JasperReport reporte = (JasperReport) JRLoader.loadObject(getServletContext().getRealPath("reportes/reportesMateriasPrimas/reporteMateriaPrima.jasper"));
+                        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, null, conexion.obtenerConexion());
+
+                        JRExporter exporter = new JRPdfExporter();
+                        exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+                        exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, out);
+                        exporter.exportReport();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
+
                 break;
         }
     }

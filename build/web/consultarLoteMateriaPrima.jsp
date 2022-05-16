@@ -25,15 +25,11 @@
                     <input type="hidden" value="4" name="opcion">
                     <button class="btn">Consultar</button>
                 </form>
-                <div style="color: red;">
-                    <%                        if (request.getAttribute("mensajeError") != null) {%>
-                    ${mensajeError}
-
-                    <%   } else {%>
-                    ${mensajeExito}
-
-                    <%}%>
-                </div>
+                <%if (request.getAttribute("mensajeError") != null) {%>
+                <p class="text-danger text-center fs-5">${mensajeError}</p>
+                <%   } else {%>
+                <p class="text-success text-center fs-5">${mensajeExito}</p>
+                <%}%>
             </div>
             <div class="col-md-6">
                 <form action="loteMateriaPrima" method="post" class="form-group">

@@ -30,11 +30,11 @@
                         <label class="mdl-textfield__label"></label>
                     </div>
                 </div>
-                <div class="mensaje">
-                    <%                        if (request.getAttribute("mensajeError") != null) {%>
-                    ${mensajeError}
-                    <%}%>
-                </div>
+                <%if (request.getAttribute("mensajeError") != null) {%>
+                <p class="text-danger text-center fs-5">${mensajeError}</p>
+                <%   } else {%>
+                <p class="text-success text-center fs-5">${mensajeExito}</p>
+                <%}%>
             </div>
             <div class="col-md-6">
                 <form action="MateriaPrima" method="post" class="form-group">

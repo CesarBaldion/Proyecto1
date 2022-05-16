@@ -25,13 +25,11 @@
                     <button class="btn">Consultar</button>
 
                 </form>
-                <div class="mensaje">
-                    <%
-                        if (request.getAttribute("mensajeError") != null) {%>
-                    ${mensajeError}
-
-                    <%}%>
-                </div>
+                <%if (request.getAttribute("mensajeError") != null) {%>
+                <p class="text-danger text-center fs-5">${mensajeError}</p>
+                <%   } else {%>
+                <p class="text-success text-center fs-5">${mensajeExito}</p>
+                <%}%>
             </div>
         </div>
 
