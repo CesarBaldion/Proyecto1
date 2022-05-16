@@ -15,16 +15,17 @@ package ModeloVO;
  */
 public class OrdenesVO {
 
-    private String Id_Orden, Id_Usuarios, fecha_registro, fecha_entrega;
+    private String Id_Orden, Id_Usuarios, fecha_registro, fecha_entrega, Estado;
     
      public OrdenesVO() {
     }
 
-    public OrdenesVO(String Id_Orden, String Id_Usuarios, String fecha_registro, String fecha_entrega) {
+    public OrdenesVO(String Id_Orden, String Id_Usuarios, String fecha_registro, String fecha_entrega, String Estado) {
         this.Id_Orden = Id_Orden;
         this.Id_Usuarios = Id_Usuarios;
         this.fecha_registro = fecha_registro;
         this.fecha_entrega = fecha_entrega;
+        this.Estado = Estado;
     }
     
      public String getId_Orden() {
@@ -58,5 +59,15 @@ public class OrdenesVO {
     public void setFecha_entrega(String fecha_entrega) {
         this.fecha_entrega = fecha_entrega;
     }
+
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
+    }
+    
+    
     
 }

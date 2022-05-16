@@ -34,10 +34,6 @@
             <br>
             <input type="text" name="txtDireccion" value="<%=usuVO.getDireccion()%> " required="">
             <br>
-            <input type="text" name="txtEstado" value="<%=usuVO.getEstado()%> "  required="">
-            <br>
-            <input type="text" name="txtContrasena" value="<%=usuVO.getContrasena()%> "  required="">
-            <br>
             <button id="Boton"> Actualizar </button>
             <input type="hidden" value="2" name="opcion">
             <a href="consultarUsuarios.jsp">Volver</a><br>

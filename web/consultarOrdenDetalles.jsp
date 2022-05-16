@@ -63,6 +63,15 @@
                         <td><%=OrdenDetallVO.getId_Orden()%></td>
                         <td><%=OrdenDetallVO.getId_Detalles_Producto()%></td>
                         <td><%=OrdenDetallVO.getCantidadSolicitada()%></td>
+                        
+                        <td>
+                            <form action="OrdenDetalles" method="post">
+                                <input type="hidden" name="txtEstado" value="0">
+                                <input type="hidden" name="txtIdOrdenDetalles" value="<%=OrdenDetallVO.getId_Orden_Detalles()%>">
+                                <button>Desactivar</button>
+                                <input type="hidden" value="3" name="opcion">
+                            </form>
+                        </td>
 
 
                     </tr>

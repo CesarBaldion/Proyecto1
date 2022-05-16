@@ -8,7 +8,6 @@ package Controlador;
 import ModeloDAO.OrdenesDAO;
 import ModeloVO.OrdenesVO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,10 +38,11 @@ public class OrdenesControlador extends HttpServlet {
         String Id_Usuarios = request.getParameter("txtUsu");
         String fecha_registro = request.getParameter("txtFechaRegistro");
         String fecha_entrega = request.getParameter("txtFechaEntrega");
+        String Estado = request.getParameter("txtEstado");
 
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         // 2. Quien tiene los datos de forma segura en el sistema? VO
-        OrdenesVO ordVo = new OrdenesVO(Id_Orden, Id_Usuarios, fecha_registro, fecha_entrega);
+        OrdenesVO ordVo = new OrdenesVO(Id_Orden, Id_Usuarios, fecha_registro, fecha_entrega, Estado);
 
         // 3. Quien hace las operaciones? DAO
         OrdenesDAO ordDao = new OrdenesDAO(ordVo);
@@ -81,6 +81,7 @@ public class OrdenesControlador extends HttpServlet {
                 if (ordDao.eliminarRegistro()) {
 
                     request.setAttribute("mensajeExito", "La orden se elimino correctamente!");
+                    request.getRequestDispatcher("consultarOrdenes.jsp").forward(request, response);
 
                 } else {
 

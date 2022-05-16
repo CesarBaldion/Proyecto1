@@ -112,7 +112,28 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
 
     @Override
     public boolean eliminarRegistro() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       try {
+            //Armar sentencia
+           sql = "UPDATE `orden_detalles` SET `Estado`= 0 WHERE Id_orden_detalles = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, id_Orden_Detalles);
+            puente.executeUpdate();
+            operacion = true;
+
+        } catch (SQLException e) {
+            Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+            
+        }
+        return operacion;
     }
     
     public OrdenDetallesVO cosnultarId(String Id) {
@@ -127,7 +148,8 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
 
             while (mensajero.next()) {
 
-               OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4));
+               OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1), mensajero.getString(2), 
+                       mensajero.getString(3), mensajero.getString(4), mensajero.getString(5));
 
             }
 
@@ -159,7 +181,8 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
 
             while (mensajero.next()) {
 
-               OrdenDetallesVO OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4));
+               OrdenDetallesVO OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1),
+                       mensajero.getString(2), mensajero.getString(3), mensajero.getString(4), mensajero.getString(5));
                 listaOrdenDetalles.add(OrdenDetallVO);
 
             }

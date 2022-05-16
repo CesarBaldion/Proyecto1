@@ -11,13 +11,14 @@ package ModeloVO;
  */
 public class OrdenDetallesVO {
     
-    String id_Orden_Detalles,id_Orden,id_Detalles_Producto,cantidadSolicitada;
+    String id_Orden_Detalles,id_Orden,id_Detalles_Producto,cantidadSolicitada, Estado;
 
-    public OrdenDetallesVO(String id_Orden_Detalles, String id_Orden, String id_Detalles_Producto, String cantidadSolicitada) {
+    public OrdenDetallesVO(String id_Orden_Detalles, String id_Orden, String id_Detalles_Producto, String cantidadSolicitada, String Estado) {
         this.id_Orden_Detalles = id_Orden_Detalles;
         this.id_Orden = id_Orden;
         this.id_Detalles_Producto = id_Detalles_Producto;
         this.cantidadSolicitada = cantidadSolicitada;
+        this.Estado = Estado;
     }
 
     public OrdenDetallesVO() {
@@ -54,5 +55,14 @@ public class OrdenDetallesVO {
     public void setCantidadSolicitada(String cantidadSolicitada) {
         this.cantidadSolicitada = cantidadSolicitada;
     }
+
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
+    }
+    
     
 }

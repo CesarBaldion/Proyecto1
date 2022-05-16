@@ -67,6 +67,15 @@
                         <td><%=ordVO.getId_Usuarios()%></td>
                         <td><%=ordVO.getFecha_registro()%></td>
                         <td><%=ordVO.getFecha_entrega()%></td>
+                        
+                        <td>
+                            <form action="Ordenes" method="post">
+                                <input type="hidden" name="txtEstado" value="0">
+                                <input type="hidden" name="txtIdOrden" value="<%=ordVO.getId_Orden()%>">
+                                <button>Desactivar</button>
+                                <input type="hidden" value="3" name="opcion">
+                            </form>
+                        </td>
                     </tr>
 
                     <% }%>

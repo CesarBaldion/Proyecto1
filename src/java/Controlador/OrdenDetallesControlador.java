@@ -39,10 +39,12 @@ public class OrdenDetallesControlador extends HttpServlet {
        String id_Orden = request.getParameter("txtIdOrden");
        String id_Detalles_Producto = request.getParameter("idDetallesProducto");
        String cantidadSolicitada = request.getParameter("txtcantidadSolicitada");
+       String Estado = request.getParameter("txtEstado");
        
        int opcion = Integer.parseInt(request.getParameter("opcion"));
         // 2. Quien tiene los datos de forma segura en el sistema? VO
-        OrdenDetallesVO ordenDetallVO = new OrdenDetallesVO(id_Orden_Detalles, id_Orden, id_Detalles_Producto, cantidadSolicitada);
+        OrdenDetallesVO ordenDetallVO = new OrdenDetallesVO(id_Orden_Detalles, id_Orden, 
+                id_Detalles_Producto, cantidadSolicitada, Estado);
 
         // 3. Quien hace las operaciones? DAO
         OrdenDetallesDAO ordenDetalDAO = new OrdenDetallesDAO(ordenDetallVO);
@@ -80,7 +82,9 @@ public class OrdenDetallesControlador extends HttpServlet {
 
                 if (ordenDetalDAO.eliminarRegistro()) {
 
-                    request.setAttribute("mensajeExito", "El lote de Produccion se elimino correctamente!");
+                    request.setAttribute("mensajeExito", "La orden detalles se elimino correctamente!");
+                    request.getRequestDispatcher("consultarOrdenDetalles.jsp").forward(request, response);
+
 
                 } else {
 

@@ -114,8 +114,9 @@ public class OrdenesDAO extends Conexion implements Crud {
     public boolean eliminarRegistro() {
         try {
             //Armar sentencia
-            sql = "delete from ordenes where Id_Orden" + Id_Orden;
+           sql = "UPDATE `ordenes` SET `Estado`= 0 WHERE Id_orden = ?";
             puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id_Orden);
             puente.executeUpdate();
             operacion = true;
 
@@ -150,7 +151,7 @@ public class OrdenesDAO extends Conexion implements Crud {
 
             while (mensajero.next()) {
                 ordVo = new OrdenesVO(mensajero.getString(1), mensajero.getString(2),
-                        mensajero.getString(3), mensajero.getString(4));
+                        mensajero.getString(3), mensajero.getString(4), mensajero.getString(5));
 
             }
         } catch (Exception e) {
@@ -180,7 +181,7 @@ public class OrdenesDAO extends Conexion implements Crud {
 
             while (mensajero.next()) {
                 OrdenesVO ordVo = new OrdenesVO(mensajero.getString(1), mensajero.getString(2),
-                        mensajero.getString(3), mensajero.getString(4));
+                        mensajero.getString(3), mensajero.getString(4), mensajero.getString(5));
 
                 listaOrdenes.add(ordVo);
             }
