@@ -3,14 +3,11 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import ModeloVO.Usuario_rolVO;
-import ModeloDAO.UsuarioRolDAO;
-import ModeloVO.UsuarioVO;
 import java.util.ArrayList;
-import ModeloDAO.OrdenesDAO;
-import ModeloVO.OrdenesVO;
+import ModeloDAO.loteMateriaPrimaDAO;
+import ModeloVO.loteMateriaPrimaVO;
 
-public final class consultarOrdenes_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class consultarLoteMateriaPrima_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -18,10 +15,8 @@ public final class consultarOrdenes_jsp extends org.apache.jasper.runtime.HttpJs
   private static java.util.List<String> _jspx_dependants;
 
   static {
-    _jspx_dependants = new java.util.ArrayList<String>(3);
-    _jspx_dependants.add("/sesionesAlmacenista.jsp");
+    _jspx_dependants = new java.util.ArrayList<String>(1);
     _jspx_dependants.add("/navegacion.jsp");
-    _jspx_dependants.add("/css-paginacion.jsp");
   }
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
@@ -54,44 +49,7 @@ public final class consultarOrdenes_jsp extends org.apache.jasper.runtime.HttpJs
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write('\r');
-      out.write('\n');
       out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-
-    response.setHeader("Pragma", "No-cache");
-    response.setHeader("Cache-control", "no-cache, no-store, must-revalidate");
-    response.setDateHeader("Expires", 0);
-
-      out.write("\r\n");
-      out.write("\r\n");
-      out.write("\r\n");
-
-    HttpSession buscarSesion = (HttpSession) request.getSession();
-    UsuarioVO usuVO1 = null;
-    if (buscarSesion.getAttribute("datosUsuario") == null) {
-
-        request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
-
-    } else {
-        UsuarioRolDAO uRDAO = new UsuarioRolDAO();
-        usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
-        Usuario_rolVO uRVO2 = uRDAO.consultarRol(usuVO1.getIdUsuarios());
-        String id = uRVO2.getId_Rol();
-        if (id.equals("2") || id.equals("1") || id.equals("3")) {
-
-        } else {
-            request.getRequestDispatcher("errorPermisos.jsp").forward(request, response);
-
-        }
-
-    }
-
-
-      out.write('\r');
-      out.write('\n');
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -178,108 +136,25 @@ public final class consultarOrdenes_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("       \r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
-      out.write('\r');
-      out.write('\n');
-      out.write("\n");
-      out.write("<!DOCTYPE html>\n");
-      out.write("<!DOCTYPE html>\n");
-      out.write("<meta charset=\"UTF-8\">\n");
-      out.write("\t<link rel=\"shortcut icon\" href=\"Imagen/icono.ico\" />\n");
-      out.write("        \n");
-      out.write("\t<link rel=\"stylesheet\" href=\"css/normalize.css\">\n");
-      out.write("\t<link rel=\"stylesheet\" href=\"css/sweetalert2.css\">\n");
-      out.write("\t<link rel=\"stylesheet\" href=\"css/material.min.css\">\n");
-      out.write("\t<link rel=\"stylesheet\" href=\"css/material-design-iconic-font.min.css\">\n");
-      out.write("\t<link rel=\"stylesheet\" href=\"css/jquery.mCustomScrollbar.css\">\n");
-      out.write("\t<link rel=\"stylesheet\" href=\"css/main.css\">\n");
-      out.write("         <link href=\"css/bootstrapp.min.css\" rel=\"stylesheet\" type=\"text/css\"/>\n");
-      out.write("        <script src=\"js/jqueryy.js\" type=\"text/javascript\"></script>    \n");
-      out.write("        \n");
-      out.write("        <script src=\"js/BuscadorTabla.js\" type=\"text/javascript\"></script>\n");
-      out.write("        \n");
-      out.write("        <script src=\"js/bootstrapp.min.js\" type=\"text/javascript\"></script> \n");
-      out.write("\t<script src=\"//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js\"></script>\n");
-      out.write("\t<script>window.jQuery || document.write('<script src=\"js/jquery-1.11.2.min.js\"><\\/script>')</script>\n");
-      out.write("\t<script src=\"js/material.min.js\" ></script>\n");
-      out.write("\t<script src=\"js/sweetalert2.min.js\" ></script>\n");
-      out.write("\t<script src=\"js/jquery.mCustomScrollbar.concat.min.js\" ></script>\n");
-      out.write("\t<script src=\"js/main.js\" ></script>\n");
-      out.write("        \n");
-      out.write("        <script  type=\"text/javascript\" src=\"js/jquery-1.12.4.js\"></script>\n");
-      out.write("\t<script type=\"text/javascript\" src=\"js/paginacion.js\"></script>\n");
-      out.write("       \n");
-      out.write("     \n");
-      out.write("        \n");
-      out.write("        \n");
-      out.write("  <!--codigo de paginacion-->\n");
-      out.write("  <style>\n");
-      out.write("  \n");
-      out.write("ulll {\n");
-      out.write("  list-style: none;\n");
-      out.write("  margin-top: 10px;\n");
-      out.write("  padding: 0;\n");
-      out.write("}\n");
-      out.write("\n");
-      out.write("liii {\n");
-      out.write("  border-radius: 3px;\n");
-      out.write("  color: black;\n");
-      out.write("  background: #eee;\n");
-      out.write("  cursor: pointer;\n");
-      out.write("  display: inline;\n");
-      out.write("  font-weight: 200;\n");
-      out.write("  margin: 10px 5px 0px 2px;\n");
-      out.write("  padding: 10px;\n");
-      out.write("  text-align: center;\n");
-      out.write("  width: 10px;\n");
-      out.write("}\n");
-      out.write("\n");
-      out.write(".activeee {\n");
-      out.write("  background: teal;\n");
-      out.write("  color: white;\n");
-      out.write("}\n");
-      out.write("</style>\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\t<script type=\"text/javascript\">\n");
-      out.write("\t$(function(){\n");
-      out.write("\t\t$(\"#datos\").pagination();\n");
-      out.write("\t});\n");
-      out.write("        </script>\n");
-      out.write("<script type=\"text/javascript\">\n");
-      out.write("\n");
-      out.write("  var _gaq = _gaq || [];\n");
-      out.write("  _gaq.push(['_setAccount', 'UA-36251023-1']);\n");
-      out.write("  _gaq.push(['_setDomainName', 'jqueryscript.net']);\n");
-      out.write("  _gaq.push(['_trackPageview']);\n");
-      out.write("\n");
-      out.write("  (function() {\n");
-      out.write("    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;\n");
-      out.write("    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';\n");
-      out.write("    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);\n");
-      out.write("  })();\n");
-      out.write("\n");
-      out.write("</script>   \n");
       out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
       out.write("        <link rel=\"stylesheet\" href=\"css/\">\r\n");
-      out.write("        <title>Consultar Ordenes</title>\r\n");
-      out.write("        \r\n");
+      out.write("        <title>Lote Materia Prima</title>\r\n");
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
-      out.write("        <div class=\"col-md-4 justify-content-center mx-auto mt-4\">\r\n");
-      out.write("            <h1 class=\"text-center\">Ordenes</h1>\r\n");
-      out.write("            <div class=\"col-md-6 mx-auto \">\r\n");
-      out.write("                <form  method=\"post\" action=\"Ordenes\" class=\"form-group\"> \r\n");
-      out.write("                    <input type=\"text\" name=\"txtIdOrden\" placeholder=\"Id Orden\" class=\"form-control\"><br>\r\n");
+      out.write("        <h1 class=\"text-center\">Lote Materia Prima</h1>\r\n");
+      out.write("        <div class=\"col-md-4 justify-content-center mx-auto mt-4 d-flex\">\r\n");
+      out.write("            <div class=\"col-md-6 mx-auto \"> \r\n");
+      out.write("                <form  method=\"post\" action=\"loteMateriaPrima\" class=\"form-group\"> \r\n");
+      out.write("                    <input type=\"text\" name=\"txtIdLoteMateriaPrima\" class=\"form-control\" placeholder=\"Lote Materia Prima\"><br>\r\n");
       out.write("                    <input type=\"hidden\" value=\"4\" name=\"opcion\">\r\n");
       out.write("                    <button class=\"btn\">Consultar</button>\r\n");
       out.write("                </form>\r\n");
       out.write("                <div style=\"color: red;\">\r\n");
       out.write("                    ");
-
                         if (request.getAttribute("mensajeError") != null) {
       out.write("\r\n");
       out.write("                    ");
@@ -298,56 +173,87 @@ public final class consultarOrdenes_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("\r\n");
       out.write("                </div>\r\n");
       out.write("            </div>\r\n");
-      out.write("        </div>\r\n");
+      out.write("            <div class=\"col-md-6\">\r\n");
+      out.write("                <form action=\"loteMateriaPrima\" method=\"post\" class=\"form-group\">\r\n");
+      out.write("                    <button  class=\"boton btn mt-3\" title=\"Reporte de Producto\">\r\n");
+      out.write("                        Generar Reporte\r\n");
+      out.write("                        <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-download\" viewBox=\"0 0 16 16\">\r\n");
+      out.write("                        <path d=\"M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z\"/>\r\n");
+      out.write("                        <path d=\"M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z\"/>\r\n");
+      out.write("                        </svg>\r\n");
+      out.write("                    </button>\r\n");
+      out.write("                    <input type=\"hidden\" value=\"10\" name=\"opcion\">\r\n");
+      out.write("                </form>\r\n");
+      out.write("            </div>\r\n");
+      out.write("        </div>    \r\n");
+      out.write("        <div class=\"col-md-9 mx-auto justify-content-center mt-3\">\r\n");
+      out.write("            <table  class=\"table table-light table-hover table-striped text-center \">\r\n");
       out.write("\r\n");
+      out.write("                <tr>\r\n");
+      out.write("                    <th>Id</th>\r\n");
+      out.write("                    <th>Id Materia Prima</th>\r\n");
+      out.write("                    <th>Cantidad</th>\r\n");
+      out.write("                    <th>Observaciones</th>\r\n");
+      out.write("                    <th>Fecha Ingreso</th>\r\n");
+      out.write("                    <th>Fecha Salida</th>\r\n");
       out.write("\r\n");
-      out.write("        <div class=\"col-md-9 mx-auto justify-content-center mt-4\">\r\n");
-      out.write("            <div class=\"col-md-7 mx-auto justify-content-center\">\r\n");
-      out.write("                <table id=\"datos\" number-per-page=\"10\" class=\"table table-light table-hover table-striped text-center\">\r\n");
-      out.write("                    <tr>\r\n");
-      out.write("                        <th>Orden</th>\r\n");
-      out.write("                        <th>Usuario</th>\r\n");
-      out.write("                        <th>Fecha Registro</th>\r\n");
-      out.write("                        <th>Fecha Entrega</th>\r\n");
-      out.write("                    </tr>\r\n");
-      out.write("\r\n");
-      out.write("                    ");
+      out.write("                </tr>\r\n");
+      out.write("                ");
 
-                        OrdenesVO ordVO = new OrdenesVO();
-                        OrdenesDAO ordDAO = new OrdenesDAO();
-                        ArrayList<OrdenesVO> listaOrdenes = ordDAO.listar();
-                        for (int i = 0; i < listaOrdenes.size(); i++) {
+                    loteMateriaPrimaVO ltMatPriVO = new loteMateriaPrimaVO();
+                    loteMateriaPrimaDAO ltMatPriDAO = new loteMateriaPrimaDAO(ltMatPriVO);
 
-                            ordVO = listaOrdenes.get(i);
+                    ArrayList<loteMateriaPrimaVO> listaLoteMateriaPrima = ltMatPriDAO.Listar();
 
-                    
+                    for (int i = 0; i < listaLoteMateriaPrima.size(); i++) {
+
+                        ltMatPriVO = listaLoteMateriaPrima.get(i);
+
+                
       out.write("\r\n");
+      out.write("                <tr>\r\n");
+      out.write("                    <td>");
+      out.print(ltMatPriVO.getId_loteMateria_Prima());
+      out.write("</td>\r\n");
+      out.write("                    <td>");
+      out.print(ltMatPriVO.getId_Materia_Prima());
+      out.write("</td>\r\n");
+      out.write("                    <td>");
+      out.print(ltMatPriVO.getCantidad());
+      out.write("</td>\r\n");
+      out.write("                    <td>");
+      out.print(ltMatPriVO.getObservaciones());
+      out.write("</td>\r\n");
+      out.write("                    <td>");
+      out.print(ltMatPriVO.getFecha_ingreso());
+      out.write("</td>\r\n");
+      out.write("                    <td>");
+      out.print(ltMatPriVO.getFecha_salida());
+      out.write("</td>\r\n");
       out.write("\r\n");
+      out.write("                    <td>\r\n");
+      out.write("                        <form action=\"loteMateriaPrima\" method=\"post\">\r\n");
+      out.write("                            <input type=\"hidden\" name=\"txtEstado\" value=\"0\">\r\n");
+      out.write("                            <input type=\"hidden\" name=\"txtIdLoteMateriaPrima\" value=\"");
+      out.print(ltMatPriVO.getId_loteMateria_Prima());
+      out.write("\">\r\n");
+      out.write("                            <button>Desactivar</button>\r\n");
+      out.write("                            <input type=\"hidden\" value=\"3\" name=\"opcion\">\r\n");
+      out.write("                        </form>\r\n");
+      out.write("                    </td>\r\n");
       out.write("\r\n");
-      out.write("                    <tr>\r\n");
-      out.write("                        <td>");
-      out.print(ordVO.getId_Orden());
-      out.write("</td>\r\n");
-      out.write("                        <td>");
-      out.print(ordVO.getId_Usuarios());
-      out.write("</td>\r\n");
-      out.write("                        <td>");
-      out.print(ordVO.getFecha_registro());
-      out.write("</td>\r\n");
-      out.write("                        <td>");
-      out.print(ordVO.getFecha_entrega());
-      out.write("</td>\r\n");
-      out.write("                    </tr>\r\n");
+      out.write("                </tr>\r\n");
       out.write("\r\n");
-      out.write("                    ");
+      out.write("                ");
  }
       out.write("\r\n");
       out.write("\r\n");
-      out.write("                </table> \r\n");
-      out.write("            </div>\r\n");
+      out.write("            </table>\r\n");
       out.write("        </div>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("    </body>\r\n");
-      out.write("</html>\r\n");
+      out.write("</html>");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

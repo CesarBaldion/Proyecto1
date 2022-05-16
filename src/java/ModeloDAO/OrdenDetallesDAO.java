@@ -5,7 +5,9 @@
  */
 package ModeloDAO;
 
+import ModeloVO.DetallesProductoVO;
 import ModeloVO.OrdenDetallesVO;
+import ModeloVO.OrdenesVO;
 import Util.Conexion;
 import Util.Crud;
 import java.sql.Connection;
@@ -20,7 +22,7 @@ import java.util.logging.Logger;
  *
  * @author Sena
  */
-public class OrdenDetallesDAO extends Conexion implements Crud{
+public class OrdenDetallesDAO extends Conexion implements Crud {
 
     private Connection conexion;
     private PreparedStatement puente;
@@ -28,16 +30,16 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
 
     private boolean operacion = false;
     private String sql;
-    
-    String id_Orden_Detalles,id_Orden,id_Detalles_Producto,cantidadSolicitada;
-    
+
+    String id_Orden_Detalles, id_Orden, id_Detalles_Producto, cantidadSolicitada;
+
     public OrdenDetallesDAO(OrdenDetallesVO ordDetallVO) {
-        
+
         super();
 
         //3. Conectarse a la base de datos
         try {
-            
+
             conexion = this.obtenerConexion();
             // 4. traer al DAO los datos del VO para hacer las operaciones.
 
@@ -45,15 +47,16 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
             id_Orden = ordDetallVO.getId_Orden();
             id_Detalles_Producto = ordDetallVO.getId_Detalles_Producto();
             cantidadSolicitada = ordDetallVO.getCantidadSolicitada();
-            
+
         } catch (Exception e) {
             Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
         }
-        
+
     }
 
     public OrdenDetallesDAO() {
     }
+
     @Override
     public boolean agregarRegistro() {
         try {
@@ -65,20 +68,20 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
             puente.setString(1, id_Orden);
             puente.setString(2, id_Detalles_Producto);
             puente.setString(3, cantidadSolicitada);
-            
+
             puente.executeUpdate();
             operacion = true;
         } catch (SQLException ex) {
             Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
+        } finally {
 
-            try{
+            try {
                 this.cerrarConexion();
 
             } catch (SQLException e) {
                 Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
             }
-            
+
         }
         return operacion;
     }
@@ -89,7 +92,7 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
             sql = "update orden_detalles set id_orden = ?, id_detalles_Producto = ?, "
                     + "CantidadSolicitada = ? where Id_Orden_Detalles = ? ";
             puente = conexion.prepareStatement(sql);
-            puente.setString(1,id_Orden);
+            puente.setString(1, id_Orden);
             puente.setString(2, id_Detalles_Producto);
             puente.setString(3, cantidadSolicitada);
             puente.setString(4, id_Orden_Detalles);
@@ -114,7 +117,7 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
     public boolean eliminarRegistro() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     public OrdenDetallesVO cosnultarId(String Id) {
 
         OrdenDetallesVO OrdenDetallVO = null;
@@ -127,7 +130,7 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
 
             while (mensajero.next()) {
 
-               OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4));
+                OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4));
 
             }
 
@@ -159,7 +162,7 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
 
             while (mensajero.next()) {
 
-               OrdenDetallesVO OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4));
+                OrdenDetallesVO OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4));
                 listaOrdenDetalles.add(OrdenDetallVO);
 
             }
@@ -180,4 +183,55 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
         return listaOrdenDetalles;
 
     }
+
+    public String consultarOrden(String idOrden) {
+        String dataOrden;
+        OrdenesVO ordVo = null;
+
+        try {
+
+            conexion = this.obtenerConexion();
+            sql = "select * from ordenes where Id_Orden = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, idOrden);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+                ordVo = new OrdenesVO(mensajero.getString(1), mensajero.getString(2),
+                        mensajero.getString(3), mensajero.getString(4));
+
+            }
+        } catch (Exception e) {
+            Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        }
+        dataOrden = ordVo.getFecha_registro() + "---" + ordVo.getFecha_entrega();
+        return dataOrden;
+    }
+
+      public String consultarProducto(String idDetallesProd) {
+        String dataDetallesProducto;
+        DetallesProductoVO detProVO = null;
+        
+        try {
+            
+            conexion = this.obtenerConexion();
+            sql = "select * from detalles_producto where Id_Detalles_Producto = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, idDetallesProd);
+            mensajero = puente.executeQuery();
+            
+            while (mensajero.next()) {
+                detProVO = new DetallesProductoVO(mensajero.getString(1), mensajero.getString(2),
+                        mensajero.getString(3), mensajero.getString(4));
+                
+            }
+        } catch (Exception e) {
+            Logger.getLogger(DetallesProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+            
+        } 
+        dataDetallesProducto = detProVO.getId_Producto();
+        return dataDetallesProducto;
+    }
+
 }

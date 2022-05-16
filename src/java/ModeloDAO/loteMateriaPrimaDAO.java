@@ -193,7 +193,7 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud {
 
                 loteMateriaPrimaVO ltMatPriVO = new loteMateriaPrimaVO(mensajero.getString(1),
                         mensajero.getString(2), mensajero.getString(3), mensajero.getString(4),
-                        mensajero.getString(5), mensajero.getString(6), mensajero.getString(7));
+                        mensajero.getString(5), mensajero.getString(6));
                 listaLoteMateriaPrima.add(ltMatPriVO);
 
             }

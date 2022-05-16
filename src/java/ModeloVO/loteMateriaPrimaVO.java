@@ -13,6 +13,15 @@ public class loteMateriaPrimaVO {
 
     private String Id_loteMateria_Prima,Id_Materia_Prima,cantidad, observaciones, fecha_ingreso, fecha_salida, Estado;
 
+    public loteMateriaPrimaVO(String Id_loteMateria_Prima, String Id_Materia_Prima, String cantidad, String observaciones, String fecha_ingreso, String fecha_salida) {
+        this.Id_loteMateria_Prima = Id_loteMateria_Prima;
+        this.Id_Materia_Prima = Id_Materia_Prima;
+        this.cantidad = cantidad;
+        this.observaciones = observaciones;
+        this.fecha_ingreso = fecha_ingreso;
+        this.fecha_salida = fecha_salida;
+    }
+
     // Declarar constructor vacio para enviar datos.
     public loteMateriaPrimaVO() {
     }

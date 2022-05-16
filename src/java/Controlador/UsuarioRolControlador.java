@@ -7,12 +7,23 @@ package Controlador;
 
 import ModeloDAO.UsuarioRolDAO;
 import ModeloVO.Usuario_rolVO;
+import Util.Conexion;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRExporter;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.util.JRLoader;
 
 /**
  *
@@ -60,7 +71,7 @@ public class UsuarioRolControlador extends HttpServlet {
                     request.setAttribute("error", "El rol no se registro correctamente");
                     request.getRequestDispatcher("registrarRol.jsp").forward(request, response);
                 }
-                
+
                 break;
 
             case 2:
@@ -103,6 +114,40 @@ public class UsuarioRolControlador extends HttpServlet {
                 request.getRequestDispatcher("consultarUsuarioRol.jsp").forward(request, response);
             }
             break;
+            case 10:
+                //generarReporte
+                response.setHeader("Content-Disposition", "attachment; filename=\"reporteUsuariosRol.pdf\";");
+                response.setHeader("Cache-Control", "no-cache");
+                response.setHeader("Pragma", "no-cache");
+                response.setDateHeader("Expires", 0);
+                response.setContentType("application/pdf");
+
+                ServletOutputStream out = response.getOutputStream();
+                try {
+                    Conexion conexion = new Conexion();
+                    String rol = uRVO.getId_Rol();
+                    if (rol.equals("Administrador") | rol.equals("Cliente") | rol.equals("jefe")) {
+                        JasperReport reporte = (JasperReport) JRLoader.loadObject(getServletContext().getRealPath("reportes/reportesUsuarioRol/reporteUsuarioRol.jasper"));
+                        Map parametros = new HashMap();
+                        parametros.put("roltipo", rol);
+                        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, parametros, conexion.obtenerConexion());
+                        JRExporter exporter = new JRPdfExporter();
+                        exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+                        exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, out);
+                        exporter.exportReport();
+                    } else if (rol.equals("Todos")) {
+                        JasperReport reporte = (JasperReport) JRLoader.loadObject(getServletContext().getRealPath("reportes/reportesUsuarioRol/reporteUsuarioRol2.jasper"));
+                        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte,null, conexion.obtenerConexion());
+                        JRExporter exporter = new JRPdfExporter();
+                        exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+                        exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, out);
+                        exporter.exportReport();
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
         }
 
     }

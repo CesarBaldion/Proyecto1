@@ -55,7 +55,6 @@
         <div class="col-md-11 mx-auto justify-content-center mt-4">
             <div class="col-md-7 mx-auto justify-content-center">
                 <table id="datos" number-per-page="10" class="table table-light table-hover table-striped text-center">
-
                     <tr>
                         <th>Id</th>
                         <th>Nombres</th>

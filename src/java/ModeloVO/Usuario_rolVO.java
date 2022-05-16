@@ -11,17 +11,20 @@ package ModeloVO;
  */
 public class Usuario_rolVO {
 
-    
-    
     private String id_Rol, id_Usuarios, estado;
     
-    public Usuario_rolVO() {
-    }
+    
     
     public Usuario_rolVO(String id_Rol, String id_Usuarios, String estado) {
         this.id_Rol = id_Rol;
         this.id_Usuarios = id_Usuarios;
         this.estado = estado;
+    }
+    public Usuario_rolVO(String id_Rol, String id_Usuarios) {
+        this.id_Rol = id_Rol;
+        this.id_Usuarios = id_Usuarios;
+    }
+    public Usuario_rolVO() {
     }
     public String getId_Rol() {
         return id_Rol;

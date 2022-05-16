@@ -7,13 +7,22 @@ package Controlador;
 
 import ModeloDAO.LoteProduccionDAO;
 import ModeloVO.LoteProduccionVO;
+import Util.Conexion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRExporter;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.util.JRLoader;
 
 /**
  *
@@ -33,7 +42,7 @@ public class LoteProduccionControlador extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         response.setContentType("text/html;charset=UTF-8");
         String id_loteProduccion = request.getParameter("txtid_loteProduccion");
         String cantidad = request.getParameter("txtcantidad");
@@ -41,14 +50,14 @@ public class LoteProduccionControlador extends HttpServlet {
         String Id_orden_detalles = request.getParameter("txtId_orden_detalles");
         String Id_Usuarios = request.getParameter("txtId_Usuarios");
         String Estado = request.getParameter("txtEstado");
-        
-        if(cantidad==null){
-            cantidad ="0";
+
+        if (cantidad == null) {
+            cantidad = "0";
         }
         ;
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         // 2. Quien tiene los datos de forma segura en el sistema? VO
-       LoteProduccionVO ltProducVO = new LoteProduccionVO(id_loteProduccion,Id_Usuarios,Id_orden_detalles, Integer.parseInt(cantidad),fecha_Fabricacion,Estado);
+        LoteProduccionVO ltProducVO = new LoteProduccionVO(id_loteProduccion, Id_Usuarios, Id_orden_detalles, Integer.parseInt(cantidad), fecha_Fabricacion, Estado);
 
         // 3. Quien hace las operaciones? DAO
         LoteProduccionDAO ltProducDAO = new LoteProduccionDAO(ltProducVO);
@@ -87,8 +96,7 @@ public class LoteProduccionControlador extends HttpServlet {
                 if (ltProducDAO.eliminarRegistro()) {
 
                     request.setAttribute("mensajeExito", "El lote de Produccion se elimino correctamente!");
-                     request.getRequestDispatcher("consultarLoteProduccion.jsp").forward(request, response);
-
+                    request.getRequestDispatcher("consultarLoteProduccion.jsp").forward(request, response);
 
                 } else {
 
@@ -107,6 +115,27 @@ public class LoteProduccionControlador extends HttpServlet {
                 } else {
                     request.setAttribute("mensajeError", "El lote de Produccion no existe");
                     request.getRequestDispatcher("consultarLoteProduccion.jsp").forward(request, response);
+                }
+                break;
+            case 10:
+                response.setHeader("Content-Disposition", "attachment; filename=\"reporteLoteProduccion.pdf\";");
+                response.setHeader("Cache-Control", "no-cache");
+                response.setHeader("Pragma", "no-cache");
+                response.setDateHeader("Expires", 0);
+                response.setContentType("application/pdf");
+
+                ServletOutputStream out = response.getOutputStream();
+                try {
+                    Conexion conexion = new Conexion();
+                    JasperReport reporte = (JasperReport) JRLoader.loadObject(getServletContext().getRealPath("reportes/reportesLotesProduccion/reporteLoteProduccion.jasper"));
+                    JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, null, conexion.obtenerConexion());
+
+                    JRExporter exporter = new JRPdfExporter();
+                    exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+                    exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, out);
+                    exporter.exportReport();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
                 break;
         }

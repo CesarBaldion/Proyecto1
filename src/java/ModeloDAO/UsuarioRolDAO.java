@@ -138,7 +138,7 @@ public class UsuarioRolDAO extends Conexion implements Crud {
             mensajero = puente.executeQuery();
             
             while(mensajero.next()){
-                Usuario_rolVO uRVO = new Usuario_rolVO(mensajero.getString(1),mensajero.getString(2),mensajero.getString(3));
+                Usuario_rolVO uRVO = new Usuario_rolVO(mensajero.getString(1),mensajero.getString(2));
                 
                 listaUsuarioRol.add(uRVO);
             }

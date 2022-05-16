@@ -4,6 +4,8 @@
     Author     : 1Usuario
 --%>
 
+<%@page import="ModeloVO.RolVO"%>
+<%@page import="ModeloDAO.RolDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="ModeloDAO.UsuarioRolDAO"%>
 <%@page import="ModeloVO.Usuario_rolVO"%>
@@ -14,21 +16,40 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        
     </head>
     <body>
-        <div class="col-md-4 justify-content-center mx-auto mt-4">
-            <h1 class="text-center">UsuarioRol</h1>
-            <div class="col-md-6 mx-auto ">
+        <h1 class="text-center">UsuarioRol</h1>
+        <div class="col-md-4 justify-content-center mx-auto mt-4 d-flex">
+            <div class="col-md-6 mx-auto me-3">
+                <label>Consultar Usuario</label>
                 <form method="post" action="UsuarioRol" class="form-group">
                     <input type="text" name="txtIdRol" placeholder="Rol" class="form-control">
                     <input type="hidden" value="4" name="opcion">
-                    <button class="btn">Consultar</button>
+                    <button class="boton btn mt-2">Consultar</button>
                 </form>
                 <div class="mx-auto justify-content-center">
                     <%if (request.getAttribute("bien") != null) {%>
                     <p class="text-success text-center fs-5 mt-2">${bien}</p>
                     <%}%>
                 </div>
+            </div>
+            <div class="col-md-6">
+                <label>Generar Reporte</label>
+                <form action="UsuarioRol" method="post" class="form-group">
+                    <select name="txtIdRol" class="form-select">
+                        <option>Seleccione Rol</option>
+                        <%
+                            RolDAO rolDAO = new RolDAO();
+                            for (RolVO rVO : rolDAO.listar()) {
+                        %>
+                        <option value="<%=rVO.getRoltipo()%>"><%=rVO.getRoltipo()%></option>
+                        <%}%>
+                        <option value="Todos">Todos</option>
+                    </select>
+                    <button class="boton btn mt-2">Generar Reporte</button>
+                    <input type="hidden" value="10" name="opcion">
+                </form>
             </div>
         </div>
         <div class="col-md-9 mx-auto justify-content-center mt-4">
@@ -37,7 +58,7 @@
                     <tr>
                         <th>Rol</th>
                         <th>Usuario</th>
-                        
+
                     </tr>
                     <%
                         Usuario_rolVO uRVO = new Usuario_rolVO();
@@ -52,7 +73,7 @@
                     <tr>
                         <td><%=uRVO.getId_Rol()%></td>
                         <td><%=uRVO.getId_Usuarios()%></td>
-                        
+
                     </tr>
                     <% }%>
                 </table>

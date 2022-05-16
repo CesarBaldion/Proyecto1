@@ -1,0 +1,28 @@
+SMAP
+consultarLoteMateriaPrima_jsp.java
+JSP
+*S JSP
+*F
++ 0 consultarLoteMateriaPrima.jsp
+consultarLoteMateriaPrima.jsp
++ 1 navegacion.jsp
+navegacion.jsp
+*L
+5,7:52
+5#1,82:58
+11#0,18:139
+29,2:157,3
+31:163
+32,2:164,3
+34:170
+35:171,3
+36,28:174
+64,10:203
+73,2:213
+75,6:215,3
+81,4:233
+85:237,3
+86,7:240
+93:247,3
+94,7:250
+*E
