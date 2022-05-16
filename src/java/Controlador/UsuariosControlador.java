@@ -281,7 +281,7 @@ public class UsuariosControlador extends HttpServlet {
                 ServletOutputStream out = response.getOutputStream();
                 try {
                     Conexion conexion = new Conexion();
-                    JasperReport reporte = (JasperReport) JRLoader.loadObject(getServletContext().getRealPath("reportes/reporteUsuario.jasper"));
+                    JasperReport reporte = (JasperReport) JRLoader.loadObject(getServletContext().getRealPath("reportes/reportesUsuario/reporteUsuario.jasper"));
 
                     Map parametros = new HashMap();
                     parametros.put("estado", usuVO.getEstado());
@@ -295,6 +295,7 @@ public class UsuariosControlador extends HttpServlet {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                break;
         }
     }
 

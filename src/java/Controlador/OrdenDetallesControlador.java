@@ -8,12 +8,21 @@ package Controlador;
 
 import ModeloDAO.OrdenDetallesDAO;
 import ModeloVO.OrdenDetallesVO;
+import Util.Conexion;
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRExporter;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.util.JRLoader;
 
 /**
  *
@@ -103,6 +112,27 @@ public class OrdenDetallesControlador extends HttpServlet {
                 } else {
                     request.setAttribute("mensajeExito", "La orden Detalles no existe");
                     request.getRequestDispatcher("consultarOrdenDetalles.jsp").forward(request, response);
+                }
+                break;
+            case 10:    
+                response.setHeader("Content-Disposition", "attachment; filename=\"reporteOrdenDetalle.pdf\";");
+                response.setHeader("Cache-Control", "no-cache");
+                response.setHeader("Pragma", "no-cache");
+                response.setDateHeader("Expires", 0);
+                response.setContentType("application/pdf");
+
+                ServletOutputStream out = response.getOutputStream();
+                try {
+                    Conexion conexion = new Conexion();
+                    JasperReport reporte = (JasperReport) JRLoader.loadObject(getServletContext().getRealPath("reportes/reportesOrdenDetalles/reporteOrdenDetalle.jasper"));
+                    JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, null, conexion.obtenerConexion());
+
+                    JRExporter exporter = new JRPdfExporter();
+                    exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+                    exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, out);
+                    exporter.exportReport();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
                 break;
         }

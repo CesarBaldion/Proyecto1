@@ -6,6 +6,7 @@
 package ModeloDAO;
 
 import ModeloVO.DetallesProductoVO;
+import ModeloVO.ProductoVO;
 import Util.Conexion;
 import Util.Crud;
 import java.sql.Connection;
@@ -177,4 +178,24 @@ public class DetallesProductoDAO extends Conexion implements Crud {
         return listarDetallesProducto;
         
     }    
+    public String consultarProducto(String idProducto) {
+        String nomProducto;
+        ProductoVO prodVO = null;
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from producto where id_producto=?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, idProducto);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+                prodVO = new ProductoVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3));
+            }
+        } catch (Exception e) {
+            Logger.getLogger(ProductoVO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
+        nomProducto = prodVO.getNombre();
+        return nomProducto;
+    }
 }

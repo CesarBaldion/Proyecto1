@@ -7,13 +7,22 @@ package Controlador;
 
 import ModeloDAO.MateriaPrimaDAO;
 import ModeloVO.MateriaPrimaVO;
+import Util.Conexion;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRExporter;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.util.JRLoader;
 
 /**
  *
@@ -34,21 +43,21 @@ public class MateriaPrimaControlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         String Id_materia_Prima = request.getParameter("txtIdMateriaPrima");
         String Nombre = request.getParameter("txtNombre");
         String Actualizacion = request.getParameter("txtActualizacion");
         String Estado = request.getParameter("txtEstado");
-        if(Actualizacion==null){
-            Actualizacion="0";
+        String reporteOpcion = request.getParameter("txtreporte");
+        if (Actualizacion == null) {
+            Actualizacion = "0";
         }
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         // 2. Quien tiene los datos de forma segura en el sistema? VO
         MateriaPrimaVO matPriVO = new MateriaPrimaVO(Id_materia_Prima, Nombre, Actualizacion, Estado);
-
         // 3. Quien hace las operaciones? DAO
         MateriaPrimaDAO matPriDAO = new MateriaPrimaDAO(matPriVO);
-        
+
         switch (opcion) {
 
             case 1: //Agregar registro
@@ -87,7 +96,7 @@ public class MateriaPrimaControlador extends HttpServlet {
 
                     request.setAttribute("mensajeError", "La materia prima no se elimino correctamente!");
                 }
-                
+
                 break;
 
             case 4: //Consultar por Ordens
@@ -102,8 +111,8 @@ public class MateriaPrimaControlador extends HttpServlet {
                     request.getRequestDispatcher("consultarMateriaPrima.jsp").forward(request, response);
                 }
                 break;
-                
-                case 5: //Consultar por Orden
+
+            case 5: //Consultar por Orden
 
                 matPriVO = matPriDAO.consultarIdMateriaPrima(Id_materia_Prima);
                 if (matPriVO != null) {
@@ -115,7 +124,7 @@ public class MateriaPrimaControlador extends HttpServlet {
                     request.getRequestDispatcher("consultarExistenciasMateriaPrima.jsp").forward(request, response);
                 }
                 break;
-                case 6:
+            case 6:
 
                 if (matPriDAO.eliminarRegistro()) {
                     request.setAttribute("mensajeExito", "La materia prima se elimino correctamente!");
@@ -125,7 +134,52 @@ public class MateriaPrimaControlador extends HttpServlet {
 
                     request.setAttribute("mensajeError", "La materia prima no se elimino correctamente!");
                 }
-                
+
+                break;
+            case 10:
+
+                if (reporteOpcion.equals("2")) {
+                    response.setHeader("Content-Disposition", "attachment; filename=\"reporteExistenciasMateriaPrima.pdf\";");
+                    response.setHeader("Cache-Control", "no-cache");
+                    response.setHeader("Pragma", "no-cache");
+                    response.setDateHeader("Expires", 0);
+                    response.setContentType("application/pdf");
+
+                    ServletOutputStream out = response.getOutputStream();
+                    try {
+                        Conexion conexion = new Conexion();
+                        JasperReport reporte = (JasperReport) JRLoader.loadObject(getServletContext().getRealPath("reportes/reportesMateriasPrimas/reporteExistenciasMateriaPrima.jasper"));
+                        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, null, conexion.obtenerConexion());
+
+                        JRExporter exporter = new JRPdfExporter();
+                        exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+                        exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, out);
+                        exporter.exportReport();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    response.setHeader("Content-Disposition", "attachment; filename=\"reporteMateriaPrima.pdf\";");
+                    response.setHeader("Cache-Control", "no-cache");
+                    response.setHeader("Pragma", "no-cache");
+                    response.setDateHeader("Expires", 0);
+                    response.setContentType("application/pdf");
+
+                    ServletOutputStream out = response.getOutputStream();
+                    try {
+                        Conexion conexion = new Conexion();
+                        JasperReport reporte = (JasperReport) JRLoader.loadObject(getServletContext().getRealPath("reportes/reportesMateriasPrimas/reporteMateriaPrima.jasper"));
+                        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, null, conexion.obtenerConexion());
+
+                        JRExporter exporter = new JRPdfExporter();
+                        exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+                        exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, out);
+                        exporter.exportReport();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
                 break;
         }
     }

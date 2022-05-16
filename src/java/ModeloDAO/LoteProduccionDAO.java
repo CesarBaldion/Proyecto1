@@ -151,9 +151,7 @@ public class LoteProduccionDAO extends Conexion implements Crud{
 
             while (mensajero.next()) {
 
-                ltProducVO = new LoteProduccionVO(mensajero.getString(1), mensajero.getString(2),
-                        mensajero.getString(3),mensajero.getInt(4),mensajero.getString(5),mensajero.getString(6));
-
+                ltProducVO = new LoteProduccionVO(mensajero.getString(1), mensajero.getString(2),mensajero.getString(3),mensajero.getInt(4),mensajero.getString(5));
             }
 
         } catch (SQLException e) {
@@ -185,7 +183,7 @@ public class LoteProduccionDAO extends Conexion implements Crud{
             while (mensajero.next()) {
 
                LoteProduccionVO ltProducVO = new LoteProduccionVO(mensajero.getString(1), mensajero.getString(2),
-                        mensajero.getString(3),mensajero.getInt(4),mensajero.getString(5),mensajero.getString(6));
+                        mensajero.getString(3),mensajero.getInt(4),mensajero.getString(5));
                listaLoteProduccion.add(ltProducVO);
 
             }

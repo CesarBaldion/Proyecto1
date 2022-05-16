@@ -17,13 +17,20 @@ public class LoteProduccionVO {
     public LoteProduccionVO() {
     }
 
-    public LoteProduccionVO(String id_Lote_Produccion,String id_Usuarios, String id_orden_Detalles,int cantidad,String fecha_Fabricacion, String Estado) {
+    public LoteProduccionVO(String id_Lote_Produccion,String id_Usuarios, String id_orden_Detalles,int cantidad,String fecha_Fabricacion,String estado) {
         this.id_Lote_Produccion = id_Lote_Produccion;
         this.id_Usuarios = id_Usuarios;
         this.id_orden_Detalles = id_orden_Detalles;
         this.cantidad = cantidad;
         this.fecha_Fabricacion = fecha_Fabricacion;
-        this.Estado = Estado;
+        this.Estado = estado;
+    }
+    public LoteProduccionVO(String id_Lote_Produccion,String id_Usuarios, String id_orden_Detalles,int cantidad,String fecha_Fabricacion) {
+        this.id_Lote_Produccion = id_Lote_Produccion;
+        this.id_Usuarios = id_Usuarios;
+        this.id_orden_Detalles = id_orden_Detalles;
+        this.cantidad = cantidad;
+        this.fecha_Fabricacion = fecha_Fabricacion;
     }
     
      public String getId_Lote_Produccion() {

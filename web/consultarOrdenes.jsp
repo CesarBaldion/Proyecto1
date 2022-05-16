@@ -3,7 +3,6 @@
     Created on : 23/03/2022, 08:38:26 AM
     Author     : Sena
 --%>
-<%@include file="sesionesAlmacenista.jsp" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="ModeloDAO.OrdenesDAO"%>
 <%@page import="ModeloVO.OrdenesVO"%>
@@ -27,20 +26,13 @@
                     <input type="hidden" value="4" name="opcion">
                     <button class="btn">Consultar</button>
                 </form>
-                <div style="color: red;">
-                    <%
-                        if (request.getAttribute("mensajeError") != null) {%>
-                    ${mensajeError}
-
-                    <%   } else {%>
-                    ${mensajeExito}
-
-                    <%}%>
-                </div>
+                <%if (request.getAttribute("mensajeError") != null) {%>
+                <p class="text-danger text-center fs-5">${mensajeError}</p>
+                <%   } else {%>
+                <p class="text-success text-center fs-5">${mensajeExito}</p>
+                <%}%>
             </div>
         </div>
-
-
         <div class="col-md-9 mx-auto justify-content-center mt-4">
             <div class="col-md-7 mx-auto justify-content-center">
                 <table id="datos" number-per-page="10" class="table table-light table-hover table-striped text-center">
