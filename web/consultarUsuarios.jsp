@@ -19,19 +19,15 @@
     </head>
 
     <body>
-        <h1 class="text-center">Usuarios</h1>
-        <div class="col-md-4 justify-content-center mx-auto mt-4 d-flex">
-            <div class="col-md-6 me-3 ">
-                <label>Consultar</label>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+        <h1 class="text-center mb-5 mt-3">Usuarios</h1>
+        <div class="col-md-4 justify-content-center mx-auto mt-5 d-flex">
+            <div class="col-md-5 me-3 ">
+                <label>Buscar</label>
                     <label class="mdl-button mdl-js-button mdl-button--icon" for="buscar">
                         <i class="zmdi zmdi-search"></i>
                     </label>
-                    <div class="mdl-textfield__expandable-holder">
-                        <input type="text" onkeyup="doSearch()" class="mdl-textfield__input"  id="buscar">
-                        <label class="mdl-textfield__label"></label>
-                    </div>
-                </div>
+                    <input type="text" onkeyup="doSearch()" class="form-control"  id="buscar">
+                    <label class="mdl-textfield__label"></label>
                 <%if (request.getAttribute("mensajeError") != null) {%>
                 <p class="text-danger text-center fs-5">${mensajeError}</p>
                 <%   } else {%>
@@ -56,12 +52,16 @@
                     <input type="hidden" value="10" name="opcion">
                 </form>
             </div>
-            <div class="col-md-6 ms-5">
-                <label>Carga Masiva</label><br>
-                <label>Archivo Excel(xlsx)</label>
+            <div class="col-md-7 ms-5">
+
+                <label>Carga Masiva <b>Archivo Excel(xlsx)</b></label>
                 <form action="Usuarios" method="post" enctype="multipart/form-data" class="form-group">
                     <input type="file" name="archivocsv" class="form-control">
-                    <button class="btn boton mt-3">Cargar</button>
+                    <button class="btn boton mt-3">Cargar
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
+                        <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                        <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                        </svg></button>
                     <input type="hidden" value="11" name="opcion">
                 </form>
             </div>
