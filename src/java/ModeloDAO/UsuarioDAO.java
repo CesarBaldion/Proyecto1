@@ -148,15 +148,14 @@ public class UsuarioDAO extends Conexion implements Crud {
     public boolean eliminarRegistro() {
 
         try {
-            //Armar sentencia
-            sql = "delete from usuarios where id_Usuarios" + id_Usuarios;
+            sql = "UPDATE `usuarios` SET `Estado`= 0 WHERE Id_usuarios = ?";
             puente = conexion.prepareStatement(sql);
+            puente.setString(1, id_Usuarios);
             puente.executeUpdate();
             operacion = true;
-
+            
         } catch (SQLException e) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
-
         } finally {
 
             try {
@@ -166,7 +165,6 @@ public class UsuarioDAO extends Conexion implements Crud {
                 Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
             }
         }
-
         return operacion;
     }
 

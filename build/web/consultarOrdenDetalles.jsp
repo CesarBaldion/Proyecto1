@@ -63,7 +63,6 @@
                         DetallesProductoDAO detProDAO = new DetallesProductoDAO();
                         OrdenDetallesVO OrdenDetallVO = new OrdenDetallesVO();
                         OrdenDetallesDAO OrdenDetallDAO = new OrdenDetallesDAO(OrdenDetallVO);
-                        OrdenDetallesDAO OrdenDetallDAO1 = new OrdenDetallesDAO();
                         ArrayList<OrdenDetallesVO> listaOrdenDetalles = OrdenDetallDAO.Listar();
 
                         for (int i = 0; i < listaOrdenDetalles.size(); i++) {
@@ -73,9 +72,10 @@
                     %>
                     <tr>
                         <td><%=OrdenDetallVO.getId_Orden_Detalles()%></td>
-                        <td><%=OrdenDetallDAO1.consultarOrden(OrdenDetallVO.getId_Orden())%></td>
-                        <td><%=detProDAO.consultarProducto(OrdenDetallDAO1.consultarProducto(OrdenDetallVO.getId_Detalles_Producto()))%></td>
+                        <td><%=OrdenDetallVO.getId_Orden()%></td>
+                        <td><%=OrdenDetallVO.getId_Detalles_Producto()%></td>
                         <td><%=OrdenDetallVO.getCantidadSolicitada()%></td>
+                        
                         
                         <td>
                             <form action="OrdenDetalles" method="post">

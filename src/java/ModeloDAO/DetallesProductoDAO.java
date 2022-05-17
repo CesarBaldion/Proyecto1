@@ -111,8 +111,27 @@ public class DetallesProductoDAO extends Conexion implements Crud {
     
     @Override
     public boolean eliminarRegistro() {
-         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         try {
+            sql = "UPDATE `detalles_producto` SET `Estado`= 0 WHERE Id_detalles_producto = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id_Detalles_Producto);
+            puente.executeUpdate();
+            operacion = true;
+            
+        } catch (SQLException e) {
+            Logger.getLogger(DetallesProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(DetallesProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return operacion;
     }
+    
     
     public DetallesProductoVO consultarDetallesProducto(String DetallesProd) {
         
@@ -128,7 +147,7 @@ public class DetallesProductoDAO extends Conexion implements Crud {
             
             while (mensajero.next()) {
                 detProVO = new DetallesProductoVO(mensajero.getString(1), mensajero.getString(2),
-                        mensajero.getString(3), mensajero.getString(4));
+                        mensajero.getString(3), mensajero.getString(4), mensajero.getString(5));
                 
             }
         } catch (Exception e) {
@@ -158,7 +177,7 @@ public class DetallesProductoDAO extends Conexion implements Crud {
             
             while (mensajero.next()) {
                 DetallesProductoVO detProVO = new DetallesProductoVO(mensajero.getString(1), mensajero.getString(2),
-                        mensajero.getString(3), mensajero.getString(4));
+                        mensajero.getString(3), mensajero.getString(4),mensajero.getString(5));
                 
                 listarDetallesProducto.add(detProVO);
             }

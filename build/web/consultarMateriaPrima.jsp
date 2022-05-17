@@ -25,10 +25,16 @@
                     <label class="mdl-button mdl-js-button mdl-button--icon" for="buscar">
                         <i class="zmdi zmdi-search">Buscar</i>
                     </label>
+                    
                     <div class="mdl-textfield__expandable-holder">
                         <input type="text" onkeyup="doSearch()" class="mdl-textfield__input"  id="buscar">
                         <label class="mdl-textfield__label"></label>
                     </div>
+                     <form  method="post" action="MateriaPrima" class="form-group"> 
+                    <input type="text" name="txtIdMateriaPrima" class="form-control" placeholder="Id Materia Prima">
+                    <input type="hidden" value="4" name="opcion">
+                    <button class="btn boton mt-2">Consultar</button>
+                </form>
                 </div>
                 <%if (request.getAttribute("mensajeError") != null) {%>
                 <p class="text-danger text-center fs-5">${mensajeError}</p>

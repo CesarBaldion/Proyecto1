@@ -62,6 +62,15 @@
                         <td><%=detProVO.getTalla()%></td>
                         <td><%=detProVO.getDescripcion()%></td>
                         
+                         <td>
+                            <form action="DetallesProducto" method="post">
+                                <input type="hidden" name="txtEstado" value="0">
+                                <input type="hidden" name="txtIdDetallesProducto" value="<%=detProVO.getId_Detalles_Producto()%>">
+                                <button class="btn boton">Desactivar</button>
+                                <input type="hidden" value="3" name="opcion">
+                            </form>
+                        </td>
+                        
                     </tr>
                     <% }%>
                 </table>

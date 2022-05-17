@@ -88,6 +88,14 @@
                         <td><%=usuVO.getTelefono()%></td>
                         <td><%=usuVO.getEmail()%></td>
                         <td><%=usuVO.getDireccion()%></td>
+                        <td>
+                            <form action="Usuarios" method="post">
+                                <input type="hidden" name="txtEstado" value="0">
+                                <input type="hidden" name="txtId" value="<%=usuVO.getIdUsuarios()%>">
+                                <button class="btn boton">Desactivar</button>
+                                <input type="hidden" value="3" name="opcion">
+                            </form>
+                        </td>
 
                         <td>
                             <form action="Usuarios" method="post">
@@ -103,6 +111,7 @@
                                 <input type="hidden" value="9" name="opcion">
                             </form>
                         </td>
+                        
                     </tr>
                     <% }%>
 

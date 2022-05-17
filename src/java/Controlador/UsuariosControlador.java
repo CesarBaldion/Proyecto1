@@ -171,6 +171,8 @@ public class UsuariosControlador extends HttpServlet {
                 if (usuDAO.eliminarRegistro()) {
 
                     request.setAttribute("mensajeExito", "El usuario se elimino correctamente!");
+                    request.getRequestDispatcher("consultarUsuarios.jsp").forward(request, response);
+
 
                 } else {
 
