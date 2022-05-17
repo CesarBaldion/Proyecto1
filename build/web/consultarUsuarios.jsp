@@ -40,7 +40,7 @@
             </div>
             <div class="col-md-6">
                 <label>Generar Reporte</label>
-                <form action="Usuarios" method="post" class="form-group">
+                <form action="Usuarios" method="post" class="form-group" enctype="multipart/form-data">
                     <select name="txtEstado" class="form-select">
                         <option selected>Escoja Una Opcion</option>
                         <option value="1">Usuarios Activos</option>
@@ -54,6 +54,15 @@
                         </svg>
                     </button>
                     <input type="hidden" value="10" name="opcion">
+                </form>
+            </div>
+            <div class="col-md-6 ms-5">
+                <label>Carga Masiva</label><br>
+                <label>Archivo Excel(xlsx)</label>
+                <form action="Usuarios" method="post" enctype="multipart/form-data" class="form-group">
+                    <input type="file" name="archivocsv" class="form-control">
+                    <button class="btn boton mt-3">Cargar</button>
+                    <input type="hidden" value="11" name="opcion">
                 </form>
             </div>
         </div>   
@@ -111,7 +120,7 @@
                                 <input type="hidden" value="9" name="opcion">
                             </form>
                         </td>
-                        
+
                     </tr>
                     <% }%>
 

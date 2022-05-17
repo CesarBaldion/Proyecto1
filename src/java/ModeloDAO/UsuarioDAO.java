@@ -20,12 +20,24 @@ import java.util.logging.Logger;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.Part;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
 
@@ -526,6 +538,70 @@ public class UsuarioDAO extends Conexion implements Crud {
 
         return operacion;
 
+    }
+    public String guardarArchivo(Part csvPart, File rutaCarpetaArchivos) {
+        String rutaAbsoluta = "";
+        try {
+            Path ruta = Paths.get(csvPart.getSubmittedFileName());
+            String nombreArchivo = ruta.getFileName().toString();
+            InputStream input = csvPart.getInputStream();
+
+            if (input != null) {
+                File file = new File(rutaCarpetaArchivos, nombreArchivo);
+                rutaAbsoluta = file.getAbsolutePath();
+                Files.copy(input, file.toPath());
+            }
+            
+            return rutaAbsoluta ;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+        
+    }
+    public void cargar(String rutaAbsoluta) throws SQLException, IOException  {
+
+        try {
+            sql = "insert into usuarios( Nombre, Documento, Telefono, Email, Direccion, Contrasena)"
+                    + "values (?,?,?,?,?,?)";
+            conexion = obtenerConexion();
+            FileInputStream file = new FileInputStream(new File(rutaAbsoluta));
+
+            XSSFWorkbook wb = new XSSFWorkbook(file);
+            XSSFSheet sheet = wb.getSheetAt(0);
+
+            int numFilas = sheet.getLastRowNum();
+            
+            for (int a = 1; a <= numFilas; a++) {
+                Row fila = sheet.getRow(a);
+                
+                puente = conexion.prepareStatement(sql);
+                puente.setString(1, fila.getCell(0).getStringCellValue());
+                puente.setString(2, String.valueOf(fila.getCell(1).getNumericCellValue()));
+                puente.setString(3, String.valueOf(fila.getCell(2).getNumericCellValue()));
+                puente.setString(4, fila.getCell(3).getStringCellValue());
+                puente.setString(5, fila.getCell(4).getStringCellValue());
+                puente.setString(6, String.valueOf(fila.getCell(5).getNumericCellValue()));
+                puente.execute();
+            }
+            File buscarArchivo = new File(rutaAbsoluta);
+            buscarArchivo.delete();
+            conexion = cerrarConexion();
+
+        } catch (FileNotFoundException ex ) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+    public File validarRuta(){
+        String ruta = "web/archivosCargaMasiva";
+        File archivoCargas = new File(ruta);
+        if(archivoCargas.exists()==true){
+            return archivoCargas;
+        }else{
+            archivoCargas.mkdirs();
+            return archivoCargas;
+        }
     }
 
 }

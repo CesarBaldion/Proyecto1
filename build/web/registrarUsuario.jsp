@@ -23,15 +23,12 @@
                         <h3 class="text-center fs-4">Ingrese sus datos</h3>
                         <div class="mx-auto justify-content-center">
                             <%if (request.getAttribute("error") != null) {%>
-                            
-                            <div class="container-fluid d-inline-block d-flex mx-auto">
-                                
+                            <div class="container-fluid d-inline-block d-flex mx-auto">                               
                                 <img src="img/error.svg" height="100">
                                 <p class="text-danger text-center fs-5 mt-5">${error}</p>
                             </div>
                             <%   } else {%>
                             <p class="text-success text-center fs-5">${Bien}</p>
-
                             <%}%>
                         </div>
                         <div class="d-flex  ">
