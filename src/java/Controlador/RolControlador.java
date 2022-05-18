@@ -36,11 +36,12 @@ public class RolControlador extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String id_rol = request.getParameter("txtId");
         String roltipo = request.getParameter("txtroltipo");
+        String Estado = request.getParameter("txtEstado");
 
         int opcion = Integer.parseInt(request.getParameter("opcion"));
 
         //2. Quien tiene los datos de forma segura en el sistema? VO
-        RolVO RVO = new RolVO(id_rol, roltipo);
+        RolVO RVO = new RolVO(id_rol, roltipo, Estado);
 
         // 3. Quien hace las operaciones? DAO
         RolDAO RDAO = new RolDAO(RVO);
@@ -50,15 +51,20 @@ public class RolControlador extends HttpServlet {
 
             case 1: //Agregar registro
 
-                if (RDAO.agregarRegistro()) {
+               if (RDAO.verificarRol(roltipo) == false) {
+                    if (RDAO.agregarRegistro() == true) {
 
-                    request.setAttribute("mensajeExito", "El rol se registro correctamente!");
-
+                    request.setAttribute("mensajeExito", "Se ha registrado correctamente");
+                        request.getRequestDispatcher("registrarRol.jsp").forward(request, response);
+                    } else {
+                        request.setAttribute("mensajeError", "Error al Registrar!");
+                        request.getRequestDispatcher("registrarRol.jsp").forward(request, response);
+                    }
                 } else {
-
-                    request.setAttribute("mensajeError", "El rol no se registro correctamente");
+                    request.setAttribute("error", "El Rol ya existe");
+                    request.getRequestDispatcher("registrarRol.jsp").forward(request, response);
                 }
-                request.getRequestDispatcher("registrarRol.jsp").forward(request, response);
+
                 break;
 
             case 2:
@@ -79,6 +85,7 @@ public class RolControlador extends HttpServlet {
                 if (RDAO.eliminarRegistro()) {
 
                     request.setAttribute("mensajeExito", "El rol se elimino correctamente!");
+                     request.getRequestDispatcher("consultarRol.jsp").forward(request, response);
 
                 } else {
 

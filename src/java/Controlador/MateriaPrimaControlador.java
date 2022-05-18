@@ -62,15 +62,22 @@ public class MateriaPrimaControlador extends HttpServlet {
 
             case 1: //Agregar registro
 
-                if (matPriDAO.agregarRegistro()) {
+                 if (matPriDAO.verificarMateriaPrima(Nombre) == false) {
+                    if (matPriDAO.agregarRegistro() == true) {
 
-                    request.setAttribute("mensajeExito", "La materia prima se registró correctamente!");
+                         request.setAttribute("mensajeExito", "La materia prima se registró correctamente!");
+                        request.getRequestDispatcher("registrarMateriasPrimas.jsp").forward(request, response);
+                    
 
+               } else {
+                        request.setAttribute("mensajeError", "La materia prima no se registro correctamente!");
+                        request.getRequestDispatcher("registrarMateriasPrimas.jsp").forward(request, response);
+                    }
                 } else {
-
-                    request.setAttribute("mensajeError", "La materia prima no se registró correctamente");
+                    request.setAttribute("error", "La materia Prima ya existe");
+                    request.getRequestDispatcher("registrarMateriasPrimas.jsp").forward(request, response);
                 }
-                request.getRequestDispatcher("registrarMateriasPrimas.jsp").forward(request, response);
+
                 break;
 
             case 2:
@@ -133,6 +140,32 @@ public class MateriaPrimaControlador extends HttpServlet {
                 } else {
 
                     request.setAttribute("mensajeError", "La materia prima no se elimino correctamente!");
+                }
+
+                break;
+                case 7:
+
+                if (matPriDAO.ActivarRegistro()) {
+                    request.setAttribute("mensajeExito", "La materia prima se activo correctamente!");
+                    request.getRequestDispatcher("eliminarMateriaPrima.jsp").forward(request, response);
+
+                } else {
+
+                    request.setAttribute("mensajeError", "La materia prima no se activo correctamente!");
+                }
+
+                break;
+                
+                case 8:
+
+                if (matPriDAO.EliminarRegistroTotal()) {
+                    request.setAttribute("mensajeExito", "La materia prima se elimino correctamente!");
+                    request.getRequestDispatcher("eliminarMateriaPrima.jsp").forward(request, response);
+
+                } else {
+
+                    request.setAttribute("mensajeError", "La materia prima no se elimino correctamente!");
+                    request.getRequestDispatcher("eliminarMateriaPrima.jsp").forward(request, response);
                 }
 
                 break;

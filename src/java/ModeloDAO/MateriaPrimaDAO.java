@@ -232,4 +232,108 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
         return listaMateriaPrima;
 
     }
+     public boolean verificarMateriaPrima(String Nombre) {
+
+        MateriaPrimaVO mpVO = null;
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from materia_prima where Nombre = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Nombre);
+            mensajero = puente.executeQuery();
+            while (mensajero.next()) {
+                mpVO = new MateriaPrimaVO(mensajero.getString(1), mensajero.getString(2), 
+                        mensajero.getString(3), mensajero.getString(4));
+            }
+            if (mpVO == null) {
+                operacion = false;
+            } else {
+                operacion = true;
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(MateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        }
+
+        return operacion;
+
+    }
+     public ArrayList<MateriaPrimaVO> ListarTres() {
+
+        ArrayList<MateriaPrimaVO> listaMateriaPrima = new ArrayList<>();
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from materiaprimaview2";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+
+               MateriaPrimaVO matPriVO = new MateriaPrimaVO(mensajero.getString(1),
+                       mensajero.getString(2), mensajero.getString(3), mensajero.getString(4));
+                listaMateriaPrima.add(matPriVO);
+
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(MateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(MateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return listaMateriaPrima;
+     }
+     public boolean ActivarRegistro() {
+        try {
+            sql = "UPDATE `materia_prima` SET `Estado`= 1 WHERE Id_materia_Prima = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id_materia_Prima);
+            puente.executeUpdate();
+            operacion = true;
+            
+        } catch (SQLException e) {
+            Logger.getLogger(MateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(MateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return operacion;
+    }
+     
+     public boolean EliminarRegistroTotal() {
+        try {
+            sql = "DELETE FROM `materia_prima` WHERE id_materia_prima = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id_materia_Prima);
+            puente.executeUpdate();
+            operacion = true;
+            
+        } catch (SQLException e) {
+            Logger.getLogger(MateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(MateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return operacion;
+    }
+
 }
+

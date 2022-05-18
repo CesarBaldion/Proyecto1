@@ -55,6 +55,15 @@
                     <tr>
                         <td><%=RVO.getId_rol()%></td>
                         <td><%=RVO.getRoltipo()%></td>
+                        
+                         <td>
+                            <form action="Rol" method="post">
+                                <input type="hidden" name="txtEstado" value="0">
+                                <input type="hidden" name="txtId" value="<%=RVO.getId_rol()%>">
+                                <button class="boton btn">Desactivar</button>
+                                <input type="hidden" value="3" name="opcion">
+                            </form>
+                        </td>
                     </tr>
 
                     <% }%>

@@ -102,6 +102,38 @@ public class OrdenesControlador extends HttpServlet {
                     request.getRequestDispatcher("consultarOrdenes.jsp").forward(request, response);
                 }
                 break;
+
+            case 5:
+
+                if (ordDao.ActivarRegistro()) {
+
+                    request.setAttribute("mensajeExito", "La orden se activo correctamente!");
+                    request.getRequestDispatcher("eliminarOrdenes.jsp").forward(request, response);
+
+                } else {
+
+                    request.setAttribute("mensajeError", "La orden no se activo correctamente!");
+                    request.getRequestDispatcher("eliminarOrdenes.jsp").forward(request, response);
+
+                }
+                request.getRequestDispatcher("menu.jsp").forward(request, response);
+                break;
+
+            case 6:
+
+                if (ordDao.eliminarRegistroTotal()) {
+
+                    request.setAttribute("mensajeExito", "La orden se elimino correctamente!");
+                    request.getRequestDispatcher("eliminarOrdenes.jsp").forward(request, response);
+
+                } else {
+
+                    request.setAttribute("mensajeError", "La orden no se elimino correctamente!");
+                    request.getRequestDispatcher("eliminarOrdenes.jsp").forward(request, response);
+
+                }
+                request.getRequestDispatcher("menu.jsp").forward(request, response);
+                break;
         }
     }
 

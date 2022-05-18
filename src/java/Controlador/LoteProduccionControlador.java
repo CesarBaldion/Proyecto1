@@ -117,6 +117,39 @@ public class LoteProduccionControlador extends HttpServlet {
                     request.getRequestDispatcher("consultarLoteProduccion.jsp").forward(request, response);
                 }
                 break;
+
+            case 5:
+
+                if (ltProducDAO.ActivarRegistro()) {
+
+                    request.setAttribute("mensajeExito", "El lote de Produccion se activo correctamente!");
+                    request.getRequestDispatcher("eliminarLoteProduccion.jsp").forward(request, response);
+
+                } else {
+
+                    request.setAttribute("mensajeError", "El lote de Produccion no se elimino correctamente!");
+                    request.getRequestDispatcher("eliminarLoteProduccion.jsp").forward(request, response);
+
+                }
+                request.getRequestDispatcher("menu.jsp").forward(request, response);
+                break;
+
+            case 6:
+
+                if (ltProducDAO.eliminarRegistroTotal()) {
+
+                    request.setAttribute("mensajeExito", "El lote de Produccion se elimino correctamente!");
+                    request.getRequestDispatcher("eliminarLoteProduccion.jsp").forward(request, response);
+
+                } else {
+
+                    request.setAttribute("mensajeError", "El lote de Produccion no se elimino correctamente!");
+                    request.getRequestDispatcher("eliminarLoteProduccion.jsp").forward(request, response);
+
+                }
+                request.getRequestDispatcher("menu.jsp").forward(request, response);
+                break;
+                
             case 10:
                 response.setHeader("Content-Disposition", "attachment; filename=\"reporteLoteProduccion.pdf\";");
                 response.setHeader("Cache-Control", "no-cache");

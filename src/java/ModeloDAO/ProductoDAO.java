@@ -194,5 +194,70 @@ public class ProductoDAO extends Conexion implements Crud {
         return operacion;
 
     }
+    public ArrayList<ProductoVO> listarDos() {
+
+        ArrayList<ProductoVO> listaProductos = new ArrayList();
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from productoview2";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+                ProductoVO prodVO = new ProductoVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3));
+
+                listaProductos.add(prodVO);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(ProductoVO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexion();
+            } catch (Exception e) {
+                Logger.getLogger(ProductoVO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return listaProductos;
+    }
+    public boolean ActivarRegistro() {
+        try {
+
+            sql = "UPDATE `producto` SET `Estado`= 1 WHERE Id_producto = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id_Producto);
+            puente.executeUpdate();
+            operacion = true;
+        } catch (Exception e) {
+            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexion();
+            } catch (Exception e) {
+                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return operacion;
+    }
+    
+    public boolean EliminarRegistroTotal() {
+        try {
+
+            sql = "DELETE FROM `producto` WHERE id_producto = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id_Producto);
+            puente.executeUpdate();
+            operacion = true;
+        } catch (Exception e) {
+            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexion();
+            } catch (Exception e) {
+                Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return operacion;
+    }
+
 
 }

@@ -201,4 +201,87 @@ public class OrdenesDAO extends Conexion implements Crud {
         return listaOrdenes;
 
     }
+    
+     public ArrayList<OrdenesVO> listarDos() {
+
+        ArrayList<OrdenesVO> listaOrdenes = new ArrayList<>();
+        try {
+
+            sql = "select * from OrdenesView2";
+            conexion = this.obtenerConexion();
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+                OrdenesVO ordVo = new OrdenesVO(mensajero.getString(1), mensajero.getString(2),
+                        mensajero.getString(3), mensajero.getString(4), mensajero.getString(5));
+
+                listaOrdenes.add(ordVo);
+            }
+        } catch (Exception e) {
+
+            Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return listaOrdenes;
+
+    }
+     
+     public boolean ActivarRegistro() {
+        try {
+            //Armar sentencia
+           sql = "UPDATE `ordenes` SET `Estado`= 1 WHERE Id_orden = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id_Orden);
+            puente.executeUpdate();
+            operacion = true;
+
+        } catch (SQLException e) {
+            Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+            
+        }
+        return operacion;
+    }
+     
+     public boolean eliminarRegistroTotal() {
+        try {
+            //Armar sentencia
+           sql = "delete from `ordenes` WHERE Id_orden = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id_Orden);
+            puente.executeUpdate();
+            operacion = true;
+
+        } catch (SQLException e) {
+            Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+            
+        }
+        return operacion;
+    }
 }

@@ -120,6 +120,35 @@ public class ProductoControlador extends HttpServlet {
             }
             break;
             
+            case 5:
+
+                if (prodDAO.ActivarRegistro()) {
+
+                    request.setAttribute("mensajeExito", "El producto se activo correctamente!");
+                    request.getRequestDispatcher("eliminarProducto.jsp").forward(request, response);
+
+                } else {
+
+                    request.setAttribute("mensajeError", "El producto no se elimino correctamente!");
+                }
+                request.getRequestDispatcher("menu.jsp").forward(request, response);
+                break;
+                
+                case 6:
+
+                if (prodDAO.EliminarRegistroTotal()) {
+
+                    request.setAttribute("mensajeExito", "El producto se elimino correctamente!");
+                    request.getRequestDispatcher("eliminarProducto.jsp").forward(request, response);
+
+                } else {
+
+                    request.setAttribute("mensajeError", "El producto no se elimino correctamente!");
+                    request.getRequestDispatcher("eliminarProducto.jsp").forward(request, response);
+                }
+                request.getRequestDispatcher("menu.jsp").forward(request, response);
+                break;
+            
             case 10:
                 //generarReporte
                 response.setHeader("Content-Disposition", "attachment; filename=\"reporteProductos.pdf\";");

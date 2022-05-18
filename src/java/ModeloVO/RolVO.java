@@ -11,14 +11,15 @@ package ModeloVO;
  */
 public class RolVO {
     
-    private String  id_rol, roltipo;
+    private String  id_rol, roltipo, Estado;
 
     public RolVO() {
     }
 
-    public RolVO(String id_rol, String roltipo) {
+    public RolVO(String id_rol, String roltipo, String Estado) {
         this.id_rol = id_rol;
         this.roltipo = roltipo;
+        this.Estado = Estado;
     }
 
     public String getId_rol() {
@@ -36,6 +37,16 @@ public class RolVO {
     public void setRoltipo(String roltipo) {
         this.roltipo = roltipo;
     }
+
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
+    }
+    
+    
     
     
 }

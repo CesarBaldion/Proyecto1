@@ -214,5 +214,91 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud {
         return listaLoteMateriaPrima;
 
     }
+    public ArrayList<loteMateriaPrimaVO> ListarDos() {
+
+        ArrayList<loteMateriaPrimaVO> listaLoteMateriaPrima = new ArrayList<>();
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from lotemateriaprimaview2";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+
+                loteMateriaPrimaVO ltMatPriVO = new loteMateriaPrimaVO(mensajero.getString(1),
+                        mensajero.getString(2), mensajero.getString(3), mensajero.getString(4),
+                        mensajero.getString(5), mensajero.getString(6));
+                listaLoteMateriaPrima.add(ltMatPriVO);
+
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(loteMateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(loteMateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return listaLoteMateriaPrima;
+        
+
+    }
+    
+     public boolean ActivarRegistro() {
+
+        try {
+            //Armar sentencia
+            sql = "UPDATE `lotemateria_prima` SET `Estado`= 1 WHERE Id_lotemateria_prima = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id_loteMateria_Prima);
+            puente.executeUpdate();
+            operacion = true;
+
+        } catch (SQLException e) {
+            Logger.getLogger(loteMateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(loteMateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return operacion;
+    }
+ public boolean eliminarRegistroTotal() {
+
+        try {
+            //Armar sentencia
+            sql = "DELETE FROM `lotemateria_prima` WHERE id_lotemateria_prima = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id_loteMateria_Prima);
+            puente.executeUpdate();
+            operacion = true;
+
+        } catch (SQLException e) {
+            Logger.getLogger(loteMateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(loteMateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return operacion;
+    }
 
 }

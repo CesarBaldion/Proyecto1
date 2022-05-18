@@ -114,6 +114,38 @@ public class loteMateriaPrimaControlador extends HttpServlet {
                     request.getRequestDispatcher("consultarLoteMateriaPrima.jsp").forward(request, response);
                 }
                 break;
+
+            case 5:
+
+                if (loteMPDAO.ActivarRegistro()) {
+
+                    request.setAttribute("mensajeExito", "El lote de materia prima se activo correctamente!");
+                    request.getRequestDispatcher("eliminarLoteMateriaPrima.jsp").forward(request, response);
+
+                } else {
+
+                    request.setAttribute("mensajeError", "No se pudo acivar");
+                    request.getRequestDispatcher("eliminarLoteMateriaPrima.jsp").forward(request, response);
+
+                }
+                request.getRequestDispatcher("menu.jsp").forward(request, response);
+                break;
+
+            case 6:
+
+                if (loteMPDAO.eliminarRegistroTotal()) {
+
+                    request.setAttribute("mensajeExito", "El lote de materia prima se elimino correctamente!");
+                    request.getRequestDispatcher("eliminarLoteMateriaPrima.jsp").forward(request, response);
+
+                } else {
+
+                    request.setAttribute("mensajeError", "No se pudo eliminar");
+                    request.getRequestDispatcher("eliminarLoteMateriaPrima.jsp").forward(request, response);
+
+                }
+                request.getRequestDispatcher("menu.jsp").forward(request, response);
+                break;
             case 10:
                 response.setHeader("Content-Disposition", "attachment; filename=\"reporteLoteMateriaPrima.pdf\";");
                 response.setHeader("Cache-Control", "no-cache");

@@ -20,17 +20,18 @@ import java.util.logging.Logger;
  *
  * @author Sena
  */
-public class LoteProduccionDAO extends Conexion implements Crud{
+public class LoteProduccionDAO extends Conexion implements Crud {
+
     private Connection conexion;
     private PreparedStatement puente;
     private ResultSet mensajero;
 
     private boolean operacion = false;
     private String sql;
-    
-    private String id_Usuarios="", id_Lote_Produccion="",id_orden_Detalles="",fecha_Fabricacion="", Estado = "";
+
+    private String id_Usuarios = "", id_Lote_Produccion = "", id_orden_Detalles = "", fecha_Fabricacion = "", Estado = "";
     private int cantidad;
-    
+
     public LoteProduccionDAO(LoteProduccionVO loteVO) {
         super();
 
@@ -41,13 +42,11 @@ public class LoteProduccionDAO extends Conexion implements Crud{
             // 4. traer al DAO los datos del VO para hacer las operaciones.
 
             id_Lote_Produccion = loteVO.getId_Lote_Produccion();
-             id_Usuarios = loteVO.getId_Usuarios();
-            id_orden_Detalles = loteVO.getId_orden_Detalles();       
+            id_Usuarios = loteVO.getId_Usuarios();
+            id_orden_Detalles = loteVO.getId_orden_Detalles();
             cantidad = loteVO.getCantidad();
             fecha_Fabricacion = loteVO.getFecha_Fabricacion();
             Estado = loteVO.getEstado();
-            
-            
 
         } catch (Exception e) {
             Logger.getLogger(LoteProduccionDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -62,7 +61,7 @@ public class LoteProduccionDAO extends Conexion implements Crud{
             sql = "insert into lote_produccion(  Id_Usuarios,Id_orden_detalles,Cantidad, Fecha_Fabricacion  ) values (?,?,?,?)";
             // crear el camino por donde va la sentencia
             puente = conexion.prepareStatement(sql);
-            
+
             puente.setInt(3, cantidad);
             puente.setString(4, fecha_Fabricacion);
             puente.setString(2, id_orden_Detalles);
@@ -90,7 +89,7 @@ public class LoteProduccionDAO extends Conexion implements Crud{
     public boolean eliminarRegistro() {
         try {
             //Armar sentencia
-           sql = "UPDATE `lote_produccion` SET `Estado`= 0 WHERE Id_lote_produccion = ?";
+            sql = "UPDATE `lote_produccion` SET `Estado`= 0 WHERE Id_lote_produccion = ?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, id_Lote_Produccion);
             puente.executeUpdate();
@@ -122,7 +121,7 @@ public class LoteProduccionDAO extends Conexion implements Crud{
             puente.setString(2, id_orden_Detalles);
             puente.setString(1, id_Usuarios);
             puente.setString(5, id_Lote_Produccion);
-         
+
             puente.executeUpdate();
             operacion = true;
 
@@ -139,7 +138,8 @@ public class LoteProduccionDAO extends Conexion implements Crud{
         }
         return operacion;
     }
-     public LoteProduccionVO consultarIdLoteProduccion(String Id) {
+
+    public LoteProduccionVO consultarIdLoteProduccion(String Id) {
 
         LoteProduccionVO ltProducVO = null;
         try {
@@ -151,7 +151,7 @@ public class LoteProduccionDAO extends Conexion implements Crud{
 
             while (mensajero.next()) {
 
-                ltProducVO = new LoteProduccionVO(mensajero.getString(1), mensajero.getString(2),mensajero.getString(3),mensajero.getInt(4),mensajero.getString(5));
+                ltProducVO = new LoteProduccionVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getInt(4), mensajero.getString(5));
             }
 
         } catch (SQLException e) {
@@ -182,9 +182,9 @@ public class LoteProduccionDAO extends Conexion implements Crud{
 
             while (mensajero.next()) {
 
-               LoteProduccionVO ltProducVO = new LoteProduccionVO(mensajero.getString(1), mensajero.getString(2),
-                        mensajero.getString(3),mensajero.getInt(4),mensajero.getString(5));
-               listaLoteProduccion.add(ltProducVO);
+                LoteProduccionVO ltProducVO = new LoteProduccionVO(mensajero.getString(1), mensajero.getString(2),
+                        mensajero.getString(3), mensajero.getInt(4), mensajero.getString(5));
+                listaLoteProduccion.add(ltProducVO);
 
             }
 
@@ -204,5 +204,88 @@ public class LoteProduccionDAO extends Conexion implements Crud{
         return listaLoteProduccion;
 
     }
-}
 
+    public ArrayList<LoteProduccionVO> ListarDos() {
+
+        ArrayList<LoteProduccionVO> listaLoteProduccion = new ArrayList<>();
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from LoteProduccionview2";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+
+                LoteProduccionVO ltProducVO = new LoteProduccionVO(mensajero.getString(1), mensajero.getString(2),
+                        mensajero.getString(3), mensajero.getInt(4), mensajero.getString(5));
+                listaLoteProduccion.add(ltProducVO);
+
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(LoteProduccionDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(LoteProduccionDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return listaLoteProduccion;
+
+    }
+
+    public boolean ActivarRegistro() {
+        try {
+            //Armar sentencia
+            sql = "UPDATE `lote_produccion` SET `Estado`= 1 WHERE Id_lote_produccion = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, id_Lote_Produccion);
+            puente.executeUpdate();
+            operacion = true;
+
+        } catch (SQLException e) {
+            Logger.getLogger(LoteProduccionDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(LoteProduccionDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return operacion;
+    }
+    
+    public boolean eliminarRegistroTotal() {
+        try {
+            //Armar sentencia
+           sql = "Delete from `lote_produccion` WHERE Id_lote_produccion = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, id_Lote_Produccion);
+            puente.executeUpdate();
+            operacion = true;
+
+        } catch (SQLException e) {
+            Logger.getLogger(LoteProduccionDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(LoteProduccionDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return operacion;
+    }
+}
