@@ -9,17 +9,20 @@ import ModeloDAO.UsuarioDAO;
 import ModeloVO.UsuarioVO;
 import Util.Conexion;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import net.sf.jasperreports.engine.JRExporter;
 import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -32,6 +35,7 @@ import net.sf.jasperreports.engine.util.JRLoader;
  *
  * @author Juan Pablo
  */
+@MultipartConfig
 @WebServlet(name = "UsuariosControlador", urlPatterns = {"/Usuarios"})
 public class UsuariosControlador extends HttpServlet {
 
@@ -60,6 +64,7 @@ public class UsuariosControlador extends HttpServlet {
         String Direccion = request.getParameter("txtDireccion");
         String Estado = request.getParameter("txtEstado");
         String codigo = request.getParameter("txtcodigo");
+        Part archivocsv = request.getPart("archivocsv");
 
         int opcion = Integer.parseInt(request.getParameter("opcion"));
 
@@ -172,7 +177,6 @@ public class UsuariosControlador extends HttpServlet {
 
                     request.setAttribute("mensajeExito", "El usuario se elimino correctamente!");
                     request.getRequestDispatcher("consultarUsuarios.jsp").forward(request, response);
-
 
                 } else {
 
@@ -298,6 +302,15 @@ public class UsuariosControlador extends HttpServlet {
                     e.printStackTrace();
                 }
                 break;
+            case 11:
+                String rutaAbsoluta = usuDao.guardarArchivo(archivocsv, usuDao.validarRuta());
+                try {
+                    usuDao.cargar(rutaAbsoluta);
+                } catch (SQLException e) {
+                }
+                request.getRequestDispatcher("cargarCSV.jsp").forward(request, response);
+                break;
+                
         }
     }
 
