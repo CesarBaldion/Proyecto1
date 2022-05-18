@@ -284,6 +284,41 @@ public class UsuarioDAO extends Conexion implements Crud {
         return listaUsuarios;
 
     }
+    
+    public ArrayList<UsuarioVO> ListarDos() {
+
+        ArrayList<UsuarioVO> listaUsuarios = new ArrayList<>();
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from usuariosview2";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+
+                UsuarioVO usuVO = new UsuarioVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4),
+                        mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8));
+
+                listaUsuarios.add(usuVO);
+
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioVO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return listaUsuarios;
+
+    }
 
     public SecretKeySpec crearClave(String llave) {
 
@@ -602,6 +637,51 @@ public class UsuarioDAO extends Conexion implements Crud {
             archivoCargas.mkdirs();
             return archivoCargas;
         }
+    }
+    public boolean ActivarRegistro() {
+
+        try {
+            sql = "UPDATE `usuarios` SET `Estado`= 1 WHERE Id_usuarios = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, id_Usuarios);
+            puente.executeUpdate();
+            operacion = true;
+            
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return operacion;
+    }
+    
+    public boolean eliminarRegistroTotal() {
+
+        try {
+            sql = "delete from `usuarios` WHERE Id_usuarios = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, id_Usuarios);
+            puente.executeUpdate();
+            operacion = true;
+            
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return operacion;
     }
 
 }

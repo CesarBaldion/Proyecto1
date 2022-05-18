@@ -5,7 +5,6 @@
  */
 package Controlador;
 
-
 import ModeloDAO.OrdenDetallesDAO;
 import ModeloVO.OrdenDetallesVO;
 import Util.Conexion;
@@ -43,16 +42,16 @@ public class OrdenDetallesControlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-       String id_Orden_Detalles = request.getParameter("txtIdOrdenDetalles");
-       String id_Orden = request.getParameter("txtIdOrden");
-       String id_Detalles_Producto = request.getParameter("idDetallesProducto");
-       String cantidadSolicitada = request.getParameter("txtcantidadSolicitada");
-       String Estado = request.getParameter("txtEstado");
-       
-       int opcion = Integer.parseInt(request.getParameter("opcion"));
+
+        String id_Orden_Detalles = request.getParameter("txtIdOrdenDetalles");
+        String id_Orden = request.getParameter("txtIdOrden");
+        String id_Detalles_Producto = request.getParameter("idDetallesProducto");
+        String cantidadSolicitada = request.getParameter("txtcantidadSolicitada");
+        String Estado = request.getParameter("txtEstado");
+
+        int opcion = Integer.parseInt(request.getParameter("opcion"));
         // 2. Quien tiene los datos de forma segura en el sistema? VO
-        OrdenDetallesVO ordenDetallVO = new OrdenDetallesVO(id_Orden_Detalles, id_Orden, 
+        OrdenDetallesVO ordenDetallVO = new OrdenDetallesVO(id_Orden_Detalles, id_Orden,
                 id_Detalles_Producto, cantidadSolicitada, Estado);
 
         // 3. Quien hace las operaciones? DAO
@@ -65,7 +64,7 @@ public class OrdenDetallesControlador extends HttpServlet {
 
                 if (ordenDetalDAO.agregarRegistro()) {
 
-                        request.setAttribute("mensajeExito", "La orden Detalles se registró correctamente!");
+                    request.setAttribute("mensajeExito", "La orden Detalles se registró correctamente!");
 
                 } else {
 
@@ -94,7 +93,6 @@ public class OrdenDetallesControlador extends HttpServlet {
                     request.setAttribute("mensajeExito", "La orden detalles se elimino correctamente!");
                     request.getRequestDispatcher("consultarOrdenDetalles.jsp").forward(request, response);
 
-
                 } else {
 
                     request.setAttribute("mensajeError", "El lote de Produccion no se elimino correctamente!");
@@ -114,7 +112,40 @@ public class OrdenDetallesControlador extends HttpServlet {
                     request.getRequestDispatcher("consultarOrdenDetalles.jsp").forward(request, response);
                 }
                 break;
-            case 10:    
+
+            case 5:
+
+                if (ordenDetalDAO.ActivarRegistro()) {
+
+                    request.setAttribute("mensajeExito", "La orden detalles se activo correctamente!");
+                    request.getRequestDispatcher("eliminarOrdenDetalles.jsp").forward(request, response);
+
+                } else {
+
+                    request.setAttribute("mensajeError", "El lote de Produccion no se activo correctamente!");
+                    request.getRequestDispatcher("eliminarOrdenDetalles.jsp").forward(request, response);
+
+                }
+                request.getRequestDispatcher("menu.jsp").forward(request, response);
+                break;
+
+            case 6:
+
+                if (ordenDetalDAO.eliminarRegistroTotal()) {
+
+                    request.setAttribute("mensajeExito", "La orden detalles se elimino correctamente!");
+                    request.getRequestDispatcher("eliminarOrdenDetalles.jsp").forward(request, response);
+
+                } else {
+
+                    request.setAttribute("mensajeError", "El lote de Produccion no se elimino correctamente!");
+                    request.getRequestDispatcher("eliminarOrdenDetalles.jsp").forward(request, response);
+
+                }
+                request.getRequestDispatcher("menu.jsp").forward(request, response);
+                break;
+
+            case 10:
                 response.setHeader("Content-Disposition", "attachment; filename=\"reporteOrdenDetalle.pdf\";");
                 response.setHeader("Cache-Control", "no-cache");
                 response.setHeader("Pragma", "no-cache");
@@ -136,9 +167,7 @@ public class OrdenDetallesControlador extends HttpServlet {
                 }
                 break;
         }
-       
-       
-       
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -1,0 +1,24 @@
+SMAP
+actualizarMateriaPrima_jsp.java
+JSP
+*S JSP
+*F
++ 0 actualizarMateriaPrima.jsp
+actualizarMateriaPrima.jsp
++ 1 sesionesAlmacenista.jsp
+sesionesAlmacenista.jsp
+*L
+5:53,2
+5#1,9:55
+13,25:64
+37:89,2
+6#0,12:91
+18,4:104
+21,6:108
+27:114,3
+28,3:117
+31:120,3
+32,9:123
+40,4:132
+43,5:136
+*E
