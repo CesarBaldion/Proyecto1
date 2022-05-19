@@ -97,7 +97,7 @@
                         <td><%=usuVO.getEmail()%></td>
                         <td><%=usuVO.getDireccion()%></td>
                         <td>
-                            <form action="Usuarios" method="post">
+                            <form action="Usuarios" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="txtEstado" value="0">
                                 <input type="hidden" name="txtId" value="<%=usuVO.getIdUsuarios()%>">
                                 <button class="btn boton">Desactivar</button>
@@ -106,7 +106,7 @@
                         </td>
 
                         <td>
-                            <form action="Usuarios" method="post">
+                            <form action="Usuarios" method="post" enctype="multipart/form-data">
                                 <input type="hidden" value="<%=usuVO.getIdUsuarios()%>" name="txtId">
                                 <input type="hidden" value="<%=usuVO.getNombre()%>"  name= "txtNombre" class="form-control ms-1  mt-2" >
                                 <input type="hidden" value="<%=usuVO.getDocumento()%>" name= "txtDocumento"  class=" form-control  ms-3 mt-2" >
@@ -119,7 +119,6 @@
                                 <input type="hidden" value="9" name="opcion">
                             </form>
                         </td>
-
                     </tr>
                     <% }%>
 

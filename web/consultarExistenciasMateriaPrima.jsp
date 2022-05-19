@@ -19,7 +19,7 @@
         <h1 class="text-center">Consultar<br> Existencias Materia Prima</h1>
         <div class="col-md-7 justify-content-center mx-auto mt-4 d-flex ">
             <div class="col-md-3 mx-auto justify-content-center">
-                <form action="MateriaPrima" method="post" class="form-group">
+                <form action="MateriaPrima" method="post" class="form-group" enctype="multipart/form-data">
                     <input type="hidden" value="2" name="txtreporte">
                     <button  class="boton btn " title="Reporte de Materia Prima">
                         Generar Reporte

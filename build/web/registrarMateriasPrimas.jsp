@@ -3,7 +3,6 @@
     Created on : 30/03/2022, 11:50:44 AM
     Author     : Sena
 --%>
-<%@include file="sesionesAlmacenista.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="navegacion.jsp" %>
 <!DOCTYPE html>
@@ -19,7 +18,7 @@
         <div class="col-md-3 justify-content-center mx-auto  caja border border-info mt-4">
             <h1 class="text-center fs-3 mt-2">Registrar<br> Materia Prima</h1>
             <div class="col-md-11 mx-auto mt-4 formulario mt-2">
-                <form method ="post" action="MateriaPrima" class="form-group"> 
+                <form method ="post" action="MateriaPrima" class="form-group" enctype="multipart/form-data"> 
                     <div class="mx-auto justify-content-center">
                             <%if (request.getAttribute("error") != null) {%>
                             <div class="container-fluid d-inline-block d-flex mx-auto">

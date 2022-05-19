@@ -25,16 +25,16 @@
                     <label class="mdl-button mdl-js-button mdl-button--icon" for="buscar">
                         <i class="zmdi zmdi-search">Buscar</i>
                     </label>
-                    
+
                     <div class="mdl-textfield__expandable-holder">
                         <input type="text" onkeyup="doSearch()" class="mdl-textfield__input"  id="buscar">
                         <label class="mdl-textfield__label"></label>
                     </div>
-                     <form  method="post" action="MateriaPrima" class="form-group"> 
-                    <input type="text" name="txtIdMateriaPrima" class="form-control" placeholder="Id Materia Prima">
-                    <input type="hidden" value="4" name="opcion">
-                    <button class="btn boton mt-2">Consultar</button>
-                </form>
+                    <form  method="post" action="MateriaPrima" class="form-group" enctype="multipart/form-data"> 
+                        <input type="text" name="txtIdMateriaPrima" class="form-control" placeholder="Id Materia Prima">
+                        <input type="hidden" value="4" name="opcion">
+                        <button class="btn boton mt-2">Consultar</button>
+                    </form>
                 </div>
                 <%if (request.getAttribute("mensajeError") != null) {%>
                 <p class="text-danger text-center fs-5">${mensajeError}</p>
@@ -43,7 +43,7 @@
                 <%}%>
             </div>
             <div class="col-md-6">
-                <form action="MateriaPrima" method="post" class="form-group">
+                <form action="MateriaPrima" method="post" class="form-group" enctype="multipart/form-data">
                     <button  class="boton btn mt-3" title="Reporte de Producto">
                         Generar Reporte
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
@@ -84,15 +84,15 @@
                         <td><%=matPriVO.getNombre()%></td>
 
                         <td>
-                            <form action="MateriaPrima" method="post">
+                            <form action="MateriaPrima" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="txtEstado" value="1">
                                 <input type="hidden" name="txtIdMateriaPrima" value="<%=matPriVO.getId_materia_Prima()%>">
                                 <button class="btn boton">Activar</button>
                                 <input type="hidden" value="7" name="opcion">
                             </form>
                         </td>
-                         <td>
-                            <form action="MateriaPrima" method="post">
+                        <td>
+                            <form action="MateriaPrima" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="txtIdMateriaPrima" value="<%=matPriVO.getId_materia_Prima()%>">
                                 <button class="btn boton">Eliminar</button>
                                 <input type="hidden" value="8" name="opcion">

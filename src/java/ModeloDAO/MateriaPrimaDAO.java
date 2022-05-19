@@ -8,6 +8,10 @@ package ModeloDAO;
 import ModeloVO.MateriaPrimaVO;
 import Util.Conexion;
 import Util.Crud;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,13 +19,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
  * @author Sena
  */
-public class MateriaPrimaDAO extends Conexion implements Crud{
-    
+public class MateriaPrimaDAO extends Conexion implements Crud {
+
     private Connection conexion;
     private PreparedStatement puente;
     private ResultSet mensajero;
@@ -115,7 +123,7 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
             puente.setString(1, Id_materia_Prima);
             puente.executeUpdate();
             operacion = true;
-            
+
         } catch (SQLException e) {
             Logger.getLogger(MateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
@@ -129,7 +137,7 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
         }
         return operacion;
     }
-    
+
     public MateriaPrimaVO consultarIdMateriaPrima(String Id) {
 
         MateriaPrimaVO matPriVO = null;
@@ -177,8 +185,8 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
 
             while (mensajero.next()) {
 
-               MateriaPrimaVO matPriVO = new MateriaPrimaVO(mensajero.getString(1),
-                       mensajero.getString(2), mensajero.getString(3), mensajero.getString(4));
+                MateriaPrimaVO matPriVO = new MateriaPrimaVO(mensajero.getString(1),
+                        mensajero.getString(2), mensajero.getString(3), mensajero.getString(4));
                 listaMateriaPrima.add(matPriVO);
 
             }
@@ -199,7 +207,8 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
         return listaMateriaPrima;
 
     }
-     public ArrayList<MateriaPrimaVO> ListarDos() {
+
+    public ArrayList<MateriaPrimaVO> ListarDos() {
 
         ArrayList<MateriaPrimaVO> listaMateriaPrima = new ArrayList<>();
         try {
@@ -210,8 +219,8 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
 
             while (mensajero.next()) {
 
-               MateriaPrimaVO matPriVO = new MateriaPrimaVO(mensajero.getString(1),
-                       mensajero.getString(2), mensajero.getString(3), mensajero.getString(4));
+                MateriaPrimaVO matPriVO = new MateriaPrimaVO(mensajero.getString(1),
+                        mensajero.getString(2), mensajero.getString(3), mensajero.getString(4));
                 listaMateriaPrima.add(matPriVO);
 
             }
@@ -232,7 +241,8 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
         return listaMateriaPrima;
 
     }
-     public boolean verificarMateriaPrima(String Nombre) {
+
+    public boolean verificarMateriaPrima(String Nombre) {
 
         MateriaPrimaVO mpVO = null;
         try {
@@ -242,7 +252,7 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
             puente.setString(1, Nombre);
             mensajero = puente.executeQuery();
             while (mensajero.next()) {
-                mpVO = new MateriaPrimaVO(mensajero.getString(1), mensajero.getString(2), 
+                mpVO = new MateriaPrimaVO(mensajero.getString(1), mensajero.getString(2),
                         mensajero.getString(3), mensajero.getString(4));
             }
             if (mpVO == null) {
@@ -259,7 +269,8 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
         return operacion;
 
     }
-     public ArrayList<MateriaPrimaVO> ListarTres() {
+
+    public ArrayList<MateriaPrimaVO> ListarTres() {
 
         ArrayList<MateriaPrimaVO> listaMateriaPrima = new ArrayList<>();
         try {
@@ -270,8 +281,8 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
 
             while (mensajero.next()) {
 
-               MateriaPrimaVO matPriVO = new MateriaPrimaVO(mensajero.getString(1),
-                       mensajero.getString(2), mensajero.getString(3), mensajero.getString(4));
+                MateriaPrimaVO matPriVO = new MateriaPrimaVO(mensajero.getString(1),
+                        mensajero.getString(2), mensajero.getString(3), mensajero.getString(4));
                 listaMateriaPrima.add(matPriVO);
 
             }
@@ -290,15 +301,16 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
         }
 
         return listaMateriaPrima;
-     }
-     public boolean ActivarRegistro() {
+    }
+
+    public boolean ActivarRegistro() {
         try {
             sql = "UPDATE `materia_prima` SET `Estado`= 1 WHERE Id_materia_Prima = ?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Id_materia_Prima);
             puente.executeUpdate();
             operacion = true;
-            
+
         } catch (SQLException e) {
             Logger.getLogger(MateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
@@ -312,15 +324,15 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
         }
         return operacion;
     }
-     
-     public boolean EliminarRegistroTotal() {
+
+    public boolean EliminarRegistroTotal() {
         try {
             sql = "DELETE FROM `materia_prima` WHERE id_materia_prima = ?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Id_materia_Prima);
             puente.executeUpdate();
             operacion = true;
-            
+
         } catch (SQLException e) {
             Logger.getLogger(MateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
@@ -335,5 +347,32 @@ public class MateriaPrimaDAO extends Conexion implements Crud{
         return operacion;
     }
 
-}
+    public void cargarMateriasPrimas(String rutaAbsoluta) throws SQLException, IOException {
 
+        try {
+            sql = "insert into materia_prima(Nombre, Estado)values (?,?)";
+            conexion = this.obtenerConexion();
+            FileInputStream file = new FileInputStream(new File(rutaAbsoluta));
+
+            XSSFWorkbook wb = new XSSFWorkbook(file);
+            XSSFSheet sheet = wb.getSheetAt(0);
+            DataFormatter dataFormater = new DataFormatter();
+            int numFilas = sheet.getLastRowNum();
+
+            for (int a = 1; a <= numFilas; a++) {
+                Row fila = sheet.getRow(a);
+                puente = conexion.prepareStatement(sql);
+                puente.setString(1, dataFormater.formatCellValue(fila.getCell(0)));
+                puente.setString(2, "1");
+                puente.executeUpdate();
+            }
+            File Archivo = new File(rutaAbsoluta);
+            Archivo.delete();
+            this.cerrarConexion();
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+}
