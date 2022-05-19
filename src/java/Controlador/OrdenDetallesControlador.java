@@ -114,6 +114,37 @@ public class OrdenDetallesControlador extends HttpServlet {
                     request.getRequestDispatcher("consultarOrdenDetalles.jsp").forward(request, response);
                 }
                 break;
+                case 5:
+
+                if (ordenDetalDAO.ActivarRegistro()) {
+
+                    request.setAttribute("mensajeExito", "La orden detalles se activo correctamente!");
+                    request.getRequestDispatcher("eliminarOrdenDetalles.jsp").forward(request, response);
+
+                } else {
+
+                    request.setAttribute("mensajeError", "El lote de Produccion no se activo correctamente!");
+                    request.getRequestDispatcher("eliminarOrdenDetalles.jsp").forward(request, response);
+
+                }
+                request.getRequestDispatcher("menu.jsp").forward(request, response);
+                break;
+
+            case 6:
+
+                if (ordenDetalDAO.eliminarRegistroTotal()) {
+
+                    request.setAttribute("mensajeExito", "La orden detalles se elimino correctamente!");
+                    request.getRequestDispatcher("eliminarOrdenDetalles.jsp").forward(request, response);
+
+                } else {
+
+                    request.setAttribute("mensajeError", "El lote de Produccion no se elimino correctamente!");
+                    request.getRequestDispatcher("eliminarOrdenDetalles.jsp").forward(request, response);
+
+                }
+                request.getRequestDispatcher("menu.jsp").forward(request, response);
+                break;
             case 10:    
                 response.setHeader("Content-Disposition", "attachment; filename=\"reporteOrdenDetalle.pdf\";");
                 response.setHeader("Cache-Control", "no-cache");

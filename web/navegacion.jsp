@@ -78,8 +78,8 @@
                                 <li><a class="dropdown-item font-dark" href="eliminarLoteMateriaPrima.jsp">Lote Materia Prima</a></li>
                                 <li><a class="dropdown-item font-dark"  href="eliminarLoteProduccion.jsp">Lote Produccion</a></li>
                                 <li><a class="dropdown-item font-dark"  href="eliminarOrdenes.jsp">Ordenes</a></li>
-                                <li><a class="dropdown-item font-dark"  href="consultarOrdenDetalles.jsp">Orden Detalles</a></li>
-                                <li><a class="dropdown-item font-dark"  href="consultarUsuarios.jsp">Usuarios</a></li>
+                                <li><a class="dropdown-item font-dark"  href="eliminarOrdenDetalles.jsp">Orden Detalles</a></li>
+                                <li><a class="dropdown-item font-dark"  href="eliminarUsuarios.jsp">Usuarios</a></li>
                                 <li><a class="dropdown-item font-dark"  href="consultarDetallesProducto.jsp">Detalles Producto</a></li>
                                 <li><a class="dropdown-item font-dark" href="consultarRol.jsp">Rol</a></li>
                             </ul>
