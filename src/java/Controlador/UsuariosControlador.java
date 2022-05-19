@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import ModeloDAO.AdministrarArchivos;
 import ModeloDAO.UsuarioDAO;
 import ModeloVO.UsuarioVO;
 import Util.Conexion;
@@ -303,9 +304,10 @@ public class UsuariosControlador extends HttpServlet {
                 }
                 break;
             case 11:
-                String rutaAbsoluta = usuDao.guardarArchivo(archivocsv, usuDao.validarRuta());
+                AdministrarArchivos adminFiles = new AdministrarArchivos();
+                String rutaAbsoluta = adminFiles.guardarArchivo(archivocsv, adminFiles.validarRuta());
                 try {
-                    usuDao.cargar(rutaAbsoluta);
+                    usuDao.cargarUsuarios(rutaAbsoluta);
                 } catch (SQLException e) {
                 }
                 request.getRequestDispatcher("cargarCSV.jsp").forward(request, response);
