@@ -18,7 +18,7 @@
         
             <div class="col-md-5 mx-auto justify-content-center border-5 border border-info mt-3 caja">
                 <div class="col-md-11 mx-auto justify-content-center mt-5">
-                    <form   class="form-group" action="Usuarios" method="get" > 
+                    <form   class="form-group" action="Usuarios" method="post" enctype="multipart/form-data"> 
                         <h1 class="text-center fs-2">Registrese para empezar</h1>
                         <h3 class="text-center fs-4">Ingrese sus datos</h3>
                         <div class="mx-auto justify-content-center">

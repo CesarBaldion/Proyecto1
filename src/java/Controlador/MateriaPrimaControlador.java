@@ -5,17 +5,21 @@
  */
 package Controlador;
 
+import ModeloDAO.AdministrarArchivos;
 import ModeloDAO.MateriaPrimaDAO;
 import ModeloVO.MateriaPrimaVO;
 import Util.Conexion;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import net.sf.jasperreports.engine.JRExporter;
 import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -28,6 +32,7 @@ import net.sf.jasperreports.engine.util.JRLoader;
  *
  * @author Sena
  */
+@MultipartConfig
 @WebServlet(name = "MateriaPrimaControlador", urlPatterns = {"/MateriaPrima"})
 public class MateriaPrimaControlador extends HttpServlet {
 
@@ -49,6 +54,7 @@ public class MateriaPrimaControlador extends HttpServlet {
         String Actualizacion = request.getParameter("txtActualizacion");
         String Estado = request.getParameter("txtEstado");
         String reporteOpcion = request.getParameter("txtreporte");
+        Part archivocsv = request.getPart("archivocsv");
         if (Actualizacion == null) {
             Actualizacion = "0";
         }
@@ -213,6 +219,16 @@ public class MateriaPrimaControlador extends HttpServlet {
                     }
                 }
 
+                break;
+                case 11:
+                AdministrarArchivos adminFiles = new AdministrarArchivos();
+                String rutaAbsoluta = adminFiles.guardarArchivo(archivocsv, adminFiles.validarRuta());
+                try {
+                    matPriDAO.cargarMateriasPrimas(rutaAbsoluta);
+                    
+                } catch (SQLException e) {
+                }
+                request.getRequestDispatcher("consultarMateriaPrima.jsp").forward(request, response);
                 break;
         }
     }

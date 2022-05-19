@@ -20,7 +20,7 @@
         
         %>
         
-        <form action="Producto" method="post">
+        <form action="Producto" method="post" enctype="multipart/form-data">
             <h1>Actualizar Productos</h1>
             <label>Id producto</label>
             <br>

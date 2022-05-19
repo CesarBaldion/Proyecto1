@@ -3,9 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Juan%20Pablo/OneDrive/Escritorio/Proyecto1/web/navegacion.jsp</file>
-            <file>file:/C:/Users/Juan%20Pablo/OneDrive/Escritorio/Proyecto1/web/consultarOrdenes.jsp</file>
-            <file>file:/C:/Users/Juan%20Pablo/OneDrive/Escritorio/Proyecto1/web/eliminarOrdenes.jsp</file>
+            <file>file:/C:/Users/1Usuario/Desktop/SuiteFactor/Proyecto1/src/java/ModeloDAO/MateriaPrimaDAO.java</file>
+            <file>file:/C:/Users/1Usuario/Desktop/SuiteFactor/Proyecto1/src/java/Controlador/MateriaPrimaControlador.java</file>
+            <file>file:/C:/Users/1Usuario/Desktop/SuiteFactor/Proyecto1/web/consultarMateriaPrima.jsp</file>
+            <file>file:/C:/Users/1Usuario/Desktop/SuiteFactor/Proyecto1/web/consultarProducto.jsp</file>
+            <file>file:/C:/Users/1Usuario/Desktop/SuiteFactor/Proyecto1/src/java/ModeloDAO/ProductoDAO.java</file>
+            <file>file:/C:/Users/1Usuario/Desktop/SuiteFactor/Proyecto1/src/java/ModeloDAO/UsuarioDAO.java</file>
         </group>
     </open-files>
 </project-private>

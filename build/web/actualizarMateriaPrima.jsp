@@ -20,7 +20,7 @@
         
         %>
         
-        <form action="MateriaPrima" method="post">
+        <form action="MateriaPrima" method="post" enctype="multipart/form-data">
             <h1>Actualizar materia prima</h1>
             <label>Id materia prima</label>
             <br>
