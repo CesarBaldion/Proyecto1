@@ -9,7 +9,6 @@
 <%@page import="ModeloVO.UsuarioVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="navegacion.jsp" %>
-<%@include file="css-paginacion.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -68,7 +67,7 @@
         </div>   
         <div class="col-md-11 mx-auto justify-content-center mt-4">
             <div class="col-md-7 mx-auto justify-content-center">
-                <table id="datos" number-per-page="10" class="table table-light table-hover table-striped text-center">
+                <table number-per-page="10" class="table table-light table-hover table-striped text-center">
                     <tr>
                         <th>Id</th>
                         <th>Nombres</th>
@@ -98,7 +97,7 @@
                         <td><%=usuVO.getEmail()%></td>
                         <td><%=usuVO.getDireccion()%></td>
                         <td>
-                            <form action="Usuarios" method="post">
+                            <form action="Usuarios" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="txtEstado" value="0">
                                 <input type="hidden" name="txtId" value="<%=usuVO.getIdUsuarios()%>">
                                 <button class="btn boton">Desactivar</button>
@@ -107,7 +106,7 @@
                         </td>
 
                         <td>
-                            <form action="Usuarios" method="post">
+                            <form action="Usuarios" method="post" enctype="multipart/form-data">
                                 <input type="hidden" value="<%=usuVO.getIdUsuarios()%>" name="txtId">
                                 <input type="hidden" value="<%=usuVO.getNombre()%>"  name= "txtNombre" class="form-control ms-1  mt-2" >
                                 <input type="hidden" value="<%=usuVO.getDocumento()%>" name= "txtDocumento"  class=" form-control  ms-3 mt-2" >
@@ -120,7 +119,6 @@
                                 <input type="hidden" value="9" name="opcion">
                             </form>
                         </td>
-
                     </tr>
                     <% }%>
 

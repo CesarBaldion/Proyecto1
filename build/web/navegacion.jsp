@@ -67,7 +67,7 @@
                                 <li><a class="dropdown-item font-dark"  href="consultarDetallesProducto.jsp">Detalles Producto</a></li>
                                 <li><a class="dropdown-item font-dark" href="consultarRol.jsp">Rol</a></li>
                             </ul>
-                        </li
+                        </li>
                         <li class="nav-item dropdown font-dark ">
                             <a class="navbar-brand dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Registros desactivados

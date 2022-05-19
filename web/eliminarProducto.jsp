@@ -21,7 +21,7 @@
         <h1 class="text-center">Productos</h1>
         <div class="col-md-4 justify-content-center mx-auto mt-4 d-flex">
             <div class="col-md-6 mx-auto me-3">
-                <form  method="post" action="Producto" class="form-group"> 
+                <form  method="post" action="Producto" class="form-group" enctype="multipart/form-data"> 
                     <input type="text" name="txtId" class="form-control" placeholder="Id Producto">
                     <input type="hidden" value="4" name="opcion">
                     <button class="btn boton mt-2">Consultar</button>
@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <form action="Producto" method="post" class="form-group">
+                <form action="Producto" method="post" class="form-group" enctype="multipart/form-data">
                     <button  class="boton btn mt-5" title="Reporte de Producto">
                         Generar Reporte
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
@@ -73,7 +73,7 @@
                         <td><%=prodVO.getNombre()%></td>
 
                         <td>
-                            <form action="Producto" method="post">
+                            <form action="Producto" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="txtEstado" value="1">
                                 <input type="hidden" name="txtId" value="<%=prodVO.getIdProducto()%>">
                                 <button class="boton btn">Activar</button>
@@ -81,7 +81,7 @@
                             </form>
                         </td>
                         <td>
-                            <form action="Producto" method="post">
+                            <form action="Producto" method="post" enctype="multipart/form-data">
                                 
                                 <input type="hidden" name="txtId" value="<%=prodVO.getIdProducto()%>">
                                 <button class="boton btn">Eliminar</button>

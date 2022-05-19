@@ -1,0 +1,28 @@
+SMAP
+consultarProducto_jsp.java
+JSP
+*S JSP
+*F
++ 0 consultarProducto.jsp
+consultarProducto.jsp
++ 1 navegacion.jsp
+navegacion.jsp
++ 2 css-paginacion.jsp
+css-paginacion.jsp
+*L
+5,7:53
+5#1,97:59
+11#0:155,2
+1#2,80:157
+12#0,61:236
+73,3:297,3
+76,28:306
+104,8:335
+111,4:343
+115,2:347,3
+117,4:353
+121:357,3
+122,7:360
+129:367,3
+130,7:370
+*E

@@ -8,6 +8,10 @@ package ModeloDAO;
 import ModeloVO.ProductoVO;
 import Util.Conexion;
 import Util.Crud;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,6 +19,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -257,6 +265,34 @@ public class ProductoDAO extends Conexion implements Crud {
             }
         }
         return operacion;
+    }
+    
+    public void cargarProductos(String rutaAbsoluta) throws SQLException, IOException  {
+
+        try {
+            sql = "insert into Producto(Nombre,Estado)values(?,?)";
+            conexion = obtenerConexion();
+            FileInputStream file = new FileInputStream(new File(rutaAbsoluta));
+
+            XSSFWorkbook wb = new XSSFWorkbook(file);
+            XSSFSheet sheet = wb.getSheetAt(0);
+            DataFormatter dataFormater = new DataFormatter();
+            int numFilas = sheet.getLastRowNum();
+            
+            for (int a = 1; a <= numFilas; a++) {
+                Row fila = sheet.getRow(a);
+                puente = conexion.prepareStatement(sql);
+                puente.setString(1, dataFormater.formatCellValue(fila.getCell(0)));
+                puente.setString(2,"1");
+                puente.executeUpdate();
+            }
+            File Archivo = new File(rutaAbsoluta);
+            Archivo.delete();
+            conexion = cerrarConexion();
+
+        } catch (FileNotFoundException ex ) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 
 

@@ -5,18 +5,22 @@
  */
 package Controlador;
 
+import ModeloDAO.AdministrarArchivos;
 import ModeloDAO.ProductoDAO;
 import ModeloVO.ProductoVO;
 import Util.Conexion;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import net.sf.jasperreports.engine.JRExporter;
 import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -29,6 +33,7 @@ import net.sf.jasperreports.engine.util.JRLoader;
  *
  * @author Andrex
  */
+@MultipartConfig
 @WebServlet(name = "ProductoControlador", urlPatterns = {"/Producto"})
 public class ProductoControlador extends HttpServlet {
 
@@ -48,7 +53,7 @@ public class ProductoControlador extends HttpServlet {
         String Id_Producto = request.getParameter("txtId");
         String Nombre = request.getParameter("txtNombre");
         String Estado = request.getParameter("txtEstado");
-
+        Part archivocsv = request.getPart("archivocsv");
         int opcion = Integer.parseInt(request.getParameter("opcion"));
 
         //2. Quien tiene los datos de forma segura en el sistema? VO
@@ -56,7 +61,6 @@ public class ProductoControlador extends HttpServlet {
 
         // 3. Quien hace las operaciones? DAO
         ProductoDAO prodDAO = new ProductoDAO(prodVO);
-        
 
         // 4. Administrar las operaciones del modulo
         switch (opcion) {
@@ -64,7 +68,7 @@ public class ProductoControlador extends HttpServlet {
             case 1: //Agregar registro
                 if (prodDAO.verificarProducto(Nombre) == false) {
                     if (prodDAO.agregarRegistro() == true) {
-                        
+
                         request.setAttribute("Bien", "Se ha registrado");
                         request.getRequestDispatcher("registrarProducto.jsp").forward(request, response);
                     } else {
@@ -119,7 +123,7 @@ public class ProductoControlador extends HttpServlet {
                 request.getRequestDispatcher("consultarProducto.jsp").forward(request, response);
             }
             break;
-            
+
             case 5:
 
                 if (prodDAO.ActivarRegistro()) {
@@ -133,8 +137,8 @@ public class ProductoControlador extends HttpServlet {
                 }
                 request.getRequestDispatcher("menu.jsp").forward(request, response);
                 break;
-                
-                case 6:
+
+            case 6:
 
                 if (prodDAO.EliminarRegistroTotal()) {
 
@@ -148,7 +152,7 @@ public class ProductoControlador extends HttpServlet {
                 }
                 request.getRequestDispatcher("menu.jsp").forward(request, response);
                 break;
-            
+
             case 10:
                 //generarReporte
                 response.setHeader("Content-Disposition", "attachment; filename=\"reporteProductos.pdf\";");
@@ -169,6 +173,15 @@ public class ProductoControlador extends HttpServlet {
                     exporter.exportReport();
                 } catch (Exception e) {
                     e.printStackTrace();
+                }
+                break;
+            case 11:
+                AdministrarArchivos adminFiles = new AdministrarArchivos();
+                String rutaAbsoluta = adminFiles.guardarArchivo(archivocsv, adminFiles.validarRuta());
+                try {
+                    prodDAO.cargarProductos(rutaAbsoluta);
+                    request.getRequestDispatcher("consultarProducto.jsp").forward(request, response);
+                } catch (SQLException e) {
                 }
                 break;
         }
