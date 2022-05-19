@@ -312,7 +312,38 @@ public class UsuariosControlador extends HttpServlet {
                 } catch (SQLException e) {
                 }
                 break;
-                
+            case 12:
+
+                if (usuDAO.ActivarRegistro()) {
+
+                    request.setAttribute("mensajeExito", "El usuario se activo correctamente!");
+                    request.getRequestDispatcher("eliminarUsuarios.jsp").forward(request, response);
+
+                } else {
+
+                    request.setAttribute("mensajeExito", "El usuario no se activo correctamente!");
+                    request.getRequestDispatcher("eliminarUsuarios.jsp").forward(request, response);
+
+                }
+                request.getRequestDispatcher("menu.jsp").forward(request, response);
+                break;
+
+            case 13:
+
+                if (usuDAO.eliminarRegistroTotal()) {
+
+                    request.setAttribute("mensajeExito", "El usuario se elimino correctamente!");
+                    request.getRequestDispatcher("eliminarUsuarios.jsp").forward(request, response);
+
+                } else {
+
+                    request.setAttribute("mensajeExito", "El usuario no se elimino correctamente!");
+                    request.getRequestDispatcher("eliminarUsuarios.jsp").forward(request, response);
+
+                }
+                request.getRequestDispatcher("menu.jsp").forward(request, response);
+                break;
+
         }
     }
 

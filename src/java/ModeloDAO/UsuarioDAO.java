@@ -35,8 +35,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-
-
 ;
 
 /**
@@ -161,7 +159,7 @@ public class UsuarioDAO extends Conexion implements Crud {
             puente.setString(1, id_Usuarios);
             puente.executeUpdate();
             operacion = true;
-            
+
         } catch (SQLException e) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
@@ -279,6 +277,86 @@ public class UsuarioDAO extends Conexion implements Crud {
 
         return listaUsuarios;
 
+    }
+
+    public ArrayList<UsuarioVO> ListarDos() {
+
+        ArrayList<UsuarioVO> listaUsuarios = new ArrayList<>();
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from usuariosview2";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+
+                UsuarioVO usuVO = new UsuarioVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4),
+                        mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8));
+
+                listaUsuarios.add(usuVO);
+
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioVO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return listaUsuarios;
+
+    }
+    public boolean ActivarRegistro() {
+
+        try {
+            sql = "UPDATE `usuarios` SET `Estado`= 1 WHERE Id_usuarios = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, id_Usuarios);
+            puente.executeUpdate();
+            operacion = true;
+
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return operacion;
+    }
+
+    public boolean eliminarRegistroTotal() {
+
+        try {
+            sql = "delete from `usuarios` WHERE Id_usuarios = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, id_Usuarios);
+            puente.executeUpdate();
+            operacion = true;
+
+        } catch (SQLException e) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return operacion;
     }
 
     public SecretKeySpec crearClave(String llave) {
@@ -513,9 +591,9 @@ public class UsuarioDAO extends Conexion implements Crud {
                 usuVO = new UsuarioVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4),
                         mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8));
             }
-            if(usuVO==null){
+            if (usuVO == null) {
                 operacion = false;
-            }else{
+            } else {
                 operacion = true;
             }
 
@@ -535,8 +613,8 @@ public class UsuarioDAO extends Conexion implements Crud {
         return operacion;
 
     }
-    
-    public void cargarUsuarios(String rutaAbsoluta) throws SQLException, IOException  {
+
+    public void cargarUsuarios(String rutaAbsoluta) throws SQLException, IOException {
 
         try {
             sql = "insert into usuarios( Nombre, Documento, Telefono, Email, Direccion, Contrasena)"
@@ -548,10 +626,10 @@ public class UsuarioDAO extends Conexion implements Crud {
             XSSFSheet sheet = wb.getSheetAt(0);
             DataFormatter dataFormater = new DataFormatter();
             int numFilas = sheet.getLastRowNum();
-            
+
             for (int a = 1; a <= numFilas; a++) {
                 Row fila = sheet.getRow(a);
-                
+
                 puente = conexion.prepareStatement(sql);
                 puente.setString(1, dataFormater.formatCellValue(fila.getCell(0)));
                 puente.setString(2, dataFormater.formatCellValue(fila.getCell(1)));
@@ -565,10 +643,9 @@ public class UsuarioDAO extends Conexion implements Crud {
             buscarArchivo.delete();
             conexion = cerrarConexion();
 
-        } catch (FileNotFoundException ex ) {
+        } catch (FileNotFoundException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }
-    
 
 }
