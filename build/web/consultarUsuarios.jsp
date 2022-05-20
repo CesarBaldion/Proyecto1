@@ -3,7 +3,6 @@
     Created on : 22/03/2022, 08:37:29 AM
     Author     : Sena
 --%>
-
 <%@page import="java.util.ArrayList"%>
 <%@page import="ModeloDAO.UsuarioDAO"%>
 <%@page import="ModeloVO.UsuarioVO"%>
@@ -22,11 +21,11 @@
         <div class="col-md-4 justify-content-center mx-auto mt-5 d-flex">
             <div class="col-md-5 me-3 ">
                 <label>Buscar</label>
-                    <label class="mdl-button mdl-js-button mdl-button--icon" for="buscar">
-                        <i class="zmdi zmdi-search"></i>
-                    </label>
-                    <input type="text" onkeyup="doSearch()" class="form-control"  id="buscar">
-                    <label class="mdl-textfield__label"></label>
+                <label class="" for="buscar">
+                    <i class="zmdi zmdi-search"></i>
+                </label>
+                <input type="text" onkeyup="doSearch()" class="form-control"  id="buscar">
+                <label class=""></label>
                 <%if (request.getAttribute("mensajeError") != null) {%>
                 <p class="text-danger text-center fs-5">${mensajeError}</p>
                 <%   } else {%>
@@ -52,11 +51,10 @@
                 </form>
             </div>
             <div class="col-md-7 ms-5">
-
                 <label>Carga Masiva <b>Archivo Excel(xlsx)</b></label>
-                <form action="Usuarios" method="post" enctype="multipart/form-data" class="form-group">
+                <form action="Usuarios" method="post" enctype="multipart/form-data" class="form-group" name="pruebaConfirmacion">
                     <input type="file" name="archivocsv" class="form-control">
-                    <button class="btn boton mt-3">Cargar
+                    <button type="button" class="btn boton mt-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Cargar
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
                         <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
                         <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
@@ -126,7 +124,28 @@
 
             </div> 
         </div>
-
+        <%--
+        Ventanas Modales
+        --%>
+        <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+             aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-sm mt-5 ">
+                <div class="modal-content ventana ">
+                    <div class="justify-content-center mx-auto">
+                        <h5 class="text-center">Confirmar Envio De Datos</h5>
+                    </div>
+                    <div class="col-md-2 justify-content-center mx-auto d-flex mb-3 ">
+                        <button type="button" class="btn btn-danger  me-3" data-bs-dismiss="modal">Volver</button>
+                        <button type="button" onclick="enviar()" class="btn boton">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function enviar() {
+                document.pruebaConfirmacion.submit()
+            };
+        </script>
         <script src="https://code.jquery.com/jquery-3.4.1.js"
                 integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
         </script>

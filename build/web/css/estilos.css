@@ -20,3 +20,8 @@ and open the template in the editor.
     margin-top: 10em;
     
 }
+.ventana{
+    background-color: #9fcdff;
+    margin-top: auto;
+    border: #000;
+}

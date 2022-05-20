@@ -24,7 +24,7 @@
         <nav class="navbar navbar-light  col-md-4 text-light">
             <div class="container-fluid">
                 <a class="navbar-brand text-light nav-link" href="menu.jsp">
-                    <img src="img/LogoFinal.svg" height="55" class="d-inline-block align-text-top mt-2">
+                    <img src="img/menu/LogoFinal.svg" height="55" class="d-inline-block align-text-top mt-2">
                 </a>
             </div>
         </nav>

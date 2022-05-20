@@ -307,40 +307,35 @@ public class UsuariosControlador extends HttpServlet {
                 AdministrarArchivos adminFiles = new AdministrarArchivos();
                 String rutaAbsoluta = adminFiles.guardarArchivo(archivocsv, adminFiles.validarRuta());
                 try {
-                    usuDao.cargarUsuarios(rutaAbsoluta);
+                    if (usuDao.cargarUsuarios(rutaAbsoluta) == true) {
+                        request.setAttribute("mensaje", "La carga se hizo correactamente");
+                        request.getRequestDispatcher("consultarUsuarios.jsp").forward(request, response);
+                    }else{
+                        request.setAttribute("mensaje", "Error");
+                        request.getRequestDispatcher("consultarUsuarios.jsp").forward(request, response);
+                    }
+
                 } catch (SQLException e) {
                 }
                 request.getRequestDispatcher("cargarCSV.jsp").forward(request, response);
                 break;
-
             case 12:
-
                 if (usuDAO.ActivarRegistro()) {
-
                     request.setAttribute("mensajeExito", "El usuario se activo correctamente!");
                     request.getRequestDispatcher("eliminarUsuarios.jsp").forward(request, response);
-
                 } else {
-
                     request.setAttribute("mensajeExito", "El usuario no se activo correctamente!");
                     request.getRequestDispatcher("eliminarUsuarios.jsp").forward(request, response);
-
                 }
                 request.getRequestDispatcher("menu.jsp").forward(request, response);
                 break;
-
             case 13:
-
                 if (usuDAO.eliminarRegistroTotal()) {
-
                     request.setAttribute("mensajeExito", "El usuario se elimino correctamente!");
                     request.getRequestDispatcher("eliminarUsuarios.jsp").forward(request, response);
-
                 } else {
-
                     request.setAttribute("mensajeExito", "El usuario no se elimino correctamente!");
                     request.getRequestDispatcher("eliminarUsuarios.jsp").forward(request, response);
-
                 }
                 request.getRequestDispatcher("menu.jsp").forward(request, response);
                 break;

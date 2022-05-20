@@ -571,7 +571,7 @@ public class UsuarioDAO extends Conexion implements Crud {
 
     }
 
-    public void cargarUsuarios(String rutaAbsoluta) throws SQLException, IOException {
+    public boolean cargarUsuarios(String rutaAbsoluta) throws SQLException, IOException {
 
         try {
             sql = "insert into usuarios( Nombre, Documento, Telefono, Email, Direccion, Contrasena)"
@@ -598,11 +598,13 @@ public class UsuarioDAO extends Conexion implements Crud {
             }
             File buscarArchivo = new File(rutaAbsoluta);
             buscarArchivo.delete();
+            operacion = true;
             conexion = cerrarConexion();
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return operacion;
     }
     public boolean ActivarRegistro() {
 

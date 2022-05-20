@@ -43,9 +43,15 @@ public class AdministrarArchivos {
     public File validarRuta() {
         String ruta = "web/archivosCargaMasiva";
         File archivoCargas = new File(ruta);
-        if (archivoCargas.exists() == true) {
+       if (archivoCargas.exists() == true) {
+            String[] nombresArchivos = archivoCargas.list();
+            for(int i = 0;i<nombresArchivos.length;i++  ){
+                System.out.println(nombresArchivos[i]);
+                File borrarArchivo = new File(ruta+File.separator+nombresArchivos[i]);
+                borrarArchivo.delete();
+            }
             return archivoCargas;
-        } else {
+        }else {
             archivoCargas.mkdirs();
             return archivoCargas;
         }
