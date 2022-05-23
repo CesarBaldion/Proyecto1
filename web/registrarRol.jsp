@@ -4,7 +4,6 @@
     Author     : Juan Pablo
 --%>
 <%@page import="ModeloVO.RolVO"%>
-<%@include file="sesionesAlmacenista.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="navegacion.jsp" %>
 

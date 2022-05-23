@@ -8,7 +8,6 @@ package Controlador;
 import ModeloDAO.DetallesProductoDAO;
 import ModeloVO.DetallesProductoVO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +33,7 @@ public class DetallesProductoControlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         String Id_Detalles_Producto = request.getParameter("txtIdDetallesProducto");
+        String Id_Detalles_Producto = request.getParameter("txtIdDetallesProducto");
         String Id_Producto = request.getParameter("txtIdProducto");
         String Descripcion = request.getParameter("txtDescripcion");
         String Talla = request.getParameter("txtTalla");
@@ -100,6 +99,38 @@ public class DetallesProductoControlador extends HttpServlet {
                     request.setAttribute("mensajeExito", "Los detalles del producto no existen");
                     request.getRequestDispatcher("consultarDetallesProducto.jsp").forward(request, response);
                 }
+                break;
+
+            case 5:
+
+                if (detProDAO.activarRegistro()) {
+
+                    request.setAttribute("mensajeExito", "La orden detalles se activo correctamente!");
+                    request.getRequestDispatcher("eliminarDetallesProducto.jsp").forward(request, response);
+
+                } else {
+
+                    request.setAttribute("mensajeError", "La orden detalles no se activo correctamente!");
+                    request.getRequestDispatcher("eliminarDetallesProducto.jsp").forward(request, response);
+
+                }
+                request.getRequestDispatcher("menu.jsp").forward(request, response);
+                break;
+
+            case 6:
+
+                if (detProDAO.eliminarRegistroTotal()) {
+
+                    request.setAttribute("mensajeExito", "Los detalles de la orden se eliminaron correctamente!");
+                    request.getRequestDispatcher("eliminarDetallesProducto.jsp").forward(request, response);
+
+                } else {
+
+                    request.setAttribute("mensajeError", "Los detalles de la orden no se eliminaron correctamente!");
+                    request.getRequestDispatcher("eliminarDetallesProducto.jsp").forward(request, response);
+
+                }
+                request.getRequestDispatcher("menu.jsp").forward(request, response);
                 break;
         }
     }

@@ -47,7 +47,7 @@
                     <%
                         DetallesProductoVO detProVO = new DetallesProductoVO();
                         DetallesProductoDAO detProDAO = new DetallesProductoDAO();
-                        ArrayList<DetallesProductoVO> listarDetallesProducto = detProDAO.listar();
+                        ArrayList<DetallesProductoVO> listarDetallesProducto = detProDAO.listarDos();
                         for (int i = 0; i < listarDetallesProducto.size(); i++) {
 
                             detProVO = listarDetallesProducto.get(i);
@@ -63,10 +63,18 @@
                         
                          <td>
                             <form action="DetallesProducto" method="post">
-                                <input type="hidden" name="txtEstado" value="0">
+                                <input type="hidden" name="txtEstado" value="1">
                                 <input type="hidden" name="txtIdDetallesProducto" value="<%=detProVO.getId_Detalles_Producto()%>">
-                                <button class="btn boton">Desactivar</button>
-                                <input type="hidden" value="3" name="opcion">
+                                <button class="btn boton">Activar</button>
+                                <input type="hidden" value="5" name="opcion">
+                            </form>
+                        </td>
+                        
+                         <td>
+                            <form action="DetallesProducto" method="post">
+                                <input type="hidden" name="txtIdDetallesProducto" value="<%=detProVO.getId_Detalles_Producto()%>">
+                                <button class="btn boton">Eliminar</button>
+                                <input type="hidden" value="6" name="opcion">
                             </form>
                         </td>
                         

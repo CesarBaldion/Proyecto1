@@ -51,10 +51,10 @@ public class RolControlador extends HttpServlet {
 
             case 1: //Agregar registro
 
-               if (RDAO.verificarRol(roltipo) == false) {
+                if (RDAO.verificarRol(roltipo) == false) {
                     if (RDAO.agregarRegistro() == true) {
 
-                    request.setAttribute("mensajeExito", "Se ha registrado correctamente");
+                        request.setAttribute("mensajeExito", "Se ha registrado correctamente");
                         request.getRequestDispatcher("registrarRol.jsp").forward(request, response);
                     } else {
                         request.setAttribute("mensajeError", "Error al Registrar!");
@@ -85,7 +85,7 @@ public class RolControlador extends HttpServlet {
                 if (RDAO.eliminarRegistro()) {
 
                     request.setAttribute("mensajeExito", "El rol se elimino correctamente!");
-                     request.getRequestDispatcher("consultarRol.jsp").forward(request, response);
+                    request.getRequestDispatcher("consultarRol.jsp").forward(request, response);
 
                 } else {
 
@@ -108,9 +108,41 @@ public class RolControlador extends HttpServlet {
                 request.getRequestDispatcher("consultarRol.jsp").forward(request, response);
             }
             break;
+
+            case 5:
+
+                if (RDAO.activarRegistro()) {
+
+                    request.setAttribute("mensajeExito", "El rol se activo correctamente!");
+                    request.getRequestDispatcher("eliminarRol.jsp").forward(request, response);
+
+                } else {
+
+                    request.setAttribute("mensajeExito", "El rol no se activo correctamente!");
+                    request.getRequestDispatcher("eliminarRol.jsp").forward(request, response);
+
+                }
+                request.getRequestDispatcher("menu.jsp").forward(request, response);
+                break;
+
+            case 6:
+
+                if (RDAO.eliminarRegistroTotal()) {
+
+                    request.setAttribute("mensajeExito", "El rol se elimino correctamente!");
+                    request.getRequestDispatcher("eliminarRol.jsp").forward(request, response);
+
+                } else {
+
+                    request.setAttribute("mensajeExito", "El rol no se elimino correctamente!");
+                    request.getRequestDispatcher("eliminarRol.jsp").forward(request, response);
+
+                }
+                request.getRequestDispatcher("menu.jsp").forward(request, response);
+                break;
+
         }
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

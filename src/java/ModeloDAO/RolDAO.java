@@ -191,5 +191,69 @@ public class RolDAO extends Conexion implements Crud {
         return operacion;
 
     }
+ public ArrayList<RolVO> listarDos() {
+
+        ArrayList<RolVO> listaRol = new ArrayList();
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from rolview2";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+                RolVO RVO = new RolVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3));
+
+                listaRol.add(RVO);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(RolVO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexion();
+            } catch (Exception e) {
+                Logger.getLogger(RolVO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return listaRol;    
+}
+  public boolean activarRegistro() {
+       try {
+
+            sql = "UPDATE `rol` SET `Estado`= 1 WHERE Id_rol = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, id_rol);
+            puente.executeUpdate();
+            operacion = true;
+        } catch (Exception e) {
+            Logger.getLogger(RolDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexion();
+            } catch (Exception e) {
+                Logger.getLogger(RolDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return operacion;
+    }   
+  
+   public boolean eliminarRegistroTotal() {
+       try {
+
+            sql = "Delete from `rol` WHERE Id_rol = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, id_rol);
+            puente.executeUpdate();
+            operacion = true;
+        } catch (Exception e) {
+            Logger.getLogger(RolDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexion();
+            } catch (Exception e) {
+                Logger.getLogger(RolDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return operacion;
+    }   
 
 }
