@@ -18,18 +18,18 @@ function mostrarPassword() {
     }
 }
 
-var switchCtn = document.querySelector("#switch-cnt");
-var switchC1 = document.querySelector("#switch-c1");
-var switchC2 = document.querySelector("#switch-c2");
-var switchCircle = document.querySelectorAll(".switch__circle");
-var switchBtn = document.querySelectorAll(".switch-btn");
-var aContainer = document.querySelector("#a-container");
-var bContainer = document.querySelector("#b-container");
-var allButtons = document.querySelectorAll(".submit");
+let switchCtn = document.querySelector("#switch-cnt");
+let switchC1 = document.querySelector("#switch-c1");
+let switchC2 = document.querySelector("#switch-c2");
+let switchCircle = document.querySelectorAll(".switch__circle");
+let switchBtn = document.querySelectorAll(".switch-btn");
+let aContainer = document.querySelector("#a-container");
+let bContainer = document.querySelector("#b-container");
+let allButtons = document.querySelectorAll(".submit");
 
-var getButtons = (e) => e.preventDefault()
+let getButtons = (e) => e.preventDefault()
 
-var changeForm = (e) => {
+let changeForm = (e) => {
 
     switchCtn.classList.add("is-gx");
     setTimeout(function(){

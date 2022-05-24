@@ -11,35 +11,36 @@ package ModeloVO;
  */
 public class UsuarioVO {
 
-    private String Id_Usuarios, Nombre, Documento, Telefono, Email, Direccion,
+    private String Id_Usuarios, Nombre, Documento, Telefono, Email, Direccion, Ciudad,
             Estado, Contrasena;
 
-    // Declarar constructor vacio para enviar datos.
-    public UsuarioVO() {
-    }
-
-    public UsuarioVO(String Id_Usuarios) {
+       public UsuarioVO(String Id_Usuarios, String Nombre, String Documento, String Telefono, String Email, String Direccion, String Ciudad, String Estado, String Contrasena) {
         this.Id_Usuarios = Id_Usuarios;
-    }
-
-    public UsuarioVO(String IdUsuarios, String Nombre, String Documento, String Telefono, String Email,
-            String Direccion, String Estado, String Contrasena) {
-        this.Id_Usuarios = IdUsuarios;
         this.Nombre = Nombre;
         this.Documento = Documento;
         this.Telefono = Telefono;
         this.Email = Email;
         this.Direccion = Direccion;
+        this.Ciudad = Ciudad;
         this.Estado = Estado;
         this.Contrasena = Contrasena;
+    }
+
+    // Declarar constructor vacio para enviar datos.
+    public UsuarioVO() {
+    }
+
+ 
+    public UsuarioVO(String Id_Usuarios) {
+        this.Id_Usuarios = Id_Usuarios;
     }
 
     public String getIdUsuarios() {
         return Id_Usuarios;
     }
 
-    public void setIdUsuarios(String IdUsuarios) {
-        this.Id_Usuarios = IdUsuarios;
+    public void setId_Usuarios(String Id_Usuarios) {
+        this.Id_Usuarios = Id_Usuarios;
     }
 
     public String getNombre() {
@@ -80,6 +81,14 @@ public class UsuarioVO {
 
     public void setDireccion(String Direccion) {
         this.Direccion = Direccion;
+    }
+
+    public String getCiudad() {
+        return Ciudad;
+    }
+
+    public void setCiudad(String Ciudad) {
+        this.Ciudad = Ciudad;
     }
 
     public String getEstado() {

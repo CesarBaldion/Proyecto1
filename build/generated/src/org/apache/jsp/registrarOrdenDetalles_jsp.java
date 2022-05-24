@@ -3,10 +3,15 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import ModeloVO.MateriaPrimaVO;
-import ModeloDAO.MateriaPrimaDAO;
+import ModeloVO.Usuario_rolVO;
+import ModeloDAO.UsuarioRolDAO;
+import ModeloVO.UsuarioVO;
+import ModeloDAO.OrdenesDAO;
+import ModeloVO.DetallesProductoVO;
+import ModeloDAO.DetallesProductoDAO;
+import ModeloVO.OrdenesVO;
 
-public final class registrarLoteMateriaPrima_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class registrarOrdenDetalles_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -14,7 +19,8 @@ public final class registrarLoteMateriaPrima_jsp extends org.apache.jasper.runti
   private static java.util.List<String> _jspx_dependants;
 
   static {
-    _jspx_dependants = new java.util.ArrayList<String>(1);
+    _jspx_dependants = new java.util.ArrayList<String>(2);
+    _jspx_dependants.add("/sesionesAlmacenista.jsp");
     _jspx_dependants.add("/navegacion.jsp");
   }
 
@@ -48,6 +54,46 @@ public final class registrarLoteMateriaPrima_jsp extends org.apache.jasper.runti
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write('\r');
+      out.write('\n');
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+
+    response.setHeader("Pragma", "No-cache");
+    response.setHeader("Cache-control", "no-cache, no-store, must-revalidate");
+    response.setDateHeader("Expires", 0);
+
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+
+    HttpSession buscarSesion = (HttpSession) request.getSession();
+    UsuarioVO usuVO1 = null;
+    if (buscarSesion.getAttribute("datosUsuario") == null) {
+
+        request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
+
+    } else {
+        UsuarioRolDAO uRDAO = new UsuarioRolDAO();
+        usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
+        Usuario_rolVO uRVO2 = uRDAO.consultarRol(usuVO1.getIdUsuarios());
+        String id = uRVO2.getId_Rol();
+        if (id.equals("2") || id.equals("1") || id.equals("3")) {
+
+        } else {
+            request.getRequestDispatcher("errorPermisos.jsp").forward(request, response);
+
+        }
+
+    }
+
+
+      out.write('\r');
+      out.write('\n');
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -130,8 +176,8 @@ public final class registrarLoteMateriaPrima_jsp extends org.apache.jasper.runti
       out.write("                                <li><a class=\"dropdown-item font-dark\"  href=\"eliminarOrdenes.jsp\">Ordenes</a></li>\r\n");
       out.write("                                <li><a class=\"dropdown-item font-dark\"  href=\"eliminarOrdenDetalles.jsp\">Orden Detalles</a></li>\r\n");
       out.write("                                <li><a class=\"dropdown-item font-dark\"  href=\"eliminarUsuarios.jsp\">Usuarios</a></li>\r\n");
-      out.write("                                <li><a class=\"dropdown-item font-dark\"  href=\"consultarDetallesProducto.jsp\">Detalles Producto</a></li>\r\n");
-      out.write("                                <li><a class=\"dropdown-item font-dark\" href=\"consultarRol.jsp\">Rol</a></li>\r\n");
+      out.write("                                <li><a class=\"dropdown-item font-dark\"  href=\"eliminarDetallesProducto.jsp\">Detalles Producto</a></li>\r\n");
+      out.write("                                <li><a class=\"dropdown-item font-dark\" href=\"eliminarRol.jsp\">Rol</a></li>\r\n");
       out.write("                            </ul>\r\n");
       out.write("                        </li>\r\n");
       out.write("                    </ul>\r\n");
@@ -149,18 +195,16 @@ public final class registrarLoteMateriaPrima_jsp extends org.apache.jasper.runti
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
       out.write("\r\n");
-      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
-      out.write("        <title>Registrar Lote Materia Prima</title>\r\n");
+      out.write("        <title>JSP Page</title>\r\n");
       out.write("        <link rel=\"stylesheet\" href=\"css/estilos.css\">\r\n");
-      out.write("\r\n");
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
       out.write("        <div class=\"col-md-3 justify-content-center mx-auto caja border border-info mt-4\">\r\n");
-      out.write("            <h1 class=\"text-center fs-2 mt-2\">Registrar<br> Lote Materia Prima</h1>\r\n");
+      out.write("            <h1 class=\"text-center fs-3 mt-2\">Actualizar<br> Ordenes Detalles</h1>\r\n");
       out.write("            <div class=\"mx-auto justify-content-center\">\r\n");
       out.write("                ");
 if (request.getAttribute("mensajeError") != null) {
@@ -168,52 +212,63 @@ if (request.getAttribute("mensajeError") != null) {
       out.write("                <p class=\"text-danger text-center fs-5\">");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeError}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("</p>\r\n");
-      out.write("\r\n");
       out.write("                ");
    } else {
       out.write("\r\n");
       out.write("                <p class=\"text-success text-center fs-5\">");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${mensajeExito}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("</p>\r\n");
-      out.write("\r\n");
       out.write("                ");
 }
       out.write("\r\n");
       out.write("            </div>\r\n");
-      out.write("            <div class=\"col-md-10 mx-auto mt-4\">\r\n");
-      out.write("                <form class=\"Formulario\" method = \"post\" action = \"loteMateriaPrima\" class=\"form-group mt-2\" > \r\n");
-      out.write("                    <select name=\"txtIdMateriaPrima\" class=\"form-select mt-2\">\r\n");
-      out.write("                        <option>Seleccione Id Materia Prima..</option>\r\n");
+      out.write("            <div class=\"col-md-11 mx-auto mt-4 formulario\">\r\n");
+      out.write("                <form action=\"OrdenDetalles\" method=\"post\" class=\"form-group\">\r\n");
+      out.write("                    <select name=\"txtIdOrden\" required=\"\" class=\"form-select mt-2\">\r\n");
+      out.write("                        <option>Seleccione un IdOrden...</option>\r\n");
       out.write("                        ");
 
-                            MateriaPrimaDAO matDAO = new MateriaPrimaDAO();
-                            for (MateriaPrimaVO matVO : matDAO.ListarDos()) {
+                            OrdenesDAO ordDAO = new OrdenesDAO();
+                            for (OrdenesVO ordVO : ordDAO.listar()) {
 
                         
       out.write("\r\n");
       out.write("\r\n");
-      out.write("\r\n");
       out.write("                        <option value=\"");
-      out.print(matVO.getId_materia_Prima());
+      out.print(ordVO.getId_Orden());
       out.write('"');
       out.write('>');
-      out.print(matVO.getNombre());
+      out.print(ordVO.getId_Orden());
+      out.write("</option>\r\n");
+      out.write("\r\n");
+      out.write("                        ");
+}
+      out.write("\r\n");
+      out.write("                    </select>\r\n");
+      out.write("                    <select name=\"idDetallesProducto\" required=\"\" class=\"form-select mt-2\">\r\n");
+      out.write("                        <option>Seleccione IdDetalles de producto...</option>\r\n");
+      out.write("                        ");
+
+                            DetallesProductoDAO dpDAO = new DetallesProductoDAO();
+                            for (DetallesProductoVO dpVO : dpDAO.listar()) {
+
+                        
+      out.write("\r\n");
+      out.write("                        <option value=\"");
+      out.print(dpVO.getId_Detalles_Producto());
+      out.write('"');
+      out.write('>');
+      out.print(dpVO.getId_Detalles_Producto());
       out.write("</option>\r\n");
       out.write("                        ");
 }
       out.write("\r\n");
       out.write("                    </select>\r\n");
-      out.write("                    <input type=\"text\" name=\"txtCantidad\" placeholder=\"Cantidad\" required=\"\" class=\"form-control mt-2\">\r\n");
-      out.write("                    <label class=\"mt-2\">Fecha de ingreso</label>\r\n");
-      out.write("                    <input type=\"date\" name=\"txtFechaIngreso\" placeholder=\"Fecha de ingreso\" required=\"\" class=\" mt-2 form-control\">\r\n");
-      out.write("                    <label class=\"mt-2\">Fecha de salida</label>\r\n");
-      out.write("                    <input type=\"date\" name=\"txtFechaSalida\" placeholder=\"Fecha de salida\" required=\"\" class=\" mt-2 form-control\">\r\n");
-      out.write("                    <textarea name=\"txtObservaciones\" placeholder=\"Observaciones\" class=\"form-control mt-2\"></textarea>\r\n");
-      out.write("                    <div class=\"mt-2 mb-3\">\r\n");
-      out.write("                        <button class=\"btn boton\"> Registrar</button>\r\n");
+      out.write("                    <input class=\"form-select mt-2\" type=\"number\" name=\"txtcantidadSolicitada\" required=\"\" placeholder=\"Cantida Solicitada\">\r\n");
+      out.write("                    <div class=\"col-md-12 mt-2 mb-3\">\r\n");
+      out.write("                        <button class=\"btn boton\"> Registrar </button>\r\n");
       out.write("                        <input type=\"hidden\" value=\"1\" name=\"opcion\">\r\n");
       out.write("                    </div>\r\n");
-      out.write("\r\n");
       out.write("                </form>\r\n");
       out.write("            </div>\r\n");
       out.write("        </div>\r\n");

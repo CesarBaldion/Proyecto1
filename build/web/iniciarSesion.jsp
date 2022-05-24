@@ -23,38 +23,38 @@
     <body>
         <div class="main">
             <div class="container a-container" id="a-container">
-                <form class="form" id="a-form" method="" action="">
+                <form  class="form" id="a-form" method="post" action="Usuarios">
                     <h2 class="form_title title col-md-8">Registrar Cuenta</h2>
                     <div class="col-md-11 d-flex d-inline-block ">
-                        <input class="form__input_c ms-1 mt-2"  type="text" placeholder="Nombre completo">
+                        <input id="txtNombre" class="form__input_c ms-1 mt-2"  type="text" placeholder="Nombre completo" requiered>
                     </div>
                     <div class="col-md-11 d-flex d-inline-block ">
-                        <select class="form__input ms-1 mt-2">
+                        <select class="form__input ms-1 mt-2" requiered>
                             <option value="">Tipo de documento</option>
                             <option>Cedula de ciudadania</option>
                             <option>Tarjeta de identidad</option>
                             <option>Pasaporte</option>
                         </select>
-                        <input class="form__input ms-3 mt-2" type="text" placeholder="Número de documento">
+                        <input id="txtDocumento" class="form__input ms-3 mt-2" type="text" placeholder="Número de documento" requiered>
                     </div>
                     <div class="col-md-11 d-flex d-inline-block ">
-                        <input class="form__input_c ms-1 mt-2"  type="text" placeholder="Dirección">
+                        <input id="txtDireccion" class="form__input_c ms-1 mt-2"  type="text" placeholder="Dirección" requiered>
                     </div>
                     <div class="col-md-11 d-flex d-inline-block ">
-                        <input id="txtPassword"  class="form__input ms-1 mt-2"  type="text" placeholder="Ciudad">
-                        <input id="txtPassword"  class="form__input ms-1 mt-2"  type="text" placeholder="Teléfono">
+                        <input id="txtCiudad"  class="form__input ms-1 mt-2"  type="text" placeholder="Ciudad" requiered>
+                        <input id="txtTelefono"  class="form__input ms-1 mt-2"  type="text" placeholder="Teléfono" requiered>
                     </div>
                     <div class="col-md-11 d-flex d-inline-block ">
-                        <input id="txtPassword"  class="form__input ms-1 mt-2"  type="text" placeholder="Correo">
-                        <input id="txtPassword"  class="form__input ms-1 mt-2"  type="text" placeholder="Confirme correo">
+                        <input id="txtEmail"  class="form__input ms-1 mt-2"  type="text" placeholder="Correo" requiered>
+                        <input id="txtEmail2"  class="form__input ms-1 mt-2"  type="text" placeholder="Confirme correo" requiered>
                     </div>
                     <div class="col-md-11 d-flex d-inline-block">
                         <input id="txtPassword"  type="password" class="form__input_c ms-1 mt-2"  type="text" placeholder="Contraseña"  aria-label="Recipient's username"
-                               aria-describedby="button-addon2">
+                               aria-describedby="button-addon2" requiered>
 
                     </div>
                     <div class="col-md-11 d-flex d-inline-block ">
-                        <input class="form__input_c ms-1 mt-2"  type="text" placeholder="Confirme Contraseña">
+                        <input id="txtContrasena2" class="form__input_c ms-1 mt-2"  type="text" placeholder="Confirme Contraseña" requiered>
                     </div>  
                     <div class="col-md-11 d-flex mb-5 ">
                         <button class="form__button button submit ">Registrar</button>
@@ -65,10 +65,10 @@
             </div>
             <div class="container b-container col-md-8" id="b-container">
                 <form class="form" id="b-form" method="" action="">
-                    <div class="container_img"><img src="img/logoLogin.svg" alt=""></div>
+                    <div class="container_img"><img src="img/Login/Login.svg" alt=""></div>
                     <h2 class="form_title title">Iniciar Sesión</h2>
                     <input class="form__input" name="txtDocumento" type="text" placeholder="Documento de Identidad">
-                    <input class="form__input" ID="txtContrasena" name="txtContrasena" type="password" placeholder="Contraseña">
+                    <input class="form__input" ID="txtContrasena" name="txtContrasena" type="password" placeholder="Contraseña" requiered>
                     <a class="form__link">¿Olvidó su contraseña?</a><button class="form__button button submit">Ingresar</button>
                 </form>
             </div>
