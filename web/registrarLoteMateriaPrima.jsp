@@ -3,7 +3,6 @@
     Created on : 9/03/2022, 09:06:15 AM
     Author     : Sena
 --%>
-<%@include file="sesionesAlmacenista.jsp" %>
 <%@page import="ModeloVO.MateriaPrimaVO"%>
 <%@page import="ModeloDAO.MateriaPrimaDAO"%>
 

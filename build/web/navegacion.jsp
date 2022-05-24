@@ -80,8 +80,8 @@
                                 <li><a class="dropdown-item font-dark"  href="eliminarOrdenes.jsp">Ordenes</a></li>
                                 <li><a class="dropdown-item font-dark"  href="eliminarOrdenDetalles.jsp">Orden Detalles</a></li>
                                 <li><a class="dropdown-item font-dark"  href="eliminarUsuarios.jsp">Usuarios</a></li>
-                                <li><a class="dropdown-item font-dark"  href="consultarDetallesProducto.jsp">Detalles Producto</a></li>
-                                <li><a class="dropdown-item font-dark" href="consultarRol.jsp">Rol</a></li>
+                                <li><a class="dropdown-item font-dark"  href="eliminarDetallesProducto.jsp">Detalles Producto</a></li>
+                                <li><a class="dropdown-item font-dark" href="eliminarRol.jsp">Rol</a></li>
                             </ul>
                         </li>
                     </ul>

@@ -1,0 +1,24 @@
+SMAP
+consultarDetallesProducto_jsp.java
+JSP
+*S JSP
+*F
++ 0 consultarDetallesProducto.jsp
+consultarDetallesProducto.jsp
++ 1 navegacion.jsp
+navegacion.jsp
+*L
+5,6:52
+5#1,97:57
+10#0,17:153
+27,5:170,3
+32,16:185
+48,8:202
+55,4:210
+59,4:214,3
+63,4:226
+67:230,3
+68,6:233
+74:239,3
+75,7:242
+*E
