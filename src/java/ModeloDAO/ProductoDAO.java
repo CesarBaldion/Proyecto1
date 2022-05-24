@@ -86,7 +86,7 @@ public class ProductoDAO extends Conexion implements Crud {
     public boolean actualizarRegistro() {
         try {
 
-            sql = "update producto set Nombre=?, Estado=? where producto Id_Producto=?";
+            sql = "update producto set Nombre=?, Estado=1 where producto Id_Producto=?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Nombre);
             puente.setString(2, Estado);

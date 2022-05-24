@@ -70,14 +70,14 @@ public class ProductoControlador extends HttpServlet {
                     if (prodDAO.agregarRegistro() == true) {
 
                         request.setAttribute("Bien", "Se ha registrado");
-                        request.getRequestDispatcher("registrarProducto.jsp").forward(request, response);
+                        request.getRequestDispatcher("producto.jsp").forward(request, response);
                     } else {
                         request.setAttribute("Error", "Error al Registrar!");
-                        request.getRequestDispatcher("registrarProducto.jsp").forward(request, response);
+                        request.getRequestDispatcher("producto.jsp").forward(request, response);
                     }
                 } else {
                     request.setAttribute("error", "El producto ya existe");
-                    request.getRequestDispatcher("registrarProducto.jsp").forward(request, response);
+                    request.getRequestDispatcher("producto.jsp").forward(request, response);
                 }
 
                 break;
@@ -86,25 +86,24 @@ public class ProductoControlador extends HttpServlet {
 
                 if (prodDAO.actualizarRegistro()) {
 
-                    request.setAttribute("mensajeExito", "El producto se actualizo correctamente!");
-
+                    request.setAttribute("Bien", "El producto se actualizo correctamente!");
                 } else {
 
-                    request.setAttribute("mensajeExito", "El producto no se actualizo correctamente!");
+                    request.setAttribute("Error", "El producto no se actualizo correctamente!");
                 }
-                request.getRequestDispatcher("actualizarProducto.jsp").forward(request, response);
+                request.getRequestDispatcher("producto.jsp").forward(request, response);
                 break;
 
             case 3:
 
                 if (prodDAO.eliminarRegistro()) {
 
-                    request.setAttribute("mensajeExito", "El producto se elimino correctamente!");
+                    request.setAttribute("Bien", "El producto se elimino correctamente!");
                     request.getRequestDispatcher("consultarProducto.jsp").forward(request, response);
 
                 } else {
 
-                    request.setAttribute("mensajeError", "El producto no se elimino correctamente!");
+                    request.setAttribute("Error", "El producto no se elimino correctamente!");
                 }
                 request.getRequestDispatcher("menu.jsp").forward(request, response);
                 break;
@@ -119,8 +118,8 @@ public class ProductoControlador extends HttpServlet {
                 request.setAttribute("productoConsultado", prodVO);
                 request.getRequestDispatcher("actualizarProducto.jsp").forward(request, response);
             } else {
-                request.setAttribute("mensajError", "El producto no existe");
-                request.getRequestDispatcher("consultarProducto.jsp").forward(request, response);
+                request.setAttribute("Error", "El producto no existe");
+                request.getRequestDispatcher("producto.jsp").forward(request, response);
             }
             break;
 
@@ -128,12 +127,12 @@ public class ProductoControlador extends HttpServlet {
 
                 if (prodDAO.ActivarRegistro()) {
 
-                    request.setAttribute("mensajeExito", "El producto se activo correctamente!");
+                    request.setAttribute("Bien", "El producto se activo correctamente!");
                     request.getRequestDispatcher("eliminarProducto.jsp").forward(request, response);
 
                 } else {
 
-                    request.setAttribute("mensajeError", "El producto no se elimino correctamente!");
+                    request.setAttribute("Error", "El producto no se elimino correctamente!");
                 }
                 request.getRequestDispatcher("menu.jsp").forward(request, response);
                 break;
@@ -142,12 +141,12 @@ public class ProductoControlador extends HttpServlet {
 
                 if (prodDAO.EliminarRegistroTotal()) {
 
-                    request.setAttribute("mensajeExito", "El producto se elimino correctamente!");
+                    request.setAttribute("Bien", "El producto se elimino correctamente!");
                     request.getRequestDispatcher("eliminarProducto.jsp").forward(request, response);
 
                 } else {
 
-                    request.setAttribute("mensajeError", "El producto no se elimino correctamente!");
+                    request.setAttribute("Error", "El producto no se elimino correctamente!");
                     request.getRequestDispatcher("eliminarProducto.jsp").forward(request, response);
                 }
                 request.getRequestDispatcher("menu.jsp").forward(request, response);

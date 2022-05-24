@@ -3,7 +3,7 @@
     Created on : 4/04/2022, 08:34:25 AM
     Author     : Sena
 --%>
-<%@include file="sesionesJefeProduccion.jsp" %>
+
 <%@page import="ModeloVO.ProductoVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -45,7 +45,7 @@
         </form>
         
             <% }else{
-request.getRequestDispatcher("consultarProducto.jsp").forward(request, response);
+request.getRequestDispatcher("producto.jsp").forward(request, response);
 
 }%>
         
