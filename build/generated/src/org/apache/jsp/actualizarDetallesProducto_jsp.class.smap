@@ -1,0 +1,28 @@
+SMAP
+actualizarDetallesProducto_jsp.java
+JSP
+*S JSP
+*F
++ 0 actualizarDetallesProducto.jsp
+actualizarDetallesProducto.jsp
++ 1 sesionesJefeProduccion.jsp
+sesionesJefeProduccion.jsp
+*L
+5,3:53
+5#1,22:55
+7#0,10:77
+17,4:88
+20,6:92
+26:98,3
+27,4:101
+31:105,3
+32,3:108
+35:111,3
+36,3:114
+39:117,3
+40,5:120
+45:125,6
+46,11:131
+56,4:142
+59,4:146
+*E
