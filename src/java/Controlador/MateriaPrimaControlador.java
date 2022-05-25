@@ -72,21 +72,24 @@ public class MateriaPrimaControlador extends HttpServlet {
                     if (matPriDAO.agregarRegistro() == true) {
 
                          request.setAttribute("mensajeExito", "La materia prima se registró correctamente!");
-                        request.getRequestDispatcher("registrarMateriasPrimas.jsp").forward(request, response);
+                        request.getRequestDispatcher("materiaPrima.jsp").forward(request, response);
                     
 
                } else {
                         request.setAttribute("mensajeError", "La materia prima no se registro correctamente!");
-                        request.getRequestDispatcher("registrarMateriasPrimas.jsp").forward(request, response);
+                        request.getRequestDispatcher("materiaPrima.jsp").forward(request, response);
                     }
                 } else {
                     request.setAttribute("error", "La materia Prima ya existe");
-                    request.getRequestDispatcher("registrarMateriasPrimas.jsp").forward(request, response);
+                    request.getRequestDispatcher("materiaPrima.jsp").forward(request, response);
                 }
 
                 break;
 
             case 2:
+                
+                Id_materia_Prima = request.getParameter("txtIdMateriaPrima");
+                
 
                 if (matPriDAO.actualizarRegistro()) {
 
@@ -96,18 +99,18 @@ public class MateriaPrimaControlador extends HttpServlet {
 
                     request.setAttribute("mensajeError", "La materia prima no se actualizó correctamente!");
                 }
-                request.getRequestDispatcher("actualizarMateriaPrima.jsp").forward(request, response);
+                request.getRequestDispatcher("materiaPrima.jsp").forward(request, response);
                 break;
 
             case 3:
 
                 if (matPriDAO.eliminarRegistro()) {
                     request.setAttribute("mensajeExito", "La materia prima se elimino correctamente!");
-                    request.getRequestDispatcher("consultarMateriaPrima.jsp").forward(request, response);
+                    request.getRequestDispatcher("materiaPrima.jsp").forward(request, response);
 
                 } else {
 
-                    request.setAttribute("mensajeError", "La materia prima no se elimino correctamente!");
+                    request.setAttribute("mensajeError", "La materia prima no se eliminó correctamente!");
                 }
 
                 break;
@@ -118,10 +121,10 @@ public class MateriaPrimaControlador extends HttpServlet {
                 if (matPriVO != null) {
 
                     request.setAttribute("MateriaPrimaConsultada", matPriVO);
-                    request.getRequestDispatcher("actualizarMateriaPrima.jsp").forward(request, response);
+                    request.getRequestDispatcher("materiaPrima.jsp").forward(request, response);
                 } else {
                     request.setAttribute("mensajeExito", "La materia prima no existe");
-                    request.getRequestDispatcher("consultarMateriaPrima.jsp").forward(request, response);
+                    request.getRequestDispatcher("materiaPrima.jsp").forward(request, response);
                 }
                 break;
 

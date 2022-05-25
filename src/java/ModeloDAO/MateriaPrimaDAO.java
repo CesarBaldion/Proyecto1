@@ -145,7 +145,6 @@ public class MateriaPrimaDAO extends Conexion implements Crud {
             conexion = this.obtenerConexion();
             sql = "select * from materia_prima where Id_materia_Prima = ?";
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, Id);
             mensajero = puente.executeQuery();
 
             while (mensajero.next()) {
