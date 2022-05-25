@@ -17,17 +17,17 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <title>Login y registro</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        
+
     </head>
     <body>
         <div class="main">
             <div class="container a-container" id="a-container">
                 <form  class="form" id="a-form" method="post" action="Usuarios">
                     <h2 class="form_title title col-md-8">Registrar Cuenta</h2>
-                    <div class="col-md-11 d-flex d-inline-block ">
+                    <div class="col-md-11  ">
                         <input id="txtNombre" class="form__input_c ms-1 mt-2"  type="text" placeholder="Nombre completo" requiered>
                     </div>
-                    <div class="col-md-11 d-flex d-inline-block ">
+                    <div class="col-md-11 d-flex  ">
                         <select class="form__input ms-1 mt-2" requiered>
                             <option value="">Tipo de documento</option>
                             <option>Cedula de ciudadania</option>
@@ -36,37 +36,59 @@
                         </select>
                         <input id="txtDocumento" class="form__input ms-3 mt-2" type="text" placeholder="Número de documento" requiered>
                     </div>
-                    <div class="col-md-11 d-flex d-inline-block ">
+                    <div class="col-md-11  ">
                         <input id="txtDireccion" class="form__input_c ms-1 mt-2"  type="text" placeholder="Dirección" requiered>
                     </div>
-                    <div class="col-md-11 d-flex d-inline-block ">
+                    <div class="col-md-11 d-flex  ">
                         <input id="txtCiudad"  class="form__input ms-1 mt-2"  type="text" placeholder="Ciudad" requiered>
                         <input id="txtTelefono"  class="form__input ms-1 mt-2"  type="text" placeholder="Teléfono" requiered>
                     </div>
-                    <div class="col-md-11 d-flex d-inline-block ">
+                    <div class="col-md-11 d-flex  ">
                         <input id="txtEmail"  class="form__input ms-1 mt-2"  type="text" placeholder="Correo" requiered>
                         <input id="txtEmail2"  class="form__input ms-1 mt-2"  type="text" placeholder="Confirme correo" requiered>
                     </div>
-                    <div class="col-md-11 d-flex d-inline-block">
-                        <input id="txtPassword"  type="password" class="form__input_c ms-1 mt-2"  type="text" placeholder="Contraseña"  aria-label="Recipient's username"
+                    <div class="input-group mx-auto ms-5">
+                        <input id="txtPassword"  type="password" class="form__input_c col-md-6"  type="text" placeholder="Contraseña"  aria-label="Recipient's username"
                                aria-describedby="button-addon2" requiered>
-
+                        <button class="btn " type="button" onclick="mostrarPassword()" id="botonOn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                            </svg>
+                        </button>
                     </div>
-                    <div class="col-md-11 d-flex d-inline-block ">
-                        <input id="txtContrasena2" class="form__input_c ms-1 mt-2"  type="text" placeholder="Confirme Contraseña" requiered>
-                    </div>  
+                    <div class="input-group mx-auto ms-5">
+                        <input id="txtPassword2"  type="password" class="form__input_c col-md-6"  type="text" placeholder="Contraseña"  aria-label="Recipient's username"
+                               aria-describedby="button-addon2" requiered>
+                        <button class="btn " type="button" onclick="mostrarPassword2()"  id="botonOn2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                            </svg>
+                        </button>
+                    </div> 
                     <div class="col-md-11 d-flex mb-5 ">
-                        <button class="form__button button submit ">Registrar</button>
+                        <button class="form__button button submit">Registrar</button>
                     </div>          
-
                 </form>
             </div>
             <div class="container b-container col-md-8" id="b-container">
                 <form class="form" id="b-form" method="" action="">
                     <div class="container_img"><img src="img/Login/Login.svg" alt=""></div>
                     <h2 class="form_title title">Iniciar Sesión</h2>
-                    <input class="form__input" name="txtDocumento" type="text" placeholder="Documento de Identidad">
-                    <input class="form__input" ID="txtContrasena" name="txtContrasena" type="password" placeholder="Contraseña" requiered>
+                    <div>
+                        <input class="form__input" name="txtDocumento" type="text" placeholder="Documento de Identidad">
+                    </div>
+                    <div class="input-group justify-content-center ms-5">
+                        <input id="txtPassword3"  type="password" class="form__input_c col-md-5"  type="text" placeholder="Contraseña"  aria-label="Recipient's username"
+                               aria-describedby="button-addon2" requiered>
+                        <button class="btn " type="button" onclick="mostrarPassword3()"  id="botonOn3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                            </svg>
+                        </button>
+                    </div>
                     <a class="form__link">¿Olvidó su contraseña?</a><button class="form__button button submit">Ingresar</button>
                 </form>
             </div>
@@ -84,19 +106,8 @@
                 </div>
             </div>
         </div>
-        
-        <script type="text/javascript">
-            function mostrarPassword() {
-                var cambio = document.getElementById("txtContrasena");
-                if (cambio.type == "password") {
-                    cambio.type = "text";
 
-                } else {
-                    cambio.type = "password";
 
-                }
-            }
-        </script>
         <script src="js/iniciarSesionRegistro.js"></script>
     </body>
 </html>
