@@ -11,7 +11,6 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="styles/style.css" rel="stylesheet" type="text/css">
-        <script href="text/javascript" src="js/iniciarSesionRegistro.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/iniciarSesion.css">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
@@ -58,7 +57,6 @@
                     </div>  
                     <div class="col-md-11 d-flex mb-5 ">
                         <button class="form__button button submit ">Registrar</button>
-
                     </div>          
 
                 </form>
@@ -99,5 +97,6 @@
                 }
             }
         </script>
+        <script src="js/iniciarSesionRegistro.js"></script>
     </body>
 </html>
