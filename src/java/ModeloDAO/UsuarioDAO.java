@@ -452,14 +452,14 @@ public class UsuarioDAO extends Conexion implements Crud {
 
     }
 
-    public UsuarioVO RecuperacionContraseña(String Email) {
+    public UsuarioVO RecuperacionContraseña(String documento) {
 
         UsuarioVO usuVO = null;
 
         try {
-            sql = "select * from usuarios where Email = ?";
+            sql = "select * from usuarios where documento = ?";
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, Email);
+            puente.setString(1, documento);
             mensajero = puente.executeQuery();
 
             if (mensajero.next()) {

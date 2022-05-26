@@ -21,17 +21,16 @@
     </head>
     <body>
         <div class="col-md-3 justify-content-center mx-auto caja border border-info  m">
-            <h1 class="text-center fs-4 mt-2">Ingrese su Email</h1>
+            <h1 class="text-center fs-4 mt-2">Ingrese su Documento de Identidad</h1>
             <div class="mx-auto justify-content-center">
                 <%if (request.getAttribute("error") != null) {%>
                 <p class="text-danger text-center fs-5">${error}p>
                 <%}%>
             </div>
             <div class="col-md-10 mx-auto mt-4">
-                <form  id="formReg"  class="form-group" action="Usuarios" method="post"> 
+                <form  id="formReg"  class="form-group" action="Usuarios" method="post" enctype="multipart/form-data"> 
                     <div class=" col-md-12 mx-auto ">
-                        <input type="email"  name= "txtEmail" placeholder="Email" required="" class="form-control ms-1 mt-2">
-                        <input type="email"  name= "txtEmail2" placeholder="Confirme Email" required="" class="form-control ms-1 mt-2">  
+                        <input type="text"  name= "txtDocumento" placeholder="Documento de Identidad" required="" class="form-control ms-1 mt-2">
                         <div class="d-flex d-inline-block mt-4 mb-2">
                             <button class="btn boton" >Verificar</button><br>
                             <input type="hidden" value="6" name="opcion">

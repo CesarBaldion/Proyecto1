@@ -79,92 +79,95 @@ public class UsuariosControlador extends HttpServlet {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yy/MM/dd");
         String codigo2 = String.valueOf(dtf.format(LocalDateTime.now()));
         codigo2 = usuDao.Encriptar(codigo2);
+        codigo2 = codigo2.substring(0,6);
 
         // 4. Administrar las operaciones del modulo
         switch (opcion) {
             case 1: //Agregar registro
                 if (!"".equals(Id_Usuarios)) {
                     if (!"".equals(Documento)) {
-                        if (!"".equals(Contrasena)) {
-                            if (Contrasena.equals(Contrasena2)) {
-                                if (!"".equals(Nombre)) {
-                                    if (!"".equals(Telefono)) {
-                                        if (!"".equals(Email)) {
-                                            if (Email.equals(Email2)) {
-                                                if (!"".equals(Direccion)) {
-                                                    if (!"".equals(Ciudad)) {
-                                                        if (!"".equals(Estado)) {
-                                                            if (usuDao.validarContrasena(Contrasena) == true) {
-                                                                usuDAO.Encriptar(Contrasena);
-                                                                if (usuDao.ValidarNumero(Documento) == true) {
+                        if (usuDao.ValidarNumero(Documento) == true) {
+                            if (!"".equals(Contrasena)) {
+                                if (Contrasena.equals(Contrasena2)) {
+                                    if (!"".equals(Nombre)) {
+                                        if (!"".equals(Telefono)) {
+                                            if (!"".equals(Email)) {
+                                                if (Email.equals(Email2)) {
+                                                    if (!"".equals(Direccion)) {
+                                                        if (!"".equals(Ciudad)) {
+                                                            if (!"".equals(Estado)) {
+                                                                if (usuDao.validarContrasena(Contrasena) == true) {
+                                                                    usuDAO.Encriptar(Contrasena);
                                                                     if (usuDao.verificarUsuario(Documento) == false) {
                                                                         if (usuDAO.agregarRegistro() == true) {
                                                                             usuDao.enviarCorreoRegistro(Email);
                                                                             request.setAttribute("Bien", "Se ha registrado");
-                                                                            request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                                                            request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                                                         } else {
+                                                                            
                                                                             request.setAttribute("Error", "Error al Registrar!");
-                                                                            request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                                                            request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                                                         }
                                                                     } else {
                                                                         request.setAttribute("error", "El usuario ya existe");
-                                                                        request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                                                        request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                                                     }
+
                                                                 } else {
-                                                                    request.setAttribute("error", "Ingrese un documento valido");
-                                                                    request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                                                    request.setAttribute("error", "Ingrese una contraseña valida");
+                                                                    request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                                                 }
                                                             } else {
-                                                                request.setAttribute("error", "Ingrese una contraseña valida");
-                                                                request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                                                request.setAttribute("error", "Complete el campo de estado");
+                                                                request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                                             }
                                                         } else {
-                                                            request.setAttribute("error", "Complete el campo de estado");
-                                                            request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
-                                                        }
-                                                    }else {
                                                             request.setAttribute("error", "Complete el campo de Ciudad");
-                                                    request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
-                                                            }
+                                                            request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
+                                                        }
 
                                                     } else {
                                                         request.setAttribute("error", "Complete el campo de Direccion");
-                                                        request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                                        request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                                     }
                                                 } else {
                                                     request.setAttribute("error", "Los campos Email no coinciden");
-                                                    request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                                    request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                                 }
                                             } else {
                                                 request.setAttribute("error", "Complete el campo de Email");
-                                                request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                                request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                             }
                                         } else {
                                             request.setAttribute("error", "Complete el campo de Telefono");
-                                            request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                            request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                         }
                                     } else {
                                         request.setAttribute("error", "Complete el campo de Nombre");
-                                        request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                        request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                     }
                                 } else {
 
                                     request.setAttribute("error", "Las contraseñas no coinciden");
-                                    request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                    request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                 }
                             } else {
                                 request.setAttribute("error", "Complete el campo de Contraseña");
-                                request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                                request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                             }
                         } else {
-                            request.setAttribute("error", "Complete el campo de Documento");
-                            request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                            request.setAttribute("error", "Ingrese un documento valido");
+                            request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                         }
                     } else {
-                        request.setAttribute("error", "Complete el campo Id");
-                        request.getRequestDispatcher("registrarUsuario.jsp").forward(request, response);
+                        request.setAttribute("error", "Complete el campo de Documento");
+                        request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                     }
-                    break;
+                } else {
+                    request.setAttribute("error", "Complete el campo Id");
+                    request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
+                }
+                break;
 
                 
         
@@ -204,7 +207,7 @@ public class UsuariosControlador extends HttpServlet {
 
                     miSesion.setAttribute("datosUsuario", usuVO);
 
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                    request.getRequestDispatcher("consultarUsuarios.jsp").forward(request, response);
 
                 } else {
 
@@ -227,8 +230,8 @@ public class UsuariosControlador extends HttpServlet {
                 }
                 break;
 
-            case 6://verificacion que existe el usuarui para cambiar contraseña
-                usuVO = usuDAO.RecuperacionContraseña(Email);
+            case 6://verificacion que existe el usuario para cambiar contraseña
+                usuVO = usuDAO.RecuperacionContraseña(Documento);
                 if (usuVO != null) {
                     usuDAO.enviarCorreoRecuperacionContraseña(usuVO.getEmail(), codigo2);
                     HttpSession miSesion = request.getSession();
@@ -236,7 +239,7 @@ public class UsuariosControlador extends HttpServlet {
                     request.setAttribute("envioCorreo", "Se ha enviado un Codigo de confirmacion a su correo");
                     request.getRequestDispatcher("VerificacionCodigo.jsp").forward(request, response);
                 } else {
-                    request.setAttribute("error", "No encontramos ningun Usuario asociado a este email");
+                    request.setAttribute("error", "No encontramos ningun Usuario asociado a este documento");
                     request.getRequestDispatcher("recuperarContrasenaUsuario.jsp").forward(request, response);
                 }
 
@@ -249,9 +252,8 @@ public class UsuariosControlador extends HttpServlet {
                     request.getRequestDispatcher("VerificacionCodigo.jsp").forward(request, response);
                 }
                 break;
-            case 8:
-                usuVO = usuDAO.RecuperacionContraseña(Email);
-
+            case 8://actualizarContraseña
+                usuVO = usuDAO.RecuperacionContraseña(Documento);
                 if (Contrasena.equals(Contrasena2)) {
                     if (usuDao.validarContrasena(Contrasena) == true) {
                         if (usuVO != null) {

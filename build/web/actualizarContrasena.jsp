@@ -8,9 +8,10 @@
 <%HttpSession buscarSesion = (HttpSession) request.getSession();
     UsuarioVO usuVO1 = null;
     if (buscarSesion.getAttribute("datosUsuarioRecuperarContrasena") == null) {
+       
         request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
     }else{
-         usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
+         usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuarioRecuperarContrasena");
     } %>
 <!DOCTYPE html>
 <html>
@@ -27,8 +28,8 @@
     <body>
         <div class="col-md-4 mx-auto justify-content-center border-5 border border-info  m caja">
             <div class="col-md-8 mx-auto justify-content-center mt-5">
-                <form   class="form-group" action="Usuarios" method="get" > 
-                    <h1 class="text-center fs-4 mb-4">Actulice la Contraseña</h1>
+                <form   class="form-group" action="Usuarios" method="post" enctype="multipart/form-data"> 
+                    <h1 class="text-center fs-4 mb-4">Actualice la Contraseña</h1>
                     <div class="mx-auto justify-content-center">
                         <%if (request.getAttribute("error") != null) {%>
                         <div class="container-fluid d-inline-block d-flex mx-auto">
@@ -39,9 +40,6 @@
                         <p class="text-success text-center fs-5">${Bien}</p>
                         <%}%>
                     </div>
-                    <div class="input-group ">
-                        <input type="email"  name= "txtEmail" placeholder="Email" required="" class="form-control ms-1 mt-2">
-                    </div> 
                     <div class="input-group mt-2 mb-3">
                         <input name="txtContrasena" id="txtPassword" type="password" class="form-control"  placeholder="Contraseña" required=""   >
                         <button class="btn boton" type="button" id="botonOn" onclick="mostrarPassword()">
@@ -55,6 +53,7 @@
                     </div>
                     <div class="d-flex mt-4 mb-3">
                         <button class="btn boton" >Registrar</button><br>
+                        <input type="hidden" value="<%=usuVO1.getDocumento()%>" name="txtDocumento">
                         <input type="hidden" value="8" name="opcion">
                         <a href="iniciarSesion.jsp" class="nav-link text-center">¿Ya tiene una cuenta?</a>
                     </div>

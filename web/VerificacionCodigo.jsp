@@ -28,7 +28,7 @@
     <body>
         <div class="col-md-3 mx-auto justify-content-center border-5 border border-info m caja">
             <div class="col-md-8 mx-auto justify-content-center mt-5">
-                <form  class="form-group" action="Usuarios" method="post"> 
+                <form  class="form-group" action="Usuarios" method="post" enctype="multipart/form-data"> 
                     <h1 class="text-center fs-4 mb-4">Ingrese el Codigo</h1>
                     <div class="mx-auto justify-content-center">
                         <%if (request.getAttribute("envioCorreo") != null) {%>
