@@ -149,7 +149,41 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
             while (mensajero.next()) {
 
                OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1), mensajero.getString(2), 
-                       mensajero.getString(3), mensajero.getString(4), mensajero.getString(5));
+                       mensajero.getString(3), mensajero.getString(4), mensajero.getString(5), mensajero.getString(6));
+
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return OrdenDetallVO;
+
+    }
+    
+    public OrdenDetallesVO consultarIdOrden(String IdOrden) {
+
+        OrdenDetallesVO OrdenDetallVO = null;
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from orden_detalles where Id_Orden = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, IdOrden);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+
+               OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1), mensajero.getString(2), 
+                       mensajero.getString(3), mensajero.getString(4), mensajero.getString(5), mensajero.getString(6));
 
             }
 
@@ -182,7 +216,7 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
             while (mensajero.next()) {
 
                OrdenDetallesVO OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1),
-                       mensajero.getString(2), mensajero.getString(3), mensajero.getString(4), mensajero.getString(5));
+                       mensajero.getString(2), mensajero.getString(3), mensajero.getString(4), mensajero.getString(5), mensajero.getString(6));
                 listaOrdenDetalles.add(OrdenDetallVO);
 
             }
@@ -216,7 +250,7 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
             while (mensajero.next()) {
 
                OrdenDetallesVO OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1),
-                       mensajero.getString(2), mensajero.getString(3), mensajero.getString(4), mensajero.getString(5));
+                       mensajero.getString(2), mensajero.getString(3), mensajero.getString(4), mensajero.getString(5), mensajero.getString(6));
                 listaOrdenDetalles.add(OrdenDetallVO);
 
             }

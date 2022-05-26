@@ -5,7 +5,9 @@
  */
 package Controlador;
 
+import ModeloDAO.DetallesProductoDAO;
 import ModeloDAO.OrdenDetallesDAO;
+import ModeloVO.DetallesProductoVO;
 import ModeloVO.OrdenDetallesVO;
 import Util.Conexion;
 import java.io.IOException;
@@ -27,7 +29,7 @@ import net.sf.jasperreports.engine.util.JRLoader;
  *
  * @author Sena
  */
-@WebServlet(name = "OrdenDetallesControlador", urlPatterns = {"/OrdenDetalles"})
+@WebServlet(name = "OrdenDetallesControlador", urlPatterns = {"/"})
 public class OrdenDetallesControlador extends HttpServlet {
 
     /**
@@ -48,15 +50,28 @@ public class OrdenDetallesControlador extends HttpServlet {
         String id_Detalles_Producto = request.getParameter("idDetallesProducto");
         String cantidadSolicitada = request.getParameter("txtcantidadSolicitada");
         String Estado = request.getParameter("txtEstado");
+        String item = request.getParameter("item");
+
+        String Id_Detalles_Producto = request.getParameter("txtIdDetallesProducto");
+        String Id_Producto = request.getParameter("txtIdProducto");
+        String Descripcion = request.getParameter("txtDescripcion");
+        String Talla = request.getParameter("txtTalla");
 
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         // 2. Quien tiene los datos de forma segura en el sistema? VO
         OrdenDetallesVO ordenDetallVO = new OrdenDetallesVO(id_Orden_Detalles, id_Orden,
-                id_Detalles_Producto, cantidadSolicitada, Estado);
+                id_Detalles_Producto, cantidadSolicitada, Estado, item);
 
         // 3. Quien hace las operaciones? DAO
+        
         OrdenDetallesDAO ordenDetalDAO = new OrdenDetallesDAO(ordenDetallVO);
 
+        DetallesProductoVO detProVO = new DetallesProductoVO(Id_Detalles_Producto, Id_Producto, Descripcion, Talla, Estado);
+
+        // 3. Quien hace las operaciones? DAO
+        DetallesProductoDAO detProDAO = new DetallesProductoDAO(detProVO);
+
+        ordenDetallVO = new OrdenDetallesVO();
         // 4. Administrar las operaciones del modulo
         switch (opcion) {
 
@@ -103,6 +118,7 @@ public class OrdenDetallesControlador extends HttpServlet {
             case 4: //Consultar por Orden_Detalles
 
                 ordenDetallVO = ordenDetalDAO.cosnultarId(id_Orden_Detalles);
+                //prodVO = prodDAO.listar(Id_Producto);
                 if (ordenDetallVO != null) {
 
                     request.setAttribute("OrdenDetallesConsultada", ordenDetallVO);
@@ -113,7 +129,43 @@ public class OrdenDetallesControlador extends HttpServlet {
                 }
                 break;
 
-            case 5:
+            case 5: //agregar
+
+                item = item + 1;
+
+                ordenDetallVO.setItem(item);
+                ordenDetallVO.setId_Detalles_Producto(id_Detalles_Producto);
+                ordenDetallVO.setId_Orden(id_Orden);
+                ordenDetallVO.setCantidadSolicitada(cantidadSolicitada);
+                
+                request.setAttribute("ordenes.jsp", ordenDetallVO);
+                //prodVO = prodDAO.listar(Id_Producto);
+                default:
+                    request.getRequestDispatcher("ordenes.jsp").forward(request, response);
+//                if (ordenDetallVO != null) {
+//
+//                    request.setAttribute("ordenes.jsp", ordenDetallVO);
+//                    request.getRequestDispatcher("ordenes.jsp").forward(request, response);
+//                } else {
+//                    request.setAttribute("mensajeError", "La orden no existe");
+//                    request.getRequestDispatcher("ordenes.jsp").forward(request, response);
+//                }
+                break;
+
+            case 6: //Agregar registro
+
+                if (ordenDetalDAO.agregarRegistro()) {
+
+                    request.setAttribute("mensajeExito", "La orden Detalles se registró correctamente!");
+
+                } else {
+
+                    request.setAttribute("mensajeError", "La orden Detalles no se registró correctamente");
+                }
+                request.getRequestDispatcher("registrarOrdenDetalles.jsp").forward(request, response);
+                break;
+
+            case 7:
 
                 if (ordenDetalDAO.ActivarRegistro()) {
 
@@ -129,7 +181,7 @@ public class OrdenDetallesControlador extends HttpServlet {
                 request.getRequestDispatcher("menu.jsp").forward(request, response);
                 break;
 
-            case 6:
+            case 8:
 
                 if (ordenDetalDAO.eliminarRegistroTotal()) {
 
