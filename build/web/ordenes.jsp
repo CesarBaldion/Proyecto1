@@ -37,7 +37,7 @@
                                 <option value="<%=ordVO.getId_Orden()%>"><%=ordVO.getId_Orden()%></option>
                                 <%}%>
                             </select>
-                            <select name="txtIdDetallesProducto" class="form-select">
+                            <select name="idDetallesProducto" class="form-select">
                                 <option>IdDetalles Producto</option>
                                 <%
                                     DetallesProductoDAO dpDAO = new DetallesProductoDAO();
@@ -48,7 +48,7 @@
                             </select>
                             <input type="text"  name="txtcantidadSolicitada" class="form-control">
                             <button class="btn btn-outline-info">Agregar</button>
-                            <input type="hidden" value="5" name="opcion">
+                            <input type="hidden" value="1" name="opcion">
                         </form>
                     </div>
                 </div>

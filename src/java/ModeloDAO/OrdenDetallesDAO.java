@@ -6,7 +6,6 @@
 package ModeloDAO;
 
 import ModeloVO.OrdenDetallesVO;
-import ModeloVO.OrdenesVO;
 import Util.Conexion;
 import Util.Crud;
 import java.sql.Connection;
@@ -60,14 +59,13 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
     public boolean agregarRegistro() {
         try {
             //Armar sentencia
-            sql = "insert into orden_detalles(id_Orden,id_Detalles_Producto,CantidadSolicitada) values (?,?,?)";
+            sql = "insert into orden_detalles(id_Orden,id_Detalles_Producto,CantidadSolicitada)values(?,?,?)";
 
             // crear el camino por donde va la sentencia
             puente = conexion.prepareStatement(sql);
             puente.setString(1, id_Orden);
             puente.setString(2, id_Detalles_Producto);
             puente.setString(3, cantidadSolicitada);
-            
             puente.executeUpdate();
             operacion = true;
         } catch (SQLException ex) {

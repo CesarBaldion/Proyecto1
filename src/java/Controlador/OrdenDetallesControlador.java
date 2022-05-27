@@ -90,7 +90,7 @@ public class OrdenDetallesControlador extends HttpServlet {
 
                     request.setAttribute("mensajeError", "La orden Detalles no se registró correctamente");
                 }
-                request.getRequestDispatcher("registrarOrdenDetalles.jsp").forward(request, response);
+                request.getRequestDispatcher("ordenes.jsp").forward(request, response);
                 break;
 
             case 2:
