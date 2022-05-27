@@ -11,12 +11,15 @@ package ModeloVO;
  */
 public class UsuarioVO {
 
-    private String Id_Usuarios, Nombre, Documento, Telefono, Email, Direccion, Ciudad,
+    
+
+    private String Id_Usuarios, Nombre, Tipo_Documento, Documento, Telefono, Email, Direccion, Ciudad,
             Estado, Contrasena;
 
-       public UsuarioVO(String Id_Usuarios, String Nombre, String Documento, String Telefono, String Email, String Direccion, String Ciudad, String Estado, String Contrasena) {
+       public UsuarioVO(String Id_Usuarios, String Nombre, String Tipo_Documento, String Documento, String Telefono, String Email, String Direccion, String Ciudad, String Estado, String Contrasena) {
         this.Id_Usuarios = Id_Usuarios;
         this.Nombre = Nombre;
+        this.Tipo_Documento = Tipo_Documento;
         this.Documento = Documento;
         this.Telefono = Telefono;
         this.Email = Email;
@@ -49,6 +52,14 @@ public class UsuarioVO {
 
     public void setNombre(String Nombre) {
         this.Nombre = Nombre;
+    }
+    
+    public String getTipo_Documento() {
+        return Tipo_Documento;
+    }
+
+    public void setTipo_Documento(String Tipo_Documento) {
+        this.Tipo_Documento = Tipo_Documento;
     }
 
     public String getDocumento() {
