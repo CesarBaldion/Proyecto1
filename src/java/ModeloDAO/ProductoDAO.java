@@ -155,7 +155,7 @@ public class ProductoDAO extends Conexion implements Crud {
         ArrayList<ProductoVO> listaProductos = new ArrayList();
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from productoview";
+            sql = "select * from producto where estado = 1";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
 

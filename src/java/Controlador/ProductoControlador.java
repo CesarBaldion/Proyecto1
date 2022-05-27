@@ -76,7 +76,7 @@ public class ProductoControlador extends HttpServlet {
                         request.getRequestDispatcher("producto.jsp").forward(request, response);
                     }
                 } else {
-                    request.setAttribute("error", "El producto ya existe");
+                    request.setAttribute("Error", "El producto ya existe");
                     request.getRequestDispatcher("producto.jsp").forward(request, response);
                 }
 

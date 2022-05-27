@@ -3,11 +3,11 @@
     Created on : 23-may-2022, 21:32:09
     Author     : cesar
 --%>
- <%
-        ProductoVO prodVO = new ProductoVO();
-        ProductoDAO prodDAO = new ProductoDAO();
-        ArrayList<ProductoVO> listaProductos = prodDAO.listar();
-    %>
+<%
+    ProductoVO prodVO = new ProductoVO();
+    ProductoDAO prodDAO = new ProductoDAO();
+    ArrayList<ProductoVO> listaProductos = prodDAO.listar();
+%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.ArrayList"%>
@@ -56,7 +56,7 @@
             });
         </script>
     </head>
-   
+
     <body>
         <div class="container-xl">
             <div class="table-responsive">
@@ -116,8 +116,12 @@
                                 <td>
                                     <form class="" method="post" action="Producto" enctype="multipart/form-data">
                                         <a href="#editProductModal" name="txtId" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
+                                        <form  method="post" action="Producto" class="form-group" enctype="multipart/form-data"> 
+                                            <input type="text" name="txtId" class="form-control" placeholder="Id Producto">
+                                            <input type="hidden" value="4" name="opcion">
+                                            <button data-id="<%=prodVO.getNombre()%>" class="btn boton mt-2 detalles">Consultar</button>
+                                        </form>
                                         <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
-                                    </form>
                                 </td>
                             </tr>
                             <% }%>
@@ -181,7 +185,7 @@
                         <div class="modal-body">					
                             <div class="form-group">
                                 <label>Nombre</label>
-                                <input type="text" class="form-control" name="txtNombre" value="<%=prodVO.getNombre()%>"  required="">
+                                <input id="nombreModal" type="text" class="form-control" name="txtNombre" value="<%=prodVO.getNombre()%>"  required="">
 
                             </div>					
                         </div>
@@ -221,5 +225,6 @@
                 </div>
             </div>
         </div>
+                            <script src="js/indexM.js" type="text/javascript"></script>
     </body>
 </html>
