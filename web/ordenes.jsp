@@ -25,51 +25,32 @@
         <div class="d-flex">
             <div class="col-sm-4">
                 <div class="card">
-                    <form action="OrdenDetalles" method="post" enctype="multipart/form-data">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label>Datos del producto</label>
-                            </div>
-                            <div class="form-group d-flex">
-                                <div class="col-sm-6 d-flex">
-                                    <select name="txtIdOrden" required="" class="form-select">
-                                        <option>Seleccione un IdOrden...</option>
-                                        <%
-                                            OrdenesDAO ordDAO = new OrdenesDAO();
-                                            for (OrdenesVO ordVO : ordDAO.listar()) {
-
-                                        %>
-
-                                        <option value="<%=ordVO.getId_Orden()%>"><%=ordVO.getId_Orden()%></option>
-
-                                        <%}%>
-                                    </select>
-
-                                </div>
-                            </div>
-                            <div class="form-group d-flex">
-                                <div class="col-sm-6">
-                                    <select name="idDetallesProducto" required="" class="form-select">
-                                        <option>IdDetalles Producto</option>
-                                        <%
-                                            DetallesProductoDAO dpDAO = new DetallesProductoDAO();
-                                            for (DetallesProductoVO dpVO : dpDAO.listar()) {
-
-                                        %>
-                                        <option value="<%=dpVO.getId_Detalles_Producto()%>"><%=dpVO.getId_Detalles_Producto()%></option>
-                                        <%}%>
-                                    </select>
-                                </div>
-                                <div class="col-sm-3">
-                                    <input type="text"  name="txtcantidadSolicitada" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <input class="btn btn-outline-info" type="hidden" name="opcion" value="5" >
-                                <button class="btn btn-outline-info">Agregar</button>
-                            </div>
-                        </div>
-                    </form>
+                    <div class="card-body">
+                        <form action="OrdenDetalles" method="post" enctype="multipart/form-data">
+                            <label>Datos del producto</label>
+                            <select name="txtIdOrden" class="form-select">
+                                <option>Seleccione un IdOrden...</option>
+                                <%
+                                    OrdenesDAO ordDAO = new OrdenesDAO();
+                                    for (OrdenesVO ordVO : ordDAO.listar()) {
+                                %>
+                                <option value="<%=ordVO.getId_Orden()%>"><%=ordVO.getId_Orden()%></option>
+                                <%}%>
+                            </select>
+                            <select name="txtIdDetallesProducto" class="form-select">
+                                <option>IdDetalles Producto</option>
+                                <%
+                                    DetallesProductoDAO dpDAO = new DetallesProductoDAO();
+                                    for (DetallesProductoVO dpVO : dpDAO.listar()) {
+                                %>
+                                <option value="<%=dpVO.getId_Detalles_Producto()%>"><%=dpVO.getId_Detalles_Producto()%></option>
+                                <%}%>
+                            </select>
+                            <input type="text"  name="txtcantidadSolicitada" class="form-control">
+                            <button class="btn btn-outline-info">Agregar</button>
+                            <input type="hidden" value="5" name="opcion">
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-7">
@@ -92,30 +73,30 @@
                             </thead>
                             <tbody>
                                 <c:forEach var="list" items="${lista}">
-                               <%-- <%
-                                    DetallesProductoDAO detProDAO = new DetallesProductoDAO();
-                                    OrdenDetallesVO OrdenDetallVO = new OrdenDetallesVO();
-                                    OrdenDetallesDAO OrdenDetallDAO = new OrdenDetallesDAO(OrdenDetallVO);
-                                    ArrayList<OrdenDetallesVO> listaOrdenDetalles = OrdenDetallDAO.Listar();
+                                    <%-- <%
+                                         DetallesProductoDAO detProDAO = new DetallesProductoDAO();
+                                         OrdenDetallesVO OrdenDetallVO = new OrdenDetallesVO();
+                                         OrdenDetallesDAO OrdenDetallDAO = new OrdenDetallesDAO(OrdenDetallVO);
+                                         ArrayList<OrdenDetallesVO> listaOrdenDetalles = OrdenDetallDAO.Listar();
 
                                     for (int i = 0; i < listaOrdenDetalles.size(); i++) {
 
                                         OrdenDetallVO = listaOrdenDetalles.get(i);
 
                                 %>--%>
-                                <tr>
-                                    <td>${list.getItem()}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <%--<td><%=OrdenDetallVO.getItem()%></td>
-                                    <td><%=OrdenDetallVO.getId_Orden()%></td>
-                                    <td><%=OrdenDetallVO.getId_Detalles_Producto()%></td>
-                                    <td><%=OrdenDetallVO.getCantidadSolicitada()%></td>--%>
-                                </tr>
-                                <%--<% }%>--%>
-                            </c:forEach>>
+                                    <tr>
+                                        <td>${list.getItem()}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <%--<td><%=OrdenDetallVO.getItem()%></td>
+                                        <td><%=OrdenDetallVO.getId_Orden()%></td>
+                                        <td><%=OrdenDetallVO.getId_Detalles_Producto()%></td>
+                                        <td><%=OrdenDetallVO.getCantidadSolicitada()%></td>--%>
+                                    </tr>
+                                    <%--<% }%>--%>
+                                </c:forEach>>
                             </tbody>
                         </table>
 
