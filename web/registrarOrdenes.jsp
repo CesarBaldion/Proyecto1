@@ -3,7 +3,6 @@
     Created on : 9/03/2022, 09:50:34 AM
     Author     : Sena
 --%>
-<%@include file="sesionesAlmacenista.jsp" %>
 <%@page import="ModeloVO.UsuarioVO"%>
 <%@page import="ModeloDAO.UsuarioDAO"%>
 <%@include file="navegacion.jsp" %>
@@ -29,7 +28,7 @@
             </div>
             <div class="col-md-10 mx-auto mt-3">
                 <form method ="post" action="Ordenes" class="form-group"> 
-                    <input type="hidden" value="<%=usuVO1.getIdUsuarios()%>" name="txtUsu">
+                   
                     <label>Fecha Registro</label>
                     <input type="date" name="txtFechaRegistro" class="form-control">
                     <label>Fecha Entrega</label>

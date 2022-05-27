@@ -56,11 +56,6 @@ public class OrdenDetallesControlador extends HttpServlet {
         String Estado = request.getParameter("txtEstado");
         String item = request.getParameter("item");
 
-        String Id_Detalles_Producto = request.getParameter("txtIdDetallesProducto");
-        String Id_Producto = request.getParameter("txtIdProducto");
-        String Descripcion = request.getParameter("txtDescripcion");
-        String Talla = request.getParameter("txtTalla");
-
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         // 2. Quien tiene los datos de forma segura en el sistema? VO
         OrdenDetallesVO ordenDetallVO = new OrdenDetallesVO(id_Orden_Detalles, id_Orden,
@@ -69,10 +64,9 @@ public class OrdenDetallesControlador extends HttpServlet {
         // 3. Quien hace las operaciones? DAO
         OrdenDetallesDAO ordenDetalDAO = new OrdenDetallesDAO(ordenDetallVO);
 
-        DetallesProductoVO detProVO = new DetallesProductoVO(Id_Detalles_Producto, Id_Producto, Descripcion, Talla, Estado);
 
         // 3. Quien hace las operaciones? DAO
-        DetallesProductoDAO detProDAO = new DetallesProductoDAO(detProVO);
+       
 
         ordenDetallVO = new OrdenDetallesVO();
         List<OrdenDetallesVO> lista = new ArrayList<>();
@@ -137,7 +131,10 @@ public class OrdenDetallesControlador extends HttpServlet {
             case 5: //agregar
 
                 item = item + 1;
+                
                 ordenDetallVO.getId_Orden_Detalles();
+                
+                ordenDetallVO = new OrdenDetallesVO();
                 
                 ordenDetallVO.setItem(item);
                 ordenDetallVO.setId_Orden(id_Orden);

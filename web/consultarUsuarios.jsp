@@ -73,6 +73,7 @@
                         <th>Telefono</th>
                         <th>Email</th>
                         <th>Direccion</th>
+                        <th>Ciudad</th>
 
 
                     </tr>
@@ -94,6 +95,7 @@
                         <td><%=usuVO.getTelefono()%></td>
                         <td><%=usuVO.getEmail()%></td>
                         <td><%=usuVO.getDireccion()%></td>
+                        <td><%=usuVO.getCiudad()%></td>
                         <td>
                             <form action="Usuarios" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="txtEstado" value="0">

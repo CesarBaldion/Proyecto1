@@ -87,6 +87,9 @@
                                 %>--%>
                                     <tr>
                                         <td>${list.getItem()}</td>
+                                        <td>${list.getId_Orden()}</td>
+                                        <td>${list.getId_Detalles_Producto()}</td>
+                                        <td>${list.getCantidadSolicitada()}</td>
                                       <%--  <td><%=OrdenDetallVO.getId_Orden()%></td>
                                         <td><%=OrdenDetallVO.getId_Detalles_Producto()%></td>
                                         <td><%=OrdenDetallVO.getCantidadSolicitada()%></td>--%>

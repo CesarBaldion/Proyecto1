@@ -3,7 +3,13 @@
     Created on : 23-may-2022, 21:32:09
     Author     : cesar
 --%>
+ <%
+        ProductoVO prodVO = new ProductoVO();
+        ProductoDAO prodDAO = new ProductoDAO();
+        ArrayList<ProductoVO> listaProductos = prodDAO.listar();
+    %>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="ModeloDAO.ProductoDAO"%>
 <%@page import="ModeloDAO.ProductoDAO"%>
@@ -50,6 +56,7 @@
             });
         </script>
     </head>
+   
     <body>
         <div class="container-xl">
             <div class="table-responsive">
@@ -60,7 +67,7 @@
                                 <h2>Gestionar <b>Productos</b></h2>
                             </div>
                             <div class="col-sm-6">
-                                <a href="#addProductModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Añadir Producto</span></a>
+                                <a href="#addProductModal" class="btn btn-success" data-toggle="modal" ><i class="material-icons" >&#xE147;</i> <span>Añadir Producto</span></a>
                                 <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar</span></a>						
                             </div>
                         </div>
@@ -89,11 +96,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                 
                             <%
-                                ProductoVO prodVO = new ProductoVO();
-                                ProductoDAO prodDAO = new ProductoDAO();
-                                ArrayList<ProductoVO> listaProductos = prodDAO.listar();
+
                                 for (int i = 0; i < listaProductos.size(); i++) {
 
                                     prodVO = listaProductos.get(i);
@@ -172,13 +176,13 @@
                     <div class="modal-content">
                         <div class="modal-header">						
                             <h4 class="modal-title">Editar Producto</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >&times;</button>
                         </div>
                         <div class="modal-body">					
                             <div class="form-group">
                                 <label>Nombre</label>
-                                <input type="text" class="form-control" name="txtNombre"  required>
-                                <input type="text" class="form-control" name="txtNombre" value="<%=prodVO.getNombre()%> "  required="">
+                                <input type="text" class="form-control" name="txtNombre" value="<%=prodVO.getNombre()%>"  required="">
+
                             </div>					
                         </div>
                         <div class="modal-footer">

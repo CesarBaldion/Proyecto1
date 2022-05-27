@@ -105,7 +105,7 @@ public class UsuariosControlador extends HttpServlet {
                                                                             request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                                                         } else {
                                                                             
-                                                                            request.setAttribute("Error", "Error al Registrar!");
+                                                                            request.setAttribute("error", "Error al Registrar!");
                                                                             request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                                                         }
                                                                     } else {
@@ -123,7 +123,7 @@ public class UsuariosControlador extends HttpServlet {
                                                             }
                                                         } else {
                                                             request.setAttribute("error", "Complete el campo de Ciudad");
-                                                            request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
+                                                              request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                                         }
 
                                                     } else {

@@ -146,7 +146,8 @@ if (request.getAttribute("Bien") != null) {
       out.write("                            </svg>\r\n");
       out.write("                        </button>\r\n");
       out.write("                    </div>\r\n");
-      out.write("                    <a class=\"form__link\" href=\"recuperarContrasenaUsuario.jsp\">¿Olvidó su contraseña?</a><button class=\"form__button button\">Ingresar</button>\r\n");
+      out.write("                    <a class=\"form__link\" href=\"recuperarContrasenaUsuario.jsp\">¿Olvidó su contraseña?</a>\r\n");
+      out.write("                    <button class=\"form__button button\">Ingresar</button>\r\n");
       out.write("                    <input type=\"hidden\" value=\"4\" name=\"opcion\">\r\n");
       out.write("                </form>\r\n");
       out.write("            </div>\r\n");

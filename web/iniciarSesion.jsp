@@ -97,7 +97,8 @@
                             </svg>
                         </button>
                     </div>
-                    <a class="form__link" href="recuperarContrasenaUsuario.jsp">¿Olvidó su contraseña?</a><button class="form__button button">Ingresar</button>
+                    <a class="form__link" href="recuperarContrasenaUsuario.jsp">¿Olvidó su contraseña?</a>
+                    <button class="form__button button">Ingresar</button>
                     <input type="hidden" value="4" name="opcion">
                 </form>
             </div>
