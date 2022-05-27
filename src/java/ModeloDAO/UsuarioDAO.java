@@ -51,7 +51,7 @@ public class UsuarioDAO extends Conexion implements Crud {
     private String sql;
 
     // Declarar variables del modulo(VO)
-    private String Id_Usuarios = "", Nombre = "", Documento = "", Telefono = "",
+    private String Id_Usuarios = "", Nombre = "", Tipo_Documento="",  Documento = "", Telefono = "",
             Email = "", Direccion = "", Ciudad="", Estado = "", Contrasena = "";
 
     //Llave Encriptacion de Contraseña
@@ -72,6 +72,7 @@ public class UsuarioDAO extends Conexion implements Crud {
 
             Id_Usuarios = usuVO.getIdUsuarios();
             Nombre = usuVO.getNombre();
+            Tipo_Documento = usuVO.getTipo_Documento();
             Documento = usuVO.getDocumento();
             Telefono = usuVO.getTelefono();
             Email = usuVO.getEmail();
@@ -90,17 +91,18 @@ public class UsuarioDAO extends Conexion implements Crud {
     public boolean agregarRegistro() {
         try {
             //Armar sentencia
-            sql = "insert into usuarios( Nombre, Documento, Telefono, Email, Direccion, Ciudad, Contrasena)"
-                    + "values (?,?,?,?,?,?,?)";
+            sql = "insert into usuarios( Nombre, Tipo_documento, Documento, Telefono, Email, Direccion, Ciudad, Contrasena)"
+                    + "values (?,?,?,?,?,?,?,?)";
             // crear el camino por donde va la sentencia
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Nombre);
-            puente.setString(2, Documento);
-            puente.setString(3, Telefono);
-            puente.setString(4, Email);
-            puente.setString(5, Direccion);
-            puente.setString(6, Ciudad);
-            puente.setString(7, Encriptar(Contrasena));
+            puente.setString(2, Tipo_Documento);
+            puente.setString(3, Documento);
+            puente.setString(4, Telefono);
+            puente.setString(5, Email);
+            puente.setString(6, Direccion);
+            puente.setString(7, Ciudad);
+            puente.setString(8, Encriptar(Contrasena));
             puente.executeUpdate();
             operacion = true;
 
@@ -124,18 +126,19 @@ public class UsuarioDAO extends Conexion implements Crud {
     public boolean actualizarRegistro() {
 
         try {
-            sql = " update usuarios set Nombre = ?, Documento = ?, Telefono = ?, Email = ?"
+            sql = " update usuarios set Nombre = ?, Tipo_documento = ?, Documento = ?, Telefono = ?, Email = ?"
                     + ", Direccion = ?, Ciudad = ?, Estado = ?, Contrasena = ? where id_Usuarios = ? ";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Nombre);
-            puente.setString(2, Documento);
-            puente.setString(3, Telefono);
-            puente.setString(4, Email);
-            puente.setString(5, Direccion);
-            puente.setString(6, Ciudad);
-            puente.setString(7, Estado);
-            puente.setString(8, Contrasena);
-            puente.setString(9, Id_Usuarios);
+            puente.setString(2, Tipo_Documento);
+            puente.setString(3, Documento);
+            puente.setString(4, Telefono);
+            puente.setString(5, Email);
+            puente.setString(6, Direccion);
+            puente.setString(7, Ciudad);
+            puente.setString(8, Estado);
+            puente.setString(9, Contrasena);
+            puente.setString(10, Id_Usuarios);
             puente.executeUpdate();
             operacion = true;
 
@@ -192,7 +195,7 @@ public class UsuarioDAO extends Conexion implements Crud {
             if (mensajero.next()) {
 
                 usuVO = new UsuarioVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4),
-                        mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8), mensajero.getString(9));
+                        mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8), mensajero.getString(9), mensajero.getString(10));
 
             }
 
@@ -226,7 +229,7 @@ public class UsuarioDAO extends Conexion implements Crud {
             while (mensajero.next()) {
 
                 usuVO = new UsuarioVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4),
-                        mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8), mensajero.getString(9));
+                        mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8), mensajero.getString(9), mensajero.getString(10));
 
             }
 
@@ -259,7 +262,7 @@ public class UsuarioDAO extends Conexion implements Crud {
             while (mensajero.next()) {
 
                 UsuarioVO usuVO = new UsuarioVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4),
-                        mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8), mensajero.getString(9));
+                        mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8), mensajero.getString(9), mensajero.getString(10));
 
                 listaUsuarios.add(usuVO);
 
@@ -294,7 +297,7 @@ public class UsuarioDAO extends Conexion implements Crud {
             while (mensajero.next()) {
 
                 UsuarioVO usuVO = new UsuarioVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4),
-                        mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8), mensajero.getString(9));
+                        mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8), mensajero.getString(9), mensajero.getString(10));
 
                 listaUsuarios.add(usuVO);
 
@@ -465,7 +468,7 @@ public class UsuarioDAO extends Conexion implements Crud {
             if (mensajero.next()) {
 
                 usuVO = new UsuarioVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4),
-                        mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8), mensajero.getString(9));
+                        mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8), mensajero.getString(9), mensajero.getString(10));
 
             }
 
@@ -549,7 +552,7 @@ public class UsuarioDAO extends Conexion implements Crud {
             mensajero = puente.executeQuery();
             while (mensajero.next()) {
                 usuVO = new UsuarioVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4),
-                        mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8), mensajero.getString(9));
+                        mensajero.getString(5), mensajero.getString(6), mensajero.getString(7), mensajero.getString(8), mensajero.getString(9), mensajero.getString(10));
             }
             if (usuVO == null) {
                 operacion = false;
@@ -577,8 +580,8 @@ public class UsuarioDAO extends Conexion implements Crud {
     public boolean cargarUsuarios(String rutaAbsoluta) throws SQLException, IOException {
 
         try {
-            sql = "insert into usuarios( Nombre, Documento, Telefono, Email, Direccion, Contrasena)"
-                    + "values (?,?,?,?,?,?)";
+            sql = "insert into usuarios( Nombre, tipo_documento, Documento, Telefono, Email, Direccion, Contrasena)"
+                    + "values (?,?,?,?,?,?,?)";
             conexion = obtenerConexion();
             FileInputStream file = new FileInputStream(new File(rutaAbsoluta));
 
@@ -593,10 +596,11 @@ public class UsuarioDAO extends Conexion implements Crud {
                 puente = conexion.prepareStatement(sql);
                 puente.setString(1, dataFormater.formatCellValue(fila.getCell(0)));
                 puente.setString(2, dataFormater.formatCellValue(fila.getCell(1)));
-                puente.setString(3, dataFormater.formatCellValue(fila.getCell(2)));
-                puente.setString(4, dataFormater.formatCellValue(fila.getCell(3)));
-                puente.setString(5, dataFormater.formatCellValue(fila.getCell(4)));
-                puente.setString(6, dataFormater.formatCellValue(fila.getCell(5)));
+                puente.setString(2, dataFormater.formatCellValue(fila.getCell(2)));
+                puente.setString(3, dataFormater.formatCellValue(fila.getCell(3)));
+                puente.setString(4, dataFormater.formatCellValue(fila.getCell(4)));
+                puente.setString(5, dataFormater.formatCellValue(fila.getCell(5)));
+                puente.setString(6, dataFormater.formatCellValue(fila.getCell(6)));
                 puente.execute();
             }
             File buscarArchivo = new File(rutaAbsoluta);

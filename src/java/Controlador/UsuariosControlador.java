@@ -55,6 +55,7 @@ public class UsuariosControlador extends HttpServlet {
         UsuarioDAO usuDao = new UsuarioDAO();
         // 1. Recibir datos de la vista
         String Id_Usuarios = request.getParameter("txtId");
+        String Tipo_Documento = request.getParameter("txtTipoDocumento");
         String Documento = request.getParameter("txtDocumento");
         String Contrasena = request.getParameter("txtContrasena");
         String Contrasena2 = request.getParameter("txtContrasena2");
@@ -71,7 +72,7 @@ public class UsuariosControlador extends HttpServlet {
         int opcion = Integer.parseInt(request.getParameter("opcion"));
 
         // 2. Quien tiene los datos de forma segura en el sistema? VO
-        UsuarioVO usuVO = new UsuarioVO(Id_Usuarios, Nombre, Documento, Telefono, Email, Direccion, Ciudad,
+        UsuarioVO usuVO = new UsuarioVO(Id_Usuarios, Nombre, Tipo_Documento, Documento, Telefono, Email, Direccion, Ciudad,
                 Estado, Contrasena);
         // 3. Quien hace las operaciones? DAO
         UsuarioDAO usuDAO = new UsuarioDAO(usuVO);
@@ -79,88 +80,93 @@ public class UsuariosControlador extends HttpServlet {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yy/MM/dd");
         String codigo2 = String.valueOf(dtf.format(LocalDateTime.now()));
         codigo2 = usuDao.Encriptar(codigo2);
-        codigo2 = codigo2.substring(0,6);
+        codigo2 = codigo2.substring(0, 6);
 
         // 4. Administrar las operaciones del modulo
         switch (opcion) {
             case 1: //Agregar registro
                 if (!"".equals(Id_Usuarios)) {
-                    if (!"".equals(Documento)) {
-                        if (usuDao.ValidarNumero(Documento) == true) {
-                            if (!"".equals(Contrasena)) {
-                                if (Contrasena.equals(Contrasena2)) {
-                                    if (!"".equals(Nombre)) {
-                                        if (!"".equals(Telefono)) {
-                                            if (!"".equals(Email)) {
-                                                if (Email.equals(Email2)) {
-                                                    if (!"".equals(Direccion)) {
-                                                        if (!"".equals(Ciudad)) {
-                                                            if (!"".equals(Estado)) {
-                                                                if (usuDao.validarContrasena(Contrasena) == true) {
-                                                                    usuDAO.Encriptar(Contrasena);
-                                                                    if (usuDao.verificarUsuario(Documento) == false) {
-                                                                        if (usuDAO.agregarRegistro() == true) {
-                                                                            usuDao.enviarCorreoRegistro(Email);
-                                                                            request.setAttribute("Bien", "Se ha registrado");
-                                                                            request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
+                    if (!"".equals(Tipo_Documento)) {
+                        if (!"".equals(Documento)) {
+                            if (usuDao.ValidarNumero(Documento) == true) {
+                                if (!"".equals(Contrasena)) {
+                                    if (Contrasena.equals(Contrasena2)) {
+                                        if (!"".equals(Nombre)) {
+                                            if (!"".equals(Telefono)) {
+                                                if (!"".equals(Email)) {
+                                                    if (Email.equals(Email2)) {
+                                                        if (!"".equals(Direccion)) {
+                                                            if (!"".equals(Ciudad)) {
+                                                                if (!"".equals(Estado)) {
+                                                                    if (usuDao.validarContrasena(Contrasena) == true) {
+                                                                        usuDAO.Encriptar(Contrasena);
+                                                                        if (usuDao.verificarUsuario(Documento) == false) {
+                                                                            if (usuDAO.agregarRegistro() == true) {
+                                                                                usuDao.enviarCorreoRegistro(Email);
+                                                                                request.setAttribute("Bien", "Se ha registrado");
+                                                                                request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
+                                                                            } else {
+
+                                                                                request.setAttribute("Error", "Error al Registrar!");
+                                                                                request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
+                                                                            }
                                                                         } else {
-                                                                            
-                                                                            request.setAttribute("Error", "Error al Registrar!");
+                                                                            request.setAttribute("error", "El usuario ya existe");
                                                                             request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                                                         }
+
                                                                     } else {
-                                                                        request.setAttribute("error", "El usuario ya existe");
+                                                                        request.setAttribute("error", "Ingrese una contraseña valida");
                                                                         request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                                                     }
-
                                                                 } else {
-                                                                    request.setAttribute("error", "Ingrese una contraseña valida");
+                                                                    request.setAttribute("error", "Complete el campo de estado");
                                                                     request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                                                 }
                                                             } else {
-                                                                request.setAttribute("error", "Complete el campo de estado");
+                                                                request.setAttribute("error", "Complete el campo de Ciudad");
                                                                 request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                                             }
+
                                                         } else {
-                                                            request.setAttribute("error", "Complete el campo de Ciudad");
+                                                            request.setAttribute("error", "Complete el campo de Direccion");
                                                             request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                                         }
-
                                                     } else {
-                                                        request.setAttribute("error", "Complete el campo de Direccion");
+                                                        request.setAttribute("error", "Los campos Email no coinciden");
                                                         request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                                     }
                                                 } else {
-                                                    request.setAttribute("error", "Los campos Email no coinciden");
+                                                    request.setAttribute("error", "Complete el campo de Email");
                                                     request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                                 }
                                             } else {
-                                                request.setAttribute("error", "Complete el campo de Email");
+                                                request.setAttribute("error", "Complete el campo de Telefono");
                                                 request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                             }
                                         } else {
-                                            request.setAttribute("error", "Complete el campo de Telefono");
+                                            request.setAttribute("error", "Complete el campo de Nombre");
                                             request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                         }
                                     } else {
-                                        request.setAttribute("error", "Complete el campo de Nombre");
+
+                                        request.setAttribute("error", "Las contraseñas no coinciden");
                                         request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                     }
                                 } else {
-
-                                    request.setAttribute("error", "Las contraseñas no coinciden");
+                                    request.setAttribute("error", "Complete el campo de Contraseña");
                                     request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                 }
                             } else {
-                                request.setAttribute("error", "Complete el campo de Contraseña");
+                                request.setAttribute("error", "Ingrese un documento valido");
                                 request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                             }
                         } else {
-                            request.setAttribute("error", "Ingrese un documento valido");
+                            request.setAttribute("error", "Complete el campo de Documento");
                             request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                         }
                     } else {
-                        request.setAttribute("error", "Complete el campo de Documento");
+                        request.setAttribute("error", "Seleccione el tipo de documento");
                         request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                     }
                 } else {
@@ -169,9 +175,7 @@ public class UsuariosControlador extends HttpServlet {
                 }
                 break;
 
-                
-        
-        case 2:
+            case 2:
 
                 if (usuDAO.actualizarRegistro()) {
 
@@ -321,7 +325,7 @@ public class UsuariosControlador extends HttpServlet {
                     if (usuDao.cargarUsuarios(rutaAbsoluta) == true) {
                         request.setAttribute("mensaje", "La carga se hizo correactamente");
                         request.getRequestDispatcher("consultarUsuarios.jsp").forward(request, response);
-                    }else{
+                    } else {
                         request.setAttribute("mensaje", "Error");
                         request.getRequestDispatcher("consultarUsuarios.jsp").forward(request, response);
                     }
@@ -364,37 +368,33 @@ public class UsuariosControlador extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-        protected void doGet
-        (HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            processRequest(request, response);
-        }
-
-        /**
-         * Handles the HTTP <code>POST</code> method.
-         *
-         * @param request servlet request
-         * @param response servlet response
-         * @throws ServletException if a servlet-specific error occurs
-         * @throws IOException if an I/O error occurs
-         */
-        @Override
-        protected void doPost
-        (HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-            processRequest(request, response);
-        }
-
-        /**
-         * Returns a short description of the servlet.
-         *
-         * @return a String containing servlet description
-         */
-        @Override
-        public String getServletInfo
-        
-            () {
-        return "Short description";
-        }// </editor-fold>
-
+        processRequest(request, response);
     }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}
