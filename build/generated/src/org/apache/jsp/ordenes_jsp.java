@@ -3,6 +3,7 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.util.List;
 import ModeloVO.DetallesProductoVO;
 import ModeloVO.OrdenesVO;
 import ModeloDAO.OrdenesDAO;
@@ -69,6 +70,7 @@ public final class ordenes_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
+      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
@@ -122,7 +124,7 @@ public final class ordenes_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            </select>\r\n");
       out.write("                            <input type=\"text\"  name=\"txtcantidadSolicitada\" class=\"form-control\">\r\n");
       out.write("                            <button class=\"btn btn-outline-info\">Agregar</button>\r\n");
-      out.write("                            <input type=\"hidden\" value=\"1\" name=\"opcion\">\r\n");
+      out.write("                            <input type=\"hidden\" value=\"5\" name=\"opcion\">\r\n");
       out.write("                        </form>\r\n");
       out.write("                    </div>\r\n");
       out.write("                </div>\r\n");
@@ -147,9 +149,69 @@ public final class ordenes_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            </thead>\r\n");
       out.write("                            <tbody>\r\n");
       out.write("                                ");
-      if (_jspx_meth_c_forEach_0(_jspx_page_context))
-        return;
-      out.write(">\r\n");
+      //  c:forEach
+      org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_0 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
+      _jspx_th_c_forEach_0.setPageContext(_jspx_page_context);
+      _jspx_th_c_forEach_0.setParent(null);
+      _jspx_th_c_forEach_0.setVar("list");
+      _jspx_th_c_forEach_0.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${lista}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
+      int[] _jspx_push_body_count_c_forEach_0 = new int[] { 0 };
+      try {
+        int _jspx_eval_c_forEach_0 = _jspx_th_c_forEach_0.doStartTag();
+        if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
+          do {
+            out.write("\r\n");
+            out.write("                                   ");
+
+                                         DetallesProductoDAO detProDAO = new DetallesProductoDAO();
+                                         OrdenDetallesVO OrdenDetallVO = new OrdenDetallesVO();
+                                         OrdenDetallesDAO OrdenDetallDAO = new OrdenDetallesDAO(OrdenDetallVO);
+                                         List<OrdenDetallesVO> lista = new ArrayList<>();
+
+                                    for (int i = 0; i < lista.size(); i++) {
+
+                                        OrdenDetallVO = lista.get(i);
+
+                                
+            out.write("\r\n");
+            out.write("                                    <tr>\r\n");
+            out.write("                                        <td>");
+            out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${list.getItem()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+            out.write("</td>\r\n");
+            out.write("                                        <td>");
+            out.print(OrdenDetallVO.getId_Orden());
+            out.write("</td>\r\n");
+            out.write("                                        <td>");
+            out.print(OrdenDetallVO.getId_Detalles_Producto());
+            out.write("</td>\r\n");
+            out.write("                                        <td>");
+            out.print(OrdenDetallVO.getCantidadSolicitada());
+            out.write("</td>\r\n");
+            out.write("                                        <td>\r\n");
+            out.write("                                            \r\n");
+            out.write("                                        </td>\r\n");
+            out.write("                                    </tr>\r\n");
+            out.write("                                    ");
+ }
+            out.write("\r\n");
+            out.write("                                ");
+            int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
+            if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
+              break;
+          } while (true);
+        }
+        if (_jspx_th_c_forEach_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+          return;
+        }
+      } catch (Throwable _jspx_exception) {
+        while (_jspx_push_body_count_c_forEach_0[0]-- > 0)
+          out = _jspx_page_context.popBody();
+        _jspx_th_c_forEach_0.doCatch(_jspx_exception);
+      } finally {
+        _jspx_th_c_forEach_0.doFinally();
+        _jspx_tagPool_c_forEach_var_items.reuse(_jspx_th_c_forEach_0);
+      }
+      out.write("\r\n");
       out.write("                            </tbody>\r\n");
       out.write("                        </table>\r\n");
       out.write("\r\n");
@@ -182,56 +244,5 @@ public final class ordenes_jsp extends org.apache.jasper.runtime.HttpJspBase
     } finally {
       _jspxFactory.releasePageContext(_jspx_page_context);
     }
-  }
-
-  private boolean _jspx_meth_c_forEach_0(PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  c:forEach
-    org.apache.taglibs.standard.tag.rt.core.ForEachTag _jspx_th_c_forEach_0 = (org.apache.taglibs.standard.tag.rt.core.ForEachTag) _jspx_tagPool_c_forEach_var_items.get(org.apache.taglibs.standard.tag.rt.core.ForEachTag.class);
-    _jspx_th_c_forEach_0.setPageContext(_jspx_page_context);
-    _jspx_th_c_forEach_0.setParent(null);
-    _jspx_th_c_forEach_0.setVar("list");
-    _jspx_th_c_forEach_0.setItems((java.lang.Object) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${lista}", java.lang.Object.class, (PageContext)_jspx_page_context, null));
-    int[] _jspx_push_body_count_c_forEach_0 = new int[] { 0 };
-    try {
-      int _jspx_eval_c_forEach_0 = _jspx_th_c_forEach_0.doStartTag();
-      if (_jspx_eval_c_forEach_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
-        do {
-          out.write("\r\n");
-          out.write("                                    ");
-          out.write("\r\n");
-          out.write("                                    <tr>\r\n");
-          out.write("                                        <td>");
-          out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${list.getItem()}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-          out.write("</td>\r\n");
-          out.write("                                        <td></td>\r\n");
-          out.write("                                        <td></td>\r\n");
-          out.write("                                        <td></td>\r\n");
-          out.write("                                        <td></td>\r\n");
-          out.write("                                        ");
-          out.write("\r\n");
-          out.write("                                    </tr>\r\n");
-          out.write("                                    ");
-          out.write("\r\n");
-          out.write("                                ");
-          int evalDoAfterBody = _jspx_th_c_forEach_0.doAfterBody();
-          if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
-            break;
-        } while (true);
-      }
-      if (_jspx_th_c_forEach_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-        return true;
-      }
-    } catch (Throwable _jspx_exception) {
-      while (_jspx_push_body_count_c_forEach_0[0]-- > 0)
-        out = _jspx_page_context.popBody();
-      _jspx_th_c_forEach_0.doCatch(_jspx_exception);
-    } finally {
-      _jspx_th_c_forEach_0.doFinally();
-      _jspx_tagPool_c_forEach_var_items.reuse(_jspx_th_c_forEach_0);
-    }
-    return false;
   }
 }

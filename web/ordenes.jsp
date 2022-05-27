@@ -4,6 +4,7 @@
     Author     : cesar
 --%>
 
+<%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="ModeloVO.DetallesProductoVO"%>
 <%@page import="ModeloVO.OrdenesVO"%>
@@ -48,7 +49,7 @@
                             </select>
                             <input type="text"  name="txtcantidadSolicitada" class="form-control">
                             <button class="btn btn-outline-info">Agregar</button>
-                            <input type="hidden" value="1" name="opcion">
+                            <input type="hidden" value="5" name="opcion">
                         </form>
                     </div>
                 </div>
@@ -73,30 +74,28 @@
                             </thead>
                             <tbody>
                                 <c:forEach var="list" items="${lista}">
-                                    <%-- <%
+                                   <%--<%
                                          DetallesProductoDAO detProDAO = new DetallesProductoDAO();
                                          OrdenDetallesVO OrdenDetallVO = new OrdenDetallesVO();
                                          OrdenDetallesDAO OrdenDetallDAO = new OrdenDetallesDAO(OrdenDetallVO);
-                                         ArrayList<OrdenDetallesVO> listaOrdenDetalles = OrdenDetallDAO.Listar();
+                                         List<OrdenDetallesVO> lista = new ArrayList<>();
 
-                                    for (int i = 0; i < listaOrdenDetalles.size(); i++) {
+                                    for (int i = 0; i < lista.size(); i++) {
 
-                                        OrdenDetallVO = listaOrdenDetalles.get(i);
+                                        OrdenDetallVO = lista.get(i);
 
                                 %>--%>
                                     <tr>
                                         <td>${list.getItem()}</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <%--<td><%=OrdenDetallVO.getItem()%></td>
-                                        <td><%=OrdenDetallVO.getId_Orden()%></td>
+                                      <%--  <td><%=OrdenDetallVO.getId_Orden()%></td>
                                         <td><%=OrdenDetallVO.getId_Detalles_Producto()%></td>
                                         <td><%=OrdenDetallVO.getCantidadSolicitada()%></td>--%>
+                                        <td>
+                                            
+                                        </td>
                                     </tr>
-                                    <%--<% }%>--%>
-                                </c:forEach>>
+                                   <%-- <% }%> --%>
+                                </c:forEach>
                             </tbody>
                         </table>
 

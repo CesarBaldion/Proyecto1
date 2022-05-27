@@ -137,18 +137,20 @@ public class OrdenDetallesControlador extends HttpServlet {
             case 5: //agregar
 
                 item = item + 1;
-
+                ordenDetallVO.getId_Orden_Detalles();
+                
                 ordenDetallVO.setItem(item);
-                ordenDetallVO.setId_Detalles_Producto(id_Detalles_Producto);
                 ordenDetallVO.setId_Orden(id_Orden);
+                ordenDetallVO.setId_Detalles_Producto(id_Detalles_Producto);
                 ordenDetallVO.setCantidadSolicitada(cantidadSolicitada);
 
                 lista.add(ordenDetallVO);
 
                 request.setAttribute("lista", lista);
 
-            default:
                 request.getRequestDispatcher("ordenes.jsp").forward(request, response);
+           // default:
+             //   request.getRequestDispatcher("ordenes.jsp").forward(request, response);
 //                if (ordenDetallVO != null) {
 //
 //                    request.setAttribute("ordenes.jsp", ordenDetallVO);
