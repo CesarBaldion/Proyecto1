@@ -11,6 +11,8 @@ import ModeloVO.DetallesProductoVO;
 import ModeloVO.OrdenDetallesVO;
 import Util.Conexion;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
@@ -63,7 +65,6 @@ public class OrdenDetallesControlador extends HttpServlet {
                 id_Detalles_Producto, cantidadSolicitada, Estado, item);
 
         // 3. Quien hace las operaciones? DAO
-        
         OrdenDetallesDAO ordenDetalDAO = new OrdenDetallesDAO(ordenDetallVO);
 
         DetallesProductoVO detProVO = new DetallesProductoVO(Id_Detalles_Producto, Id_Producto, Descripcion, Talla, Estado);
@@ -72,6 +73,8 @@ public class OrdenDetallesControlador extends HttpServlet {
         DetallesProductoDAO detProDAO = new DetallesProductoDAO(detProVO);
 
         ordenDetallVO = new OrdenDetallesVO();
+        List<OrdenDetallesVO> lista = new ArrayList<>();
+
         // 4. Administrar las operaciones del modulo
         switch (opcion) {
 
@@ -137,11 +140,13 @@ public class OrdenDetallesControlador extends HttpServlet {
                 ordenDetallVO.setId_Detalles_Producto(id_Detalles_Producto);
                 ordenDetallVO.setId_Orden(id_Orden);
                 ordenDetallVO.setCantidadSolicitada(cantidadSolicitada);
-                
-                request.setAttribute("ordenes.jsp", ordenDetallVO);
-                //prodVO = prodDAO.listar(Id_Producto);
-                default:
-                    request.getRequestDispatcher("ordenes.jsp").forward(request, response);
+
+                lista.add(ordenDetallVO);
+
+                request.setAttribute("lista", lista);
+
+            default:
+                request.getRequestDispatcher("ordenes.jsp").forward(request, response);
 //                if (ordenDetallVO != null) {
 //
 //                    request.setAttribute("ordenes.jsp", ordenDetallVO);

@@ -6,6 +6,7 @@
 package ModeloDAO;
 
 import ModeloVO.OrdenDetallesVO;
+import ModeloVO.OrdenesVO;
 import Util.Conexion;
 import Util.Crud;
 import java.sql.Connection;
@@ -54,6 +55,7 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
 
     public OrdenDetallesDAO() {
     }
+    
     @Override
     public boolean agregarRegistro() {
         try {
@@ -238,6 +240,8 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
 
     }
     
+    
+    
     public ArrayList<OrdenDetallesVO> ListarDos() {
 
         ArrayList<OrdenDetallesVO> listaOrdenDetalles = new ArrayList<>();
@@ -321,6 +325,5 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
         }
         return operacion;
     }
-    
-    
+
 }

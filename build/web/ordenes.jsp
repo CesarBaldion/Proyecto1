@@ -4,6 +4,7 @@
     Author     : cesar
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="ModeloVO.DetallesProductoVO"%>
 <%@page import="ModeloVO.OrdenesVO"%>
 <%@page import="ModeloDAO.OrdenesDAO"%>
@@ -60,7 +61,7 @@
                                     </select>
                                 </div>
                                 <div class="col-sm-3">
-                                    <input type="number" value="1" name="txtcantidadSolicitada" class="form-control">
+                                    <input type="text"  name="txtcantidadSolicitada" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -90,7 +91,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <%
+                                <c:forEach var="list" items="${lista}">
+                               <%-- <%
                                     DetallesProductoDAO detProDAO = new DetallesProductoDAO();
                                     OrdenDetallesVO OrdenDetallVO = new OrdenDetallesVO();
                                     OrdenDetallesDAO OrdenDetallDAO = new OrdenDetallesDAO(OrdenDetallVO);
@@ -100,20 +102,26 @@
 
                                         OrdenDetallVO = listaOrdenDetalles.get(i);
 
-                                %>
+                                %>--%>
                                 <tr>
-                                    <td><%=OrdenDetallVO.getItem()%></td>
+                                    <td>${list.getItem()}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <%--<td><%=OrdenDetallVO.getItem()%></td>
                                     <td><%=OrdenDetallVO.getId_Orden()%></td>
                                     <td><%=OrdenDetallVO.getId_Detalles_Producto()%></td>
-                                    <td><%=OrdenDetallVO.getCantidadSolicitada()%></td>
+                                    <td><%=OrdenDetallVO.getCantidadSolicitada()%></td>--%>
                                 </tr>
-                                <% }%>
+                                <%--<% }%>--%>
+                            </c:forEach>>
                             </tbody>
                         </table>
 
                     </div>
                     <div class="card-footer">
-                        <input type="submit" name="opcion" value="generar Venta" class="btn btn-success">
+                        <input type="submit" name="opcion" value="Generar Orden" class="btn btn-success">
                         <input type="submit" name="opcion" value="Cancelar" class="btn btn-danger">
 
                     </div>
