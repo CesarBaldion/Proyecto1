@@ -255,7 +255,7 @@ public class UsuarioDAO extends Conexion implements Crud {
         ArrayList<UsuarioVO> listaUsuarios = new ArrayList<>();
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from usuariosview";
+            sql = "select * from usuarios where Estado = 1";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
 

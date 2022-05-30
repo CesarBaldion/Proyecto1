@@ -9,17 +9,23 @@
 <%@page import="ModeloVO.MateriaPrimaVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+    MateriaPrimaVO matPriVO = new MateriaPrimaVO();
+    MateriaPrimaDAO matPriDAO = new MateriaPrimaDAO();
+%>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <title>JSP Page</title>
     </head>
- 
+
     <body>
         <div class="d-flex">
-            <div class="card col-sm-6">
+            <div id="editMateria" class="card col-sm-6">
                 <div class="card-body">
+                     
                     <form method ="post" action="MateriaPrima" class="form-group" enctype="multipart/form-data">
 
                         <div class="mx-auto justify-content-center">
@@ -31,17 +37,22 @@
                             <p class="text-success text-center fs-5">${mensajeExito}</p>
                             <%}%>
                         </div>
+                        
                         <div class="form-group">
                             <label>Nombre Materia</label>
-                            <input type="text" value="${materiaPrima.getNombre()}" name="txtNombre" class="form-control" required>
+                            <input type="text" value="<%=matPriVO.getNombre()%>" name="txtNombre" class="form-control" required>
                         </div>
+                        
                         <button class="btn btn-info"> Registrar </button>
                         <input type="hidden" value="1" name="opcion">
+                        
                         <div>
                             <button class="btn btn-success"> Actualizar </button>
                             <input type="hidden" value="2" name="opcion">
                         </div>
+                        
                     </form>
+                        
 
                 </div>
             </div>
@@ -56,8 +67,6 @@
                     </thead>
                     <tbody>
                         <%
-                            MateriaPrimaVO matPriVO = new MateriaPrimaVO();
-                            MateriaPrimaDAO matPriDAO = new MateriaPrimaDAO();
                             ArrayList<MateriaPrimaVO> listaMateriaPrima = matPriDAO.ListarDos();
                             for (int i = 0; i < listaMateriaPrima.size(); i++) {
 
@@ -68,12 +77,12 @@
                             <<td><%=matPriVO.getId_materia_Prima()%></td>
                             <td><%=matPriVO.getNombre()%></td>
                             <td>
-                                <form>
+                                <form method ="post" action="MateriaPrima" class="form-group" enctype="multipart/form-data">
                                     <div>
-                                   <input type="hidden" name="txtIdMateriaPrima" value="<%=matPriVO.getId_materia_Prima()%>">
-                                    <button class="btn btn-warning">Editar</button>
-                                    <input type="hidden"  value="4" name="opcion">
-                                   </div>
+                                        <input type="hidden" name="txtIdMateriaPrima" value="<%=matPriVO.getId_materia_Prima()%>">
+                                        <input type="hidden"  value="4" name="opcion">
+                                        <button class="btn btn-warning">Editar</button>
+                                    </div>
                                 </form>
                                 <form method ="post" action="MateriaPrima" class="form-group" enctype="multipart/form-data">
                                     <div>
@@ -81,9 +90,7 @@
                                         <button class="btn btn-danger">Eliminar</button>
                                         <input type="hidden" value="3" name="opcion">
                                     </div>
-
                                 </form>
-
                             </td>
                         </tr>
                     </tbody>

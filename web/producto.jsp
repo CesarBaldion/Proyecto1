@@ -114,13 +114,15 @@
                                 <td><%=prodVO.getIdProducto()%></td>
                                 <td><%=prodVO.getNombre()%></td>
                                 <td>
-                                    <form class="" method="post" action="Producto" enctype="multipart/form-data">
-                                        <a href="#editProductModal" name="txtId" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
+                                    <form method="post" action="Producto" enctype="multipart/form-data">
+                                        <!-- <a href="#editProductModal" name="txtId" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>  -->
                                         <form  method="post" action="Producto" class="form-group" enctype="multipart/form-data"> 
-                                            <input type="text" name="txtId" class="form-control" placeholder="Id Producto">
+                                            <input type="hidden" name="txtId" value="<%=prodVO.getIdProducto()%>">
+                                            <button data-id="<%=prodVO.getNombre()%>" name="txtId" class="btn boton mt-2 detalles">Consultar</button>
                                             <input type="hidden" value="4" name="opcion">
-                                            <button data-id="<%=prodVO.getNombre()%>" class="btn boton mt-2 detalles">Consultar</button>
                                         </form>
+
+
                                         <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
                                 </td>
                             </tr>
@@ -173,7 +175,7 @@
             </div>
         </form>
 
-        <form  class="" method="post" action="Producto" enctype="multipart/form-data">        
+        <form method="post" action="Producto" enctype="multipart/form-data">        
             <!-- Editar Modelo HTML -->
             <div id="editProductModal" class="modal fade">
                 <div class="modal-dialog">
@@ -181,17 +183,18 @@
                         <div class="modal-header">						
                             <h4 class="modal-title">Editar Producto</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >&times;</button>
-                        </div>
+                        </div
                         <div class="modal-body">					
                             <div class="form-group">
                                 <label>Nombre</label>
-                                <input id="nombreModal" type="text" class="form-control" name="txtNombre" value="<%=prodVO.getNombre()%>"  required="">
+                                <input id="nombreModal" name="txtNombre" value="<%=prodVO.getNombre()%>" type="text" class="form-control"  required>
 
                             </div>					
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
                             <div>
+                                <input type="hidden" name="txtId" value="<%=prodVO.getIdProducto()%>">
                                 <button class="btn btn-info"> Guardar </button>
                                 <input type="hidden" value="2" name="opcion">
                             </div>
@@ -217,14 +220,16 @@
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                            <input type="hidden" name="txtId" value="<%=prodVO.getIdProducto()%>">
-                            <button class="btn btn-danger">Eliminar</button>
-                            <input type="hidden" value="6" name="opcion">
+                            <div>
+                                <input type="hidden" name="txtId" value="<%=prodVO.getIdProducto()%>">
+                                <button class="btn btn-danger">Eliminar</button>
+                                <input type="hidden" value="3" name="opcion">
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-                            <script src="js/indexM.js" type="text/javascript"></script>
+        <script src="js/indexM.js" type="text/javascript"></script>
     </body>
 </html>

@@ -4,14 +4,15 @@
     Author     : cesar
 --%>
 
+<%@page import="ModeloDAO.UsuarioDAO"%>
+<%@page import="ModeloVO.UsuarioVO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="ModeloDAO.MateriaPrimaDAO"%>
-<%@page import="ModeloVO.MateriaPrimaVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
-    MateriaPrimaVO matPriVO = new MateriaPrimaVO();
-    MateriaPrimaDAO matPriDAO = new MateriaPrimaDAO();
+    UsuarioVO usuVO = new UsuarioVO();
+    UsuarioDAO usuDAO = new UsuarioDAO();
+
 %>
 
 <html>
@@ -22,10 +23,10 @@
     </head>
 
     <body>
-        <div class="d-flex">
-            <div id="editMateria" class="card col-sm-6">
+        <div class="d-flex container">
+            <div id="editMateria" class="card col-sm-3">
                 <div class="card-body">
-                     
+
                     <form method ="post" action="MateriaPrima" class="form-group" enctype="multipart/form-data">
 
                         <div class="mx-auto justify-content-center">
@@ -37,56 +38,94 @@
                             <p class="text-success text-center fs-5">${mensajeExito}</p>
                             <%}%>
                         </div>
-                        
+
                         <div class="form-group">
-                            <label>Nombre Materia</label>
-                            <input type="text" value="<%=matPriVO.getNombre()%>" name="txtNombre" class="form-control" required>
+                            <label>Nombre</label>
+                            <input type="text" value="<%=usuVO.getNombre()%>" name="txtNombre" class="form-control" required>
                         </div>
-                        
+                        <div class="form-group">
+                            <label>Tipo Documento</label>
+                            <input type="text" value="<%=usuVO.getTipo_Documento()%>" name="txtTipoDocumento" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Documento</label>
+                            <input type="text" value="<%=usuVO.getDocumento()%> " name="txtDocumento" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Dirección</label>
+                            <input type="text" value="<%=usuVO.getDireccion()%>" name="txtDireccion" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Ciudad</label>
+                            <input type="text" value="<%=usuVO.getCiudad()%>" name="txtCiudad" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono</label>
+                            <input type="text" value="<%=usuVO.getTelefono()%>" name="txtTelefono" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" value="<%=usuVO.getEmail()%>" name="txtEmail" class="form-control" required>
+                        </div>
+
                         <button class="btn btn-info"> Registrar </button>
                         <input type="hidden" value="1" name="opcion">
-                        
+
                         <div>
                             <button class="btn btn-success"> Actualizar </button>
                             <input type="hidden" value="2" name="opcion">
                         </div>
-                        
+
                     </form>
-                        
+
 
                 </div>
             </div>
             <div class="col-sm-8">
                 <table class="table">
                     <thead>
-                        <tr>
+                        <tr>    
                             <th>Id</th>
-                            <th>Nombre Materia</th>
+                            <th>Nombre</th>
+                            <th>T.Documento</th>
+                            <th>Documento</th>
+                            <th>Dirección</th>
+                            <th>Ciudad</th>
+                            <th>Teléfono</th>
+                            <th>Email</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <%
-                            ArrayList<MateriaPrimaVO> listaMateriaPrima = matPriDAO.ListarDos();
-                            for (int i = 0; i < listaMateriaPrima.size(); i++) {
 
-                                matPriVO = listaMateriaPrima.get(i);
+                            ArrayList<UsuarioVO> ListaUsuarios = usuDAO.Listar();
+
+                            for (int i = 0; i < ListaUsuarios.size(); i++) {
+
+                                usuVO = ListaUsuarios.get(i);
 
                         %>
                         <tr>
-                            <<td><%=matPriVO.getId_materia_Prima()%></td>
-                            <td><%=matPriVO.getNombre()%></td>
+                            <<td><%=usuVO.getIdUsuarios()%></td>
+                            <<td><%=usuVO.getNombre()%></td>
+                            <td><%=usuVO.getTipo_Documento()%></td>
+                            <td><%=usuVO.getDocumento()%></td>
+                            <td><%=usuVO.getDireccion()%></td>
+                            <td><%=usuVO.getCiudad()%></td>
+                            <td><%=usuVO.getTelefono()%></td>
+                            <td><%=usuVO.getEmail()%></td>
                             <td>
                                 <form method ="post" action="MateriaPrima" class="form-group" enctype="multipart/form-data">
                                     <div>
-                                        <input type="hidden" name="txtIdMateriaPrima" value="<%=matPriVO.getId_materia_Prima()%>">
+                                        <input type="hidden" name="txtIdMateriaPrima" value="<%=usuVO.getIdUsuarios()%>">
                                         <input type="hidden"  value="4" name="opcion">
                                         <button class="btn btn-warning">Editar</button>
                                     </div>
                                 </form>
                                 <form method ="post" action="MateriaPrima" class="form-group" enctype="multipart/form-data">
                                     <div>
-                                        <input type="hidden" name="txtIdMateriaPrima" value="<%=matPriVO.getId_materia_Prima()%>">
+                                        <input type="hidden" name="txtIdMateriaPrima" value="<%=usuVO.getIdUsuarios()%>">
                                         <button class="btn btn-danger">Eliminar</button>
                                         <input type="hidden" value="3" name="opcion">
                                     </div>

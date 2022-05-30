@@ -51,16 +51,12 @@ public class MateriaPrimaControlador extends HttpServlet {
 
         String Id_materia_Prima = request.getParameter("txtIdMateriaPrima");
         String Nombre = request.getParameter("txtNombre");
-        String Actualizacion = request.getParameter("txtActualizacion");
         String Estado = request.getParameter("txtEstado");
         String reporteOpcion = request.getParameter("txtreporte");
         Part archivocsv = request.getPart("archivocsv");
-        if (Actualizacion == null) {
-            Actualizacion = "0";
-        }
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         // 2. Quien tiene los datos de forma segura en el sistema? VO
-        MateriaPrimaVO matPriVO = new MateriaPrimaVO(Id_materia_Prima, Nombre, Actualizacion, Estado);
+        MateriaPrimaVO matPriVO = new MateriaPrimaVO(Id_materia_Prima, Nombre, Estado);
         // 3. Quien hace las operaciones? DAO
         MateriaPrimaDAO matPriDAO = new MateriaPrimaDAO(matPriVO);
 
@@ -118,6 +114,7 @@ public class MateriaPrimaControlador extends HttpServlet {
             case 4: //Consultar por Ordens
 
                 matPriVO = matPriDAO.consultarIdMateriaPrima(Id_materia_Prima);
+                
                 if (matPriVO != null) {
 
                     request.setAttribute("MateriaPrimaConsultada", matPriVO);
@@ -142,7 +139,7 @@ public class MateriaPrimaControlador extends HttpServlet {
                 break;
             case 6:
 
-                if (matPriDAO.eliminarRegistro()) {
+                if (matPriDAO.EliminarRegistroTotal()) {
                     request.setAttribute("mensajeExito", "La materia prima se elimino correctamente!");
                     request.getRequestDispatcher("consultarExistenciasMateriaPrima.jsp").forward(request, response);
 

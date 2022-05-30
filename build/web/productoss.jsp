@@ -4,14 +4,14 @@
     Author     : cesar
 --%>
 
+<%@page import="ModeloDAO.ProductoDAO"%>
+<%@page import="ModeloVO.ProductoVO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="ModeloDAO.MateriaPrimaDAO"%>
-<%@page import="ModeloVO.MateriaPrimaVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
-    MateriaPrimaVO matPriVO = new MateriaPrimaVO();
-    MateriaPrimaDAO matPriDAO = new MateriaPrimaDAO();
+    ProductoVO prodVO = new ProductoVO();
+    ProductoDAO prodDAO = new ProductoDAO();
 %>
 
 <html>
@@ -23,10 +23,10 @@
 
     <body>
         <div class="d-flex">
-            <div id="editMateria" class="card col-sm-6">
+            <div id="editMateria" class="card col-sm-5">
                 <div class="card-body">
-                     
-                    <form method ="post" action="MateriaPrima" class="form-group" enctype="multipart/form-data">
+
+                    <form method ="post" action="Producto" class="form-group" enctype="multipart/form-data">
 
                         <div class="mx-auto justify-content-center">
                             <%if (request.getAttribute("error") != null) {%>
@@ -37,22 +37,22 @@
                             <p class="text-success text-center fs-5">${mensajeExito}</p>
                             <%}%>
                         </div>
-                        
+
                         <div class="form-group">
-                            <label>Nombre Materia</label>
-                            <input type="text" value="<%=matPriVO.getNombre()%>" name="txtNombre" class="form-control" required>
+                            <label>Nombre Producto</label>
+                            <input type="text" value="<%=prodVO.getNombre()%>" name="txtNombre" class="form-control" required>
                         </div>
-                        
+
                         <button class="btn btn-info"> Registrar </button>
                         <input type="hidden" value="1" name="opcion">
-                        
+
                         <div>
                             <button class="btn btn-success"> Actualizar </button>
                             <input type="hidden" value="2" name="opcion">
                         </div>
-                        
+
                     </form>
-                        
+
 
                 </div>
             </div>
@@ -61,35 +61,35 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Nombre Materia</th>
+                            <th>Nombre</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <%
-                            ArrayList<MateriaPrimaVO> listaMateriaPrima = matPriDAO.ListarDos();
-                            for (int i = 0; i < listaMateriaPrima.size(); i++) {
 
-                                matPriVO = listaMateriaPrima.get(i);
+                            ArrayList<ProductoVO> listaProductos = prodDAO.listar();
+                            for (int i = 0; i < listaProductos.size(); i++) {
+
+                                prodVO = listaProductos.get(i);
 
                         %>
                         <tr>
-                            <<td><%=matPriVO.getId_materia_Prima()%></td>
-                            <td><%=matPriVO.getNombre()%></td>
+                            <<td><%=prodVO.getIdProducto()%></td>
+                            <td><%=prodVO.getNombre()%></td>
                             <td>
-                                <form method ="post" action="MateriaPrima" class="form-group" enctype="multipart/form-data">
-                                    <div>
-                                        <input type="hidden" name="txtIdMateriaPrima" value="<%=matPriVO.getId_materia_Prima()%>">
-                                        <input type="hidden"  value="4" name="opcion">
-                                        <button class="btn btn-warning">Editar</button>
-                                    </div>
+                                <form method ="post" action="Producto" class="form-group" enctype="multipart/form-data">
+
+                                    <input type="hidden" name="txtIdMateriaPrima" value="<%=prodVO.getIdProducto()%>">
+                                    <input type="hidden"  value="4" name="opcion">
+                                    <button class="btn btn-warning">Editar</button>
                                 </form>
-                                <form method ="post" action="MateriaPrima" class="form-group" enctype="multipart/form-data">
-                                    <div>
-                                        <input type="hidden" name="txtIdMateriaPrima" value="<%=matPriVO.getId_materia_Prima()%>">
-                                        <button class="btn btn-danger">Eliminar</button>
-                                        <input type="hidden" value="3" name="opcion">
-                                    </div>
+                                    
+                                <form method ="post" action="Producto" class="form-group" enctype="multipart/form-data">
+                                    <input type="hidden" name="txtIdMateriaPrima" value="<%=prodVO.getIdProducto()%>">
+                                    <button class="btn btn-danger">Eliminar</button>
+                                    <input type="hidden" value="3" name="opcion">
+
                                 </form>
                             </td>
                         </tr>

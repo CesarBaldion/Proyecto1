@@ -99,13 +99,13 @@ public class ProductoControlador extends HttpServlet {
                 if (prodDAO.eliminarRegistro()) {
 
                     request.setAttribute("Bien", "El producto se elimino correctamente!");
-                    request.getRequestDispatcher("consultarProducto.jsp").forward(request, response);
+                    request.getRequestDispatcher("productoss.jsp").forward(request, response);
 
                 } else {
 
                     request.setAttribute("Error", "El producto no se elimino correctamente!");
                 }
-                request.getRequestDispatcher("menu.jsp").forward(request, response);
+                request.getRequestDispatcher("productoss.jsp").forward(request, response);
                 break;
 
             default:
@@ -116,10 +116,10 @@ public class ProductoControlador extends HttpServlet {
             }
             if (prodVO != null) {
                 request.setAttribute("productoConsultado", prodVO);
-                request.getRequestDispatcher("actualizarProducto.jsp").forward(request, response);
+                request.getRequestDispatcher("productoss.jsp").forward(request, response);
             } else {
                 request.setAttribute("Error", "El producto no existe");
-                request.getRequestDispatcher("producto.jsp").forward(request, response);
+                request.getRequestDispatcher("productoss.jsp").forward(request, response);
             }
             break;
 
