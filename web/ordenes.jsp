@@ -47,7 +47,7 @@
                                 <option value="<%=dpVO.getId_Detalles_Producto()%>"><%=dpVO.getId_Detalles_Producto()%></option>
                                 <%}%>
                             </select>
-                            <input type="text"  name="txtcantidadSolicitada" class="form-control">
+                            <input type="number" value="1"  name="txtcantidadSolicitada" class="form-control">
                             <button class="btn btn-outline-info">Agregar</button>
                             <input type="hidden" value="5" name="opcion">
                         </form>
