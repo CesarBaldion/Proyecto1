@@ -36,6 +36,13 @@ import net.sf.jasperreports.engine.util.JRLoader;
 @WebServlet(name = "OrdenDetallesControlador", urlPatterns = {"/OrdenDetalles"})
 public class OrdenDetallesControlador extends HttpServlet {
 
+    int item;
+    OrdenDetallesVO ordenDetallVO1 = new OrdenDetallesVO();
+    List<OrdenDetallesVO> lista = new ArrayList<>();
+    String id_Orden;
+    String id_Detalles_Producto;
+    String cantidadSolicitada;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -54,23 +61,15 @@ public class OrdenDetallesControlador extends HttpServlet {
         String id_Detalles_Producto = request.getParameter("idDetallesProducto");
         String cantidadSolicitada = request.getParameter("txtcantidadSolicitada");
         String Estado = request.getParameter("txtEstado");
-        String item = request.getParameter("item");
-
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         // 2. Quien tiene los datos de forma segura en el sistema? VO
         OrdenDetallesVO ordenDetallVO = new OrdenDetallesVO(id_Orden_Detalles, id_Orden,
-                id_Detalles_Producto, cantidadSolicitada, Estado, item);
+                id_Detalles_Producto, cantidadSolicitada, Estado);
 
         // 3. Quien hace las operaciones? DAO
         OrdenDetallesDAO ordenDetalDAO = new OrdenDetallesDAO(ordenDetallVO);
 
-
-        // 3. Quien hace las operaciones? DAO
-       
-
-        ordenDetallVO = new OrdenDetallesVO();
-        List<OrdenDetallesVO> lista = new ArrayList<>();
-
+        
         // 4. Administrar las operaciones del modulo
         switch (opcion) {
 
@@ -131,23 +130,20 @@ public class OrdenDetallesControlador extends HttpServlet {
             case 5: //agregar
 
                 item = item + 1;
-                
-                ordenDetallVO.getId_Orden_Detalles();
-                
-                ordenDetallVO = new OrdenDetallesVO();
-                
-                ordenDetallVO.setItem(item);
-                ordenDetallVO.setId_Orden(id_Orden);
-                ordenDetallVO.setId_Detalles_Producto(id_Detalles_Producto);
-                ordenDetallVO.setCantidadSolicitada(cantidadSolicitada);
 
-                lista.add(ordenDetallVO);
+                ordenDetallVO1.getId_Orden_Detalles();
+
+                ordenDetallVO1 = new OrdenDetallesVO(id_Orden, id_Detalles_Producto, cantidadSolicitada, item);
+
+                
+
+                lista.add(ordenDetallVO1);
 
                 request.setAttribute("lista", lista);
 
                 request.getRequestDispatcher("ordenes.jsp").forward(request, response);
-           // default:
-             //   request.getRequestDispatcher("ordenes.jsp").forward(request, response);
+                // default:
+                //   request.getRequestDispatcher("ordenes.jsp").forward(request, response);
 //                if (ordenDetallVO != null) {
 //
 //                    request.setAttribute("ordenes.jsp", ordenDetallVO);

@@ -11,14 +11,22 @@ package ModeloVO;
  */
 public class OrdenDetallesVO {
     
-    String id_Orden_Detalles,id_Orden,id_Detalles_Producto,cantidadSolicitada, Estado, item;
+    String id_Orden_Detalles,id_Orden,id_Detalles_Producto,cantidadSolicitada, Estado;
+    int item;
 
-    public OrdenDetallesVO(String id_Orden_Detalles, String id_Orden, String id_Detalles_Producto, String cantidadSolicitada, String Estado, String item) {
+    public OrdenDetallesVO(String id_Orden_Detalles, String id_Orden, String id_Detalles_Producto, String cantidadSolicitada, String Estado) {
         this.id_Orden_Detalles = id_Orden_Detalles;
         this.id_Orden = id_Orden;
         this.id_Detalles_Producto = id_Detalles_Producto;
         this.cantidadSolicitada = cantidadSolicitada;
         this.Estado = Estado;
+  
+    }
+
+    public OrdenDetallesVO(String id_Orden, String id_Detalles_Producto, String cantidadSolicitada, int item) {
+        this.id_Orden = id_Orden;
+        this.id_Detalles_Producto = id_Detalles_Producto;
+        this.cantidadSolicitada = cantidadSolicitada;
         this.item = item;
     }
 
@@ -65,11 +73,11 @@ public class OrdenDetallesVO {
         this.Estado = Estado;
     }
 
-    public String getItem() {
+    public int getItem() {
         return item;
     }
 
-    public void setItem(String item) {
+    public void setItem(int item) {
         this.item = item;
     }
 
