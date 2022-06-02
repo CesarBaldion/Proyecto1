@@ -34,12 +34,14 @@
         </div>
         <div class="col-md-6 mx-auto justify-content-center mt-2">
             <table class="table table-light table-hover table-striped text-center">
+                <thead>
                 <tr>
                     <th>Id Materia Prima</th>
                     <th>Nombre</th>
                     <th>Existencias</th>
 
                 </tr>
+                </thead>
 
                 <%                    MateriaPrimaVO matPriVO = new MateriaPrimaVO();
                     MateriaPrimaDAO matPriDAO = new MateriaPrimaDAO();
@@ -49,12 +51,13 @@
                         matPriVO = listaMateriaPrima.get(i);
                 %>
 
-
+                <tbody>
                 <tr>
                     <td><%=matPriVO.getId_materia_Prima()%></td>
                     <td><%=matPriVO.getNombre()%></td>
                     <td><%=matPriVO.getActualizacion()%></td>
                 </tr>
+                </tbody>
                 <% }%>
             </table>
         </div>

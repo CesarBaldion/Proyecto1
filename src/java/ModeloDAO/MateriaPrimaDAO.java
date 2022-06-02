@@ -37,7 +37,7 @@ public class MateriaPrimaDAO extends Conexion implements Crud {
     private boolean operacion = false;
     private String sql;
 
-    private String Id_materia_Prima = "", Nombre = "", Estado = "";
+    private String Id_materia_Prima = "", Nombre = "", Actualizacion = "", Estado = "";
 
     public MateriaPrimaDAO(MateriaPrimaVO matPriVO) {
         super();
@@ -50,6 +50,7 @@ public class MateriaPrimaDAO extends Conexion implements Crud {
 
             Id_materia_Prima = matPriVO.getId_materia_Prima();
             Nombre = matPriVO.getNombre();
+            Actualizacion = matPriVO.getActualizacion();
             Estado = matPriVO.getEstado();
 
         } catch (Exception e) {
@@ -148,8 +149,8 @@ public class MateriaPrimaDAO extends Conexion implements Crud {
 
             while (mensajero.next()) {
 
-               matPriVO = new MateriaPrimaVO(mensajero.getString(1),mensajero.getString(2),
-                       mensajero.getString(3));
+                matPriVO = new MateriaPrimaVO(mensajero.getString(1), mensajero.getString(2),
+                        mensajero.getString(3),mensajero.getString(4));
 
             }
 
@@ -184,7 +185,7 @@ public class MateriaPrimaDAO extends Conexion implements Crud {
             while (mensajero.next()) {
 
                 MateriaPrimaVO matPriVO = new MateriaPrimaVO(mensajero.getString(1),
-                        mensajero.getString(2), mensajero.getString(3));
+                        mensajero.getString(2), mensajero.getString(3),mensajero.getString(4));
                 listaMateriaPrima.add(matPriVO);
 
             }
@@ -218,7 +219,7 @@ public class MateriaPrimaDAO extends Conexion implements Crud {
             while (mensajero.next()) {
 
                 MateriaPrimaVO matPriVO = new MateriaPrimaVO(mensajero.getString(1),
-                        mensajero.getString(2), mensajero.getString(3));
+                        mensajero.getString(2), mensajero.getString(3),mensajero.getString(4));
                 listaMateriaPrima.add(matPriVO);
 
             }
@@ -251,7 +252,7 @@ public class MateriaPrimaDAO extends Conexion implements Crud {
             mensajero = puente.executeQuery();
             while (mensajero.next()) {
                 mpVO = new MateriaPrimaVO(mensajero.getString(1), mensajero.getString(2),
-                        mensajero.getString(3));
+                        mensajero.getString(3),mensajero.getString(4));
             }
             if (mpVO == null) {
                 operacion = false;
@@ -280,7 +281,7 @@ public class MateriaPrimaDAO extends Conexion implements Crud {
             while (mensajero.next()) {
 
                 MateriaPrimaVO matPriVO = new MateriaPrimaVO(mensajero.getString(1),
-                        mensajero.getString(2), mensajero.getString(3));
+                        mensajero.getString(2), mensajero.getString(3),mensajero.getString(4));
                 listaMateriaPrima.add(matPriVO);
 
             }

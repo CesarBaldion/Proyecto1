@@ -23,7 +23,7 @@
 
     <body>
         <div class="d-flex">
-            <div id="editMateria" class="card col-sm-5">
+            <div class="card col-sm-5">
                 <div class="card-body">
 
                     <form method ="post" action="Producto" class="form-group" enctype="multipart/form-data">
