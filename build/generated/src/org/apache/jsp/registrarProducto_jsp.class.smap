@@ -1,0 +1,20 @@
+SMAP
+registrarProducto_jsp.java
+JSP
+*S JSP
+*F
++ 0 registrarProducto.jsp
+registrarProducto.jsp
++ 1 navegacion.jsp
+navegacion.jsp
+*L
+5:49,2
+5#1,97:51
+6#0,17:147
+23:164,3
+24,2:167
+26:169,3
+27:172
+28,3:173,3
+31,14:182
+*E
