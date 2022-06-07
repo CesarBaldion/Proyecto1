@@ -63,7 +63,7 @@
                     <div class="col-md-5 ms-5 mt-3">
 
                         <label>Carga Masiva <b>Archivo Excel(xlsx)</b></label>
-                        <form action="Producto" method="post" enctype="multipart/form-data" class="form-group">
+                        <form action="MateriaPrima" method="post" enctype="multipart/form-data" class="form-group">
                             <input type="file" name="archivocsv" class="form-control">
                             <button class="btn boton mt-3 col-sm-6">Cargar
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
@@ -74,7 +74,7 @@
                         </form>
                     </div>
                     <div class="">
-                        <form action="Producto" method="post" class="form-group" enctype="multipart/form-data">
+                        <form action="MateriaPrima" method="post" class="form-group" enctype="multipart/form-data">
                             <button  class="boton btn mt-5 ms-5" title="Reporte de Producto">
                                 Generar Reporte
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">

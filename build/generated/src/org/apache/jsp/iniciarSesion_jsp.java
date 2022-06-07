@@ -134,7 +134,7 @@ if (request.getAttribute("Bien") != null) {
       out.write("            <!-- INICIAR SESION-->\r\n");
       out.write("            <div class=\"container b-container col-md-8\" id=\"b-container\">\r\n");
       out.write("                <form class=\"form\" id=\"b-form\" method=\"post\" action=\"Usuarios\" enctype=\"multipart/form-data\">\r\n");
-      out.write("                    <div class=\"container_img\"><img src=\"img/Login/Login.svg\" alt=\"\"></div>\r\n");
+      out.write("                    <div class=\"container_img\"><img src=\"img/LogoFinal.svg\" alt=\"\"></div>\r\n");
       out.write("                    <h2 class=\"form_title title\">Iniciar Sesión</h2>\r\n");
       out.write("                    <div>\r\n");
       out.write("                        <input class=\"form__input\" name=\"txtDocumento\" type=\"text\" placeholder=\"Documento de Identidad\">\r\n");

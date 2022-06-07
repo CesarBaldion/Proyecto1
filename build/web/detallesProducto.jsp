@@ -4,15 +4,17 @@
     Author     : cesar
 --%>
 
+<%@page import="ModeloVO.ProductoVO"%>
+<%@page import="ModeloDAO.ProductoDAO"%>
+<%@page import="ModeloDAO.DetallesProductoDAO"%>
+<%@page import="ModeloVO.DetallesProductoVO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="ModeloDAO.MateriaPrimaDAO"%>
-<%@page import="ModeloVO.MateriaPrimaVO"%>
 <%@include file="css-paginacion.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
-    MateriaPrimaVO matPriVO = new MateriaPrimaVO();
-    MateriaPrimaDAO matPriDAO = new MateriaPrimaDAO();
+    DetallesProductoVO detproVO = new DetallesProductoVO();
+    DetallesProductoDAO detproDAO = new DetallesProductoDAO();
 %>
 
 <html>
@@ -25,10 +27,10 @@
 
     <body>
         <div class="d-flex">
-            <div id="editMateria" class="card col-sm-4">
+            <div class="card col-sm-4">
                 <div class="card-body">
 
-                    <form method ="post" action="MateriaPrima" class="form-group" enctype="multipart/form-data">
+                    <form method ="post" action="DetallesProducto" class="form-group" enctype="multipart/form-data">
 
                         <div class="mx-auto justify-content-center">
                             <%if (request.getAttribute("error") != null) {%>
@@ -41,11 +43,27 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Nombre Materia</label>
-                            <input type="text" value="<%=matPriVO.getNombre()%>" name="txtNombre" class="form-control" required>
+                            <select name="txtIdProducto" required class="form-select mt-2">
+                                <option>Seleccione producto</option>
+                                <%
+                                    ProductoDAO proDAO = new ProductoDAO();
+                                    for (ProductoVO proVO : proDAO.listar()) {
+
+                                %>
+                                <option value="<%=proVO.getIdProducto()%>"><%=proVO.getNombre()%></option>
+                                <%}%>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Talla</label>
+                            <input type="text" value="<%=detproVO.getTalla()%>" name="txtTalla" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <input type="text" value="<%=detproVO.getDescripcion()%>" name="txtDescripcion" class="form-control" required>
                         </div>
 
-                        <button class="btn btn-info"> Registrar </button>
+                        <button class="btn boton"> Registrar </button>
                         <input type="hidden" value="1" name="opcion">
 
                         <div>
@@ -63,7 +81,7 @@
                     <div class="col-md-5 ms-5 mt-3">
 
                         <label>Carga Masiva <b>Archivo Excel(xlsx)</b></label>
-                        <form action="MateriaPrima" method="post" enctype="multipart/form-data" class="form-group">
+                        <form action="DetallesProducto" method="post" enctype="multipart/form-data" class="form-group">
                             <input type="file" name="archivocsv" class="form-control">
                             <button class="btn boton mt-3 col-sm-6">Cargar
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
@@ -74,8 +92,8 @@
                         </form>
                     </div>
                     <div class="">
-                        <form action="MateriaPrima" method="post" class="form-group" enctype="multipart/form-data">
-                            <button  class="boton btn mt-5 ms-5" title="Reporte de Producto">
+                        <form action="DetallesProducto" method="post" class="form-group" enctype="multipart/form-data">
+                            <button  class="boton btn mt-5 ms-5" title="Reporte Detalles Producto">
                                 Generar Reporte
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
                                 <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
@@ -94,39 +112,43 @@
                         <label class="mdl-textfield__label"></label>
                     </div>
                 </div>
-                <table class="table">
+                <table id="datos" class="table">
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Nombre Materia</th>
+                            <th>Nombre</th>
+                            <th>Talla</th>
+                            <th>Descripción</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <%
-                            ArrayList<MateriaPrimaVO> listaMateriaPrima = matPriDAO.ListarDos();
-                            for (int i = 0; i < listaMateriaPrima.size(); i++) {
 
-                                matPriVO = listaMateriaPrima.get(i);
+                            ArrayList<DetallesProductoVO> listarDetallesProducto = detproDAO.listar();
+                            for (int i = 0; i < listarDetallesProducto.size(); i++) {
+
+                                detproVO = listarDetallesProducto.get(i);
 
                         %>
                         <tr>
-                            <<td><%=matPriVO.getId_materia_Prima()%></td>
-                            <td><%=matPriVO.getNombre()%></td>
+                            <<td><%=detproVO.getId_Detalles_Producto()%></td>
+                            <td><%=detproVO.getId_Producto()%></td>
+                            <td><%=detproVO.getTalla()%></td>
+                            <td><%=detproVO.getDescripcion()%></td>
                             <td>
-                                <form method ="post" action="MateriaPrima" class="form-group" enctype="multipart/form-data">
-                                    <div>
-                                        <input type="hidden" name="txtIdMateriaPrima" value="<%=matPriVO.getId_materia_Prima()%>">
-                                        <input type="hidden"  value="4" name="opcion">
-                                        <button class="btn btn-warning">Editar</button>
-                                    </div>
+                                <form method ="post" action="DetallesProducto" class="form-group" enctype="multipart/form-data">
+
+                                    <input type="hidden" name="txtIdMateriaPrima" value="<%=detproVO.getId_Detalles_Producto()%>">
+                                    <input type="hidden"  value="4" name="opcion">
+                                    <button class="btn btn-warning">Editar</button>
                                 </form>
-                                <form method ="post" action="MateriaPrima" class="form-group" enctype="multipart/form-data">
-                                    <div>
-                                        <input type="hidden" name="txtIdMateriaPrima" value="<%=matPriVO.getId_materia_Prima()%>">
-                                        <button class="btn btn-danger">Eliminar</button>
-                                        <input type="hidden" value="3" name="opcion">
-                                    </div>
+
+                                <form method ="post" action="DetallesProducto" class="form-group" enctype="multipart/form-data">
+                                    <input type="hidden" name="txtIdMateriaPrima" value="<%=detproVO.getId_Detalles_Producto()%>">
+                                    <button class="btn btn-danger">Eliminar</button>
+                                    <input type="hidden" value="3" name="opcion">
+
                                 </form>
                             </td>
                         </tr>

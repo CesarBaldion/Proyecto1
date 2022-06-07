@@ -57,7 +57,7 @@ public final class iniciarSesion2_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("        <div class=\"container\">\n");
       out.write("            <div class=\"forms-container\">\n");
       out.write("                <div class=\"signin-signup\">\n");
-      out.write("                    <form  enctype=\"multipart/form-data\" action = \"Usuarios\" class=\"sign-in-form\">\n");
+      out.write("                    <form method=\"post\" enctype=\"multipart/form-data\" action = \"Usuarios\" class=\"sign-in-form\">\n");
       out.write("                        <a href=\"menu.jsp\">\n");
       out.write("                            <img src=\"img/LogoFinal.svg\" class=\"image\" alt=\"\" height=\"115\">\n");
       out.write("                        </a>\n");

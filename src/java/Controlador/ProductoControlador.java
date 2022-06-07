@@ -179,7 +179,7 @@ public class ProductoControlador extends HttpServlet {
                 String rutaAbsoluta = adminFiles.guardarArchivo(archivocsv, adminFiles.validarRuta());
                 try {
                     prodDAO.cargarProductos(rutaAbsoluta);
-                    request.getRequestDispatcher("consultarProducto.jsp").forward(request, response);
+                    request.getRequestDispatcher("producto.jsp").forward(request, response);
                 } catch (SQLException e) {
                 }
                 break;

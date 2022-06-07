@@ -85,7 +85,7 @@
             <!-- INICIAR SESION-->
             <div class="container b-container col-md-8" id="b-container">
                 <form class="form" id="b-form" method="post" action="Usuarios" enctype="multipart/form-data">
-                    <div class="container_img"><img src="img/Login/Login.svg" alt=""></div>
+                    <div class="container_img"><img src="img/LogoFinal.svg" alt=""></div>
                     <h2 class="form_title title">Iniciar Sesión</h2>
                     <div>
                         <input class="form__input" name="txtDocumento" type="text" placeholder="Documento de Identidad">
