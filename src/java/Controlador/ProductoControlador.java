@@ -10,9 +10,8 @@ import ModeloDAO.ProductoDAO;
 import ModeloVO.ProductoVO;
 import Util.Conexion;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.MultipartConfig;
@@ -49,11 +48,12 @@ public class ProductoControlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out1 = response.getWriter();
         //recibir datos
         String Id_Producto = request.getParameter("txtId");
         String Nombre = request.getParameter("txtNombre");
         String Estado = request.getParameter("txtEstado");
-        Part archivocsv = request.getPart("archivocsv");
+        
         int opcion = Integer.parseInt(request.getParameter("opcion"));
 
         //2. Quien tiene los datos de forma segura en el sistema? VO
@@ -69,15 +69,12 @@ public class ProductoControlador extends HttpServlet {
                 if (prodDAO.verificarProducto(Nombre) == false) {
                     if (prodDAO.agregarRegistro() == true) {
 
-                        request.setAttribute("Bien", "Se ha registrado");
-                        request.getRequestDispatcher("producto.jsp").forward(request, response);
+                        out1.println("<label class='text-success'><b>Se ha registrado Correctamente</b></label>");
                     } else {
-                        request.setAttribute("Error", "Error al Registrar!");
-                        request.getRequestDispatcher("producto.jsp").forward(request, response);
+                        out1.print("<label class='text-danger'><b>Error al Registrar</b></label>");;
                     }
                 } else {
-                    request.setAttribute("Error", "El producto ya existe");
-                    request.getRequestDispatcher("producto.jsp").forward(request, response);
+                    out1.print("<label class='text-danger'><b>El Producto Ya existe</b></label>");;
                 }
 
                 break;
@@ -86,26 +83,25 @@ public class ProductoControlador extends HttpServlet {
 
                 if (prodDAO.actualizarRegistro()) {
 
-                    request.setAttribute("Bien", "El producto se actualizo correctamente!");
+                    out1.println("<label class='text-success'><b>Se ha actualizado Correctamente</b></label>");
                 } else {
 
-                    request.setAttribute("Error", "El producto no se actualizo correctamente!");
+                    out1.print("<label class='text-danger'><b>Error al Registrar</b></label>");;
                 }
-                request.getRequestDispatcher("producto.jsp").forward(request, response);
                 break;
 
             case 3:
 
                 if (prodDAO.eliminarRegistro()) {
 
-                    request.setAttribute("Bien", "El producto se elimino correctamente!");
-                    request.getRequestDispatcher("productoss.jsp").forward(request, response);
+                    
+                    out1.println("<label class='text-success'><b>Se ha Eliminado Correctamente</b></label>");
 
                 } else {
 
-                    request.setAttribute("Error", "El producto no se elimino correctamente!");
+                    out1.println("<label class='text-success'><b>Error al Eliminar</b></label>");
                 }
-                request.getRequestDispatcher("productoss.jsp").forward(request, response);
+                
                 break;
 
             default:
@@ -175,6 +171,7 @@ public class ProductoControlador extends HttpServlet {
                 }
                 break;
             case 11:
+                Part archivocsv = request.getPart("archivocsv");
                 AdministrarArchivos adminFiles = new AdministrarArchivos();
                 String rutaAbsoluta = adminFiles.guardarArchivo(archivocsv, adminFiles.validarRuta());
                 try {

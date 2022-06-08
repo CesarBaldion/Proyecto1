@@ -88,8 +88,8 @@ public class ProductoDAO extends Conexion implements Crud {
             sql = "update producto set Nombre = ?, Estado=1 where Id_Producto = ?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Nombre);
-            puente.setString(2, Estado);
-            puente.setString(3, Id_Producto);
+            puente.setString(2, Id_Producto);
+            
             puente.executeUpdate();
             operacion = true;
         } catch (Exception e) {
