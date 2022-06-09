@@ -92,7 +92,7 @@ public class ProductoControlador extends HttpServlet {
 
             case 3:
 
-                if (prodDAO.eliminarRegistro()) {
+                if (prodDAO.EliminarRegistroTotal()) {
 
                     
                     out1.println("<label class='text-success'><b>Se ha Eliminado Correctamente</b></label>");

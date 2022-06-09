@@ -10,6 +10,7 @@ import ModeloDAO.DetallesProductoDAO;
 import ModeloVO.DetallesProductoVO;
 import Util.Conexion;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,6 +50,8 @@ public class DetallesProductoControlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out1 = response.getWriter();
+        
         String Id_Detalles_Producto = request.getParameter("txtIdDetallesProducto");
         String Id_Producto = request.getParameter("txtIdProducto");
         String Descripcion = request.getParameter("txtDescripcion");
@@ -65,17 +68,14 @@ public class DetallesProductoControlador extends HttpServlet {
 
         switch (opcion) {
 
-            case 1: //Agregar registro
+             case 1: //Agregar registro
+                    if (detProDAO.agregarRegistro()) {
 
-                if (detProDAO.agregarRegistro()) {
+                        out1.println("<label class='text-success'><b>Se ha registrado Correctamente</b></label>");
+                    } else {
+                        out1.print("<label class='text-danger'><b>Error al Registrar</b></label>");;
+                    }
 
-                    request.setAttribute("mensajeExito", "Los detalles del producto se registraron correctamente!");
-
-                } else {
-
-                    request.setAttribute("mensajeError", "Los detalles del producto no se registraron correctamente");
-                }
-                request.getRequestDispatcher("registrarDetallesProducto.jsp").forward(request, response);
                 break;
 
             case 2:
