@@ -48,7 +48,7 @@ public class ProductoControlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out1 = response.getWriter();
+        ServletOutputStream out1 = response.getOutputStream();
         //recibir datos
         String Id_Producto = request.getParameter("txtId");
         String Nombre = request.getParameter("txtNombre");
@@ -68,7 +68,6 @@ public class ProductoControlador extends HttpServlet {
             case 1: //Agregar registro
                 if (prodDAO.verificarProducto(Nombre) == false) {
                     if (prodDAO.agregarRegistro() == true) {
-
                         out1.println("<label class='text-success'><b>Se ha registrado Correctamente</b></label>");
                     } else {
                         out1.print("<label class='text-danger'><b>Error al Registrar</b></label>");;
@@ -76,32 +75,21 @@ public class ProductoControlador extends HttpServlet {
                 } else {
                     out1.print("<label class='text-danger'><b>El Producto Ya existe</b></label>");;
                 }
-
                 break;
 
             case 2:
-
                 if (prodDAO.actualizarRegistro()) {
-
                     out1.println("<label class='text-success'><b>Se ha actualizado Correctamente</b></label>");
                 } else {
-
-                    out1.print("<label class='text-danger'><b>Error al Registrar</b></label>");;
+                    out1.println("<label class='text-danger'><b>Error al Registrar</b></label>");;
                 }
                 break;
-
             case 3:
-
-                if (prodDAO.EliminarRegistroTotal()) {
-
-                    
+                if (prodDAO.eliminarRegistro()) {
                     out1.println("<label class='text-success'><b>Se ha Eliminado Correctamente</b></label>");
-
                 } else {
-
                     out1.println("<label class='text-success'><b>Error al Eliminar</b></label>");
                 }
-                
                 break;
 
             default:
@@ -171,12 +159,17 @@ public class ProductoControlador extends HttpServlet {
                 }
                 break;
             case 11:
+                //CargaMasiva
                 Part archivocsv = request.getPart("archivocsv");
                 AdministrarArchivos adminFiles = new AdministrarArchivos();
                 String rutaAbsoluta = adminFiles.guardarArchivo(archivocsv, adminFiles.validarRuta());
                 try {
-                    prodDAO.cargarProductos(rutaAbsoluta);
-                    request.getRequestDispatcher("producto.jsp").forward(request, response);
+                    boolean validacionAccion = prodDAO.cargarProductos(rutaAbsoluta);
+                    if(validacionAccion==true){
+                        out1.println("<b class='text-success'>La carga masiva se realizo exitosamente</b>");
+                    }else{
+                        out1.println("<b class='text-danger'>Error en la carga masiva</b>");
+                    }
                 } catch (SQLException e) {
                 }
                 break;

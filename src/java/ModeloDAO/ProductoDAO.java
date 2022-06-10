@@ -154,7 +154,7 @@ public class ProductoDAO extends Conexion implements Crud {
         ArrayList<ProductoVO> listaProductos = new ArrayList();
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from producto";
+            sql = "select * from producto where estado = 1";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
 
@@ -266,9 +266,10 @@ public class ProductoDAO extends Conexion implements Crud {
         return operacion;
     }
     
-    public void cargarProductos(String rutaAbsoluta) throws SQLException, IOException  {
-
+    public boolean cargarProductos(String rutaAbsoluta) throws IOException, SQLException{
+        boolean accion = false;
         try {
+            
             sql = "insert into Producto(Nombre,Estado)values(?,?)";
             conexion = obtenerConexion();
             FileInputStream file = new FileInputStream(new File(rutaAbsoluta));
@@ -285,14 +286,20 @@ public class ProductoDAO extends Conexion implements Crud {
                 puente.setString(2,"1");
                 puente.executeUpdate();
             }
+            accion = true;
+            
             File Archivo = new File(rutaAbsoluta);
             Archivo.delete();
             conexion = cerrarConexion();
-
+            
+            
         } catch (FileNotFoundException ex ) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } 
+        return accion;
     }
+    
+    
 
 
 }

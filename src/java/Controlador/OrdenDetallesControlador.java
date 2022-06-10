@@ -37,11 +37,7 @@ import net.sf.jasperreports.engine.util.JRLoader;
 public class OrdenDetallesControlador extends HttpServlet {
 
     int item;
-    OrdenDetallesVO ordenDetallVO1 = new OrdenDetallesVO();
-    List<OrdenDetallesVO> lista = new ArrayList<>();
-    String id_Orden;
-    String id_Detalles_Producto;
-    String cantidadSolicitada;
+    ArrayList<OrdenDetallesVO> listaOrdenDetalles = new ArrayList<>();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -56,9 +52,10 @@ public class OrdenDetallesControlador extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        ServletOutputStream out1 = response.getOutputStream();
         String id_Orden_Detalles = request.getParameter("txtIdOrdenDetalles");
         String id_Orden = request.getParameter("txtIdOrden");
-        String id_Detalles_Producto = request.getParameter("idDetallesProducto");
+        String id_Detalles_Producto = request.getParameter("txtIdDetallesProducto");
         String cantidadSolicitada = request.getParameter("txtcantidadSolicitada");
         String Estado = request.getParameter("txtEstado");
         int opcion = Integer.parseInt(request.getParameter("opcion"));
@@ -69,48 +66,35 @@ public class OrdenDetallesControlador extends HttpServlet {
         // 3. Quien hace las operaciones? DAO
         OrdenDetallesDAO ordenDetalDAO = new OrdenDetallesDAO(ordenDetallVO);
 
-        
         // 4. Administrar las operaciones del modulo
         switch (opcion) {
 
             case 1: //Agregar registro
 
                 if (ordenDetalDAO.agregarRegistro()) {
-
-                    request.setAttribute("mensajeExito", "La orden Detalles se registró correctamente!");
-
+                    out1.println("<label class='text-success'><b>La orden Detalles se registró correctamente</b></label>");
                 } else {
-
-                    request.setAttribute("mensajeError", "La orden Detalles no se registró correctamente");
+                    out1.println("<label class='text-danger'><b>Erro al registrar la orden</b></label>");
                 }
-                request.getRequestDispatcher("ordenes.jsp").forward(request, response);
                 break;
 
             case 2:
 
                 if (ordenDetalDAO.actualizarRegistro()) {
-
-                    request.setAttribute("mensajeExito", "La orden Detalles se actualizo correctamente!");
-
+                    out1.println("<label class='text-success'><b>La orden Detalles se actualizó correctamente</b></label>");
                 } else {
-
-                    request.setAttribute("mensajeError", "La orden Detalles no se actualizo correctamente!");
+                    out1.println("<label class='text-danger'><b>Erro al actulizar la orden</b></label>");
                 }
-                request.getRequestDispatcher("consultarOrdenDetalles.jsp").forward(request, response);
                 break;
 
             case 3:
 
                 if (ordenDetalDAO.eliminarRegistro()) {
-
-                    request.setAttribute("mensajeExito", "La orden detalles se elimino correctamente!");
-                    request.getRequestDispatcher("consultarOrdenDetalles.jsp").forward(request, response);
-
+                    out1.println("<label class='text-success'><b>La orden Detalles se Elimino correctamente</b></label>");
                 } else {
-
-                    request.setAttribute("mensajeError", "El lote de Produccion no se elimino correctamente!");
+                    out1.println("<label class='text-danger'><b>Erro al Eliminar la orden</b></label>");
                 }
-                request.getRequestDispatcher("menu.jsp").forward(request, response);
+
                 break;
 
             case 4: //Consultar por Orden_Detalles
@@ -128,30 +112,20 @@ public class OrdenDetallesControlador extends HttpServlet {
                 break;
 
             case 5: //agregar
+                item += 1;
+                OrdenDetallesVO ordetllVO = new OrdenDetallesVO(id_Orden, id_Detalles_Producto, cantidadSolicitada, item);
+                listaOrdenDetalles.add(ordetllVO);
 
-                item = item + 1;
-
-                ordenDetallVO1.getId_Orden_Detalles();
-
-                ordenDetallVO1 = new OrdenDetallesVO(id_Orden, id_Detalles_Producto, cantidadSolicitada, item);
-
-                
-
-                lista.add(ordenDetallVO1);
-
-                request.setAttribute("lista", lista);
-
-                request.getRequestDispatcher("ordenes.jsp").forward(request, response);
-                // default:
-                //   request.getRequestDispatcher("ordenes.jsp").forward(request, response);
-//                if (ordenDetallVO != null) {
-//
-//                    request.setAttribute("ordenes.jsp", ordenDetallVO);
-//                    request.getRequestDispatcher("ordenes.jsp").forward(request, response);
-//                } else {
-//                    request.setAttribute("mensajeError", "La orden no existe");
-//                    request.getRequestDispatcher("ordenes.jsp").forward(request, response);
-//                }
+                for (int i = 0; i < listaOrdenDetalles.size(); i++) {
+                    OrdenDetallesVO ordetllVO2 = listaOrdenDetalles.get(i);
+                    out1.println("<tr>");
+                    out1.println("<td>" + i + "</td>");
+                    out1.println("<td>" + ordetllVO2.getId_Orden() + "</td>");
+                    out1.println("<td >" + ordetllVO2.getId_Detalles_Producto() + "</td>");
+                    out1.println("<td >" + ordetllVO2.getCantidadSolicitada() + "</td>");
+                    out1.println("<td><button  class='btn btn-danger submitEliminarLista' data-id9=" + i + " data-id10='11'>Eliminar</button></td>");
+                    out1.println("</tr>");
+                }
                 break;
 
             case 6: //Agregar registro
@@ -218,6 +192,33 @@ public class OrdenDetallesControlador extends HttpServlet {
                     exporter.exportReport();
                 } catch (Exception e) {
                     e.printStackTrace();
+                }
+                break;
+
+            case 11:
+                int itemEliminar = Integer.parseInt(request.getParameter("itemEliminar"));
+
+                listaOrdenDetalles.remove(itemEliminar);
+                for (int i = 0; i < listaOrdenDetalles.size(); i++) {
+                    OrdenDetallesVO ordetllVO2 = listaOrdenDetalles.get(i);
+                    out1.println("<tr>");
+                    out1.println("<td>" + i + "</td>");
+                    out1.println("<td>" + ordetllVO2.getId_Orden() + "</td>");
+                    out1.println("<td >" + ordetllVO2.getId_Detalles_Producto() + "</td>");
+                    out1.println("<td >" + ordetllVO2.getCantidadSolicitada() + "</td>");
+                    out1.println("<td><button  class='btn btn-danger submitEliminarLista' data-id9=" + i + " data-id10='11'>Eliminar</button></td>");
+                    out1.println("</tr>");
+                }
+                break;
+
+            case 12://Cargar Lista
+                if (ordenDetalDAO.cargarListaOrdenDetalles(listaOrdenDetalles)) {
+                    out1.println("<b class='text-success'>La lista se ha cargado con exito</b>");
+                    for (int i = 0; i < listaOrdenDetalles.size(); i++) {
+                        listaOrdenDetalles.remove(i);
+                    }
+                }else{
+                    out1.println("<b class='text-danger'>Error al cargar la lista</b>");
                 }
                 break;
         }

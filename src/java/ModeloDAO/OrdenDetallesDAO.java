@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  *
  * @author Sena
  */
-public class OrdenDetallesDAO extends Conexion implements Crud{
+public class OrdenDetallesDAO extends Conexion implements Crud {
 
     private Connection conexion;
     private PreparedStatement puente;
@@ -28,16 +28,16 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
 
     private boolean operacion = false;
     private String sql;
-    
-    String id_Orden_Detalles,id_Orden,id_Detalles_Producto,cantidadSolicitada;
-    
+
+    String id_Orden_Detalles, id_Orden, id_Detalles_Producto, cantidadSolicitada;
+
     public OrdenDetallesDAO(OrdenDetallesVO ordDetallVO) {
-        
+
         super();
 
         //3. Conectarse a la base de datos
         try {
-            
+
             conexion = this.obtenerConexion();
             // 4. traer al DAO los datos del VO para hacer las operaciones.
 
@@ -45,16 +45,16 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
             id_Orden = ordDetallVO.getId_Orden();
             id_Detalles_Producto = ordDetallVO.getId_Detalles_Producto();
             cantidadSolicitada = ordDetallVO.getCantidadSolicitada();
-            
+
         } catch (Exception e) {
             Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
         }
-        
+
     }
 
     public OrdenDetallesDAO() {
     }
-    
+
     @Override
     public boolean agregarRegistro() {
         try {
@@ -70,15 +70,15 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
             operacion = true;
         } catch (SQLException ex) {
             Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
+        } finally {
 
-            try{
+            try {
                 this.cerrarConexion();
 
             } catch (SQLException e) {
                 Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
             }
-            
+
         }
         return operacion;
     }
@@ -89,7 +89,7 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
             sql = "update orden_detalles set id_orden = ?, id_detalles_Producto = ?, "
                     + "CantidadSolicitada = ? where Id_Orden_Detalles = ? ";
             puente = conexion.prepareStatement(sql);
-            puente.setString(1,id_Orden);
+            puente.setString(1, id_Orden);
             puente.setString(2, id_Detalles_Producto);
             puente.setString(3, cantidadSolicitada);
             puente.setString(4, id_Orden_Detalles);
@@ -112,16 +112,16 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
 
     @Override
     public boolean eliminarRegistro() {
-       try {
+        try {
             //Armar sentencia
-           sql = "UPDATE `orden_detalles` SET `Estado`= 0 WHERE Id_orden_detalles = ?";
+            sql = "UPDATE `orden_detalles` SET `Estado`= 0 WHERE Id_orden_detalles = ?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, id_Orden_Detalles);
             puente.executeUpdate();
             operacion = true;
 
         } catch (SQLException e) {
-            Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
 
         } finally {
 
@@ -129,13 +129,13 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
                 this.cerrarConexion();
 
             } catch (SQLException e) {
-                Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
             }
-            
+
         }
         return operacion;
     }
-    
+
     public OrdenDetallesVO cosnultarId(String Id) {
 
         OrdenDetallesVO OrdenDetallVO = null;
@@ -148,8 +148,8 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
 
             while (mensajero.next()) {
 
-               OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1), mensajero.getString(2), 
-                       mensajero.getString(3), mensajero.getString(4), mensajero.getString(5));
+                OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1), mensajero.getString(2),
+                        mensajero.getString(3), mensajero.getString(4), mensajero.getString(5));
 
             }
 
@@ -169,7 +169,7 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
         return OrdenDetallVO;
 
     }
-    
+
     public OrdenDetallesVO consultarIdOrden(String IdOrden) {
 
         OrdenDetallesVO OrdenDetallVO = null;
@@ -182,8 +182,8 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
 
             while (mensajero.next()) {
 
-               OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1), mensajero.getString(2), 
-                       mensajero.getString(3), mensajero.getString(4), mensajero.getString(5));
+                OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1), mensajero.getString(2),
+                        mensajero.getString(3), mensajero.getString(4), mensajero.getString(5));
 
             }
 
@@ -215,8 +215,8 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
 
             while (mensajero.next()) {
 
-               OrdenDetallesVO OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1),
-                       mensajero.getString(2), mensajero.getString(3), mensajero.getString(4), mensajero.getString(5));
+                OrdenDetallesVO OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1),
+                        mensajero.getString(2), mensajero.getString(3), mensajero.getString(4), mensajero.getString(5));
                 listaOrdenDetalles.add(OrdenDetallVO);
 
             }
@@ -237,9 +237,7 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
         return listaOrdenDetalles;
 
     }
-    
-    
-    
+
     public ArrayList<OrdenDetallesVO> ListarDos() {
 
         ArrayList<OrdenDetallesVO> listaOrdenDetalles = new ArrayList<>();
@@ -251,8 +249,8 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
 
             while (mensajero.next()) {
 
-               OrdenDetallesVO OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1),
-                       mensajero.getString(2), mensajero.getString(3), mensajero.getString(4), mensajero.getString(5));
+                OrdenDetallesVO OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1),
+                        mensajero.getString(2), mensajero.getString(3), mensajero.getString(4), mensajero.getString(5));
                 listaOrdenDetalles.add(OrdenDetallVO);
 
             }
@@ -273,18 +271,18 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
         return listaOrdenDetalles;
 
     }
-    
-     public boolean ActivarRegistro() {
-       try {
+
+    public boolean ActivarRegistro() {
+        try {
             //Armar sentencia
-           sql = "UPDATE `orden_detalles` SET `Estado`= 1 WHERE Id_orden_detalles = ?";
+            sql = "UPDATE `orden_detalles` SET `Estado`= 1 WHERE Id_orden_detalles = ?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, id_Orden_Detalles);
             puente.executeUpdate();
             operacion = true;
 
         } catch (SQLException e) {
-            Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
 
         } finally {
 
@@ -292,24 +290,24 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
                 this.cerrarConexion();
 
             } catch (SQLException e) {
-                Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
             }
-            
+
         }
         return operacion;
     }
-     
-      public boolean eliminarRegistroTotal() {
-       try {
+
+    public boolean eliminarRegistroTotal() {
+        try {
             //Armar sentencia
-           sql = "delete from `orden_detalles` WHERE Id_orden_detalles = ?";
+            sql = "delete from `orden_detalles` WHERE Id_orden_detalles = ?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, id_Orden_Detalles);
             puente.executeUpdate();
             operacion = true;
 
         } catch (SQLException e) {
-            Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
 
         } finally {
 
@@ -317,11 +315,33 @@ public class OrdenDetallesDAO extends Conexion implements Crud{
                 this.cerrarConexion();
 
             } catch (SQLException e) {
-                Logger.getLogger(OrdenesDAO.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
             }
-            
         }
         return operacion;
+    }
+
+    public boolean cargarListaOrdenDetalles(ArrayList<OrdenDetallesVO> listaOrdenDetalles) {
+        boolean accion = false;
+        try {
+
+            sql = "insert into orden_detalles(id_Orden,id_Detalles_Producto,CantidadSolicitada)values(?,?,?)";
+            conexion = obtenerConexion();
+
+            for (int i = 0; i < listaOrdenDetalles.size(); i++) {
+                OrdenDetallesVO ordetllVO2 = listaOrdenDetalles.get(i);
+                puente = conexion.prepareStatement(sql);
+                puente.setString(1, ordetllVO2.getId_Orden());
+                puente.setString(2, ordetllVO2.getId_Detalles_Producto());
+                puente.setString(3, ordetllVO2.getCantidadSolicitada());
+                puente.executeUpdate();
+            }
+            accion = true;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return accion;
     }
 
 }
