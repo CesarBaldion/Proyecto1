@@ -4,9 +4,11 @@ $("#actualizarTabla").click(function (e) {
 });
 $(".detalles").click(function (e) {
     e.preventDefault();
-    document.getElementById('txtIdProductoEdit').value = this.dataset.id;
-    document.getElementById('txtTallaEdit').value = this.dataset.id2;
-    document.getElementById('txtDescripcionEdit').value = this.dataset.id3;
+    document.getElementById('OpcionIdProductoEdit').innerText = this.dataset.id;
+    document.getElementById('OpcionIdProductoEdit').value = this.dataset.id;
+    document.getElementById('OpcionTallaEdit').innerText = this.dataset.id2;
+    document.getElementById('OpcionTallaEdit').value = this.dataset.id2;
+    document.getElementById('DescripcionEdit').value = this.dataset.id3;
     document.getElementById('txtIdDetallesProductoEdit').value = this.dataset.id4;
 
 
@@ -26,9 +28,9 @@ $(".eliminar").click(function (e) {
 });
 
 $('#submit').click(function (event) {
-    var productoVar = $('#txtIdProducto').val();
-    var tallaVar = $('#txtTalla').val();
-    var descripcionVar = $('#txtDescripcion').val();
+    var productoVar = $('#txtIdProductoReg').val();
+    var tallaVar = $('#txtTallaReg').val();
+    var descripcionVar = $('#txtDescripcionReg').val();
     var opcionVar = $('#opcion').val();
     var idDetallesProductoVar = $('#txtIdDetallesProducto').val();
     // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
@@ -44,9 +46,11 @@ $('#submit').click(function (event) {
 });
 
 $('#submitEdit').click(function (event) {
+    var productoVar = $('#txtIdProductoEdit').text()();
     var productoVar = $('#txtIdProductoEdit').val();
+     var tallaVar = $('#txtTallaEdit').text()();
     var tallaVar = $('#txtTallaEdit').val();
-    var descripcionVar = $('#txtDescripcionEdit').val();
+    var descripcionVar = $('#DescripcionEdit').val();
     var opcionVar = $('#opcionedit').val();
     var idDetallesProductoVar = $('#txtIdDetallesProductoEdit').val();
     // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get

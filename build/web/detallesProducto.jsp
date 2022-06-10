@@ -122,7 +122,7 @@
                         <div class="col-md-5 mx-auto">
                             <h5 class="modal-title  text-center mb-5" id="staticBackdropLabel">Registrar Detalles Producto</h5>
                             <form class="form-group" method="post" action="DetallesProducto" enctype="multipart/form-data">
-                                <select id="txtIdProducto" class="form-select mt-2">
+                                <select id="txtIdProductoReg" class="form-select mt-2">
                                     <option>Seleccione el producto.</option>
                                     <%
                                         ProductoDAO pDAO = new ProductoDAO();
@@ -132,13 +132,13 @@
                                     <option value="<%=pVO.getIdProducto()%>"><%=pVO.getNombre()%></option>
                                     <%}%>
                                 </select>
-                                <select id="txtTalla">
+                                <select id="txtTallaReg">
                                     <option>Seleccione la talla</option>
                                     <option value="L">L</option>
                                     <option value="M">M</option>
 
                                 </select>
-                                <input type="text" id="txtDescripcion" class="form-control">
+                                <input type="text" id="txtDescripcionReg" class="form-control">
                                 <input type="hidden" id="opcion" value="1">
                                 <input type="button" id="submit" value="Guardar" class="btn boton mt-3"> 
                             </form>
@@ -187,21 +187,22 @@
                             <form class="form-group" method="post" action="DetallesProducto" enctype="multipart/form-data">
                                 <input id="txtIdDetallesProductoEdit" type="hidden" value="" class="form-control">
                                 <select id="txtIdProductoEdit">
-           
-                                    <%
-                                        for (ProductoVO pVO : pDAO.listar()) {
+                                    <option id="OpcionIdProductoEdit"></option>
+                                   <%
+                                        ProductoDAO pDAO2 = new ProductoDAO();
+                                        for (ProductoVO pVO2 : pDAO2.listar()) {
 
                                     %>
-                                    <option value="<%=pVO.getIdProducto()%>"><%=pVO.getNombre()%></option>
+                                    <option value="<%=pVO2.getIdProducto()%>"><%=pVO2.getNombre()%></option>
                                     <%}%>
                                 </select>
                                 <select id="txtTallaEdit">
-                                    <option>Seleccione la talla</option>
+                                    <option id="OpcionTallaEdit"></option>
                                     <option value="L">L</option>
                                     <option value="M">M</option>
 
                                 </select>
-                                    <input type="text" id="txtDescripcionEdit" placeholder= "<%=dpVO.getDescripcion()%>" class="form-control">
+                                    <input type="text" id="DescripcionEdit" class="form-control">
                                 <input type="hidden" value="2" id="opcionedit">
                                 <input type="button" id="submitEdit" value="Guardar" class="btn boton mt-3"> 
                             </form>

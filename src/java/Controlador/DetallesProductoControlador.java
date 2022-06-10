@@ -50,7 +50,7 @@ public class DetallesProductoControlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out1 = response.getWriter();
+        ServletOutputStream out1 = response.getOutputStream();
         
         String Id_Detalles_Producto = request.getParameter("txtIdDetallesProducto");
         String Id_Producto = request.getParameter("txtIdProducto");
@@ -81,16 +81,11 @@ public class DetallesProductoControlador extends HttpServlet {
             case 2:
 
                 if (detProDAO.actualizarRegistro()) {
-
-                    request.setAttribute("mensajeExito", "Los detalles del producto se actualizaron correctamente!");
-
+                    out1.println("<label class='text-success'><b>Se ha actualizado Correctamente</b></label>");
                 } else {
-
-                    request.setAttribute("mensajeError", "Los detalles del producto no se actualizaron correctamente!");
+                    out1.println("<label class='text-danger'><b>Error al Registrar</b></label>");;
                 }
-                request.getRequestDispatcher("actualizarDetallesProducto.jsp").forward(request, response);
                 break;
-
             case 3:
 
                 if (detProDAO.eliminarRegistro()) {
