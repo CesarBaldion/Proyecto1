@@ -27,7 +27,6 @@
             <div class="col-md-6 d-flex mt-5 mx-auto">
                 <div class="col-md-12 ms-4">
                     <div class="col-md-12">
-
                         <div class="col-md-8 d-flex  "> 
                             <button type="button" class="btn boton mt-3 me-3" data-bs-toggle="modal" data-bs-target="#registrar" >Registrar
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">

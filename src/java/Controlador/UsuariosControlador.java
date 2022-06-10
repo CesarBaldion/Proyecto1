@@ -52,6 +52,8 @@ public class UsuariosControlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        ServletOutputStream out1 = response.getOutputStream();
+
         UsuarioDAO usuDao = new UsuarioDAO();
         // 1. Recibir datos de la vista
         String Id_Usuarios = request.getParameter("txtId");
@@ -67,13 +69,12 @@ public class UsuariosControlador extends HttpServlet {
         String Direccion = request.getParameter("txtDireccion");
         String Estado = request.getParameter("txtEstado");
         String codigo = request.getParameter("txtcodigo");
-        Part archivocsv = request.getPart("archivocsv");
 
         int opcion = Integer.parseInt(request.getParameter("opcion"));
 
         // 2. Quien tiene los datos de forma segura en el sistema? VO
-        UsuarioVO usuVO = new UsuarioVO(Id_Usuarios, Nombre, Tipo_Documento, Documento, Telefono, Email, Direccion, Ciudad,
-                Estado, Contrasena);
+        UsuarioVO usuVO = new UsuarioVO(Id_Usuarios, Nombre, Tipo_Documento, Documento,
+                Direccion, Ciudad, Telefono, Email, Contrasena, Estado);
         // 3. Quien hace las operaciones? DAO
         UsuarioDAO usuDAO = new UsuarioDAO(usuVO);
         //Generar codigo
@@ -131,7 +132,7 @@ public class UsuariosControlador extends HttpServlet {
 
                                                         } else {
                                                             request.setAttribute("error", "Complete el campo de Ciudad");
-                                                              request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
+                                                            request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                                             request.setAttribute("error", "Complete el campo de Direccion");
                                                             request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                                                         }
@@ -179,30 +180,22 @@ public class UsuariosControlador extends HttpServlet {
                 break;
 
             case 2:
-
+                //Actualizar
                 if (usuDAO.actualizarRegistro()) {
-
-                    request.setAttribute("mensajeExito", "El usuario se actualizo correctamente!");
-
+                    out1.println("<label class='text-success text-center'><b>El usuario se ha actualizado Correctamente</b></label>");
                 } else {
-
-                    request.setAttribute("mensajeExito", "El usuario no se actualizo correctamente!");
+                    out1.println("<label class='text-danger text-center'><b>Error al Actualizar </b></label>");
                 }
-                request.getRequestDispatcher("actualizarUsuarios.jsp").forward(request, response);
                 break;
-
-            case 3:
+            case 3://eliminar
 
                 if (usuDAO.eliminarRegistro()) {
 
-                    request.setAttribute("mensajeExito", "El usuario se elimino correctamente!");
-                    request.getRequestDispatcher("consultarUsuarios.jsp").forward(request, response);
+                    out1.println("<label class='text-success text-center'><b>El usuario se ha eliminado Correctamente</b></label>");
 
                 } else {
-
-                    request.setAttribute("mensajeExito", "El usuario no se elimino correctamente!");
+                    out1.println("<label class='text-danger text-center'><b>Error al Eliminar </b></label>");
                 }
-                request.getRequestDispatcher("menu.jsp").forward(request, response);
                 break;
 
             case 4:
@@ -322,42 +315,20 @@ public class UsuariosControlador extends HttpServlet {
                 }
                 break;
             case 11:
+                Part archivocsv = request.getPart("archivocsv");
                 AdministrarArchivos adminFiles = new AdministrarArchivos();
                 String rutaAbsoluta = adminFiles.guardarArchivo(archivocsv, adminFiles.validarRuta());
                 try {
                     if (usuDao.cargarUsuarios(rutaAbsoluta) == true) {
-                        request.setAttribute("mensaje", "La carga se hizo correactamente");
-                        request.getRequestDispatcher("consultarUsuarios.jsp").forward(request, response);
+                        out1.println("<label class='text-success'><b>La carga de Usuarios se hizo Correctamente</B></label>");
                     } else {
-                        request.setAttribute("mensaje", "Error");
-                        request.getRequestDispatcher("consultarUsuarios.jsp").forward(request, response);
+                        out1.println("<label class='text-danger'><b>Error en la carga de Usuarios</b></label>");
                     }
-
                 } catch (SQLException e) {
-                }
-                request.getRequestDispatcher("cargarCSV.jsp").forward(request, response);
-                break;
-            case 12:
-                if (usuDAO.ActivarRegistro()) {
-                    request.setAttribute("mensajeExito", "El usuario se activo correctamente!");
-                    request.getRequestDispatcher("eliminarUsuarios.jsp").forward(request, response);
-                } else {
-                    request.setAttribute("mensajeExito", "El usuario no se activo correctamente!");
-                    request.getRequestDispatcher("eliminarUsuarios.jsp").forward(request, response);
-                }
-                request.getRequestDispatcher("menu.jsp").forward(request, response);
-                break;
-            case 13:
-                if (usuDAO.eliminarRegistroTotal()) {
-                    request.setAttribute("mensajeExito", "El usuario se elimino correctamente!");
-                    request.getRequestDispatcher("eliminarUsuarios.jsp").forward(request, response);
-                } else {
-                    request.setAttribute("mensajeExito", "El usuario no se elimino correctamente!");
-                    request.getRequestDispatcher("eliminarUsuarios.jsp").forward(request, response);
-                }
-                request.getRequestDispatcher("menu.jsp").forward(request, response);
-                break;
+                    out1.println("<label class='text-danger'><b>Error en la carga de Usuarios "+e+"</b></label>");
 
+                }
+                break;
         }
     }
 

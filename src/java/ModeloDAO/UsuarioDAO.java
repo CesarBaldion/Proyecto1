@@ -91,7 +91,7 @@ public class UsuarioDAO extends Conexion implements Crud {
     public boolean agregarRegistro() {
         try {
             //Armar sentencia
-            sql = "insert into usuarios( Nombre, Tipo_documento, Documento, Telefono, Email, Direccion, Ciudad, Contrasena)"
+            sql = "insert into usuarios( Nombre, `Tipo de documento`, Documento, Telefono, Email, Direccion, Ciudad, Contrasena)"
                     + "values (?,?,?,?,?,?,?,?)";
             // crear el camino por donde va la sentencia
             puente = conexion.prepareStatement(sql);
@@ -126,8 +126,8 @@ public class UsuarioDAO extends Conexion implements Crud {
     public boolean actualizarRegistro() {
 
         try {
-            sql = " update usuarios set Nombre = ?, Tipo_documento = ?, Documento = ?, Telefono = ?, Email = ?"
-                    + ", Direccion = ?, Ciudad = ?, Estado = ?, Contrasena = ? where id_Usuarios = ? ";
+            sql = " update usuarios set Nombre = ?, `Tipo de documento` = ?, Documento = ?, Telefono = ?, Email = ?"
+                    + ", Direccion = ?, Ciudad = ? where id_Usuarios = ? ";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Nombre);
             puente.setString(2, Tipo_Documento);
@@ -136,9 +136,7 @@ public class UsuarioDAO extends Conexion implements Crud {
             puente.setString(5, Email);
             puente.setString(6, Direccion);
             puente.setString(7, Ciudad);
-            puente.setString(8, Estado);
-            puente.setString(9, Contrasena);
-            puente.setString(10, Id_Usuarios);
+            puente.setString(8, Id_Usuarios);
             puente.executeUpdate();
             operacion = true;
 
@@ -155,6 +153,7 @@ public class UsuarioDAO extends Conexion implements Crud {
         }
         return operacion;
     }
+    
 
     @Override
     public boolean eliminarRegistro() {
@@ -580,8 +579,8 @@ public class UsuarioDAO extends Conexion implements Crud {
     public boolean cargarUsuarios(String rutaAbsoluta) throws SQLException, IOException {
 
         try {
-            sql = "insert into usuarios( Nombre, tipo_documento, Documento, Telefono, Email, Direccion, Contrasena)"
-                    + "values (?,?,?,?,?,?,?)";
+            sql = "insert into usuarios( Nombre, `Tipo de documento`, Documento, Direccion, Ciudad, Telefono, Email, Contrasena)"
+                    + "values (?,?,?,?,?,?,?,?)";
             conexion = obtenerConexion();
             FileInputStream file = new FileInputStream(new File(rutaAbsoluta));
 
@@ -592,15 +591,15 @@ public class UsuarioDAO extends Conexion implements Crud {
 
             for (int a = 1; a <= numFilas; a++) {
                 Row fila = sheet.getRow(a);
-
                 puente = conexion.prepareStatement(sql);
                 puente.setString(1, dataFormater.formatCellValue(fila.getCell(0)));
                 puente.setString(2, dataFormater.formatCellValue(fila.getCell(1)));
-                puente.setString(2, dataFormater.formatCellValue(fila.getCell(2)));
-                puente.setString(3, dataFormater.formatCellValue(fila.getCell(3)));
-                puente.setString(4, dataFormater.formatCellValue(fila.getCell(4)));
-                puente.setString(5, dataFormater.formatCellValue(fila.getCell(5)));
-                puente.setString(6, dataFormater.formatCellValue(fila.getCell(6)));
+                puente.setString(3, dataFormater.formatCellValue(fila.getCell(2)));
+                puente.setString(4, dataFormater.formatCellValue(fila.getCell(3)));
+                puente.setString(5, dataFormater.formatCellValue(fila.getCell(4)));
+                puente.setString(6, dataFormater.formatCellValue(fila.getCell(5)));
+                puente.setString(7, dataFormater.formatCellValue(fila.getCell(6)));
+                puente.setString(8, dataFormater.formatCellValue(fila.getCell(7)));
                 puente.execute();
             }
             File buscarArchivo = new File(rutaAbsoluta);
@@ -613,50 +612,6 @@ public class UsuarioDAO extends Conexion implements Crud {
         }
         return operacion;
     }
-    public boolean ActivarRegistro() {
-
-        try {
-            sql = "UPDATE `usuarios` SET `Estado`= 1 WHERE Id_usuarios = ?";
-            puente = conexion.prepareStatement(sql);
-            puente.setString(1, Id_Usuarios);
-            puente.executeUpdate();
-            operacion = true;
-            
-        } catch (SQLException e) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
-
-            try {
-                this.cerrarConexion();
-
-            } catch (SQLException e) {
-                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
-            }
-        }
-        return operacion;
-    }
     
-    public boolean eliminarRegistroTotal() {
-
-        try {
-            sql = "delete from `usuarios` WHERE Id_usuarios = ?";
-            puente = conexion.prepareStatement(sql);
-            puente.setString(1, Id_Usuarios);
-            puente.executeUpdate();
-            operacion = true;
-            
-        } catch (SQLException e) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
-
-            try {
-                this.cerrarConexion();
-
-            } catch (SQLException e) {
-                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
-            }
-        }
-        return operacion;
-    }
 
 }

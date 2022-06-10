@@ -47,6 +47,7 @@
                 txtId: idVar,
         }, function (responseText) {
         $('#responseEdit').html(responseText);
+        $("#actualizarTBody").load(" #actualizarTBody");
         });
         });
         
@@ -62,6 +63,7 @@
                 txtId: idVar,
         }, function (responseText) {
         $('#responseDel').html(responseText);
+        $("#actualizarTBody").load(" #actualizarTBody");
         });
         });
         
@@ -79,8 +81,9 @@
                 contentType: false,
 	     processData: false
             }).done(function(res){
-                    $("#mensaje").html("Respuesta: " + res);
-                });
+                $("#mensaje").html("Respuesta: " + res);
+                $("#actualizarTBody").load(" #actualizarTBody");
+            });
         });
         
         

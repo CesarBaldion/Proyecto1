@@ -16,7 +16,9 @@ public class UsuarioVO {
     private String Id_Usuarios, Nombre, Tipo_Documento, Documento, Telefono, Email, Direccion, Ciudad,
             Estado, Contrasena;
 
-       public UsuarioVO(String Id_Usuarios, String Nombre, String Tipo_Documento, String Documento, String Telefono, String Email, String Direccion, String Ciudad, String Estado, String Contrasena) {
+       public UsuarioVO(String Id_Usuarios, String Nombre, String Tipo_Documento, 
+               String Documento, String Direccion , String Ciudad, String Telefono, 
+               String Email, String Contrasena, String Estado) {
         this.Id_Usuarios = Id_Usuarios;
         this.Nombre = Nombre;
         this.Tipo_Documento = Tipo_Documento;
