@@ -42,7 +42,7 @@ public class LoteProduccionControlador extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        ServletOutputStream out1 = response.getOutputStream();
         response.setContentType("text/html;charset=UTF-8");
         String id_loteProduccion = request.getParameter("txtid_loteProduccion");
         String cantidad = request.getParameter("txtcantidad");
@@ -68,41 +68,30 @@ public class LoteProduccionControlador extends HttpServlet {
             case 1: //Agregar registro
 
                 if (ltProducDAO.agregarRegistro()) {
-
-                    request.setAttribute("mensajeExito", "El lote de Produccion se registró correctamente!");
-
+                    out1.println("<label class='text-success'><b>El Lote de Produccion se ha registrado Correctamente</b></label>");
                 } else {
 
-                    request.setAttribute("mensajeError", "El lote de Produccion no se registró correctamente");
+                    out1.println("<label class='text-danger'><b>Error al Registrar Lote de Produccion</b></label>");
                 }
-                request.getRequestDispatcher("registrarLoteProduccion.jsp").forward(request, response);
                 break;
 
             case 2:
 
                 if (ltProducDAO.actualizarRegistro()) {
-
-                    request.setAttribute("mensajeExito", "El lote de Produccion se actualizo correctamente!");
-
+                    out1.println("<label class='text-success'><b>El Lote de Produccion se ha Actualizado Correctamente</b></label>");
                 } else {
 
-                    request.setAttribute("mensajeError", "El lote de Produccion no se actualizo correctamente!");
+                    out1.println("<label class='text-danger'><b>Error al Actualizar Lote de Produccion</b></label>");
                 }
-                request.getRequestDispatcher("actualizarLoteProduccion.jsp").forward(request, response);
                 break;
 
             case 3:
 
                 if (ltProducDAO.eliminarRegistro()) {
-
-                    request.setAttribute("mensajeExito", "El lote de Produccion se elimino correctamente!");
-                    request.getRequestDispatcher("consultarLoteProduccion.jsp").forward(request, response);
-
+                    out1.println("<label class='text-success'><b>El Lote de Produccion se ha Eliminado Correctamente</b></label>");
                 } else {
-
-                    request.setAttribute("mensajeError", "El lote de Produccion no se elimino correctamente!");
+                    out1.println("<label class='text-danger'><b>Error al Eliminar el Lote de Produccion</b></label>");
                 }
-                request.getRequestDispatcher("menu.jsp").forward(request, response);
                 break;
 
             case 4: //Consultar por Orden
@@ -149,7 +138,7 @@ public class LoteProduccionControlador extends HttpServlet {
                 }
                 request.getRequestDispatcher("menu.jsp").forward(request, response);
                 break;
-                
+
             case 10:
                 response.setHeader("Content-Disposition", "attachment; filename=\"reporteLoteProduccion.pdf\";");
                 response.setHeader("Cache-Control", "no-cache");
