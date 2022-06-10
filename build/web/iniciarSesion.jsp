@@ -81,7 +81,7 @@
                     </div>          
                 </form>
             </div>
-                    
+
             <!-- INICIAR SESION-->
             <div class="container b-container col-md-8" id="b-container">
                 <form class="form" id="b-form" method="post" action="Usuarios" enctype="multipart/form-data">
@@ -119,8 +119,6 @@
                 </div>
             </div>
         </div>
-
-
-        <script src="js/iniciarSesionRegistro.js"></script>
+        <script src="js/ScriptsIniciarSesion/iniciarSesionRegistro.js"></script>
     </body>
 </html>

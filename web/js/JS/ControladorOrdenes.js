@@ -17,7 +17,7 @@
             document.getElementById("opcionDetallesProEdit").value = this.dataset.id3;
             document.getElementById("opcionOrdenEdit").innerText = this.dataset.id2;
             document.getElementById("opcionOrdenEdit").value = this.dataset.id2;
-            $("#editarProductoModal").modal("show");
+            $("#editarOrdenModal").modal("show");
         });
 
         //Accionar ventana modal para Eliminar
@@ -28,7 +28,7 @@
             document.getElementById('idOrdenDel').innerText = this.dataset.id6;
             document.getElementById('idOrdenDetallesDel').innerText = this.dataset.id7;
             document.getElementById('CantidadDel').innerText = this.dataset.id8;
-            $("#eliminarProductoModal").modal("show");
+            $("#eliminarOrdenModal").modal("show");
         });
 
         //Actualizar tabla

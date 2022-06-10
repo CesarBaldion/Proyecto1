@@ -6,13 +6,6 @@
 
 <%@page import="ModeloVO.UsuarioVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% HttpSession buscarSesion = (HttpSession) request.getSession();
-    UsuarioVO usuVO = new UsuarioVO();
-    if (buscarSesion.getAttribute("datosUsuario") == null) {
-        usuVO = null;
-    } else {
-        usuVO = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
-    }%> 
 <!DOCTYPE html>
 <html>
     <head>
@@ -124,8 +117,6 @@
             </div> <!-- end of container -->
         </nav> <!-- end of navbar -->
         <!-- end of navigation -->
-
-
         <!-- Header -->
         <header id="header" class="header">
             <div class="header-content">
@@ -137,7 +128,7 @@
                                 <p class="p-large">
                                     Permite la organización de insumos para la fabricación y la actualización constante de materia prima en el inventario
                                 </p>
-                                <a class="btn-solid-lg page-scroll" href="registrarUsuario.jsp">REGISTRO</a>
+                                <a class="btn-solid-lg page-scroll" href="iniciarSesion.jsp">REGISTRO</a>
                             </div> <!-- end of text-container -->
                         </div> <!-- end of col -->
                         <div class="col-lg-6 col-xl-7">
@@ -581,13 +572,13 @@
 
 
         <!-- Scripts -->
-        <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
-        <script src="js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
-        <script src="js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
-        <script src="js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
-        <script src="js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
-        <script src="js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
-        <script src="js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
-        <script src="js/scripts.js"></script> <!-- Custom scripts -->
+        <script src="js/ScriptsIndex/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+        <script src="js/ScriptsIndex/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
+        <script src="js/ScriptsIndex/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+        <script src="js/ScriptsIndex/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+        <script src="js/ScriptsIndex/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
+        <script src="js/ScriptsIndex/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
+        <script src="js/ScriptsIndex/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
+        <script src="js/ScriptsIndex/scripts.js"></script> <!-- Custom scripts -->
     </body>
 </html>
