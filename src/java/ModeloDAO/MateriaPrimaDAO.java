@@ -66,10 +66,11 @@ public class MateriaPrimaDAO extends Conexion implements Crud {
     public boolean agregarRegistro() {
         try {
             //Armar sentencia
-            sql = "insert into materia_prima(Nombre)values (?)";
+            sql = "insert into materia_prima(Nombre,Actualizacion)values (?,?)";
             // crear el camino por donde va la sentencia
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Nombre);
+            puente.setString(2,"0");
             puente.executeUpdate();
             operacion = true;
 
@@ -171,7 +172,7 @@ public class MateriaPrimaDAO extends Conexion implements Crud {
 
     }
 
-    public ArrayList<MateriaPrimaVO> Listar() {
+    public ArrayList<MateriaPrimaVO> ListarCalculo() {
 
         ArrayList<MateriaPrimaVO> listaMateriaPrima = new ArrayList<>();
         try {
@@ -207,7 +208,7 @@ public class MateriaPrimaDAO extends Conexion implements Crud {
 
     }
 
-    public ArrayList<MateriaPrimaVO> ListarDos() {
+    public ArrayList<MateriaPrimaVO> Listar() {
 
         ArrayList<MateriaPrimaVO> listaMateriaPrima = new ArrayList<>();
         try {
@@ -246,7 +247,7 @@ public class MateriaPrimaDAO extends Conexion implements Crud {
         MateriaPrimaVO mpVO = null;
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from materia_prima where Nombre = ?";
+            sql = "select * from materia_prima where Nombre = ? and Estado = 1";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Nombre);
             mensajero = puente.executeQuery();
@@ -269,7 +270,7 @@ public class MateriaPrimaDAO extends Conexion implements Crud {
 
     }
 
-    public ArrayList<MateriaPrimaVO> ListarTres() {
+    public ArrayList<MateriaPrimaVO> ListarDos() {
 
         ArrayList<MateriaPrimaVO> listaMateriaPrima = new ArrayList<>();
         try {
@@ -346,10 +347,10 @@ public class MateriaPrimaDAO extends Conexion implements Crud {
         return operacion;
     }
 
-    public void cargarMateriasPrimas(String rutaAbsoluta) throws SQLException, IOException {
-
+    public boolean cargarMateriasPrimas(String rutaAbsoluta) throws SQLException, IOException {
+        boolean accion = false;
         try {
-            sql = "insert into materia_prima(Nombre, Estado)values (?,?)";
+            sql = "insert into materia_prima(Nombre,Actualizacion)values (?,?)";
             conexion = this.obtenerConexion();
             FileInputStream file = new FileInputStream(new File(rutaAbsoluta));
 
@@ -362,9 +363,10 @@ public class MateriaPrimaDAO extends Conexion implements Crud {
                 Row fila = sheet.getRow(a);
                 puente = conexion.prepareStatement(sql);
                 puente.setString(1, dataFormater.formatCellValue(fila.getCell(0)));
-                puente.setString(2, "1");
+                puente.setString(2,"0");
                 puente.executeUpdate();
             }
+            accion = true;
             File Archivo = new File(rutaAbsoluta);
             Archivo.delete();
             this.cerrarConexion();
@@ -372,6 +374,7 @@ public class MateriaPrimaDAO extends Conexion implements Crud {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return accion;
     }
 
 }

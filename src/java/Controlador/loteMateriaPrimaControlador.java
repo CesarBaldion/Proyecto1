@@ -42,6 +42,7 @@ public class loteMateriaPrimaControlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        ServletOutputStream out1 = response.getOutputStream();
 
         String IdLoteMateriaPrima = request.getParameter("txtIdLoteMateriaPrima");
         String IdMateriaPrima = request.getParameter("txtIdMateriaPrima");
@@ -66,40 +67,35 @@ public class loteMateriaPrimaControlador extends HttpServlet {
 
                 if (loteMPDAO.agregarRegistro()) {
 
-                    request.setAttribute("mensajeExito", "El lote de materia prima se registro correctamente!");
-
+                    out1.println("<label class='text-success'><b>Se ha registrado correctamente El lote de Materia Prima</b></label>");
                 } else {
 
-                    request.setAttribute("mensajeError", "No se pudo registrar");
+                    out1.println("<label class='text-danger'><b>Error al registrar El lote de Materia Prima</b></label>");
                 }
-                request.getRequestDispatcher("registrarLoteMateriaPrima.jsp").forward(request, response);
                 break;
 
             case 2:
 
                 if (loteMPDAO.actualizarRegistro()) {
 
-                    request.setAttribute("mensajeExito", "El lote de materia prima se actualizo correctamente!");
+                    out1.println("<label class='text-success'><b>Se ha actualizado correctamente El lote de Materia Prima</b></label>");
 
                 } else {
 
-                    request.setAttribute("mensajeError", "No se pudo actualizar.");
+                    out1.println("<label class='text-danger'><b>Error al actualizar El lote de Materia Prima</b></label>");
                 }
-                request.getRequestDispatcher("actualizarLoteMateriaPrima.jsp").forward(request, response);
                 break;
 
             case 3:
 
                 if (loteMPDAO.eliminarRegistro()) {
 
-                    request.setAttribute("mensajeExito", "El lote de materia prima se elimino correctamente!");
-                    request.getRequestDispatcher("consultarLoteMateriaPrima.jsp").forward(request, response);
+                    out1.println("<label class='text-success'><b>Se ha Eliminado correctamente El lote de Materia Prima</b></label>");
 
                 } else {
 
-                    request.setAttribute("mensajeError", "No se pudo eliminar");
+                    out1.println("<label class='text-danger'><b>Error al Eliminar El lote de Materia Prima</b></label>");
                 }
-                request.getRequestDispatcher("menu.jsp").forward(request, response);
                 break;
 
             case 4: //Consultar por lote

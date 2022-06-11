@@ -48,17 +48,17 @@ public class MateriaPrimaControlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        ServletOutputStream out1 = response.getOutputStream();
 
         String Id_materia_Prima = request.getParameter("txtIdMateriaPrima");
         String Nombre = request.getParameter("txtNombre");
         String Actualizacion = request.getParameter("txtActualizacion");
         String Estado = request.getParameter("txtEstado");
         String reporteOpcion = request.getParameter("txtreporte");
-        Part archivocsv = request.getPart("archivocsv");
         if (Actualizacion == null) {
             Actualizacion = "0";
         }
-        
+
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         // 2. Quien tiene los datos de forma segura en el sistema? VO
         MateriaPrimaVO matPriVO = new MateriaPrimaVO(Id_materia_Prima, Nombre, Actualizacion, Estado);
@@ -69,49 +69,31 @@ public class MateriaPrimaControlador extends HttpServlet {
 
             case 1: //Agregar registro
 
-                 if (matPriDAO.verificarMateriaPrima(Nombre) == false) {
+                if (matPriDAO.verificarMateriaPrima(Nombre) == false) {
                     if (matPriDAO.agregarRegistro() == true) {
-
-                         request.setAttribute("mensajeExito", "La materia prima se registró correctamente!");
-                        request.getRequestDispatcher("materiaPrima.jsp").forward(request, response);
-                    
-
-               } else {
-                        request.setAttribute("mensajeError", "La materia prima no se registro correctamente!");
-                        request.getRequestDispatcher("materiaPrima.jsp").forward(request, response);
+                        out1.println("<label class='text-success'><b>Se ha registrado Correctamente la Materia Prima</b></label>");
+                    } else {
+                        out1.println("<label class='text-danger'><b>Error al registrar la Materia Prima</b></label>");
                     }
                 } else {
-                    request.setAttribute("error", "La materia Prima ya existe");
-                    request.getRequestDispatcher("materiaPrima.jsp").forward(request, response);
+                    out1.println("<label class='text-danger'><b>Ya Existe la Materia Prima</b></label>");
                 }
-
                 break;
 
             case 2:
-                
-                Id_materia_Prima = request.getParameter("txtIdMateriaPrima");
-                
-
                 if (matPriDAO.actualizarRegistro()) {
-
-                    request.setAttribute("mensajeExito", "La materia prima se actualizó correctamente!");
-
+                    out1.println("<label class='text-success'><b>Se ha Actualizado Correctamente la Materia Prima</b></label>");
                 } else {
-
-                    request.setAttribute("mensajeError", "La materia prima no se actualizó correctamente!");
+                    out1.println("<label class='text-danger'><b>Error al Actualizar  la Materia Prima</b></label>");
                 }
-                request.getRequestDispatcher("materiaPrima.jsp").forward(request, response);
                 break;
 
             case 3:
 
                 if (matPriDAO.eliminarRegistro()) {
-                    request.setAttribute("mensajeExito", "La materia prima se elimino correctamente!");
-                    request.getRequestDispatcher("materiaPrima.jsp").forward(request, response);
-
+                    out1.println("<label class='text-success'><b>Se ha Eliminado Correctamente la Materia Prima</b></label>");
                 } else {
-
-                    request.setAttribute("mensajeError", "La materia prima no se eliminó correctamente!");
+                    out1.println("<label class='text-danger'><b>Error al Eliminar  la Materia Prima</b></label>");
                 }
 
                 break;
@@ -119,7 +101,7 @@ public class MateriaPrimaControlador extends HttpServlet {
             case 4: //Consultar por Ordens
 
                 matPriVO = matPriDAO.consultarIdMateriaPrima(Id_materia_Prima);
-                
+
                 if (matPriVO != null) {
 
                     request.setAttribute("MateriaPrimaConsultada", matPriVO);
@@ -154,7 +136,7 @@ public class MateriaPrimaControlador extends HttpServlet {
                 }
 
                 break;
-                case 7:
+            case 7:
 
                 if (matPriDAO.ActivarRegistro()) {
                     request.setAttribute("mensajeExito", "La materia prima se activo correctamente!");
@@ -166,8 +148,8 @@ public class MateriaPrimaControlador extends HttpServlet {
                 }
 
                 break;
-                
-                case 8:
+
+            case 8:
 
                 if (matPriDAO.EliminarRegistroTotal()) {
                     request.setAttribute("mensajeExito", "La materia prima se elimino correctamente!");
@@ -225,15 +207,20 @@ public class MateriaPrimaControlador extends HttpServlet {
                 }
 
                 break;
-                case 11:
+            case 11:
+                Part archivocsv = request.getPart("archivocsv");
+
                 AdministrarArchivos adminFiles = new AdministrarArchivos();
                 String rutaAbsoluta = adminFiles.guardarArchivo(archivocsv, adminFiles.validarRuta());
                 try {
-                    matPriDAO.cargarMateriasPrimas(rutaAbsoluta);
-                    
+                    boolean validacionAccion = matPriDAO.cargarMateriasPrimas(rutaAbsoluta);
+                    if (validacionAccion == true) {
+                        out1.println("<label class='text-success'><b>La carga Masiva se ha realizado Exitosamente</b></label>");
+                    } else {
+                        out1.println("<label class='text-danger'><b>Error en la carga Masiva</b></label>");
+                    }
                 } catch (SQLException e) {
                 }
-                request.getRequestDispatcher("consultarMateriaPrima.jsp").forward(request, response);
                 break;
         }
     }
