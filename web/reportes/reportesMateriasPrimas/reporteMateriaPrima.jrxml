@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="18a0f5a2-4cab-4458-828c-895404af05f1">
-	<property name="ireport.zoom" value="1.2100000000000206"/>
+	<property name="ireport.zoom" value="0.7513148009015924"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
-		<![CDATA[select * from materia_prima]]>
+		<![CDATA[select * from materia_prima where estado = 1]]>
 	</queryString>
 	<field name="Id_materia_Prima" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -22,55 +22,77 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="91" splitType="Stretch"/>
+		<band height="91" splitType="Stretch">
+			<image>
+				<reportElement x="130" y="12" width="373" height="66" uuid="0a96cd97-2ac4-41cc-bf1d-2f0c84469c29"/>
+				<imageExpression><![CDATA["C:\\Users\\1Usuario\\Desktop\\Github\\Proyecto1\\web\\reportes\\Untitled-1.jpg"]]></imageExpression>
+			</image>
+		</band>
 	</title>
-	<detail>
-		<band height="70" splitType="Stretch">
-			<rectangle>
-				<reportElement x="327" y="6" width="107" height="50" uuid="5c190290-fd3a-4f06-92ee-0ae75937d73d"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="118" y="6" width="210" height="50" uuid="e46a66b3-72de-44ae-918c-08659262161d"/>
-			</rectangle>
-			<line>
-				<reportElement x="118" y="29" width="210" height="1" uuid="b3d21dc0-8238-4853-aa7d-db6798647b25"/>
-			</line>
-			<line>
-				<reportElement x="224" y="6" width="1" height="50" uuid="0a2dcf35-b447-4d96-8d45-0cdfd08f1c5d"/>
-			</line>
-			<line>
-				<reportElement x="328" y="29" width="106" height="1" uuid="af1e49f5-f737-4b20-9d46-bb1057138f5b"/>
-			</line>
+	<pageHeader>
+		<band height="50">
 			<staticText>
-				<reportElement x="121" y="8" width="100" height="20" uuid="807ab8c9-faf2-4494-bb86-958f94e1ddbe"/>
+				<reportElement x="201" y="16" width="147" height="20" uuid="c5a1d1bc-9f5b-4794-b97a-3d9c2a756a11"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Narrow" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte Materia Prima]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61">
+			<staticText>
+				<reportElement x="176" y="40" width="100" height="20" uuid="f675056d-3340-4619-b860-f08bd36f34da"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[Id_materia_Prima]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="121" y="33" width="100" height="20" uuid="653cd69a-5db4-44c5-9a7e-e3ce2cbaa409"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{Id_materia_Prima}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="227" y="9" width="100" height="20" uuid="b11fe6bb-7266-4e6d-bdfe-97a8707cec6f"/>
+				<reportElement x="276" y="40" width="100" height="20" uuid="2faedf54-aded-4eb0-b842-58f8e0122bf3"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
+			<line>
+				<reportElement x="177" y="40" width="200" height="1" uuid="a32fd107-581c-4a54-a49f-246a82581966"/>
+			</line>
+			<line>
+				<reportElement x="376" y="40" width="1" height="20" uuid="fa823418-28fe-4643-a8f8-3f52640dfcdd"/>
+			</line>
+			<line>
+				<reportElement x="277" y="40" width="1" height="20" uuid="1a8ad3a5-5398-41c6-b616-e9b9586c0ea3"/>
+			</line>
+			<line>
+				<reportElement x="177" y="41" width="1" height="20" uuid="7d434f76-1c1a-4cbc-9a7b-caf265a62d0c"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement x="227" y="33" width="100" height="20" uuid="cd7305f9-37cc-49fa-b015-55eb9fa3c0a6"/>
+				<reportElement x="177" y="-1" width="100" height="20" uuid="1f8c9b11-2fd4-498d-acb7-278ee62cfbc2"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Id_materia_Prima}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="277" y="-1" width="100" height="20" uuid="f8e9cc3c-b8be-4df2-a4fc-0b8555e4086e"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="331" y="9" width="100" height="20" uuid="269df77b-d915-483d-854b-da7a57ad2171"/>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[Estado]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="332" y="33" width="100" height="20" uuid="ccc70b63-172d-490f-b0d4-89afe3fd71fb"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{Estado}]]></textFieldExpression>
-			</textField>
+			<line>
+				<reportElement x="176" y="19" width="200" height="1" uuid="bc85af6c-51b5-4861-be20-e0c2447433b9"/>
+			</line>
+			<line>
+				<reportElement x="376" y="0" width="1" height="20" uuid="912794b0-63b8-4889-97e2-0555732fff2d"/>
+			</line>
+			<line>
+				<reportElement x="277" y="0" width="1" height="20" uuid="55781f3f-0363-4e38-b590-506604709fff"/>
+			</line>
+			<line>
+				<reportElement x="177" y="0" width="1" height="20" uuid="1292e42b-77b7-4189-bf43-8759ef24949b"/>
+			</line>
+			<line>
+				<reportElement x="175" y="0" width="200" height="1" uuid="f14c09d7-d6df-4f9e-b7f4-fb0ec87bd17c"/>
+			</line>
 		</band>
 	</detail>
 	<pageFooter>
