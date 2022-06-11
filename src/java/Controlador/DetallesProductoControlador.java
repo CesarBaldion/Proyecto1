@@ -54,10 +54,10 @@ public class DetallesProductoControlador extends HttpServlet {
         
         String Id_Detalles_Producto = request.getParameter("txtIdDetallesProducto");
         String Id_Producto = request.getParameter("txtIdProducto");
+         String Talla = request.getParameter("txtTalla");
         String Descripcion = request.getParameter("txtDescripcion");
-        String Talla = request.getParameter("txtTalla");
         String Estado = request.getParameter("txtEstado");
-        Part archivocsv = request.getPart("archivocsv");
+        
 
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         // 2. Quien tiene los datos de forma segura en el sistema? VO
@@ -83,21 +83,17 @@ public class DetallesProductoControlador extends HttpServlet {
                 if (detProDAO.actualizarRegistro()) {
                     out1.println("<label class='text-success'><b>Se ha actualizado Correctamente</b></label>");
                 } else {
-                    out1.println("<label class='text-danger'><b>Error al Registrar</b></label>");;
+                    out1.println("<label class='text-danger'><b>Error al actualizar</b></label>");
                 }
                 break;
             case 3:
 
                 if (detProDAO.eliminarRegistro()) {
 
-                    request.setAttribute("mensajeExito", "Los detalles de la orden se eliminaron correctamente!");
-                    request.getRequestDispatcher("consultarDetallesProducto.jsp").forward(request, response);
-
+                   out1.println("<label class='text-success'><b>Se ha eliminado Correctamente</b></label>");
                 } else {
-
-                    request.setAttribute("mensajeError", "Los detalles de la orden no se eliminaron correctamente!");
+                    out1.println("<label class='text-danger'><b>Error al eliminar</b></label>");
                 }
-                request.getRequestDispatcher("menu.jsp").forward(request, response);
                 break;
 
             case 4: //Consultar por DetallesProducto
@@ -169,6 +165,8 @@ public class DetallesProductoControlador extends HttpServlet {
                 break;
                 
             case 11:
+                Part archivocsv = request.getPart("archivocsv");
+                
                 AdministrarArchivos adminFiles = new AdministrarArchivos();
                 String rutaAbsoluta = adminFiles.guardarArchivo(archivocsv, adminFiles.validarRuta());
                 try {
