@@ -57,7 +57,6 @@ public class DetallesProductoControlador extends HttpServlet {
         String Descripcion = request.getParameter("txtDescripcion");
         String Talla = request.getParameter("txtTalla");
         String Estado = request.getParameter("txtEstado");
-        Part archivocsv = request.getPart("archivocsv");
 
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         // 2. Quien tiene los datos de forma segura en el sistema? VO
@@ -169,6 +168,7 @@ public class DetallesProductoControlador extends HttpServlet {
                 break;
                 
             case 11:
+                Part archivocsv = request.getPart("");
                 AdministrarArchivos adminFiles = new AdministrarArchivos();
                 String rutaAbsoluta = adminFiles.guardarArchivo(archivocsv, adminFiles.validarRuta());
                 try {

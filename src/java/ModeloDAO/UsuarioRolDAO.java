@@ -59,7 +59,7 @@ public class UsuarioRolDAO extends Conexion implements Crud {
             puente = conexion.prepareStatement(sql);
             puente.setString(1, id_Rol);
             puente.setString(2, id_Usuarios);
-            puente.setString(3, estado);
+            puente.setString(3, "1");
             puente.executeUpdate();
             operacion = true;
 
@@ -81,15 +81,15 @@ public class UsuarioRolDAO extends Conexion implements Crud {
     public boolean actualizarRegistro() {
         try {
             
-            sql= "update usuario_rol set Id_Rol = ?, Estado = ? where Id_Usuarios = ?";
+            sql= "update usuario_rol set Id_Rol = ? where Id_Usuarios = ?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, id_Rol);
-            puente.setString(2, estado);
-            puente.setString(3, id_Usuarios);
+            puente.setString(2, id_Usuarios);
             puente.executeUpdate();
             operacion = true;
         } catch (Exception e) {
             Logger.getLogger(UsuarioRolDAO.class.getName()).log(Level.SEVERE,null,e);
+            operacion = false;
         }finally{
             try{
                 this.cerrarConexion();
@@ -102,7 +102,24 @@ public class UsuarioRolDAO extends Conexion implements Crud {
 
     @Override
     public boolean eliminarRegistro() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            
+            sql= "update usuario_rol set estado = 0 where Id_Usuarios = ?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, id_Usuarios);
+            puente.executeUpdate();
+            operacion = true;
+        } catch (Exception e) {
+            Logger.getLogger(UsuarioRolDAO.class.getName()).log(Level.SEVERE,null,e);
+            operacion = false;
+        }finally{
+            try{
+                this.cerrarConexion();
+            }catch (Exception e){
+                Logger.getLogger(UsuarioRolDAO.class.getName()).log(Level.SEVERE,null,e);
+            }
+        }
+        return operacion;
     }
     
     public Usuario_rolVO consultarRol(String id_Usuarios){
@@ -133,7 +150,7 @@ public class UsuarioRolDAO extends Conexion implements Crud {
         ArrayList<Usuario_rolVO> listaUsuarioRol = new ArrayList();
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from UsuarioRolView";
+            sql = "select * from usuario_rol where estado = 1";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
             
