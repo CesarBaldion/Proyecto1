@@ -105,9 +105,9 @@
                             </tbody>
                         </table>
                     </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
         <%--Modal Añadir una sola Orden--%>
         <div class="modal fade" id="modalAñadirOrden" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

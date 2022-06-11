@@ -43,6 +43,9 @@ public class UsuarioRolControlador extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        ServletOutputStream out1 = response.getOutputStream();
+
         response.setContentType("text/html;charset=UTF-8");
         String id_Rol = request.getParameter("txtIdRol");
         String id_Usuarios = request.getParameter("txtIdUsu");
@@ -63,41 +66,34 @@ public class UsuarioRolControlador extends HttpServlet {
 
                 if (uRDAO.agregarRegistro()) {
 
-                    request.setAttribute("bien", "El rol se registro correctamente!");
-                    request.getRequestDispatcher("consultarUsuarioRol.jsp").forward(request, response);
-
+                    out1.println("<label><b>El Usuario Rol se ha registrado Correctamente</b><label>");
                 } else {
+                    out1.println("<label><b>El Usuario Rol se ha registrado Correctamente</b><label>");
 
-                    request.setAttribute("error", "El rol no se registro correctamente");
-                    request.getRequestDispatcher("registrarRol.jsp").forward(request, response);
                 }
-
                 break;
 
             case 2:
 
                 if (uRDAO.actualizarRegistro()) {
 
-                    request.setAttribute("mensajeExito", "El rol se actualizo correctamente!");
-
+                    out1.println("<label class='text-success'><b>El Usuario Rol se ha Actualizado Correctamente</b><label>");
                 } else {
+                    out1.println("<label class='text-danger'><b>Error al Actualizar El Usuario Rol</b><label>");
 
-                    request.setAttribute("mensajeExito", "El rol no se actualizo correctamente!");
                 }
-                request.getRequestDispatcher("actualizarRol.jsp").forward(request, response);
                 break;
 
             case 3:
 
                 if (uRDAO.eliminarRegistro()) {
 
-                    request.setAttribute("mensajeExito", "El rol se elimino correctamente!");
+                    out1.println("<label class='text-success'><b>El Usuario Rol se ha Eliminado Correctamente</b><label>");
 
                 } else {
 
-                    request.setAttribute("mensajeExito", "El rol no se elimino correctamente!");
+                    out1.println("<label class='text-danger'><b>Error al Eliminar El Usuario Rol</b><label>");
                 }
-                request.getRequestDispatcher("menu.jsp").forward(request, response);
                 break;
 
             default:
@@ -137,7 +133,7 @@ public class UsuarioRolControlador extends HttpServlet {
                         exporter.exportReport();
                     } else if (rol.equals("Todos")) {
                         JasperReport reporte = (JasperReport) JRLoader.loadObject(getServletContext().getRealPath("reportes/reportesUsuarioRol/reporteUsuarioRol2.jasper"));
-                        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte,null, conexion.obtenerConexion());
+                        JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, null, conexion.obtenerConexion());
                         JRExporter exporter = new JRPdfExporter();
                         exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
                         exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, out);
