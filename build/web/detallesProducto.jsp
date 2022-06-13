@@ -26,7 +26,7 @@
     </head>
     <body>
         <div class="row">
-            <div class="col-md-6 d-flex mt-5 mx-auto">
+            <div class="col-md-8 d-flex mt-5 mx-auto">
 
                 <div class="col-md-12 ms-4">
                     <div class="col-md-12">
@@ -62,7 +62,8 @@
                         <thead class="table-dark">
                             <tr>
                                 <th>Id</th>
-                                <th>Producto</th>
+                                <th>Id<br>Producto</th>
+                                <th>Nombre<br>Producto</th>
                                 <th>Talla</th>
                                 <th>Descripcion</th>
                                 <th>Acciones</th>
@@ -70,19 +71,23 @@
                         </thead>
                         <tbody>
                             <%
+                                ProductoVO proVOListar = new ProductoVO();
+                                ProductoDAO proDAOListar = new ProductoDAO(proVOListar);
+                                
                                 DetallesProductoVO dpVO = new DetallesProductoVO();
                                 DetallesProductoDAO dpDAO = new DetallesProductoDAO();
-
+                                
                                 ArrayList<DetallesProductoVO> listaDetallesProducto = dpDAO.listar();
 
                                 for (int i = 0; i < listaDetallesProducto.size(); i++) {
-
-                                    dpVO = listaDetallesProducto.get(i);
+                                   dpVO = listaDetallesProducto.get(i);
+                                   proVOListar = proDAOListar.consultarProducto(dpVO.getId_Producto());
                             %>
                             <tr >
 
                                 <td><%=dpVO.getId_Detalles_Producto()%></td>
                                 <td><%=dpVO.getId_Producto()%></td>
+                                <td><%=proVOListar.getNombre()%></td>
                                 <td><%=dpVO.getTalla()%></td>
                                 <td><%=dpVO.getDescripcion()%></td>
                                 <td>

@@ -21,9 +21,7 @@
     HttpSession buscarSesion = (HttpSession) request.getSession();
     UsuarioVO usuVO1 = null;
     if (buscarSesion.getAttribute("datosUsuario") == null) {
-
         request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
-
     } else {
         UsuarioRolDAO uRDAO = new UsuarioRolDAO();
         usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");

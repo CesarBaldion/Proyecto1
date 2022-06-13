@@ -126,17 +126,11 @@ public class UsuariosControlador extends HttpServlet {
 
             case 4:
                 usuVO = usuDAO.iniciarSesion(Documento, usuDao.Encriptar(Contrasena));
-
                 if (usuVO != null) {
-
                     HttpSession miSesion = request.getSession();
-
-                    miSesion.setAttribute("datosUsuario", usuVO);
-
-                    request.getRequestDispatcher("consultarUsuarios.jsp").forward(request, response);
-
+                    miSesion.setAttribute("datosUsuario", usuVO); 
+                    request.getRequestDispatcher("Usuiarios.jsp").forward(request, response);
                 } else {
-
                     request.setAttribute("mensajeError", "Corregir datos!");
                     request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                 }
@@ -158,15 +152,15 @@ public class UsuariosControlador extends HttpServlet {
 
             case 6://verificacion que existe el usuario para cambiar contraseña
                 usuVO = usuDAO.RecuperacionContraseña(Documento);
+
                 if (usuVO != null) {
                     usuDAO.enviarCorreoRecuperacionContraseña(usuVO.getEmail(), codigo2);
                     HttpSession miSesion = request.getSession();
                     miSesion.setAttribute("datosUsuarioRecuperarContrasena", usuVO);
-                    request.setAttribute("envioCorreo", "Se ha enviado un Codigo de confirmacion a su correo");
+                    request.setAttribute("mensaje", "<label class='text-success text-center ms-3'>Se ha enviado un codigo de verificacion a su Correo</label>");
                     request.getRequestDispatcher("VerificacionCodigo.jsp").forward(request, response);
                 } else {
-                    request.setAttribute("error", "No encontramos ningun Usuario asociado a este documento");
-                    request.getRequestDispatcher("recuperarContrasenaUsuario.jsp").forward(request, response);
+                    request.setAttribute("mensaje", "No encontramos ningun Usuario asociado a este documento");
                 }
 
                 break;
@@ -174,34 +168,29 @@ public class UsuariosControlador extends HttpServlet {
                 if (codigo.equals(codigo2)) {
                     request.getRequestDispatcher("actualizarContrasena.jsp").forward(request, response);
                 } else {
-                    request.setAttribute("error", "Los codigos no coinciden");
+                    request.setAttribute("mensaje", "Los codigos no coinciden");
                     request.getRequestDispatcher("VerificacionCodigo.jsp").forward(request, response);
                 }
                 break;
             case 8://actualizarContraseña
-                /*usuVO = usuDAO.RecuperacionContraseña(Documento);
-                if (Contrasena.equals(Contrasena2)) {
-                    if (usuDao.validarContrasena(Contrasena) == true) {
-                        if (usuVO != null) {
-                            usuDAO.actualizarContraseña(usuVO.getIdUsuarios(), usuDao.Encriptar(Contrasena));
-                            HttpSession buscarSesion = request.getSession();
-                            buscarSesion.removeAttribute("datosUsuarioRecuperarContrasena");
-                            buscarSesion.invalidate();
-                            request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
+                usuVO = usuDAO.RecuperacionContraseña(Documento);
+                String passwordReg = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])([A-Za-z\\d$@$!%*?&]|[^ ]){8,15}$";
 
-                        } else {
-                            request.setAttribute("error", "Erro al actualizar, Haga la solicitud de nuevo");
-                            request.getRequestDispatcher("actualizarContrasena.jsp").forward(request, response);
-                        }
+                if (Contrasena.matches(passwordReg) && Contrasena2.matches(passwordReg) && Contrasena.equals(Contrasena2)) {
+                    if (usuVO != null) {
+                        usuDAO.actualizarContraseña(usuVO.getIdUsuarios(), usuDao.Encriptar(Contrasena));
+                        HttpSession buscarSesion = request.getSession();
+                        buscarSesion.removeAttribute("datosUsuarioRecuperarContrasena");
+                        buscarSesion.invalidate();
+                        request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
                     } else {
-                        request.setAttribute("error", "Ingrese una contraseña valida");
+                        request.setAttribute("mensaje", "Error al actualizar, Haga la solicitud de nuevo");
                         request.getRequestDispatcher("actualizarContrasena.jsp").forward(request, response);
-
                     }
                 } else {
-                    request.setAttribute("error", "Las contraseñas no coinciden");
+                    request.setAttribute("mensaje", "Las contraseñas no coinciden con los parametetros(minimo 8 caracteres (1 min, 1 mayus, 1 num,<br> 1 CaracterEspecial($@$!%*?&)))");
                     request.getRequestDispatcher("actualizarContrasena.jsp").forward(request, response);
-                }*/
+                }
                 break;
             case 9:
                 //RegistrarRol

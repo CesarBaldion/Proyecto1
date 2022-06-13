@@ -4,6 +4,8 @@
     Author     : 1Usuario
 --%>
 
+<%@page import="ModeloDAO.UsuarioDAO"%>
+<%@page import="ModeloVO.UsuarioVO"%>
 <%@page import="ModeloVO.OrdenDetallesVO"%>
 <%@page import="ModeloDAO.OrdenDetallesDAO"%>
 <%@page import="java.util.ArrayList"%>
@@ -54,6 +56,7 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Id Usuarios</th>
+                                    <th>Nombre</th>
                                     <th>Id orden Detalles</th>
                                     <th>Cantidad</th>
                                     <th>Fecha Fabricacion</th>
@@ -62,16 +65,22 @@
                             </thead>
                             <tbody>
                                 <%
+                                    UsuarioVO usuVOlistar = new UsuarioVO();
+                                    UsuarioDAO usuDAO = new UsuarioDAO(usuVOlistar);
+
                                     LoteProduccionVO ltProduccVO = new LoteProduccionVO();
                                     LoteProduccionDAO ltProduccDAO = new LoteProduccionDAO(ltProduccVO);
 
                                     ArrayList<LoteProduccionVO> listaLoteProduccion = ltProduccDAO.Listar();
                                     for (int i = 0; i < listaLoteProduccion.size(); i++) {
                                         ltProduccVO = listaLoteProduccion.get(i);
+                                        usuVOlistar = usuDAO.consultaruSUARIO(ltProduccVO.getId_Usuarios());
+
                                 %>
                                 <tr>
                                     <td><%=ltProduccVO.getId_Lote_Produccion()%></td>
                                     <td><%=ltProduccVO.getId_Usuarios()%></td>
+                                    <td><%=usuVOlistar.getNombre()%></td>
                                     <td><%=ltProduccVO.getId_orden_Detalles()%></td>
                                     <td><%=ltProduccVO.getCantidad()%></td>
                                     <td><%=ltProduccVO.getFecha_Fabricacion()%></td>

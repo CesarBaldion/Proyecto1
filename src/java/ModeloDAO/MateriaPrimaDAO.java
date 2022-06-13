@@ -145,7 +145,7 @@ public class MateriaPrimaDAO extends Conexion implements Crud {
             conexion = this.obtenerConexion();
             sql = "select * from materia_prima where Id_materia_Prima = ?";
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, Id_materia_Prima);
+            puente.setString(1, Id);
             mensajero = puente.executeQuery();
 
             while (mensajero.next()) {
@@ -158,15 +158,7 @@ public class MateriaPrimaDAO extends Conexion implements Crud {
         } catch (SQLException e) {
             Logger.getLogger(MateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
 
-        } finally {
-
-            try {
-                this.cerrarConexion();
-
-            } catch (SQLException e) {
-                Logger.getLogger(MateriaPrimaDAO.class.getName()).log(Level.SEVERE, null, e);
-            }
-        }
+        }  
 
         return matPriVO;
 

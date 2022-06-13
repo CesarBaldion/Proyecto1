@@ -99,7 +99,7 @@ public class OrdenDetallesControlador extends HttpServlet {
 
             case 4: //Consultar por Orden_Detalles
 
-                ordenDetallVO = ordenDetalDAO.cosnultarId(id_Orden_Detalles);
+                ordenDetallVO = ordenDetalDAO.consultarIdOrden(id_Orden_Detalles);
                 //prodVO = prodDAO.listar(Id_Producto);
                 if (ordenDetallVO != null) {
 

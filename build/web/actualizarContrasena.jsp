@@ -8,11 +8,11 @@
 <%HttpSession buscarSesion = (HttpSession) request.getSession();
     UsuarioVO usuVO1 = null;
     if (buscarSesion.getAttribute("datosUsuarioRecuperarContrasena") == null) {
-       
+
         request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
-    }else{
-         usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuarioRecuperarContrasena");
-    } %>
+    } else {
+        usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuarioRecuperarContrasena");
+    }%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,42 +26,58 @@
         <link rel="stylesheet" href="css/estilos.css">
     </head>
     <body>
-        <div class="col-md-4 mx-auto justify-content-center border-5 border border-info  m caja">
-            <div class="col-md-8 mx-auto justify-content-center mt-5">
-                <form   class="form-group" action="Usuarios" method="post" enctype="multipart/form-data"> 
-                    <h1 class="text-center fs-4 mb-4">Actualice la Contraseña</h1>
-                    <div class="mx-auto justify-content-center">
-                        <%if (request.getAttribute("error") != null) {%>
-                        <div class="container-fluid d-inline-block d-flex mx-auto">
-                            <img src="img/error.svg" height="100">
-                            <p class="text-danger text-center fs-5 mt-5">${error}</p>
-                        </div>
-                        <%   } else {%>
-                        <p class="text-success text-center fs-5">${Bien}</p>
-                        <%}%>
-                    </div>
-                    <div class="input-group mt-2 mb-3">
-                        <input name="txtContrasena" id="txtPassword" type="password" class="form-control"  placeholder="Contraseña" required=""   >
-                        <button class="btn boton" type="button" id="botonOn" onclick="mostrarPassword()">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16"><path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"/><path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"/></svg>                        </button>
-                    </div>
-                    <div class="input-group mt-2 mb-3">
-                        <input name="txtContrasena2" id="txtPassword2" type="password" class="form-control"  placeholder="Confirme Contraseña" required="" aria-label="Recipient's username"
-                               aria-describedby="button-addon2">
-                        <button class="btn boton" type="button" id="botonOn2" onclick="mostrarPassword2()">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16"><path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"/><path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"/></svg>                        </button>
-                    </div>
-                    <div class="d-flex mt-4 mb-3">
-                        <button class="btn boton" >Registrar</button><br>
-                        <input type="hidden" value="<%=usuVO1.getDocumento()%>" name="txtDocumento">
-                        <input type="hidden" value="8" name="opcion">
-                        <a href="iniciarSesion.jsp" class="nav-link text-center">¿Ya tiene una cuenta?</a>
-                    </div>
 
-                </form>
-            </div>  
+        <div class="modal fade" id="modalActualizarContrasena" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-md-4 mx-auto justify-content-center border-5 border border-info  m caja">
+                            <div class="col-md-8 mx-auto justify-content-center mt-5">
+                                <form   class="form-group" action="Usuarios" method="post" enctype="multipart/form-data"> 
+                                    <h3 class="text-center"><label><%=usuVO1.getNombre()%></label></h3>
+                                    <h4 class="text-center fs-4 mb-4">Actualice la Contraseña</h4>
+                                    <div class="mx-auto justify-content-center">
+                                        <%if (request.getAttribute("mensaje") != null) {%>
+                                        <div class="container-fluid d-inline-block d-flex mx-auto">
+                                            <img src="img/error.svg" height="100">
+                                            <p class="text-danger text-center fs-5 mt-5">${mensaje}</p>
+                                        </div>
+                                        <%   } else {%>
+                                        <p class="text-success text-center fs-5">${Bien}</p>
+                                        <%}%>
+                                    </div>
+                                    <div class="input-group mt-2 mb-3">
+                                        <input name="txtContrasena" id="txtPassword" type="password" class="form-control"  placeholder="Contraseña" required=""   >
+                                        <button class="btn boton" type="button" id="botonOn" onclick="mostrarPassword()">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16"><path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"/><path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"/></svg>                        </button>
+                                    </div>
+                                    <div class="input-group mt-2 mb-3">
+                                        <input name="txtContrasena2" id="txtPassword2" type="password" class="form-control"  placeholder="Confirme Contraseña" required="" aria-label="Recipient's username"
+                                               aria-describedby="button-addon2">
+                                        <button class="btn boton" type="button" id="botonOn2" onclick="mostrarPassword2()">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16"><path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"/><path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"/></svg>                        </button>
+                                    </div>
+                                    <div class="d-flex mt-4 mb-3">
+                                        <button class="btn boton" >Registrar</button><br>
+                                        <input type="hidden" value="<%=usuVO1.getDocumento()%>" name="txtDocumento">
+                                        <input type="hidden" value="8" name="opcion">
+                                        <a href="iniciarSesion.jsp" class="nav-link text-center">¿Ya tiene una cuenta?</a>
+                                    </div>
+
+                                </form>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <script>
+
+            window.onload = function () {
+                $("#modalActualizarContrasena").modal("show");
+            };
             function mostrarPassword() {
                 var cambio = document.getElementById("txtPassword");
                 var uno = document.getElementById('botonOn');

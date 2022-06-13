@@ -125,13 +125,13 @@ public class ProductoDAO extends Conexion implements Crud {
         return operacion;
     }
 
-    public ProductoVO consultarProducto(String placa) {
+    public ProductoVO consultarProducto(String id) {
         ProductoVO prodVO = null;
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from producto where id_producto=?";
+            sql = "select * from producto where id_producto=? and estado = 1";
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, Id_Producto);
+            puente.setString(1, id);
             mensajero = puente.executeQuery();
 
             while (mensajero.next()) {
@@ -139,13 +139,7 @@ public class ProductoDAO extends Conexion implements Crud {
             }
         } catch (Exception e) {
             Logger.getLogger(ProductoVO.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
-            try {
-                this.cerrarConexion();
-            } catch (Exception e) {
-                Logger.getLogger(ProductoVO.class.getName()).log(Level.SEVERE, null, e);
-            }
-        }
+        } 
         return prodVO;
     }
 

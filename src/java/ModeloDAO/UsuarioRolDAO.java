@@ -170,6 +170,8 @@ public class UsuarioRolDAO extends Conexion implements Crud {
         }
         return listaUsuarioRol;
     }
+    
+    
 
 
 }

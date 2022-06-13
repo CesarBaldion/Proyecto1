@@ -220,7 +220,7 @@ public class UsuarioDAO extends Conexion implements Crud {
         UsuarioVO usuVO = null;
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from usuarios where id_usuarios = ?";
+            sql = "select * from usuarios where id_usuarios = ? and estado = 1";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Id);
             mensajero = puente.executeQuery();
@@ -235,15 +235,8 @@ public class UsuarioDAO extends Conexion implements Crud {
         } catch (SQLException e) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
 
-        } finally {
-
-            try {
-                this.cerrarConexion();
-
-            } catch (SQLException e) {
-                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
-            }
-        }
+        }   
+        
 
         return usuVO;
 

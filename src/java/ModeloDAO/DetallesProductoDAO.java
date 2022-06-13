@@ -139,16 +139,16 @@ public class DetallesProductoDAO extends Conexion implements Crud {
         return operacion;
     }
 
-    public DetallesProductoVO consultarDetallesProducto(String DetallesProd) {
+    public DetallesProductoVO consultarDetallesProducto(String id) {
 
         DetallesProductoVO detProVO = null;
 
         try {
 
             conexion = this.obtenerConexion();
-            sql = "select * from detalles_producto where Id_Producto = ?";
+            sql = "select * from detalles_producto where Id_Producto = ? and estado = 1";
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, Id_Producto);
+            puente.setString(1, id);
             mensajero = puente.executeQuery();
 
             while (mensajero.next()) {
@@ -159,15 +159,7 @@ public class DetallesProductoDAO extends Conexion implements Crud {
         } catch (Exception e) {
             Logger.getLogger(DetallesProductoDAO.class.getName()).log(Level.SEVERE, null, e);
 
-        } finally {
-
-            try {
-                this.cerrarConexion();
-
-            } catch (SQLException e) {
-                Logger.getLogger(DetallesProductoDAO.class.getName()).log(Level.SEVERE, null, e);
-            }
-        }
+        } 
         return detProVO;
     }
 
@@ -176,7 +168,7 @@ public class DetallesProductoDAO extends Conexion implements Crud {
         ArrayList<DetallesProductoVO> listarDetallesProducto = new ArrayList<>();
         try {
 
-            sql = "select * from DetallesProductoView";
+            sql = "select * from detalles_producto where estado = 1";
             conexion = this.obtenerConexion();
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();

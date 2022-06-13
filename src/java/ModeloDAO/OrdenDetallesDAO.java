@@ -86,8 +86,7 @@ public class OrdenDetallesDAO extends Conexion implements Crud {
     @Override
     public boolean actualizarRegistro() {
         try {
-            sql = "update orden_detalles set id_orden = ?, id_detalles_Producto = ?, "
-                    + "CantidadSolicitada = ? where Id_Orden_Detalles = ? ";
+            sql = "update orden_detalles set id_orden = ?, id_detalles_Producto = ?, CantidadSolicitada = ? where Id_Orden_Detalles = ? ";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, id_Orden);
             puente.setString(2, id_Detalles_Producto);
@@ -136,39 +135,7 @@ public class OrdenDetallesDAO extends Conexion implements Crud {
         return operacion;
     }
 
-    public OrdenDetallesVO cosnultarId(String Id) {
-
-        OrdenDetallesVO OrdenDetallVO = null;
-        try {
-            conexion = this.obtenerConexion();
-            sql = "select * from orden_detalles where Id_Orden_Detalles = ?";
-            puente = conexion.prepareStatement(sql);
-            puente.setString(1, Id);
-            mensajero = puente.executeQuery();
-
-            while (mensajero.next()) {
-
-                OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1), mensajero.getString(2),
-                        mensajero.getString(3), mensajero.getString(4), mensajero.getString(5));
-
-            }
-
-        } catch (SQLException e) {
-            Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
-
-        } finally {
-
-            try {
-                this.cerrarConexion();
-
-            } catch (SQLException e) {
-                Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
-            }
-        }
-
-        return OrdenDetallVO;
-
-    }
+    
 
     public OrdenDetallesVO consultarIdOrden(String IdOrden) {
 
@@ -209,7 +176,7 @@ public class OrdenDetallesDAO extends Conexion implements Crud {
         ArrayList<OrdenDetallesVO> listaOrdenDetalles = new ArrayList<>();
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from ordendetallesview";
+            sql = "select * from orden_detalles where estado = 1";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
 
@@ -325,7 +292,7 @@ public class OrdenDetallesDAO extends Conexion implements Crud {
         boolean accion = false;
         try {
 
-            sql = "insert into orden_detalles(id_Orden,id_Detalles_Producto,CantidadSolicitada)values(?,?,?)";
+           sql = "insert into orden_detalles(id_Orden,id_Detalles_Producto,CantidadSolicitada)values(?,?,?)";
             conexion = obtenerConexion();
 
             for (int i = 0; i < listaOrdenDetalles.size(); i++) {

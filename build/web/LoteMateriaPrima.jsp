@@ -24,7 +24,7 @@
     </head>
     <body>
         <div class="row">
-            <div class="col-md-6 d-flex mt-5 mx-auto">
+            <div class="col-md-8 d-flex mt-5 mx-auto">
                 <div class="col-md-12 ms-4">
                     <div class="col-md-12">
                         <div class="col-md-10 d-flex  "> 
@@ -54,6 +54,7 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Id Materia Prima</th>
+                                    <th>Nombre</th>
                                     <th>Cantidad</th>
                                     <th>Observaciones</th>
                                     <th>Fecha Ingreso</th>
@@ -63,16 +64,22 @@
                             </thead>
                             <tbody>
                                 <%
+                                    MateriaPrimaVO mtVOlistar = new MateriaPrimaVO();
+                                    MateriaPrimaDAO mtDAOlistar = new MateriaPrimaDAO();
+                                    
                                     loteMateriaPrimaVO loteMPVO = new loteMateriaPrimaVO();
                                     loteMateriaPrimaDAO loteMPDAO = new loteMateriaPrimaDAO(loteMPVO);
 
                                     ArrayList<loteMateriaPrimaVO> listaLoteMateriaPrima = loteMPDAO.Listar();
                                     for (int i = 0; i < listaLoteMateriaPrima.size(); i++) {
                                         loteMPVO = listaLoteMateriaPrima.get(i);
+                                        String id = loteMPVO.getId_Materia_Prima();
+                                        mtVOlistar = mtDAOlistar.consultarIdMateriaPrima(loteMPVO.getId_Materia_Prima());
                                 %>
                                 <tr>
                                     <td><%=loteMPVO.getId_loteMateria_Prima()%></td>
                                     <td><%=loteMPVO.getId_Materia_Prima()%></td>
+                                    <td><%=mtVOlistar.getNombre()%></td>
                                     <td><%=loteMPVO.getCantidad()%></td>
                                     <td><%=loteMPVO.getObservaciones()%></td>
                                     <td><%=loteMPVO.getFecha_ingreso()%></td>

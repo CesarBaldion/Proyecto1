@@ -64,22 +64,37 @@
                     <div class="actualizarTBody" id="actualizarTBody">
                         <table  class="table text-center table-bordered border-dark table-hover table-responsive">
                             <thead class="table-dark">
-                            <th>Nombre</th>
                             <th>Rol</th>
+                            <th>Nomber Rol</th>
+                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Documento</th>
                             <th>Acciones</th>
                             </thead>
                             <tbody>
                                 <%
+                                    RolVO rolVOconsultar = new RolVO();
+                                    RolDAO rolDAO = new RolDAO(rolVOconsultar);
+                                    
+                                    UsuarioVO usuVOlistar = new UsuarioVO();
+                                    UsuarioDAO usuDAO = new UsuarioDAO(usuVOlistar);
+                                    
                                     Usuario_rolVO usuRVO = new Usuario_rolVO();
                                     UsuarioRolDAO usuRDAO = new UsuarioRolDAO(usuRVO);
 
                                     ArrayList<Usuario_rolVO> listaUsuarioRol = usuRDAO.listar();
                                     for (int i = 0; i < listaUsuarioRol.size(); i++) {
-                                        usuRVO = listaUsuarioRol.get(i);
+                                      usuRVO = listaUsuarioRol.get(i);
+                                      rolVOconsultar = rolDAO.consultarRol(usuRVO.getId_Rol());
+                                      usuVOlistar = usuDAO.consultaruSUARIO(usuRVO.getId_Usuarios());
                                 %>
                                 <tr>
+
                                     <td><%=usuRVO.getId_Rol()%></td>
+                                    <td><%=rolVOconsultar.getRoltipo()%></td>
                                     <td><%=usuRVO.getId_Usuarios()%></td>
+                                    <td><%=usuVOlistar.getNombre()%></td>
+                                    <td><%=usuVOlistar.getDocumento()%></td>
                                     <td>
                                         <div >
                                             <button data-id="<%=usuRVO.getId_Rol()%>" data-id2="<%=usuRVO.getId_Usuarios()%>" class="btn boton mt-2 detalles">
@@ -121,8 +136,8 @@
                                         <select id="idRolReg" class="form-select">
                                             <option>Seleccione Un Rol</option>
                                             <%
-                                                RolDAO rolDAO = new RolDAO();
-                                                for (RolVO rolVO : rolDAO.listar()) {
+                                                RolDAO rolDAOreg = new RolDAO();
+                                                for (RolVO rolVO : rolDAOreg.listar()) {
                                             %>
                                             <option value="<%=rolVO.getId_rol()%>"><%=rolVO.getRoltipo()%></option>
                                             <% }%>
@@ -132,8 +147,8 @@
                                         <select id="idUsuarioReg" class="form-select">
                                             <option >Seleccione Usuario</option>
                                             <%
-                                                UsuarioDAO usuDAO = new UsuarioDAO();
-                                                for (UsuarioVO usuVO : usuDAO.Listar()) {
+                                                UsuarioDAO usuDAOreg = new UsuarioDAO();
+                                                for (UsuarioVO usuVO : usuDAOreg.Listar()) {
                                             %>
                                             <option value="<%=usuVO.getIdUsuarios()%>"><%=usuVO.getDocumento() + ". -> " + usuVO.getNombre()%></option>
                                             <% }%>

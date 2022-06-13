@@ -1,4 +1,4 @@
-<%-- 
+<%--  
     Document   : VerificacionCodigo
     Created on : 30-abr-2022, 23:43:53
     Author     : 1Usuario
@@ -11,8 +11,8 @@
     if (buscarSesion.getAttribute("datosUsuarioRecuperarContrasena") == null) {
         request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
     } else {
-        usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
-    } %>
+
+    }%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,33 +26,41 @@
         <title>Verificacion de Codigo</title>
     </head>
     <body>
-        <div class="col-md-3 mx-auto justify-content-center border-5 border border-info m caja">
-            <div class="col-md-8 mx-auto justify-content-center mt-5">
-                <form  class="form-group" action="Usuarios" method="post" enctype="multipart/form-data"> 
-                    <h1 class="text-center fs-4 mb-4">Ingrese el Codigo</h1>
-                    <div class="mx-auto justify-content-center">
-                        <%if (request.getAttribute("envioCorreo") != null) {%>
-                        <p class="text-success text-center fs-5">${envioCorreo}</p>
-                        <%}%>
+        <div class="modal fade" id="modalVerificarCodigo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
                     </div>
-                    <div class="mx-auto justify-content-center">
-                        <%if (request.getAttribute("error") != null) {%>
-                        <div class="container-fluid d-inline-block d-flex mx-auto">
-                            <img src="img/error.svg" height="100">
-                            <p class="text-danger text-center fs-5 mt-5">${error}</p>
+                    <div class="modal-body">
+                        <div class="col-md-10 mx-auto justify-content-center">
+                            <div class="col-md-8 mx-auto justify-content-center mt-5">
+                                <%if (request.getAttribute("mensaje") != null) {%>
+                                <div class="mx-auto">
+                                    ${mensaje}
+                                </div>
+                                <%   }%>
+                                <form  class="form-group" action="Usuarios" method="post" enctype="multipart/form-data"> 
+                                    <h1 class="text-center fs-4 mb-4">Ingrese el Codigo</h1>
+                                    <div class="col-md-12">
+                                        <input type="text"  name= "txtcodigo" placeholder="Codigo" required="" class="form-control ms-1 mt-2">   
+                                    </div> 
+                                    <div class="d-flex mt-4 mb-3">
+                                        <button class="btn boton" >Verificar</button><br>
+                                        <input type="hidden" value="7" name="opcion">
+                                        <a href="index.jsp" class="nav-link text-center">Volver</a>
+                                    </div>
+                                </form>
+                            </div>  
                         </div>
-                        <%   }%>
                     </div>
-                    <div class="col-md-12">
-                        <input type="text"  name= "txtcodigo" placeholder="Codigo" required="" class="form-control ms-1 mt-2">   
-                    </div> 
-                    <div class="d-flex mt-4 mb-3">
-                        <button class="btn boton" >Verificar</button><br>
-                        <input type="hidden" value="7" name="opcion">
-                        <a href="index.jsp" class="nav-link text-center">Volver</a>
-                    </div>
-                </form>
-            </div>  
+                </div>
+            </div>
         </div>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script>
+            window.onload = function () {
+                $("#modalVerificarCodigo").modal("show");
+            };
+        </script>
     </body>
 </html>

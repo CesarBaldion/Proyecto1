@@ -120,9 +120,9 @@ public class RolDAO extends Conexion implements Crud {
         RolVO RVO = null;
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from rol where id_rol=?";
+            sql = "select * from rol where id_rol=? and estado=1";
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, id_rol);
+            puente.setString(1, rol);
             mensajero = puente.executeQuery();
 
             while (mensajero.next()) {
@@ -130,13 +130,7 @@ public class RolDAO extends Conexion implements Crud {
             }
         } catch (Exception e) {
             Logger.getLogger(RolVO.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
-            try {
-                this.cerrarConexion();
-            } catch (Exception e) {
-                Logger.getLogger(RolVO.class.getName()).log(Level.SEVERE, null, e);
-            }
-        }
+        } 
         return RVO;
     }
 
