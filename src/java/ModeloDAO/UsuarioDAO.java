@@ -367,47 +367,46 @@ public class UsuarioDAO extends Conexion implements Crud {
         }
     }
 
-    public boolean validarContrasena(String Contrasena) {
-        final int MAX = 8;
-        // Especificando el número de letras mayúsculas en la contraseña
-        final int min_Mayus = 1;
-        // Especificando el mínimo de minúsculas en la contraseña
-        final int min_Minus = 1;
-        // Especificando el número de dígitos en una contraseña
-        final int num_Numeros = 1;
-        // Especificar el número mínimo de letras en mayúsculas y minúsculas
-        final int min_CaracterEspecial = 1;
-        // Contar el número de letras mayúsculas en una contraseña
-        int mayusculas = 0;
-        // Contador de letras minúsculas en una contraseña
-        int minusculas = 0;
-        // Contar numeros en una contraseña
-        int numeros = 0;
-        // Contar caracteres especiales en una constraseña
-        int caracterEspecial = 0;
+    public ArrayList validarDatosRegistroUsuario(String email2, String contrasena2) {
+        //Expresiones regulares 
+        String nombreReg = "^[a-zA-ZÀ-ÿ\\s]{5,40}$";
+        String passwordReg = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])([A-Za-z\\d$@$!%*?&]|[^ ]){8,15}$";
+        String correoReg = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$";
+        String telefonoReg = "^\\d{10}$";
+        String documentoReg = "^\\d{7,20}";
+        String direccionReg = "^[a-zA-ZÀ-ÿ\\s#-_]{5,40}$";
+        String tipoDocumentoReg = "^(CC?|TI?|PA?)$";
 
-        for (int i = 0; i < Contrasena.length(); i++) {
-            char c = Contrasena.charAt(i);
-            if (Character.isUpperCase(c)) {
-                mayusculas++;
-            } else if (Character.isLowerCase(c)) {
-                minusculas++;
-            } else if (Character.isDigit(c)) {
-                numeros++;
-            }
-            if (c >= 33 && c <= 46 || c == 64) {
-                caracterEspecial++;
-
-            }
-        }
-        if (Contrasena.length() >= MAX && mayusculas >= min_Mayus
-                && minusculas >= min_Minus && numeros >= num_Numeros && caracterEspecial >= min_CaracterEspecial) {
-            return true; //request.setAttribute("Valida", "Contraseña es Valida");
-        } else {
-
-            return false;
+        ArrayList respuesta = new ArrayList();
+        /*Pattern pat = Pattern.compile(nombreReg);
+        Matcher comparacion = pat.matcher(datosUsuario.getNombre())*/
+        if (Nombre.matches(nombreReg) == false) {
+            respuesta.add("Verifique El nombre");
+        }if (Tipo_Documento.matches(tipoDocumentoReg) == false) {
+            respuesta.add("Verifique su Tipo de Documento");
+        }if (Documento.matches(documentoReg) == false) {
+            respuesta.add("Veifique su Documento");
+        }if (Direccion.matches(direccionReg) == false) {
+            respuesta.add("Verifique su Direccion");
+        }if (Ciudad.matches(nombreReg) == false) {
+            respuesta.add("Verifique Ciudad");
+        }if (Telefono.matches(telefonoReg) == false) {
+            respuesta.add("verifique Telefono");
+        }if (Email.matches(correoReg) == false) {
+            respuesta.add("Verifique Email");
+        }if (email2.matches(correoReg) == false) {
+            respuesta.add("Verifique Email2");
+        }if (Email.equals(email2) == false) {
+            respuesta.add("los email no coinciden");
+        }if (Contrasena.matches(passwordReg) == false) {
+            respuesta.add("Verifique el Password1");
+        }if (contrasena2.matches(passwordReg) == false) {
+            respuesta.add("Verifique el Password2");
+        }if (Contrasena.equals(contrasena2) == false) {
+            respuesta.add("Las contraseñas no coinciden");
         }
 
+        return respuesta;
     }
 
     public boolean ValidarNumero(String cadena) {

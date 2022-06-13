@@ -7,7 +7,31 @@ and open the template in the editor.
     Created on : 25-abr-2022, 15:18:43
     Author     : SALA
 */
+.form-control:focus{
+    border-color: none;
+    outline: none;
+    box-shadow: none;
+}
 
+.mal{
+    border:1px solid red;
+}
+.mal:focus{
+    border: 1px solid red;
+    box-shadow: 0 0 0 0.25rem rgba(224, 84, 84, 0.384)
+
+}
+.bien{
+    border: 1px solid green;
+}
+.bien:focus{
+    border: 1px solid green;
+    box-shadow: 0 0 0 0.25rem rgba(75, 230, 114, 0.384)
+
+}
+.text-danger{
+    font-size: 11px;
+}
 .boton{
     background-color: #6395BB;
     color: white;

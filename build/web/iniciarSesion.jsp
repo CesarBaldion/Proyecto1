@@ -4,6 +4,7 @@
     Author     : Sena
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,57 +25,105 @@
         <div class="main">
             <div class="container a-container" id="a-container">
                 <!-- REGISTRAR NUEVO USUARIO -->
-                <form  class="form" id="a-form" method="post" action="Usuarios" enctype="multipart/form-data">
+                <form id="formularioUsuario" class="form"  method="post" action="Usuarios" enctype="multipart/form-data">
                     <h2 class="form_title title col-md-8">Registrar Cuenta</h2>
                     <div class="col-md-11">
-                        <%if (request.getAttribute("error") != null) {%>
-                        <p class="text-danger fs-5">${error}<%}%></p>
-                        <%if (request.getAttribute("Bien") != null) {%>
-                        <p class="text-success fs-5">${Bien}<%}%></p>
+                        
+                        <%if(request.getAttribute("ListaMensajes")!=null){
+                            ArrayList mensajes = (ArrayList)request.getAttribute("ListaMensajes"); 
+                            for(int i = 0;i<mensajes.size();i++){ %>
+                                <p class="text-danger fs-5"><%=mensajes.get(i)%>
+                                <% }%>
+                            <% }%> 
                     </div>
                     <div class="col-md-11  ">
-                        <input name="txtNombre" class="form__input_c ms-1 mt-2"  type="text" placeholder="Nombre completo" requiered>
+                        <input name="txtNombre" class="form__input_c ms-1 mt-2" type="text" placeholder="Nombre completo"
+                               required>
+                        <div id="respuestaNombre">
+                        </div>
                     </div>
                     <div class="col-md-11 d-flex  ">
-                        <select name="txtTipoDocumento" class="form__input ms-1 mt-2" >
-                            <option value="">Tipo de documento</option>
-                            <option value="CC">Cedula de ciudadania</option>
-                            <option value="TI">Tarjeta de identidad</option>
-                            <option value="PA">Pasaporte</option>
-                        </select>
-                        <input name="txtDocumento" class="form__input ms-3 mt-2" type="text" placeholder="Número de documento" required>
+                        <div>
+                            <select name="txtTipoDocumento" id="txtTipoDocumento" class="form__input ms-1 mt-2">
+                                <option value="">Tipo de documento</option>
+                                <option value="CC">Cedula de ciudadania</option>
+                                <option value="TI">Tarjeta de identidad</option>
+                                <option value="PA">Pasaporte</option>
+                            </select>
+                            <div id="RespuestaTipoDocumento">
+                            </div>
+                        </div>
+                        <div>
+                            <input name="txtDocumento" class="form__input ms-3 mt-2" type="text"
+                                   placeholder="Número de documento" required>
+                            <div id="respuestaDocumento">
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-11  ">
-                        <input name="txtDireccion" class="form__input_c ms-1 mt-2"  type="text" placeholder="Dirección" required>
+                        <input name="txtDireccion" class="form__input_c ms-1 mt-2" type="text" placeholder="Dirección"
+                               required>
+                        <div id="respuestaDireccion">
+                        </div>
                     </div>
                     <div class="col-md-11 d-flex  ">
-                        <input id="txtCiudad" name="txtCiudad"  class="form__input ms-1 mt-2"  type="text" placeholder="Ciudad" required>
-                        <input id="txtTelefono" name="txtTelefono"  class="form__input ms-1 mt-2"  type="text" placeholder="Teléfono" required>
+                        <div>
+                            <input id="txtCiudad" name="txtCiudad" class="form__input ms-1 mt-2" type="text"
+                                   placeholder="Ciudad" required>
+                            <div id="respuestaCiudad">
+                            </div>
+                        </div>
+                        <div>
+                            <input id="txtTelefono" name="txtTelefono" class="form__input ms-1 mt-2" type="text"
+                                   placeholder="Teléfono" required>
+                            <div id="respuestaTelefono">
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-11 d-flex  ">
-                        <input name="txtEmail"  class="form__input ms-1 mt-2"  type="text" placeholder="Correo" required>
-                        <input name="txtEmail2"  class="form__input ms-1 mt-2"  type="text" placeholder="Confirme correo" required>
+                        <div>
+                            <input name="txtEmail" id="txtEmail" class="form__input ms-1 mt-2" type="text"
+                                   placeholder="Correo" required>
+                            <div id="respuestaEmail">
+                            </div>
+                        </div>
+                        <div>
+                            <input name="txtEmail2" id="txtEmail2" class="form__input ms-1 mt-2" type="text"
+                                   placeholder="Confirme correo" required>
+                            <div id="respuestaEmail2">
+                            </div>
+                        </div>
                     </div>
                     <div class="input-group mx-auto ms-5">
-                        <input name="txtContrasena" id="txtPassword"  type="password" class="form__input_c col-md-6"  type="text" placeholder="Contraseña"  aria-label="Recipient's username"
+                        <input name="txtContrasena" id="txtPassword" type="password" class="form__input_c col-md-6"
+                                placeholder="Contraseña" aria-label="Recipient's username"
                                aria-describedby="button-addon2" required>
                         <button class="btn boton " type="button" onclick="mostrarPassword()" id="botonOn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-eye-fill" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                            <path
+                                d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
                             </svg>
                         </button>
                     </div>
+                    <div id="respuestaPassword" class="col-md-11">
+                    </div>
                     <div class="input-group mx-auto ms-5">
-                        <input name="txtContrasena2" id="txtPassword2"  type="password" class="form__input_c col-md-6"  type="text" placeholder="Contraseña"  aria-label="Recipient's username"
+                        <input name="txtContrasena2" id="txtPassword2" type="password" class="form__input_c col-md-6"
+                                placeholder="Contraseña" aria-label="Recipient's username"
                                aria-describedby="button-addon2" required>
-                        <button class="btn boton " type="button" onclick="mostrarPassword2()"  id="botonOn2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                        <button class="btn boton " type="button" onclick="mostrarPassword2()" id="botonOn2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-eye-fill" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                            <path
+                                d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
                             </svg>
                         </button>
-                    </div> 
+                    </div>
+                    <div id="respuestaPassword2" class="col-md-11">
+                    </div>
                     <div class="col-md-11 d-flex mb-5 ">
                         <button class="form__button button">Registrar</button>
                         <input type="hidden" value="1" name="opcion">
@@ -91,7 +140,7 @@
                         <input class="form__input" name="txtDocumento" type="text" placeholder="Documento de Identidad">
                     </div>
                     <div class="input-group justify-content-center ms-5">
-                        <input id="txtPassword3" name="txtContrasena"  type="password" class="form__input_c col-md-5"  type="text" placeholder="Contraseña"  aria-label="Recipient's username"
+                        <input id="txtPassword3" name="txtContrasena"  type="password" class="form__input_c col-md-5"  placeholder="Contraseña"  aria-label="Recipient's username"
                                aria-describedby="button-addon2" required>
                         <button class="btn boton " type="button" onclick="mostrarPassword3()"  id="botonOn3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
