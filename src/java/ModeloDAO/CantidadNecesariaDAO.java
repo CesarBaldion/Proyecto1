@@ -11,6 +11,7 @@ import Util.Crud;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -51,7 +52,26 @@ public class CantidadNecesariaDAO extends Conexion implements Crud {
 
     @Override
     public boolean agregarRegistro() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            sql = "INSERT INTO cantidad_necesaria(Id_materia_Prima,Id_detalles_producto,materiaPrimaEnProducto) values(?.?.?)";
+
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id_Materia_Prima);
+            puente.setString(2, Id_Detalles_Producto);
+            puente.setString(3, materiaprimaenproducto);
+            puente.executeUpdate();
+            operacion = true;
+        } catch (SQLException e) {
+            Logger.getLogger(CantidadNecesariaDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(CantidadNecesariaDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return operacion;
     }
 
     @Override
@@ -93,7 +113,7 @@ public class CantidadNecesariaDAO extends Conexion implements Crud {
         ArrayList<CantidadNecesariaVO> listaCantidadNecesaria = new ArrayList();
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from cantidadnecesaria";
+            sql = "select * from cantidad_necesaria";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
             

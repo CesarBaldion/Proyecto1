@@ -174,7 +174,7 @@ public class ProductoDAO extends Conexion implements Crud {
         ProductoVO proVO = null;
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from producto where Nombre = ?";
+            sql = "select * from producto where Nombre = ? and estado = 1";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Nombre);
             mensajero = puente.executeQuery();

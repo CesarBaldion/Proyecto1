@@ -23,7 +23,7 @@ public class Conexion {
         driver = "com.mysql.jdbc.Driver";
         user = "root";
         password = "";
-        dataBase = "proyecto1";
+        dataBase = "proyecto2";
         urlBd = "jdbc:mysql://localhost:3306/" + dataBase;
 
         try {
@@ -41,7 +41,6 @@ public class Conexion {
 
         return conexion;
     }
-
     public Connection cerrarConexion() throws SQLException {
 
         conexion.close();
