@@ -61,7 +61,7 @@ public class DetallesProductoControlador extends HttpServlet {
 
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         // 2. Quien tiene los datos de forma segura en el sistema? VO
-        DetallesProductoVO detProVO = new DetallesProductoVO(Id_Detalles_Producto, Id_Producto, Descripcion, Talla, Estado);
+        DetallesProductoVO detProVO = new DetallesProductoVO(Id_Detalles_Producto, Id_Producto,Talla, Descripcion,  Estado);
 
         // 3. Quien hace las operaciones? DAO
         DetallesProductoDAO detProDAO = new DetallesProductoDAO(detProVO);

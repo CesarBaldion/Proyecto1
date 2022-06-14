@@ -29,19 +29,19 @@
                 <div class="col-md-12 ms-4">
                     <div class="col-md-12">
                         <div class="col-md-8 d-flex  "> 
-                            <button id="modalRegistrar"  type="button" class="btn boton mt-3 col-md-3"  >Registrar
+                            <button id="modalRegistrar"  type="button" class="boton btn mt-5"  >Registrar
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                                 </svg>
                             </button>
-                            <button id="modalCargaMasiva"  type="button" class="btn boton ms-3 mt-3 col-md-3"  >Carga Masiva
+                            <button id="modalCargaMasiva"  type="button" class="boton btn mt-5"  >Carga Masiva
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                                 </svg>
                             </button>
-                            <form action="MateriaPrima" method="post" class="form-group ms-3 mt-3" enctype="multipart/form-data">
+                            <form action="MateriaPrima" method="post" class="boton btn mt-5" enctype="multipart/form-data">
                                 <select class="form-select" name="txtreporte">
                                     <option value="1">Materia Prima</option>
                                     <option value="2">Existencias Materia Prima</option>
