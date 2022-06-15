@@ -110,17 +110,12 @@ public class DetallesProductoControlador extends HttpServlet {
                 break;
 
             case 5:
-
                 if (detProDAO.activarRegistro()) {
-
                     request.setAttribute("mensajeExito", "La orden detalles se activo correctamente!");
                     request.getRequestDispatcher("eliminarDetallesProducto.jsp").forward(request, response);
-
                 } else {
-
                     request.setAttribute("mensajeError", "La orden detalles no se activo correctamente!");
                     request.getRequestDispatcher("eliminarDetallesProducto.jsp").forward(request, response);
-
                 }
                 request.getRequestDispatcher("menu.jsp").forward(request, response);
                 break;
@@ -161,18 +156,6 @@ public class DetallesProductoControlador extends HttpServlet {
                     exporter.exportReport();
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
-                break;
-                
-            case 11:
-                Part archivocsv = request.getPart("archivocsv");
-                
-                AdministrarArchivos adminFiles = new AdministrarArchivos();
-                String rutaAbsoluta = adminFiles.guardarArchivo(archivocsv, adminFiles.validarRuta());
-                try {
-                    detProDAO.cargarDetallesProductos(rutaAbsoluta);
-                    request.getRequestDispatcher("detallesProducto.jsp").forward(request, response);
-                } catch (SQLException e) {
                 }
                 break;
         }

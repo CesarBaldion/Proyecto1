@@ -61,10 +61,12 @@
                         <table id="datos" class="table text-center table-bordered border-dark table-hover table-responsive">
                             <thead>
                                 <tr class="table-dark">
-                                    <th>Id</th>
                                     <th>Id Orden</th>
-                                    <th>Id Detalles<br> Producto</th>
-                                    <th>Cantidad</th>
+                                    <th>Id Usuario</th>
+                                    <th>Id Detalles Producto</th>
+                                    <th>Cantidad Solicitada</th>
+                                    <th>Fecha Registro</th>
+                                    <th>Fecha Entrega</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -80,20 +82,26 @@
 
                                 %>
                                 <tr>
-                                    <td><%=orddetllVO.getId_Orden_Detalles()%></td>
-                                    <td><%=orddetllVO.getId_Orden()%></td>
+                                    <td><%=orddetllVO.getId_Ordenes()%></td>
+                                    <td><%=orddetllVO.getId_Usuarios()%></td>
                                     <td><%=orddetllVO.getId_Detalles_Producto()%></td>
                                     <td><%=orddetllVO.getCantidadSolicitada()%></td>
+                                    <td><%=orddetllVO.getFecha_registro()%></td>
+                                    <td><%=orddetllVO.getFecha_entrega()%></td>
                                     <td>
                                         <div class="d-flex mx-auto justify-content-center" >
-                                            <button data-id="<%=orddetllVO.getId_Orden_Detalles()%>" data-id2="<%=orddetllVO.getId_Orden()%>" data-id3="<%=orddetllVO.getId_Detalles_Producto()%>" data-id4="<%=orddetllVO.getCantidadSolicitada()%>"  class="btn boton mt-2  detalles">
+                                            <button data-id="<%=orddetllVO.getId_Ordenes()%>" data-id2="<%=orddetllVO.getId_Usuarios()%>" 
+                                                    data-id3="<%=orddetllVO.getId_Detalles_Producto()%>" data-id4="<%=orddetllVO.getCantidadSolicitada()%>"
+                                                    data-id5="<%=orddetllVO.getFecha_registro()%>" data-id6="<%=orddetllVO.getFecha_entrega()%>" class="btn boton mt-2  detalles">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-zoom-in" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
                                                 <path d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1 6.538 6.538 0 0 1-1.398 1.4z"/>
                                                 <path fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5z"/>
                                                 </svg>
                                             </button>
-                                            <button data-id5="<%=orddetllVO.getId_Orden_Detalles()%>" data-id6="<%=orddetllVO.getId_Orden()%>" data-id7="<%=orddetllVO.getId_Detalles_Producto()%>" data-id8="<%=orddetllVO.getCantidadSolicitada()%>"  class="btn boton ms-3 mt-2 eliminar">
+                                            <button data-id7="<%=orddetllVO.getId_Ordenes()%>" data-id8="<%=orddetllVO.getId_Usuarios()%>" 
+                                                    data-id9="<%=orddetllVO.getId_Detalles_Producto()%>" data-id10="<%=orddetllVO.getCantidadSolicitada()%>"
+                                                    data-id11="<%=orddetllVO.getFecha_registro()%>" data-id12="<%=orddetllVO.getFecha_entrega()%>"  class="btn boton ms-3 mt-2 eliminar">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
                                                 <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
                                                 </svg>
@@ -105,9 +113,9 @@
                             </tbody>
                         </table>
                     </div>
-                    </div>
                 </div>
             </div>
+        </div>
 
         <%--Modal Añadir una sola Orden--%>
         <div class="modal fade" id="modalAñadirOrden" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -118,22 +126,14 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="col-md-8 mx-auto">
+                        <div class="col-md-10 mx-auto justify-content-center">
                             <form class="form-group">
-                                <div class="d-flex ">
-                                    <div class="col-md-5">
-                                        <select name="txtIdOrden" id="txtIdOrden" class="form-select">
-                                            <option>Id Orden </option>
-                                            <%
-                                                OrdenesDAO ordDAO1 = new OrdenesDAO();
-                                                for (OrdenesVO ordVO1 : ordDAO1.listar()) {
-                                            %>
-                                            <option value="<%=ordVO1.getId_Orden()%>"><%=ordVO1.getId_Orden()%></option>
-                                            <%}%>
-                                        </select>
+                                <div class="d-flex mx-auto justify-content-center ">
+                                    <div class="">
+                                        <input type="text" class="form-control" name="txtcantidadSolicitadaReg" id="txtcantidadSolicitadaReg" placeholder="Cantidad">
                                     </div>
-                                    <div class="col-md-7 ms-1">
-                                        <select name="txtIdDetallesProducto" id="txtIdDetallesProducto" class="form-select">
+                                    <div class="ms-2">
+                                        <select name="txtIdDetallesProducto" id="txtIdDetallesProductoReg" class="form-select">
                                             <option>IdDetalles Producto</option>
                                             <%
                                                 DetallesProductoDAO dpDAO1 = new DetallesProductoDAO();
@@ -144,11 +144,12 @@
                                         </select>
                                     </div>       
                                 </div>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control mt-2" name="txtcantidadSolicitada1" id="txtcantidadSolicitada" placeholder="Cantidad">
+                                <div class="">
+                                    <input type="date" class="form-control mt-2" name="txtFechaEntregaReg" id="txtFechaEntregaReg">
                                 </div>
-                                <input type="hidden" value="1" name="opcion" id="opcion">
-                                <input type="button" id="submit" value="Guardar" class="btn boton mt-3">
+                                <input type="hidden" value="1" name="txtIdUsuario" id="txtIdUsuarioReg">
+                                <input type="hidden" value="1" name="opcionReg" id="opcionReg">
+                                <input type="button" id="submitReg" value="Guardar" class="btn boton mt-3">
                                 <div id="respuesta"></div>
                             </form>
                         </div>
@@ -213,9 +214,11 @@
                                             <thead>
                                                 <tr>
                                                     <th>Num.</th>
-                                                    <th>Id Orden</th>
-                                                    <th>Id Detalles<br> Producto</th>
-                                                    <th>Cantidad</th>
+                                                    <th>Id Usuario</th>
+                                                    <th>Id Detalles Producto</th>
+                                                    <th>Cantidad Solicitada</th>
+                                                    <th>Fecha Registro</th>
+                                                    <th>Fecha Entrega</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
@@ -239,15 +242,15 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="col-md-8 mx-auto justify-content-center">
-
-                            <form>
-                                <label class="text-center">Id Orden</label>
-                                <label id="idOrdenEdit"></label>
-                                <div class="d-flex col-md-12">
-                                    <div class="col-md-6">
-                                        <select id="idDetallesProEdit" class="form-select">
-                                            <option id="opcionDetallesProEdit"></option>
+                        <div class="col-md-10 mx-auto justify-content-center">
+                            <form class="form-group">
+                                <div class="d-flex mx-auto justify-content-center ">
+                                    <div class="">
+                                        <input type="text" class="form-control" name="txtcantidadSolicitadaedit" id="txtcantidadSolicitadaReg" placeholder="Cantidad">
+                                    </div>
+                                    <div class="ms-2">
+                                        <select name="txtIdDetallesProducto" id="txtIdDetallesProductoedit" class="form-select">
+                                            <option id="opciontxtIdDetallesProductoedit">IdDetalles Producto</option>
                                             <%
                                                 DetallesProductoDAO dpDAOedit = new DetallesProductoDAO();
                                                 for (DetallesProductoVO dpVOedit : dpDAOedit.listar()) {
@@ -255,26 +258,16 @@
                                             <option value="<%=dpVOedit.getId_Detalles_Producto()%>"><%=dpVOedit.getId_Detalles_Producto()%></option>
                                             <%}%>
                                         </select>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <select id="idOrdenesEdit" class="form-select">
-                                            <option id="opcionOrdenEdit" ></option>
-                                            <%
-                                                OrdenesDAO ordDAOedit = new OrdenesDAO();
-                                                for (OrdenesVO ordVOedit : ordDAOedit.listar()) {
-                                            %>
-                                            <option value="<%=ordVOedit.getId_Orden()%>"><%=ordVOedit.getId_Orden()%></option>
-                                            <%}%>
-                                        </select>
-                                    </div>
+                                    </div>       
                                 </div>
-                                <input type="hidden" value="2" name="opcion" id="opcionEdit">
-                                <label>Cantidad</label><br>
-                                <input id="cantidadEdit" type="text" required class="form-control">
-                                <input type="button" id="submitEdit" value="Editar" class="btn boton d-inline-block mx-auto ms-5 justify-content-center mt-3"> 
-
+                                <div class="">
+                                    <input type="date" class="form-control mt-2" name="txtFechaEntregaReg" id="txtFechaEntregaReg">
+                                </div>
+                                <input type="hidden" value="1" name="txtIdUsuario" id="txtIdUsuarioedit">
+                                <input type="hidden" value="1" name="opcionReg" id="opcionedit">
+                                <input type="button" id="submitedit" value="Guardar" class="btn boton mt-3">
+                                <div id="respuesta"></div>
                             </form>
-                            <div id="respuestaEdit"></div>
                         </div>
                     </div>
                 </div>

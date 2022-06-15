@@ -53,15 +53,17 @@ public class OrdenDetallesControlador extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         ServletOutputStream out1 = response.getOutputStream();
-        String id_Orden_Detalles = request.getParameter("txtIdOrdenDetalles");
-        String id_Orden = request.getParameter("txtIdOrden");
+        String id_Ordenes = request.getParameter("txtIdOrdenes");
+        String idUsuarios = request.getParameter("txtIdUsuario");
         String id_Detalles_Producto = request.getParameter("txtIdDetallesProducto");
         String cantidadSolicitada = request.getParameter("txtcantidadSolicitada");
+        String fechaRegistro = request.getParameter("txtFechaRegistro");
+        String fechaEntrega = request.getParameter("txtFechaEntrega");
         String Estado = request.getParameter("txtEstado");
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         // 2. Quien tiene los datos de forma segura en el sistema? VO
-        OrdenDetallesVO ordenDetallVO = new OrdenDetallesVO(id_Orden_Detalles, id_Orden,
-                id_Detalles_Producto, cantidadSolicitada, Estado);
+        OrdenDetallesVO ordenDetallVO = new OrdenDetallesVO(id_Ordenes, idUsuarios, id_Detalles_Producto,
+                cantidadSolicitada, fechaRegistro, fechaEntrega, Estado);
 
         // 3. Quien hace las operaciones? DAO
         OrdenDetallesDAO ordenDetalDAO = new OrdenDetallesDAO(ordenDetallVO);
@@ -74,7 +76,7 @@ public class OrdenDetallesControlador extends HttpServlet {
                 if (ordenDetalDAO.agregarRegistro()) {
                     out1.println("<label class='text-success'><b>La orden Detalles se registró correctamente</b></label>");
                 } else {
-                    out1.println("<label class='text-danger'><b>Erro al registrar la orden</b></label>");
+                    out1.println("<label class='text-danger'><b>Error al registrar la orden</b></label>");
                 }
                 break;
 
@@ -99,7 +101,7 @@ public class OrdenDetallesControlador extends HttpServlet {
 
             case 4: //Consultar por Orden_Detalles
 
-                ordenDetallVO = ordenDetalDAO.consultarIdOrden(id_Orden_Detalles);
+                ordenDetallVO = ordenDetalDAO.consultarIdOrden(id_Ordenes);
                 //prodVO = prodDAO.listar(Id_Producto);
                 if (ordenDetallVO != null) {
 
@@ -113,35 +115,23 @@ public class OrdenDetallesControlador extends HttpServlet {
 
             case 5: //agregar
                 item += 1;
-                OrdenDetallesVO ordetllVO = new OrdenDetallesVO(id_Orden, id_Detalles_Producto, cantidadSolicitada, item);
-                listaOrdenDetalles.add(ordetllVO);
+                OrdenDetallesVO ordetllVO = new OrdenDetallesVO(id_Ordenes, id_Ordenes, id_Detalles_Producto,
+                        cantidadSolicitada, fechaRegistro, fechaEntrega, Estado);
 
                 for (int i = 0; i < listaOrdenDetalles.size(); i++) {
                     OrdenDetallesVO ordetllVO2 = listaOrdenDetalles.get(i);
                     out1.println("<tr>");
                     out1.println("<td>" + i + "</td>");
-                    out1.println("<td>" + ordetllVO2.getId_Orden() + "</td>");
+                    out1.println("<td>" + ordetllVO2.getId_Usuarios() + "</td>");
                     out1.println("<td >" + ordetllVO2.getId_Detalles_Producto() + "</td>");
                     out1.println("<td >" + ordetllVO2.getCantidadSolicitada() + "</td>");
+                    out1.println("<td >" + ordetllVO2.getFecha_registro() + "</td>");
+                    out1.println("<td >" + ordetllVO2.getFecha_entrega() + "</td>");
                     out1.println("<td><button  class='btn btn-danger submitEliminarLista' data-id9=" + i + " data-id10='11'>Eliminar</button></td>");
                     out1.println("</tr>");
                 }
                 break;
-
-            case 6: //Agregar registro
-
-                if (ordenDetalDAO.agregarRegistro()) {
-
-                    request.setAttribute("mensajeExito", "La orden Detalles se registró correctamente!");
-
-                } else {
-
-                    request.setAttribute("mensajeError", "La orden Detalles no se registró correctamente");
-                }
-                request.getRequestDispatcher("registrarOrdenDetalles.jsp").forward(request, response);
-                break;
-
-            case 7:
+            /*case 7:
 
                 if (ordenDetalDAO.ActivarRegistro()) {
 
@@ -171,7 +161,7 @@ public class OrdenDetallesControlador extends HttpServlet {
 
                 }
                 request.getRequestDispatcher("menu.jsp").forward(request, response);
-                break;
+                break;*/
 
             case 10:
                 response.setHeader("Content-Disposition", "attachment; filename=\"reporteOrdenDetalle.pdf\";");
@@ -203,9 +193,11 @@ public class OrdenDetallesControlador extends HttpServlet {
                     OrdenDetallesVO ordetllVO2 = listaOrdenDetalles.get(i);
                     out1.println("<tr>");
                     out1.println("<td>" + i + "</td>");
-                    out1.println("<td>" + ordetllVO2.getId_Orden() + "</td>");
+                    out1.println("<td>" + ordetllVO2.getId_Usuarios() + "</td>");
                     out1.println("<td >" + ordetllVO2.getId_Detalles_Producto() + "</td>");
                     out1.println("<td >" + ordetllVO2.getCantidadSolicitada() + "</td>");
+                    out1.println("<td >" + ordetllVO2.getFecha_registro() + "</td>");
+                    out1.println("<td >" + ordetllVO2.getFecha_entrega() + "</td>");
                     out1.println("<td><button  class='btn btn-danger submitEliminarLista' data-id9=" + i + " data-id10='11'>Eliminar</button></td>");
                     out1.println("</tr>");
                 }

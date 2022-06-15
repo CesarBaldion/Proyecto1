@@ -29,7 +29,7 @@ public class OrdenDetallesDAO extends Conexion implements Crud {
     private boolean operacion = false;
     private String sql;
 
-    String id_Orden_Detalles, id_Orden, id_Detalles_Producto, cantidadSolicitada;
+    String id_Ordenes, id_Usuarios, id_Detalles_Producto, cantidadSolicitada, fecha_registro, fecha_entrega, Estado;
 
     public OrdenDetallesDAO(OrdenDetallesVO ordDetallVO) {
 
@@ -40,11 +40,13 @@ public class OrdenDetallesDAO extends Conexion implements Crud {
 
             conexion = this.obtenerConexion();
             // 4. traer al DAO los datos del VO para hacer las operaciones.
-
-            id_Orden_Detalles = ordDetallVO.getId_Orden_Detalles();
-            id_Orden = ordDetallVO.getId_Orden();
+            id_Ordenes = ordDetallVO.getId_Ordenes();
+            id_Usuarios = ordDetallVO.getId_Usuarios();
             id_Detalles_Producto = ordDetallVO.getId_Detalles_Producto();
             cantidadSolicitada = ordDetallVO.getCantidadSolicitada();
+            fecha_registro = ordDetallVO.getFecha_registro();
+            fecha_entrega = ordDetallVO.getFecha_entrega();
+            Estado = ordDetallVO.getEstado();
 
         } catch (Exception e) {
             Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -59,13 +61,16 @@ public class OrdenDetallesDAO extends Conexion implements Crud {
     public boolean agregarRegistro() {
         try {
             //Armar sentencia
-            sql = "insert into orden_detalles(id_Orden,id_Detalles_Producto,CantidadSolicitada)values(?,?,?)";
+            sql = "insert into ordenes(Id_Usuarios,Id_Detalles_Producto,CantidadSolicitada,fecha_registro,fecha_entrega)"
+                    + "values(?,?,?,?,?)";
 
             // crear el camino por donde va la sentencia
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, id_Orden);
+            puente.setString(1, id_Usuarios);
             puente.setString(2, id_Detalles_Producto);
             puente.setString(3, cantidadSolicitada);
+            puente.setString(4, fecha_registro);
+            puente.setString(5, fecha_entrega);
             puente.executeUpdate();
             operacion = true;
         } catch (SQLException ex) {
@@ -86,12 +91,15 @@ public class OrdenDetallesDAO extends Conexion implements Crud {
     @Override
     public boolean actualizarRegistro() {
         try {
-            sql = "update orden_detalles set id_orden = ?, id_detalles_Producto = ?, CantidadSolicitada = ? where Id_Orden_Detalles = ? ";
+            sql = "update ordenes set Id_Usuarios=?,Id_Detalles_Producto=?,"
+                    + "CantidadSolicitada=?,fecha_registro=?,fecha_entrega=? where Id_Ordenes = ?";
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, id_Orden);
+            puente.setString(1, id_Usuarios);
             puente.setString(2, id_Detalles_Producto);
             puente.setString(3, cantidadSolicitada);
-            puente.setString(4, id_Orden_Detalles);
+            puente.setString(4, fecha_registro);
+            puente.setString(5, fecha_entrega);
+            puente.setString(6, id_Ordenes);
             puente.executeUpdate();
             operacion = true;
 
@@ -113,9 +121,9 @@ public class OrdenDetallesDAO extends Conexion implements Crud {
     public boolean eliminarRegistro() {
         try {
             //Armar sentencia
-            sql = "UPDATE `orden_detalles` SET `Estado`= 0 WHERE Id_orden_detalles = ?";
+            sql = "update ordenes set Estado=0 where Id_Ordenes=?";
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, id_Orden_Detalles);
+            puente.setString(1, id_Ordenes);
             puente.executeUpdate();
             operacion = true;
 
@@ -135,14 +143,12 @@ public class OrdenDetallesDAO extends Conexion implements Crud {
         return operacion;
     }
 
-    
-
     public OrdenDetallesVO consultarIdOrden(String IdOrden) {
 
         OrdenDetallesVO OrdenDetallVO = null;
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from orden_detalles where Id_Orden = ?";
+            sql = "select * from ordenes where Id_Orden = ? and estado = 1";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, IdOrden);
             mensajero = puente.executeQuery();
@@ -150,7 +156,7 @@ public class OrdenDetallesDAO extends Conexion implements Crud {
             while (mensajero.next()) {
 
                 OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1), mensajero.getString(2),
-                        mensajero.getString(3), mensajero.getString(4), mensajero.getString(5));
+                        mensajero.getString(3), mensajero.getString(4), mensajero.getString(5), mensajero.getString(6), mensajero.getString(7));
 
             }
 
@@ -176,14 +182,14 @@ public class OrdenDetallesDAO extends Conexion implements Crud {
         ArrayList<OrdenDetallesVO> listaOrdenDetalles = new ArrayList<>();
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from orden_detalles where estado = 1";
+            sql = "select * from ordenes where estado = 1";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
 
             while (mensajero.next()) {
 
-                OrdenDetallesVO OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1),
-                        mensajero.getString(2), mensajero.getString(3), mensajero.getString(4), mensajero.getString(5));
+                OrdenDetallesVO OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1), mensajero.getString(2),
+                        mensajero.getString(3), mensajero.getString(4), mensajero.getString(5), mensajero.getString(6), mensajero.getString(7));
                 listaOrdenDetalles.add(OrdenDetallVO);
 
             }
@@ -205,41 +211,7 @@ public class OrdenDetallesDAO extends Conexion implements Crud {
 
     }
 
-    public ArrayList<OrdenDetallesVO> ListarDos() {
-
-        ArrayList<OrdenDetallesVO> listaOrdenDetalles = new ArrayList<>();
-        try {
-            conexion = this.obtenerConexion();
-            sql = "select * from ordendetallesview2";
-            puente = conexion.prepareStatement(sql);
-            mensajero = puente.executeQuery();
-
-            while (mensajero.next()) {
-
-                OrdenDetallesVO OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1),
-                        mensajero.getString(2), mensajero.getString(3), mensajero.getString(4), mensajero.getString(5));
-                listaOrdenDetalles.add(OrdenDetallVO);
-
-            }
-
-        } catch (SQLException e) {
-            Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
-
-        } finally {
-
-            try {
-                this.cerrarConexion();
-
-            } catch (SQLException e) {
-                Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
-            }
-        }
-
-        return listaOrdenDetalles;
-
-    }
-
-    public boolean ActivarRegistro() {
+    /* public boolean ActivarRegistro() {
         try {
             //Armar sentencia
             sql = "UPDATE `orden_detalles` SET `Estado`= 1 WHERE Id_orden_detalles = ?";
@@ -286,25 +258,26 @@ public class OrdenDetallesDAO extends Conexion implements Crud {
             }
         }
         return operacion;
-    }
-
+    }*/
     public boolean cargarListaOrdenDetalles(ArrayList<OrdenDetallesVO> listaOrdenDetalles) {
         boolean accion = false;
         try {
 
-           sql = "insert into orden_detalles(id_Orden,id_Detalles_Producto,CantidadSolicitada)values(?,?,?)";
+            sql = "insert into ordenes(Id_Usuarios,Id_Detalles_Producto,CantidadSolicitada,fecha_registro,fecha_entrega)"
+                    + "values(?,?,?,?,?)";
             conexion = obtenerConexion();
 
             for (int i = 0; i < listaOrdenDetalles.size(); i++) {
                 OrdenDetallesVO ordetllVO2 = listaOrdenDetalles.get(i);
                 puente = conexion.prepareStatement(sql);
-                puente.setString(1, ordetllVO2.getId_Orden());
+                puente.setString(1, ordetllVO2.getId_Usuarios());
                 puente.setString(2, ordetllVO2.getId_Detalles_Producto());
                 puente.setString(3, ordetllVO2.getCantidadSolicitada());
+                puente.setString(4, ordetllVO2.getFecha_registro());
+                puente.setString(5, ordetllVO2.getFecha_entrega());
                 puente.executeUpdate();
             }
             accion = true;
-
         } catch (SQLException ex) {
             Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

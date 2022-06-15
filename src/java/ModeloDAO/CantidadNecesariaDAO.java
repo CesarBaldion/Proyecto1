@@ -33,12 +33,9 @@ public class CantidadNecesariaDAO extends Conexion implements Crud {
     
     public CantidadNecesariaDAO(CantidadNecesariaVO cantNecVO){
         super();
-        
         try {
-            
             conexion = this.obtenerConexion();
             //Traer datos para operar
-            
             Id_Materia_Prima = cantNecVO.getId_Materia_Prima();
             Id_Detalles_Producto = cantNecVO.getId_Detalles_Producto();
             materiaprimaenproducto = cantNecVO.getMateriaprimaenproducto();
@@ -53,7 +50,7 @@ public class CantidadNecesariaDAO extends Conexion implements Crud {
     @Override
     public boolean agregarRegistro() {
         try {
-            sql = "INSERT INTO cantidad_necesaria(Id_materia_Prima,Id_detalles_producto,materiaPrimaEnProducto) values(?.?.?)";
+            sql = "INSERT INTO cantidad_necesaria(Id_materia_Prima,Id_detalles_producto,materiaPrimaEnProducto) values(?,?,?)";
 
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Id_Materia_Prima);
@@ -76,7 +73,27 @@ public class CantidadNecesariaDAO extends Conexion implements Crud {
 
     @Override
     public boolean actualizarRegistro() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            sql = "update detalles_producto set Id_materia_Prima = ?,Id_detalles_producto = ?,materiaPrimaEnProducto=? where idcantidadnecesaria = ?";
+
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id_Materia_Prima);
+            puente.setString(2, Id_Detalles_Producto);
+            puente.setString(3, materiaprimaenproducto);
+            //puente.setString(4, idCantidaNecesaria);
+            puente.executeUpdate();
+            operacion = true;
+        } catch (SQLException e) {
+            Logger.getLogger(CantidadNecesariaDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(CantidadNecesariaDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return operacion;
     }
 
     @Override
@@ -88,7 +105,7 @@ public class CantidadNecesariaDAO extends Conexion implements Crud {
         CantidadNecesariaVO cantNecVO = null;
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from cantidadnecesaria where Id_Materia_Prima=?";
+            sql = "select * from cantidadnecesaria where Id_Materia_Prima=? ";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Id_Materia_Prima);
             mensajero = puente.executeQuery();

@@ -9,6 +9,7 @@ import ModeloDAO.CantidadNecesariaDAO;
 import ModeloVO.CantidadNecesariaVO;
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,44 +34,37 @@ public class CantidadNecesariaControlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        ServletOutputStream out1 = response.getOutputStream();
+
         String id_materia_prima = request.getParameter("Id_Materia_Prima");
         String id_detalles_producto = request.getParameter("Id_Detalles_Producto");
         String materiaprimaenproducto = request.getParameter("materiaprimaenproducto");
-        
+
         int opcion = Integer.parseInt(request.getParameter("opcion"));
-        
-      CantidadNecesariaVO cantNecVO = new CantidadNecesariaVO(id_materia_prima, id_detalles_producto, materiaprimaenproducto);
+
+        CantidadNecesariaVO cantNecVO = new CantidadNecesariaVO(id_materia_prima, id_detalles_producto, materiaprimaenproducto);
 
         // 3. Quien hace las operaciones? DAO
         CantidadNecesariaDAO cantNecDAO = new CantidadNecesariaDAO(cantNecVO);
-        
+
         switch (opcion) {
 
             case 1: //Agregar registro
 
                 if (cantNecDAO.agregarRegistro()) {
-
-                    request.setAttribute("mensajeExito", "El producto se registro correctamente!");
-
+                    out1.println("<label class='text-success'><b>Se ha registrado Correctamente</b></label>");
                 } else {
-
-                    request.setAttribute("mensajeError", "El producto no se registro correctamente");
+                    out1.println("<label class='text-danger'><b>Error al Registrar</b></label>");
                 }
-                request.getRequestDispatcher("registrarProducto.jsp").forward(request, response);
                 break;
 
             case 2:
 
                 if (cantNecDAO.actualizarRegistro()) {
-
-                    request.setAttribute("mensajeExito", "El producto se actualizo correctamente!");
-
+                    out1.println("<label class='text-success'><b>Se ha Actualizado Correctamente</b></label>");
                 } else {
-
-                    request.setAttribute("mensajeExito", "El producto no se actualizo correctamente!");
+                    out1.println("<label class='text-danger'><b>Error al Actualizar</b></label>");
                 }
-                request.getRequestDispatcher("actualizarProducto.jsp").forward(request, response);
                 break;
 
             case 3:

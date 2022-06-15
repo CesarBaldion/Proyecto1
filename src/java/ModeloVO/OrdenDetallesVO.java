@@ -10,43 +10,36 @@ package ModeloVO;
  * @author Sena
  */
 public class OrdenDetallesVO {
-    
-    String id_Orden_Detalles,id_Orden,id_Detalles_Producto,cantidadSolicitada, Estado;
-    int item;
 
-    public OrdenDetallesVO(String id_Orden_Detalles, String id_Orden, String id_Detalles_Producto, String cantidadSolicitada, String Estado) {
-        this.id_Orden_Detalles = id_Orden_Detalles;
-        this.id_Orden = id_Orden;
+    String id_Ordenes, id_Usuarios, id_Detalles_Producto, cantidadSolicitada, fecha_registro, fecha_entrega, Estado;
+
+    public OrdenDetallesVO(String id_Ordenes, String id_Usuarios, String id_Detalles_Producto, String cantidadSolicitada, String fecha_registro, String fecha_entrega, String Estado) {
+        this.id_Ordenes = id_Ordenes;
+        this.id_Usuarios = id_Usuarios;
         this.id_Detalles_Producto = id_Detalles_Producto;
         this.cantidadSolicitada = cantidadSolicitada;
+        this.fecha_registro = fecha_registro;
+        this.fecha_entrega = fecha_entrega;
         this.Estado = Estado;
-  
-    }
-
-    public OrdenDetallesVO(String id_Orden, String id_Detalles_Producto, String cantidadSolicitada, int item) {
-        this.id_Orden = id_Orden;
-        this.id_Detalles_Producto = id_Detalles_Producto;
-        this.cantidadSolicitada = cantidadSolicitada;
-        this.item = item;
     }
 
     public OrdenDetallesVO() {
     }
-    
-    public String getId_Orden_Detalles() {
-        return id_Orden_Detalles;
+
+    public String getId_Ordenes() {
+        return id_Ordenes;
     }
 
-    public void setId_Orden_Detalles(String id_Orden_Detalles) {
-        this.id_Orden_Detalles = id_Orden_Detalles;
+    public void setId_Ordenes(String id_Ordenes) {
+        this.id_Ordenes = id_Ordenes;
     }
 
-    public String getId_Orden() {
-        return id_Orden;
+    public String getId_Usuarios() {
+        return id_Usuarios;
     }
 
-    public void setId_Orden(String id_Orden) {
-        this.id_Orden = id_Orden;
+    public void setId_Usuarios(String id_Usuarios) {
+        this.id_Usuarios = id_Usuarios;
     }
 
     public String getId_Detalles_Producto() {
@@ -65,6 +58,22 @@ public class OrdenDetallesVO {
         this.cantidadSolicitada = cantidadSolicitada;
     }
 
+    public String getFecha_registro() {
+        return fecha_registro;
+    }
+
+    public void setFecha_registro(String fecha_registro) {
+        this.fecha_registro = fecha_registro;
+    }
+
+    public String getFecha_entrega() {
+        return fecha_entrega;
+    }
+
+    public void setFecha_entrega(String fecha_entrega) {
+        this.fecha_entrega = fecha_entrega;
+    }
+
     public String getEstado() {
         return Estado;
     }
@@ -73,17 +82,4 @@ public class OrdenDetallesVO {
         this.Estado = Estado;
     }
 
-    public int getItem() {
-        return item;
-    }
-
-    public void setItem(int item) {
-        this.item = item;
-    }
-
-    
-
-   
-    
-    
 }

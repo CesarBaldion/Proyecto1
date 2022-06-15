@@ -146,7 +146,7 @@ public class DetallesProductoDAO extends Conexion implements Crud {
         try {
 
             conexion = this.obtenerConexion();
-            sql = "select * from detalles_producto where Id_Producto = ? and estado = 1";
+            sql = "select * from detalles_producto where Id_Detalles_Producto = ? and estado = 1";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, id);
             mensajero = puente.executeQuery();
@@ -159,7 +159,7 @@ public class DetallesProductoDAO extends Conexion implements Crud {
         } catch (Exception e) {
             Logger.getLogger(DetallesProductoDAO.class.getName()).log(Level.SEVERE, null, e);
 
-        } 
+        }
         return detProVO;
     }
 
@@ -195,28 +195,6 @@ public class DetallesProductoDAO extends Conexion implements Crud {
         return listarDetallesProducto;
 
     }
-
-    public String consultarProducto(String idProducto) {
-        String nomProducto;
-        ProductoVO prodVO = null;
-        try {
-            conexion = this.obtenerConexion();
-            sql = "select * from producto where id_producto=?";
-            puente = conexion.prepareStatement(sql);
-            puente.setString(1, idProducto);
-            mensajero = puente.executeQuery();
-
-            while (mensajero.next()) {
-                prodVO = new ProductoVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3));
-            }
-        } catch (Exception e) {
-            Logger.getLogger(ProductoVO.class.getName()).log(Level.SEVERE, null, e);
-        }
-
-        nomProducto = prodVO.getNombre();
-        return nomProducto;
-    }
-
     public ArrayList<DetallesProductoVO> listarDos() {
 
         ArrayList<DetallesProductoVO> listarDetallesProducto = new ArrayList<>();
@@ -247,9 +225,9 @@ public class DetallesProductoDAO extends Conexion implements Crud {
         }
 
         return listarDetallesProducto;
-       
+
     }
-    
+
     public boolean activarRegistro() {
         try {
             sql = "UPDATE `detalles_producto` SET `Estado`= 1 WHERE Id_detalles_producto = ?";
@@ -271,7 +249,7 @@ public class DetallesProductoDAO extends Conexion implements Crud {
         }
         return operacion;
     }
-    
+
     public boolean eliminarRegistroTotal() {
         try {
             sql = "Delete from `detalles_producto` WHERE Id_detalles_producto = ?";
@@ -292,36 +270,6 @@ public class DetallesProductoDAO extends Conexion implements Crud {
             }
         }
         return operacion;
-    }
-    
-     public void cargarDetallesProductos(String rutaAbsoluta) throws SQLException, IOException  {
-
-        try {
-            sql = "insert into detalles_producto(Id_Producto,talla,Descripcion,Estado)values(?,?,?,?)";
-            conexion = obtenerConexion();
-            FileInputStream file = new FileInputStream(new File(rutaAbsoluta));
-
-            XSSFWorkbook wb = new XSSFWorkbook(file);
-            XSSFSheet sheet = wb.getSheetAt(0);
-            DataFormatter dataFormater = new DataFormatter();
-            int numFilas = sheet.getLastRowNum();
-            
-            for (int a = 1; a <= numFilas; a++) {
-                Row fila = sheet.getRow(a);
-                puente = conexion.prepareStatement(sql);
-                puente.setString(1, dataFormater.formatCellValue(fila.getCell(0)));
-                puente.setString(2,"1");
-                puente.setString(3, "2");
-                puente.setString(4, "3");
-                puente.executeUpdate();
-            }
-            File Archivo = new File(rutaAbsoluta);
-            Archivo.delete();
-            conexion = cerrarConexion();
-
-        } catch (FileNotFoundException ex ) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } 
     }
 
 }
