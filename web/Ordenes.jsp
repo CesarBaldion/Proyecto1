@@ -238,7 +238,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header ">
-                        <h5 class="modal-title" id="staticBackdropLabel">Editar Orden</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">Editar Orden <label id="IdOrdenEdit"></label></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -246,7 +246,7 @@
                             <form class="form-group">
                                 <div class="d-flex mx-auto justify-content-center ">
                                     <div class="">
-                                        <input type="text" class="form-control" name="txtcantidadSolicitadaedit" id="txtcantidadSolicitadaReg" placeholder="Cantidad">
+                                        <input type="text" class="form-control" name="txtcantidadSolicitadaedit" id="txtcantidadSolicitadaEdit" placeholder="Cantidad">
                                     </div>
                                     <div class="ms-2">
                                         <select name="txtIdDetallesProducto" id="txtIdDetallesProductoedit" class="form-select">
@@ -261,9 +261,10 @@
                                     </div>       
                                 </div>
                                 <div class="">
-                                    <input type="date" class="form-control mt-2" name="txtFechaEntregaReg" id="txtFechaEntregaReg">
+                                    <input type="date" class="form-control mt-2" name="txtFechaEntregaEdit" id="txtFechaEntregaEdit">
                                 </div>
                                 <input type="hidden" value="1" name="txtIdUsuario" id="txtIdUsuarioedit">
+                                <input type="hidden" id="txtFechaRegistroEdit">
                                 <input type="hidden" value="1" name="opcionReg" id="opcionedit">
                                 <input type="button" id="submitedit" value="Guardar" class="btn boton mt-3">
                                 <div id="respuesta"></div>
@@ -281,23 +282,27 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="col-md-8 mx-auto">
-                            <h5 class="text-center text-danger mb-5" id="staticBackdropLabel">¿Esta seguro que desea Eliminar este Producto?</h5>
+                        <div class="col-md-12 mx-auto">
+                            <h5 class="text-center text-danger mb-5" id="staticBackdropLabel">¿Esta seguro que desea Eliminar esta Orden?</h5>
                             <table class="table table-hover table-light table-responsive text-center">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
-                                        <th>Id Orden</th>
-                                        <th>Id Detalles<br> Producto</th>
-                                        <th>Cantidad</th>
+                                        <th >Id Orden</th>
+                                        <th >Id Usuario</th>
+                                        <th >Id Detalles Producto</th>
+                                        <th >Cantidad Solicitada</th>
+                                        <th >Fecha Registro</th>
+                                        <th >Fecha Entrega</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td id="idDel"></td>
                                         <td id="idOrdenDel"></td>
-                                        <td id="idOrdenDetallesDel"></td>
-                                        <td id="CantidadDel"></td>
+                                        <td id="IdUsuarioDel"></td>
+                                        <td id="IdDetProDel""></td>
+                                        <td id="cantidadDel"></td>
+                                        <td id="fechaRegistroDel"></td>
+                                        <td id="fechaEntregaDel"></td>
                                     </tr>
                                 </tbody>
                             </table>

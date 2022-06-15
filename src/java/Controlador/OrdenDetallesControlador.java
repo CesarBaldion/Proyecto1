@@ -85,16 +85,16 @@ public class OrdenDetallesControlador extends HttpServlet {
                 if (ordenDetalDAO.actualizarRegistro()) {
                     out1.println("<label class='text-success'><b>La orden Detalles se actualizó correctamente</b></label>");
                 } else {
-                    out1.println("<label class='text-danger'><b>Erro al actulizar la orden</b></label>");
+                    out1.println("<label class='text-danger'><b>Error al actulizar la orden</b></label>");
                 }
                 break;
 
             case 3:
 
                 if (ordenDetalDAO.eliminarRegistro()) {
-                    out1.println("<label class='text-success'><b>La orden Detalles se Elimino correctamente</b></label>");
+                    out1.println("<label class='text-success'><b>La orden se Elimino correctamente</b></label>");
                 } else {
-                    out1.println("<label class='text-danger'><b>Erro al Eliminar la orden</b></label>");
+                    out1.println("<label class='text-danger'><b>Error al Eliminar la orden</b></label>");
                 }
 
                 break;

@@ -11,30 +11,27 @@ $('#btnAñadirOrden').click(function () {
 
 //Accionar ventana modal para Editar
 $(".actualizarTBody").on("click", ".detalles", function (e) {
-    document.getElementById("idOrdenEdit").innerText = this.dataset.id;
-    document.getElementById("cantidadEdit").value = this.dataset.id4;
-    document.getElementById("opcionDetallesProEdit").innerText = this.dataset.id3;
-    document.getElementById("opcionDetallesProEdit").value = this.dataset.id3;
-    document.getElementById("opcionOrdenEdit").innerText = this.dataset.id2;
-    document.getElementById("opcionOrdenEdit").value = this.dataset.id2;
+   document.getElementById("opciontxtIdDetallesProductoedit").innerText = this.dataset.id3;
+   document.getElementById("opciontxtIdDetallesProductoedit").value = this.dataset.id3;
+   document.getElementById("txtcantidadSolicitadaEdit").value = this.dataset.id4;
+   document.getElementById("txtFechaEntregaEdit").value = this.dataset.id6;
+   document.getElementById("IdOrdenEdit").innerText = this.dataset.id;
+   document.getElementById("txtIdUsuarioedit").value = this.dataset.id2;
     $("#editarOrdenModal").modal("show");
 });
 
 //Accionar ventana modal para Eliminar
 $(".actualizarTBody").on("click", ".eliminar", function (e) {
-    e.preventDefault();
-    document.getElementById('responseDel').innerText = "";
-    document.getElementById('idDel').innerText = this.dataset.id5;
-    document.getElementById('idOrdenDel').innerText = this.dataset.id6;
-    document.getElementById('idOrdenDetallesDel').innerText = this.dataset.id7;
-    document.getElementById('CantidadDel').innerText = this.dataset.id8;
+    document.getElementById("idOrdenDel").innerText = this.dataset.id7;
+    document.getElementById("IdUsuarioDel").innerText = this.dataset.id8;
+    document.getElementById("IdDetProDel").innerText = this.dataset.id9;
+    document.getElementById("cantidadDel").innerText = this.dataset.id10;
+    document.getElementById("fechaRegistroDel").innerText = this.dataset.id11;
+    document.getElementById("fechaEntregaDel").innerText = this.dataset.id12;
     $("#eliminarOrdenModal").modal("show");
 });
 
-//Actualizar tabla
-$("#actualizarData").click(function (e) {
-    $("#actualizarTBody").load(" #actualizarTBody");
-});
+
 
 //Envio de Datos Por AJAX para Añadir Orden
 $('#submitReg').click(function (event) {
@@ -98,20 +95,25 @@ $(".contenerdorLista").on("click", ".submitEliminarLista", function (event) {
         $('#tabla').html(responseText);
     });
 });
+
+
+
 //Envio de Datos Por AJAX para eliminar 
 $('#submitDel').click(function (event) {
-    var idOrdenVar = $('#idDel').text();
-    var opcionVar = $('#opcioneDel').val();
+    var idOrdenDelVar = $('#idOrdenDel').text();
+    var opcioneDelVar = $('#opcioneDel').val();
 
     // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
     $.post('OrdenDetalles', {
-        txtIdOrdenDetalles: idOrdenVar,
-        opcion: opcionVar
+        txtIdOrdenes: idOrdenDelVar,
+        opcion: opcioneDelVar
     }, function (responseText) {
         $('#responseDel').html(responseText);
         $("#actualizarTBody").load(" #actualizarTBody");
     });
 });
+
+
 //Envio de Datos Por Ajax para Editar
 $('#submitEdit').click(function (event) {
     var txtIdOrdenDetalles = $('#idOrdenEdit').text();

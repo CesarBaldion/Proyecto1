@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/1Usuario/Desktop/Github/Proyecto1/web/Ordenes.jsp</file>
-            <file>file:/C:/Users/1Usuario/Desktop/Github/Proyecto1/web/js/JS/ControladorOrdenes.js</file>
-            <file>file:/C:/Users/1Usuario/Desktop/Github/Proyecto1/src/java/ModeloDAO/OrdenDetallesDAO.java</file>
-            <file>file:/C:/Users/1Usuario/Desktop/Github/Proyecto1/src/java/Controlador/OrdenDetallesControlador.java</file>
+            <file>file:/C:/Users/sena/Desktop/git/Proyecto1/web/Ordenes.jsp</file>
+            <file>file:/C:/Users/sena/Desktop/git/Proyecto1/src/java/ModeloDAO/OrdenDetallesDAO.java</file>
+            <file>file:/C:/Users/sena/Desktop/git/Proyecto1/web/js/JS/ControladorOrdenes.js</file>
+            <file>file:/C:/Users/sena/Desktop/git/Proyecto1/src/java/Util/Conexion.java</file>
+            <file>file:/C:/Users/sena/Desktop/git/Proyecto1/src/java/Controlador/OrdenDetallesControlador.java</file>
         </group>
     </open-files>
 </project-private>
