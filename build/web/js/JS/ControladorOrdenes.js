@@ -39,7 +39,7 @@ $('#submitReg').click(function (event) {
     var txtIdUsuarioRegVar = $('#txtIdUsuarioReg').val();
     var txtIdDetallesProductoRegVar = $('#txtIdDetallesProductoReg').val();
     var txtcantidadSolicitadaRegVar = $('#txtcantidadSolicitadaReg').val();
-    var txtFechaRegistroRegVar = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} `;
+    var txtFechaRegistroRegVar = '${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}';
     var txtFechaEntregaRegVar = $('#txtFechaEntregaReg').val();
     var opcionRegVar = $('#opcionReg').val();
     // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get

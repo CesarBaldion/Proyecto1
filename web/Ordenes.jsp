@@ -11,6 +11,7 @@
 <%@page import="ModeloDAO.DetallesProductoDAO"%>
 <%@page import="ModeloVO.OrdenesVO"%>
 <%@page import="ModeloDAO.OrdenesDAO"%>
+<%@include file="Dashboard.jsp" %>
 <%@include file="css-paginacion.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -299,7 +300,7 @@
                                     <tr>
                                         <td id="idOrdenDel"></td>
                                         <td id="IdUsuarioDel"></td>
-                                        <td id="IdDetProDel""></td>
+                                        <td id="IdDetProDel"></td>
                                         <td id="cantidadDel"></td>
                                         <td id="fechaRegistroDel"></td>
                                         <td id="fechaEntregaDel"></td>
