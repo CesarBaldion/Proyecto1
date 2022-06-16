@@ -11,7 +11,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="ModeloDAO.UsuarioRolDAO"%>
 <%@page import="ModeloVO.Usuario_rolVO"%>
-<%@include file="css-paginacion.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -237,8 +236,6 @@
                 </div>
             </div>
         </div>
-
-        <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="js/JS/ControladorRoles.js"></script>
     </body>
 </html>

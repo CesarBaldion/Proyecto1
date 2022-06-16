@@ -3,7 +3,6 @@
     Created on : 24-may-2022, 22:10:36
     Author     : cesar
 --%>
-<%@include file="css-paginacion.jsp" %>
 <%@page import="ModeloDAO.UsuarioDAO"%>
 <%@page import="ModeloVO.UsuarioVO"%>
 <%@page import="java.util.ArrayList"%>
@@ -22,10 +21,10 @@
     </head>
     <body>
         <div class="row">
-            <div class="col-md-8 d-flex mt-5 mx-auto">
+            <div class="col-md-12 d-flex mt-5 mx-auto">
                 <div class="col-md-12 ms-4">
                     <div class="col-md-12">
-                        <div class="col-md-8 d-flex  ">
+                        <div class="col-md-12 d-flex  ">
                             <button type="button" class="boton btn mt-5" data-bs-toggle="modal" data-bs-target="#CargaMasiva" >Carga Masiva
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -51,7 +50,7 @@
                         <label class="mt-3">Buscar</label><br>
                         <input type="text" onkeyup="doSearch()" class="form-control col-md-3"  id="buscar">
                     </div>
-                    <div class="col-md-8 mt-2">
+                    <div class="col-md-12 mt-2">
                         <div class="actualizarTBody" id="actualizarTBody">
                             <table class="table text-center table-bordered border-dark table-hover table-responsive">
                                 <thead class="table-dark">
@@ -246,6 +245,8 @@
                 </div>
             </div>
         </div>
+        
         <script src="js/JS/ControladorUsuarios.js"></script>
+
     </body>
 </html>

@@ -7,7 +7,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="ModeloDAO.MateriaPrimaDAO"%>
 <%@page import="ModeloVO.MateriaPrimaVO"%>
-<%@include file="css-paginacion.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -212,8 +211,6 @@
                 </div>
             </div>
         </div>
-
-        <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="js/JS/ControladorMateriaPrima.js"></script>
     </body>
 </html>

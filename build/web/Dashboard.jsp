@@ -51,8 +51,8 @@
                         </a>
                         <div class="collapse" id="usuarios">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="Usuarios.jsp">Usuarios</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="#">Roles de usuario</a></li>
+                                <li class="nav-item"> <a class="nav-link btn" id="UsuariosView">Usuarios</a></li>
+                                <li class="nav-item"> <a class="nav-link btn" id="RolesView">Roles de usuario</a></li>
 
                             </ul>
                         </div>
@@ -60,7 +60,7 @@
 
 
                     <li class="nav-item menu-items">
-                        <a class="nav-link" href="Ordenes.jsp">
+                        <a class="nav-link btn" id="OrdenesView">
                             <span class="menu-icon">
                                 <i class="mdi mdi-file-document-box"></i>
                             </span>
@@ -80,8 +80,8 @@
                         </a>
                         <div class="collapse" id="productos">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="#">Productos</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="#">Detalles del producto</a></li>
+                                <li class="nav-item"> <a class="nav-link btn" id="ProductoView">Productos</a></li>
+                                <li class="nav-item"> <a class="nav-link btn" id="DetallesProductoView">Detalles del producto</a></li>
 
                             </ul>
                         </div>
@@ -97,9 +97,9 @@
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="#">Materia prima</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="#">Existencias</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="#">Lote de materia prima</a></li>
+                                <li class="nav-item"> <a class="nav-link btn" id="MateriaPrimaView">Materia prima</a></li>
+                                <li class="nav-item"> <a class="nav-link btn" id="ExistenciasView">Existencias</a></li>
+                                <li class="nav-item"> <a class="nav-link btn" id="LoteMateriaPrimaView">Lote de materia prima</a></li>
                             </ul>
                         </div>
                     </li>
@@ -122,7 +122,6 @@
                         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                             <span class="mdi mdi-menu"></span>
                         </button>
-
                         <ul class="navbar-nav navbar-nav-right">
                             <li class="nav-item dropdown d-none d-lg-block">
 
@@ -208,71 +207,10 @@
                 <!-- partial -->
                 <div class="main-panel">
                     <div class="content-wrapper">
-
                         <div class="row">  
-                            <div class="col-lg-12 grid-margin stretch-card">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Bordered table</h4>
-                                        <p class="card-description"> Add class 
-                                        </p>
-                                        <div class="table-responsive">
-                                            <table class="table table-light">
-                                                <thead>
-                                                    <tr>
-                                                        <th> # </th>
-                                                        <th> First name </th>
-                                                        <th> Amount </th>
-                                                        <th> Deadline </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td> 1 </td>
-                                                        <td> Herman Beck </td>
-                                                        <td> $ 77.99 </td>
-                                                        <td> May 15, 2015 </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td> 2 </td>
-                                                        <td> Messsy Adam </td>
-                                                        <td> $245.30 </td>
-                                                        <td> July 1, 2015 </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td> 3 </td>
-                                                        <td> John Richards </td>
-                                                        <td> $138.00 </td>
-                                                        <td> Apr 12, 2015 </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td> 4 </td>
-                                                        <td> Peter Meggik </td>
-                                                        <td> $ 77.99 </td>
-                                                        <td> May 15, 2015 </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td> 5 </td>
-                                                        <td> Edward </td>
-                                                        <td> $ 160.25 </td>
-                                                        <td> May 03, 2015 </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td> 6 </td>
-                                                        <td> John Doe </td>
-                                                        <td> $ 123.21 </td>
-                                                        <td> April 05, 2015 </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td> 7 </td>
-                                                        <td> Henry Tom </td>
-                                                        <td> $ 150.00 </td>
-                                                        <td> June 16, 2015 </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                            <div class="col-md-12 grid-margin">
+                                <div class="card-body" id="CargarVistas">
+
                                 </div>
                             </div>
                         </div>
@@ -313,5 +251,19 @@
         <!-- Custom js for this page -->
         <script src="Dashboard/assets/js/dashboard.js"></script>
         <!-- End custom js for this page -->
+        <script src="js/JS/ControladorDashboard.js"></script>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="js/ScriptPaginacion/BuscadorTabla.js"></script>
+        <script src="js/ScriptPaginacion/jquery-1.11.2.min.js"></script>
+        <script src="js/ScriptPaginacion/jquery-1.12.4.js"></script>
+        <script src="js/ScriptPaginacion/jquery-2.1.3.js"></script>
+        <script src="js/ScriptPaginacion/jquery.js"></script>
+        <script src="js/ScriptPaginacion/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="js/ScriptPaginacion/jquery.prettyPhoto.js"></script>
+        <script src="js/ScriptPaginacion/jquery.scrollUp.min.js"></script>
+        <script src="js/ScriptPaginacion/jqueryn.js"></script>
+        <script src="js/ScriptPaginacion/jqueryy.js"></script>
+
+
     </body>
 </html>

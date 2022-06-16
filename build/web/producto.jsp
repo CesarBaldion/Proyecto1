@@ -7,7 +7,6 @@
 <%@page import="ModeloDAO.ProductoDAO"%>
 <%@page import="ModeloVO.ProductoVO"%>
 <%@page import="java.util.ArrayList"%>
-<%@include file="css-paginacion.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -221,8 +220,6 @@
             </div>
         </div>
     </div>
-
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="js/JS/ControladorProducto.js"></script>
 </body>
 </html>

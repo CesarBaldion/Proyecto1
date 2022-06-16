@@ -11,6 +11,7 @@
             document.getElementById('tipoDocumentoDel').innerText = this.dataset.id3;
             document.getElementById('DocumentoDel').innerText = this.dataset.id4;
             document.getElementById('emailDel').innerText = this.dataset.id5;
+            
             $("#eliminarUsuarioModal").modal("show");
         });
         

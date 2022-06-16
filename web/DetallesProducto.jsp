@@ -9,7 +9,6 @@
 <%@page import="ModeloDAO.DetallesProductoDAO"%>
 <%@page import="ModeloVO.DetallesProductoVO"%>
 <%@page import="java.util.ArrayList"%>
-<%@include file="css-paginacion.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,8 +20,6 @@
                 integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
         <link rel="stylesheet" href="css/estilos.css">
-
-        <title>JSP Page</title>
     </head>
     <body>
         <div class="row">
@@ -200,7 +197,6 @@
                 </div>
             </div>
         </div>
-            <script src="http://code.jquery.com/jquery-latest.js"></script>
             <script src="js/JS/ControladorDetallesProducto.js"></script>
     </body>
 </html>

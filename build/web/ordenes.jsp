@@ -11,8 +11,6 @@
 <%@page import="ModeloDAO.DetallesProductoDAO"%>
 <%@page import="ModeloVO.OrdenesVO"%>
 <%@page import="ModeloDAO.OrdenesDAO"%>
-<%@include file="Dashboard.jsp" %>
-<%@include file="css-paginacion.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -28,10 +26,10 @@
     </head>
     <body>
         <div class="row">
-            <div class="col-md-6 d-flex mt-5 mx-auto">
+            <div class="col-md-12 d-flex mt-5 mx-auto">
                 <div class="col-md-12 ms-4">
                     <div class="col-md-12">
-                        <div class="col-md-10 d-flex  "> 
+                        <div class="col-md-12 d-flex  "> 
                             <button id="btnAñadirOrden"  type="button" class="boton me-2 btn mt-5" data-bs-toggle="modal" data-bs-target="#modalAñadirOrden" >Registrar
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -319,8 +317,6 @@
                 </div>
             </div>
         </div>
-
-        <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="js/JS/ControladorOrdenes.js"></script>
     </body>
 </html>
