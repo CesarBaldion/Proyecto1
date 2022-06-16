@@ -54,3 +54,9 @@ $('#LoteMateriaPrimaView').click(function (event) {
     $("#CargarVistas").load("LoteMateriaPrima.jsp");
 });
 
+$('#ExistenciasView').click(function (event) {
+    event.preventDefault();
+    document.getElementById("CargarVistas").innerText = " ";
+    $("#CargarVistas").load("Existencias.jsp");
+});
+

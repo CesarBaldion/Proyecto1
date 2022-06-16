@@ -20,6 +20,7 @@ public class MateriaPrimaVO {
     public MateriaPrimaVO(String Id_materia_Prima, String Nombre, String Actualizacion, String Estado) {
         this.Id_materia_Prima = Id_materia_Prima;
         this.Nombre = Nombre;
+        this.Actualizacion = Actualizacion;
         this.Estado = Estado;
     }
     
