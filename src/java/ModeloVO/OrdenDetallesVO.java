@@ -11,7 +11,21 @@ package ModeloVO;
  */
 public class OrdenDetallesVO {
 
-    String id_Ordenes, id_Usuarios, id_Detalles_Producto, cantidadSolicitada, fecha_registro, fecha_entrega, Estado;
+    String id_Ordenes, id_Usuarios, id_Detalles_Producto, cantidadSolicitada, fecha_registro, fecha_entrega,
+            Estado, nombreUsuario, infoProducto;
+
+    public OrdenDetallesVO(String id_Ordenes, String id_Usuarios, String id_Detalles_Producto, String cantidadSolicitada,
+            String fecha_registro, String fecha_entrega, String Estado, String nombreUsuario, String infoProducto) {
+
+        this.id_Ordenes = id_Ordenes;
+        this.id_Usuarios = id_Usuarios;
+        this.id_Detalles_Producto = id_Detalles_Producto;
+        this.cantidadSolicitada = cantidadSolicitada;
+        this.fecha_registro = fecha_registro;
+        this.fecha_entrega = fecha_entrega;
+        this.Estado = Estado;
+        this.nombreUsuario=nombreUsuario;
+    }
 
     public OrdenDetallesVO(String id_Ordenes, String id_Usuarios, String id_Detalles_Producto, String cantidadSolicitada, String fecha_registro, String fecha_entrega, String Estado) {
         this.id_Ordenes = id_Ordenes;
@@ -80,6 +94,22 @@ public class OrdenDetallesVO {
 
     public void setEstado(String Estado) {
         this.Estado = Estado;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getInfoProducto() {
+        return infoProducto;
+    }
+
+    public void setInfoProducto(String infoProducto) {
+        this.infoProducto = infoProducto;
     }
 
 }

@@ -182,9 +182,9 @@ public class ProductoDAO extends Conexion implements Crud {
                 proVO = new ProductoVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3));
             }
             if (proVO == null) {
-                operacion = false;
-            } else {
                 operacion = true;
+            } else {
+                operacion = false;
             }
 
         } catch (SQLException e) {

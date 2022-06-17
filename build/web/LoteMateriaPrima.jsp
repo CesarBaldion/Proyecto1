@@ -53,8 +53,7 @@
                             <thead class="table-dark">
                                 <tr>
                                     <th>Id</th>
-                                    <th>Id Materia Prima</th>
-                                    <th>Nombre</th>
+                                    <th>Materia Prima</th>
                                     <th>Cantidad</th>
                                     <th>Observaciones</th>
                                     <th>Fecha Ingreso</th>
@@ -66,7 +65,7 @@
                                 <%
                                     MateriaPrimaVO mtVOlistar = new MateriaPrimaVO();
                                     MateriaPrimaDAO mtDAOlistar = new MateriaPrimaDAO();
-                                    
+
                                     loteMateriaPrimaVO loteMPVO = new loteMateriaPrimaVO();
                                     loteMateriaPrimaDAO loteMPDAO = new loteMateriaPrimaDAO(loteMPVO);
 
@@ -78,7 +77,6 @@
                                 %>
                                 <tr>
                                     <td><%=loteMPVO.getId_loteMateria_Prima()%></td>
-                                    <td><%=loteMPVO.getId_Materia_Prima()%></td>
                                     <td><%=mtVOlistar.getNombre()%></td>
                                     <td><%=loteMPVO.getCantidad()%></td>
                                     <td><%=loteMPVO.getObservaciones()%></td>
@@ -87,7 +85,7 @@
                                     <td>
                                         <div class="d-flex mx-auto justify-content-center" >
                                             <button data-id="<%=loteMPVO.getId_loteMateria_Prima()%>" data-id2="<%=loteMPVO.getId_Materia_Prima()%>"
-                                                    data-id3="<%=loteMPVO.getCantidad()%>" data-id4="<%=loteMPVO.getObservaciones()%>" 
+                                                    data-nombremt="<%=mtVOlistar.getNombre()%>" data-id3="<%=loteMPVO.getCantidad()%>" data-id4="<%=loteMPVO.getObservaciones()%>" 
                                                     data-id5="<%=loteMPVO.getFecha_ingreso()%>" data-id6="<%=loteMPVO.getFecha_salida()%>" class="btn boton mt-2  detalles">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-zoom-in" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
@@ -96,6 +94,7 @@
                                                 </svg>
                                             </button>
                                             <button data-id7="<%=loteMPVO.getId_loteMateria_Prima()%>" data-id8="<%=loteMPVO.getId_Materia_Prima()%>"
+                                                    data-nombremt2="<%=mtVOlistar.getNombre()%>"
                                                     data-id9="<%=loteMPVO.getCantidad()%>" data-id10="<%=loteMPVO.getObservaciones()%>" 
                                                     data-id11="<%=loteMPVO.getFecha_ingreso()%>" data-id12="<%=loteMPVO.getFecha_salida()%>" class="btn boton ms-3 mt-2 eliminar">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
@@ -135,16 +134,6 @@
                                 </select>
                                 <input type="text" id="CantidadEdit" required="" placeholder="Cantidad" class="form-control mt-2">
                                 <textarea id="ObservacionesEdit" class="form-control mt-2" placeholder="Observaciones"></textarea>
-                                <div class="d-flex mt-2">
-                                    <div class="col-md-6 ">
-                                        <label>Fecha Ingreso</label>
-                                        <input type="date" id="FechaIngresoEdit" class="form-control">
-                                    </div>
-                                    <div class="col-md-6 ">
-                                        <label>Fecha Salida</label>
-                                        <input type="date" id="FechaSalidaEdit" class="form-control">
-                                    </div>
-                                </div>
                                 <input type="hidden" value="2" id="opcionEdit">
                                 <input type="submit" id="submitEdit" value="Guardar" class="btn boton mt-2 mx-auto justify-content-center">
                             </form>
@@ -172,7 +161,7 @@
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Id Materia Prima</th>
+                                        <th>Materia Prima</th>
                                         <th>Cantidad</th>
                                         <th>Observaciones</th>
                                         <th>Fecha Ingreso</th>
@@ -182,7 +171,7 @@
                                 <tbody>
                                     <tr>
                                         <td id="idLoteMateriaPrimaDel"></td>
-                                        <td id="IdMateriaPrimaDel"></td>
+                                        <td id="nombreMateriaPrimaDel"></td>
                                         <td id="CantidadDel"></td>
                                         <td id="ObservacionesDel"></td>
                                         <td id="FechaIngresoDel"></td>
@@ -191,6 +180,7 @@
                                 </tbody>
                             </table>
                             <form>
+                                <input type="hidden" id="IdMateriaPrimaDel">
                                 <input type="hidden" value="3" id="opcioneDel">
                                 <input type="button" id="submitDel" value="Eliminar" class="btn btn-danger d-inline-block mx-auto ms-5 justify-content-center mt-3"> 
                                 <div id="respuestaDel">
@@ -226,16 +216,6 @@
                                 </select>
                                 <input type="text" id="CantidadReg" required="" placeholder="Cantidad" class="mt-2 form-control">
                                 <textarea id="ObservacionesReg" placeholder="Observaciones" class="form-control mt-2"></textarea>
-                                <div class="d-flex mt-2" >
-                                    <div class="col-md-6 me-1">
-                                        <label>Fecha Ingreso</label>
-                                        <input type="date" id="FechaIngresoReg" class="form-control">
-                                    </div>
-                                    <div class="col-md-6  ms-1">
-                                        <label>Fecha Salida</label>
-                                        <input type="date" id="FechaSalidaReg" class="form-control">
-                                    </div>
-                                </div>
                                 <input type="hidden" value="1" id="opcionReg">
                                 <input type="submit" id="submitReg" value="Guardar" class="btn boton mt-2 mx-auto justify-content-center">
                                 <div id="respuestaReg">

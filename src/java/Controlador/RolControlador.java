@@ -109,7 +109,7 @@ public class RolControlador extends HttpServlet {
             }
             break;
 
-            case 5:
+            /*case 5:
 
                 if (RDAO.activarRegistro()) {
 
@@ -139,7 +139,7 @@ public class RolControlador extends HttpServlet {
 
                 }
                 request.getRequestDispatcher("menu.jsp").forward(request, response);
-                break;
+                break;*/
 
         }
     }

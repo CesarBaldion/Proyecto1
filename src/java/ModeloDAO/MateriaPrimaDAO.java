@@ -248,9 +248,9 @@ public class MateriaPrimaDAO extends Conexion implements Crud {
                         mensajero.getString(3),mensajero.getString(4));
             }
             if (mpVO == null) {
-                operacion = false;
-            } else {
                 operacion = true;
+            } else {
+                operacion = false;
             }
 
         } catch (SQLException e) {

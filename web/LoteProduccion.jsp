@@ -26,10 +26,10 @@
     </head>
     <body>
         <div class="row">
-            <div class="col-md-6 d-flex mt-5 mx-auto">
+            <div class="col-md-12 d-flex mt-5 mx-auto">
                 <div class="col-md-12 ms-4">
                     <div class="col-md-12">
-                        <div class="col-md-10 d-flex  "> 
+                        <div class="col-md-12 d-flex  "> 
                             <button id="btnAñadirOrden"  type="button" class="boton btn mt-5" data-bs-toggle="modal" data-bs-target="#registrarLoteProduccionModal" >Registrar
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -55,9 +55,8 @@
                             <thead class="table-dark">
                                 <tr>
                                     <th>Id</th>
-                                    <th>Id Usuarios</th>
-                                    <th>Nombre</th>
-                                    <th>Id orden Detalles</th>
+                                    <th>Nombre Usuario</th>
+                                    <th>Orden Produccion</th>
                                     <th>Cantidad</th>
                                     <th>Fecha Fabricacion</th>
                                     <th>Acciones</th>
@@ -79,7 +78,6 @@
                                 %>
                                 <tr>
                                     <td><%=ltProduccVO.getId_Lote_Produccion()%></td>
-                                    <td><%=ltProduccVO.getId_Usuarios()%></td>
                                     <td><%=usuVOlistar.getNombre()%></td>
                                     <td><%=ltProduccVO.getId_orden_Detalles()%></td>
                                     <td><%=ltProduccVO.getCantidad()%></td>
@@ -126,26 +124,23 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <input type="hidden" value="" id="idUsuarioEdit">
-                                    <div class="col-md-8 mx-auto">
-                                        <label>Id Orden Detalles</label>
-                                        <select id="idOrDetallesIdEdit" class="form-select mt-2">
-                                            <option id="opcionOrdenDetEdit">Seleccione Id orden detalles...</option>
-                                            <%
-                                                OrdenDetallesDAO odDAO = new OrdenDetallesDAO();
-                                                for (OrdenDetallesVO odVO : odDAO.Listar()) {
-                                            %>
-                                            <option value="<%=odVO.getId_Orden_Detalles()%>"><%=odVO.getId_Orden_Detalles()%></option>
-                                            <%}%>
-                                        </select>
-                                    </div>
                                     <div class="col-md-12 d-flex"> 
                                         <div class="col-md-6">
                                             <label>Cantidad</label>
                                             <input type="text" id="cantidadEdit" placeholder="Cantidad" class="form-control mt-2">
                                         </div>
                                         <div class="col-md-6 ms-1">
-                                            <label class="ms-2">Fecha de fabricacion</label>
-                                            <input type="date" id="fechaFrabicacionEdit" class="form-control mt-2">
+                                            <label>Id Orden Detalles</label>
+                                            <select id="idOrDetallesIdEdit" class="form-select mt-2">
+                                                <option id="opcionOrdenDetEdit">Seleccione Id orden detalles...</option>
+                                                <%
+                                                    OrdenDetallesDAO odDAO = new OrdenDetallesDAO();
+                                                    for (OrdenDetallesVO odVO : odDAO.Listar()) {
+
+                                                %>
+                                                <option value="<%=odVO.getId_Ordenes()%>"><%=odVO.getId_Ordenes()%></option>
+                                                <%}%>
+                                            </select>
                                         </div>
                                     </div>
                                     <input type="hidden" value="2" id="opcionedit">
@@ -217,30 +212,24 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <input type="hidden" value="1" id="idUsuarioReg">
-                                    <div class="col-md-12 d-flex"> 
+                                    <div class="col-md-12 d-flex mt-3"> 
                                         <div class="col-md-6">
-                                            <label>Cantidad</label>
-                                            <input type="text" id="cantidadReg" placeholder="Cantidad" class="form-control mt-2">
+                                            <input type="text" id="cantidadReg" placeholder="Cantidad" class="form-control ">
                                         </div>
                                         <div class="col-md-6 ms-1">
-                                            <label class="ms-2">Fecha de fabricacion</label>
-                                            <input type="date" id="fechaFrabicacionReg" class="form-control mt-2">
+                                            <select id="idOrDetallesIdReg" class="form-select ">
+                                                <option>Seleccione la Orden...</option>
+                                                <%
+                                                    OrdenDetallesDAO odDAOReg = new OrdenDetallesDAO();
+                                                    for (OrdenDetallesVO odVOReg : odDAOReg.Listar()) {
+                                                %>
+                                                <option value="<%=odVOReg.getId_Ordenes()%>"><%=odVOReg.getId_Ordenes()%></option>
+                                                <%}%>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-12 mx-auto mt-2">
-                                        <label>Id Orden Detalles</label>
-                                        <select id="idOrDetallesIdReg" class="form-select ">
-                                            <option>Seleccione Id orden detalles...</option>
-                                            <%
-                                                OrdenDetallesDAO odDAOReg = new OrdenDetallesDAO();
-                                                for (OrdenDetallesVO odVOReg : odDAOReg.Listar()) {
-                                            %>
-                                            <option value="<%=odVOReg.getId_Orden_Detalles()%>"><%=odVOReg.getId_Orden_Detalles()%></option>
-                                            <%}%>
-                                        </select>
-                                    </div>
                                     <input type="hidden" value="1" id="opcioneReg">
-                                    <input type="button" id="submitReg" value="Guardar" class="btn boton mt-3"> 
+                                    <input type="button" id="submitReg" value="Registrar" class="btn boton mt-3"> 
                                 </div>
                             </div>
                         </form>
@@ -251,7 +240,6 @@
                 </div>
             </div>
         </div>
-        <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="js/JS/ControladorLoteProduccion.js"></script>
     </body>
 </html>

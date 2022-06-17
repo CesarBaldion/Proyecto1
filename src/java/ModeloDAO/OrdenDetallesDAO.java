@@ -92,14 +92,13 @@ public class OrdenDetallesDAO extends Conexion implements Crud {
     public boolean actualizarRegistro() {
         try {
             sql = "update ordenes set Id_Usuarios=?,Id_Detalles_Producto=?,"
-                    + "CantidadSolicitada=?,fecha_registro=?,fecha_entrega=? where Id_Ordenes = ?";
+                    + "CantidadSolicitada=?,fecha_entrega=? where Id_Ordenes = ?";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, id_Usuarios);
             puente.setString(2, id_Detalles_Producto);
             puente.setString(3, cantidadSolicitada);
-            puente.setString(4, fecha_registro);
-            puente.setString(5, fecha_entrega);
-            puente.setString(6, id_Ordenes);
+            puente.setString(4, fecha_entrega);
+            puente.setString(5, id_Ordenes);
             puente.executeUpdate();
             operacion = true;
 

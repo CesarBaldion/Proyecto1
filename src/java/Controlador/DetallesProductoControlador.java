@@ -51,30 +51,34 @@ public class DetallesProductoControlador extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         ServletOutputStream out1 = response.getOutputStream();
-        
+
         String Id_Detalles_Producto = request.getParameter("txtIdDetallesProducto");
         String Id_Producto = request.getParameter("txtIdProducto");
-         String Talla = request.getParameter("txtTalla");
+        String Talla = request.getParameter("txtTalla");
         String Descripcion = request.getParameter("txtDescripcion");
         String Estado = request.getParameter("txtEstado");
-        
 
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         // 2. Quien tiene los datos de forma segura en el sistema? VO
-        DetallesProductoVO detProVO = new DetallesProductoVO(Id_Detalles_Producto, Id_Producto,Talla, Descripcion,  Estado);
+        DetallesProductoVO detProVO = new DetallesProductoVO(Id_Detalles_Producto, Id_Producto, Talla, Descripcion, Estado);
 
         // 3. Quien hace las operaciones? DAO
         DetallesProductoDAO detProDAO = new DetallesProductoDAO(detProVO);
 
         switch (opcion) {
 
-             case 1: //Agregar registro
+            case 1: //Agregar registro
+                if (detProDAO.verificarDetallesProducto()) {
                     if (detProDAO.agregarRegistro()) {
 
                         out1.println("<label class='text-success'><b>Se ha registrado Correctamente</b></label>");
                     } else {
                         out1.print("<label class='text-danger'><b>Error al Registrar</b></label>");;
                     }
+                } else {
+                    out1.print("<label class='text-danger'><b>Este detalles de Producto ya Existe</b></label>");;
+
+                }
 
                 break;
 
@@ -90,7 +94,7 @@ public class DetallesProductoControlador extends HttpServlet {
 
                 if (detProDAO.eliminarRegistro()) {
 
-                   out1.println("<label class='text-success'><b>Se ha eliminado Correctamente</b></label>");
+                    out1.println("<label class='text-success'><b>Se ha eliminado Correctamente</b></label>");
                 } else {
                     out1.println("<label class='text-danger'><b>Error al eliminar</b></label>");
                 }
@@ -109,7 +113,7 @@ public class DetallesProductoControlador extends HttpServlet {
                 }
                 break;
 
-            case 5:
+            /*case 5:
                 if (detProDAO.activarRegistro()) {
                     request.setAttribute("mensajeExito", "La orden detalles se activo correctamente!");
                     request.getRequestDispatcher("eliminarDetallesProducto.jsp").forward(request, response);
@@ -134,9 +138,9 @@ public class DetallesProductoControlador extends HttpServlet {
 
                 }
                 request.getRequestDispatcher("menu.jsp").forward(request, response);
-                break;
-                
-               case 10:
+                break;*/
+
+            case 10:
                 //generarReporte
                 response.setHeader("Content-Disposition", "attachment; filename=\"reporteDetallesProductos.pdf\";");
                 response.setHeader("Cache-Control", "no-cache");

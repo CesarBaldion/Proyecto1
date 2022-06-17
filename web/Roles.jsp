@@ -64,9 +64,7 @@
                         <table  class="table text-center table-bordered border-dark table-hover table-responsive">
                             <thead class="table-dark">
                             <th>Rol</th>
-                            <th>Nomber Rol</th>
                             <th>Usuario</th>
-                            <th>Nombre</th>
                             <th>Documento</th>
                             <th>Acciones</th>
                             </thead>
@@ -86,24 +84,30 @@
                                       usuRVO = listaUsuarioRol.get(i);
                                       rolVOconsultar = rolDAO.consultarRol(usuRVO.getId_Rol());
                                       usuVOlistar = usuDAO.consultaruSUARIO(usuRVO.getId_Usuarios());
+                                      
                                 %>
                                 <tr>
-
-                                    <td><%=usuRVO.getId_Rol()%></td>
                                     <td><%=rolVOconsultar.getRoltipo()%></td>
-                                    <td><%=usuRVO.getId_Usuarios()%></td>
                                     <td><%=usuVOlistar.getNombre()%></td>
                                     <td><%=usuVOlistar.getDocumento()%></td>
                                     <td>
-                                        <div >
-                                            <button data-id="<%=usuRVO.getId_Rol()%>" data-id2="<%=usuRVO.getId_Usuarios()%>" class="btn boton mt-2 detalles">
+                                        <div>
+                                            <button data-idrol="<%=usuRVO.getId_Rol()%>" 
+                                                    data-nombrerol="<%=rolVOconsultar.getRoltipo()%>" 
+                                                    data-idusu="<%=usuRVO.getId_Usuarios()%>"
+                                                    data-nombreusu="<%=usuVOlistar.getNombre()%>"
+                                                    data-documentusu="<%=usuVOlistar.getDocumento()%>" class="btn boton mt-2 detalles">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-zoom-in" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
                                                 <path d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1 6.538 6.538 0 0 1-1.398 1.4z"/>
                                                 <path fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5z"/>
                                                 </svg>
                                             </button>
-                                            <button data-id3="<%=usuRVO.getId_Rol()%>" data-id4="<%=usuRVO.getId_Usuarios()%>"   class="btn boton mt-2 eliminar">
+                                            <button data-idrol2="<%=usuRVO.getId_Rol()%>" 
+                                                    data-nombrerol2="<%=rolVOconsultar.getRoltipo()%>" 
+                                                    data-idusu2="<%=usuRVO.getId_Usuarios()%>"
+                                                    data-nombreusu2="<%=usuVOlistar.getNombre()%>"
+                                                    data-documentusu2="<%=usuVOlistar.getDocumento()%>" class="btn boton mt-2 eliminar">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
                                                 <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
                                                 </svg>
@@ -133,7 +137,7 @@
                                 <div class="d-flex ">
                                     <div class="col-md-6">
                                         <select id="idRolReg" class="form-select">
-                                            <option>Seleccione Un Rol</option>
+                                            <option >Seleccione Un Rol</option>
                                             <%
                                                 RolDAO rolDAOreg = new RolDAO();
                                                 for (RolVO rolVO : rolDAOreg.listar()) {
@@ -173,13 +177,13 @@
                     </div>
                     <div class="modal-body">
                         <div class="col-md-12 mx-auto">
-                            <h5 class="modal-title  text-center mb-5" id="staticBackdropLabel">Editar<br> Usuario a Rol</h5>
+                            <h5 class="modal-title  text-center mb-5" id="staticBackdropLabel">Editar<br> Rol a Usuario <label id="titleIdUsuario"></label></h5>
                             <form class="form-group" >
                                 <div class="d-flex mx-auto justify-content-center">
                                     <div class="col-md-6 mx-auto justify-content-center" >
-                                        <label id="titleIdUsuario"></label>
+                                        
                                         <select id="idRolEdit" class="form-select">
-                                            <option id="opcionIdRolEdit">Seleccione Un Rol</option>
+                                            <option id="opcionIdRolEdit" ></option>
                                             <%
                                                 RolDAO rolDAOedit = new RolDAO();
                                                 for (RolVO rolVOedit : rolDAOedit.listar()) {
@@ -210,23 +214,25 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="col-md-4 mx-auto">
+                        <div class="col-md-6 mx-auto">
                             <h5 class="text-center text-danger mb-5" id="staticBackdropLabel">¿Esta seguro que desea Eliminar Usuario Rol?</h5>
                             <table class="table table-hover table-light table-responsive text-center">
                                 <thead>
                                     <tr>
-                                        <th>Nombre</th>
                                         <th>Rol</th>
+                                        <th>Usuario</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td id="idRolDel"></td>
-                                        <td id="idUsuarioDel"></td>
+                                        <td id="nombreRolDel"></td>
+                                        <td id="UsuarioDel"></td>
                                     </tr>
                                 </tbody>
                             </table>
                             <form>
+                                <input type="hidden" id="idUsuarioDel">
+                                <input type="hidden" id="idRolDel">
                                 <input type="hidden" value="3" id="opcioneDel">
                                 <input type="button" id="submitDel" value="Eliminar" class="btn btn-danger d-inline-block mx-auto ms-5 justify-content-center mt-3"> 
                                 <div id="respuestaDel"></div>

@@ -107,7 +107,7 @@ public class LoteProduccionControlador extends HttpServlet {
                 }
                 break;
 
-            case 5:
+            /*case 5:
 
                 if (ltProducDAO.ActivarRegistro()) {
 
@@ -137,7 +137,7 @@ public class LoteProduccionControlador extends HttpServlet {
 
                 }
                 request.getRequestDispatcher("menu.jsp").forward(request, response);
-                break;
+                break;*/
 
             case 10:
                 response.setHeader("Content-Disposition", "attachment; filename=\"reporteLoteProduccion.pdf\";");

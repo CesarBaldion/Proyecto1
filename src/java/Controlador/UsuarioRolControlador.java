@@ -63,14 +63,16 @@ public class UsuarioRolControlador extends HttpServlet {
         switch (opcion) {
 
             case 1: //Agregar registro
-
-                if (uRDAO.agregarRegistro()) {
-
-                    out1.println("<label><b>El Usuario Rol se ha registrado Correctamente</b><label>");
+                if (uRDAO.verificarUsuarioRol()) {
+                    if (uRDAO.agregarRegistro()) {
+                        out1.println("<label class='text-success'><b>El Usuario Rol se ha registrado Correctamente</b><label>");
+                    } else {
+                        out1.println("<label class='text-danger'><b>El Usuario Rol se ha registrado Correctamente</b><label>");
+                    }
                 } else {
-                    out1.println("<label><b>El Usuario Rol se ha registrado Correctamente</b><label>");
-
+                    out1.println("<label class='text-danger'><b>Este Usuario ya contiene un Rol</b><label>");
                 }
+
                 break;
 
             case 2:

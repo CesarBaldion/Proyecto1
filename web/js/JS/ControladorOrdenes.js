@@ -11,23 +11,24 @@ $('#btnAñadirOrden').click(function () {
 
 //Accionar ventana modal para Editar
 $(".actualizarTBody").on("click", ".detalles", function (e) {
-   document.getElementById("opciontxtIdDetallesProductoedit").innerText = this.dataset.id3;
-   document.getElementById("opciontxtIdDetallesProductoedit").value = this.dataset.id3;
-   document.getElementById("txtcantidadSolicitadaEdit").value = this.dataset.id4;
-   document.getElementById("txtFechaEntregaEdit").value = this.dataset.id6;
-   document.getElementById("IdOrdenEdit").innerText = this.dataset.id;
-   document.getElementById("txtIdUsuarioedit").value = this.dataset.id2;
+    document.getElementById("respuestaEdit").innerText = " ";
+    document.getElementById("opciontxtIdDetallesProductoedit").value = this.dataset.iddetallesproducto;
+    document.getElementById("opciontxtIdDetallesProductoedit").innerText = this.dataset.nombreproducto + " talla-" + this.dataset.protalla;
+    document.getElementById("txtcantidadSolicitadaEdit").value = this.dataset.canrsolic;
+    document.getElementById("txtFechaEntregaEdit").value = this.dataset.fecent;
+    document.getElementById("IdOrdenEdit").innerText = this.dataset.orden;
     $("#editarOrdenModal").modal("show");
 });
 
 //Accionar ventana modal para Eliminar
 $(".actualizarTBody").on("click", ".eliminar", function (e) {
-    document.getElementById("idOrdenDel").innerText = this.dataset.id7;
-    document.getElementById("IdUsuarioDel").innerText = this.dataset.id8;
-    document.getElementById("IdDetProDel").innerText = this.dataset.id9;
-    document.getElementById("cantidadDel").innerText = this.dataset.id10;
-    document.getElementById("fechaRegistroDel").innerText = this.dataset.id11;
-    document.getElementById("fechaEntregaDel").innerText = this.dataset.id12;
+    document.getElementById("respuestaDel").innerText = " ";
+    document.getElementById("idOrdenDel").innerText = this.dataset.orden2;
+    document.getElementById("IdUsuarioDel").innerText = this.dataset.unombre2;
+    document.getElementById("IdDetProDel").innerText = this.dataset.nombreproducto2 + " talla-" + this.dataset.protalla2;
+    document.getElementById("cantidadDel").innerText = this.dataset.canrsolic2;
+    document.getElementById("fechaRegistroDel").innerText = this.dataset.fecreg2;
+    document.getElementById("fechaEntregaDel").innerText = this.dataset.fecent2;
     $("#eliminarOrdenModal").modal("show");
 });
 
@@ -39,7 +40,7 @@ $('#submitReg').click(function (event) {
     var txtIdUsuarioRegVar = $('#txtIdUsuarioReg').val();
     var txtIdDetallesProductoRegVar = $('#txtIdDetallesProductoReg').val();
     var txtcantidadSolicitadaRegVar = $('#txtcantidadSolicitadaReg').val();
-    var txtFechaRegistroRegVar = '${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}';
+    var txtFechaRegistroRegVar = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
     var txtFechaEntregaRegVar = $('#txtFechaEntregaReg').val();
     var opcionRegVar = $('#opcionReg').val();
     // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
@@ -58,21 +59,33 @@ $('#submitReg').click(function (event) {
 
 //Envio de Datos Por AJAX para Añadir Datos a la Lista
 $('#submitVarios').click(function (event) {
-    var txtIdOrdenVar = $('#idOrdenLista').val();
+    event.preventDefault();
+    var date = new Date();
+    var txtIdUsuariolistVar = $('#txtIdUsuariolist').val();
+    var nombresesionVar = $('#txtnombreUsuariolist').val();
+    var txtIdDetallesProductoVar = $('#detallesProductolist').val();
+    var infoProductoVar = $('#detallesProductolist').text();
+    var txtcantidadSolicitadaVar = $('#txtcantidadSolicitadalist').val();
+    var txtFechaRegistrolistaVar = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+    var txtFechaEntregalistVar = $('#txtFechaEntregalist').val();
     var opcionVar = $('#opcionLista').val();
-    var txtIdDetallesProductoVar = $('#detallesProductoLista').val();
-    var txtcantidadSolicitadaVar = $('#cantidadLista').val();
+
     // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
     $.post('OrdenDetalles', {
-        txtIdOrden: txtIdOrdenVar,
-        opcion: opcionVar,
+        txtIdUsuario: txtIdUsuariolistVar,
         txtIdDetallesProducto: txtIdDetallesProductoVar,
-        txtcantidadSolicitada: txtcantidadSolicitadaVar
+        infoProducto:infoProductoVar,
+        txtcantidadSolicitada: txtcantidadSolicitadaVar,
+        txtFechaRegistro: txtFechaRegistrolistaVar,
+        txtFechaEntrega: txtFechaEntregalistVar,
+        nombreUsuario:nombresesionVar,
+        opcion: opcionVar
     }, function (responseText) {
         $('#tabla').html(responseText);
     });
 });
-//Insertar los Datos de la Lista
+
+//Cargar los Datos de la Lista
 $('#cargarLista').click(function (e) {
     e.preventDefault();
     var opcionVar = $('#opcionCargarLista').val();
@@ -81,6 +94,8 @@ $('#cargarLista').click(function (e) {
     }, function (responseText) {
         $('#respuestaCargaLista').html(responseText);
         $("#contenerdorLista").load(" #contenerdorLista");
+        $("#actualizarTBody").load(" #actualizarTBody");
+
     });
 });
 
@@ -108,26 +123,28 @@ $('#submitDel').click(function (event) {
         txtIdOrdenes: idOrdenDelVar,
         opcion: opcioneDelVar
     }, function (responseText) {
-        $('#responseDel').html(responseText);
+        $('#respuestaDel').html(responseText);
         $("#actualizarTBody").load(" #actualizarTBody");
     });
 });
 
 
 //Envio de Datos Por Ajax para Editar
-$('#submitEdit').click(function (event) {
-    var txtIdOrdenDetalles = $('#idOrdenEdit').text();
-    var txtIdOrdenVar = $('#idOrdenesEdit').val();
-    var opcionVar = $('#opcionEdit').val();
-    var txtIdDetallesProductoVar = $('#idDetallesProEdit').val();
-    var txtcantidadSolicitadaVar = $('#cantidadEdit').val();
+$('#submitedit').click(function (event) {
+    var IdOrdenEditVar = $('#IdOrdenEdit').text();
+    var txtFechaEntregaEditVar = $('#txtFechaEntregaEdit').val();
+    var txtIdDetallesProductoVar = $('#txtIdDetallesProductoedit').val();
+    var txtcantidadSolicitadaVar = $('#txtcantidadSolicitadaEdit').val();
+    var txtIdUsuarioeditVar = $('#txtIdUsuarioedit').val();
+    var opcionVar = $('#opcionedit').val();
     // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
     $.post('OrdenDetalles', {
-        txtIdOrden: txtIdOrdenVar,
-        opcion: opcionVar,
+        txtIdOrdenes: IdOrdenEditVar,
         txtIdDetallesProducto: txtIdDetallesProductoVar,
         txtcantidadSolicitada: txtcantidadSolicitadaVar,
-        txtIdOrdenDetalles: txtIdOrdenDetalles
+        txtFechaEntrega: txtFechaEntregaEditVar,
+        txtIdUsuario: txtIdUsuarioeditVar,
+        opcion: opcionVar,
     }, function (responseText) {
         $('#respuestaEdit').html(responseText);
         $("#actualizarTBody").load(" #actualizarTBody");

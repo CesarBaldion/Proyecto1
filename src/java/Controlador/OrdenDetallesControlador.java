@@ -60,10 +60,13 @@ public class OrdenDetallesControlador extends HttpServlet {
         String fechaRegistro = request.getParameter("txtFechaRegistro");
         String fechaEntrega = request.getParameter("txtFechaEntrega");
         String Estado = request.getParameter("txtEstado");
+        String nombreProducto = request.getParameter("infoProducto");
+        String nombreUsuario = request.getParameter("nombreUsuario");
         int opcion = Integer.parseInt(request.getParameter("opcion"));
         // 2. Quien tiene los datos de forma segura en el sistema? VO
         OrdenDetallesVO ordenDetallVO = new OrdenDetallesVO(id_Ordenes, idUsuarios, id_Detalles_Producto,
                 cantidadSolicitada, fechaRegistro, fechaEntrega, Estado);
+        
 
         // 3. Quien hace las operaciones? DAO
         OrdenDetallesDAO ordenDetalDAO = new OrdenDetallesDAO(ordenDetallVO);
@@ -114,15 +117,15 @@ public class OrdenDetallesControlador extends HttpServlet {
                 break;
 
             case 5: //agregar
-                item += 1;
-                OrdenDetallesVO ordetllVO = new OrdenDetallesVO(id_Ordenes, id_Ordenes, id_Detalles_Producto,
-                        cantidadSolicitada, fechaRegistro, fechaEntrega, Estado);
-
+                OrdenDetallesVO ordenDetallVOlista = new OrdenDetallesVO(id_Ordenes, idUsuarios, id_Detalles_Producto,
+                cantidadSolicitada, fechaRegistro, fechaEntrega, Estado,nombreUsuario,nombreProducto);
+                
+                listaOrdenDetalles.add(ordenDetallVOlista);
                 for (int i = 0; i < listaOrdenDetalles.size(); i++) {
                     OrdenDetallesVO ordetllVO2 = listaOrdenDetalles.get(i);
                     out1.println("<tr>");
                     out1.println("<td>" + i + "</td>");
-                    out1.println("<td>" + ordetllVO2.getId_Usuarios() + "</td>");
+                    out1.println("<td>" + ordenDetallVO.getId_Usuarios() + "</td>");
                     out1.println("<td >" + ordetllVO2.getId_Detalles_Producto() + "</td>");
                     out1.println("<td >" + ordetllVO2.getCantidadSolicitada() + "</td>");
                     out1.println("<td >" + ordetllVO2.getFecha_registro() + "</td>");
@@ -193,8 +196,8 @@ public class OrdenDetallesControlador extends HttpServlet {
                     OrdenDetallesVO ordetllVO2 = listaOrdenDetalles.get(i);
                     out1.println("<tr>");
                     out1.println("<td>" + i + "</td>");
-                    out1.println("<td>" + ordetllVO2.getId_Usuarios() + "</td>");
-                    out1.println("<td >" + ordetllVO2.getId_Detalles_Producto() + "</td>");
+                    out1.println("<td>" + ordenDetallVO.getNombreUsuario() + "</td>");
+                    out1.println("<td>" + ordenDetallVO.getId_Detalles_Producto() + "</td>");
                     out1.println("<td >" + ordetllVO2.getCantidadSolicitada() + "</td>");
                     out1.println("<td >" + ordetllVO2.getFecha_registro() + "</td>");
                     out1.println("<td >" + ordetllVO2.getFecha_entrega() + "</td>");
@@ -206,10 +209,8 @@ public class OrdenDetallesControlador extends HttpServlet {
             case 12://Cargar Lista
                 if (ordenDetalDAO.cargarListaOrdenDetalles(listaOrdenDetalles)) {
                     out1.println("<b class='text-success'>La lista se ha cargado con exito</b>");
-                    for (int i = 0; i < listaOrdenDetalles.size(); i++) {
-                        listaOrdenDetalles.remove(i);
-                    }
-                }else{
+                    listaOrdenDetalles.clear();
+                } else {
                     out1.println("<b class='text-danger'>Error al cargar la lista</b>");
                 }
                 break;

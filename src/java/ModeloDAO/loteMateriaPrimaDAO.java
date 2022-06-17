@@ -61,15 +61,13 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud {
     public boolean agregarRegistro() {
         try {
             //Armar sentencia
-            sql = "insert into lotemateria_prima(Id_Materia_Prima,cantidad, observaciones, fecha_ingreso, fecha_salida) values (?,?,?,?,?)";
+            sql = "insert into lotemateria_prima(Id_Materia_Prima,cantidad, observaciones, fecha_ingreso) values (?,?,?,?)";
             // crear el camino por donde va la sentencia
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Id_Materia_Prima);
             puente.setString(2, cantidad);
             puente.setString(3, observaciones);
             puente.setString(4, fecha_ingreso);
-            puente.setString(5, fecha_salida);
-
             puente.executeUpdate();
             operacion = true;
 
@@ -93,14 +91,12 @@ public class loteMateriaPrimaDAO extends Conexion implements Crud {
     public boolean actualizarRegistro() {
 
         try {
-            sql = "update lotemateria_prima set id_materia_prima = ?, cantidad = ?, observaciones = ?, fecha_ingreso = ?, fecha_salida = ? where Id_loteMateria_Prima = ? ";
+            sql = "update lotemateria_prima set id_materia_prima = ?, cantidad = ?, observaciones = ? where Id_loteMateria_Prima = ? ";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Id_Materia_Prima);
             puente.setString(2, cantidad);
             puente.setString(3, observaciones);
-            puente.setString(4, fecha_ingreso);
-            puente.setString(5, fecha_salida);
-            puente.setString(6, Id_loteMateria_Prima);
+            puente.setString(4, Id_loteMateria_Prima);
             puente.executeUpdate();
             operacion = true;
 

@@ -171,6 +171,33 @@ public class UsuarioRolDAO extends Conexion implements Crud {
         return listaUsuarioRol;
     }
     
+    public boolean verificarUsuarioRol() {
+
+        Usuario_rolVO usuRolVO = null;
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from usuario_rol where Id_Usuarios =? and Estado=1";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, id_Usuarios);
+            mensajero = puente.executeQuery();
+            while (mensajero.next()) {
+                usuRolVO = new Usuario_rolVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3));
+            }
+            if (usuRolVO == null) {
+                operacion = true;
+            } else {
+                operacion = false;
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        }
+
+        return operacion;
+
+    }
+    
     
 
 

@@ -58,7 +58,7 @@ public class LoteProduccionDAO extends Conexion implements Crud {
     public boolean agregarRegistro() {
         try {
             //Armar sentencia
-            sql = "insert into lote_produccion(  Id_Usuarios,Id_orden_detalles,Cantidad, Fecha_Fabricacion  ) values (?,?,?,?)";
+            sql = "insert into lote_produccion(  Id_Usuarios,Id_Ordenes,Cantidad, Fecha_Fabricacion  ) values (?,?,?,?)";
             // crear el camino por donde va la sentencia
             puente = conexion.prepareStatement(sql);
 
@@ -114,13 +114,12 @@ public class LoteProduccionDAO extends Conexion implements Crud {
     @Override
     public boolean actualizarRegistro() {
         try {
-            sql = "update lote_produccion set Id_Usuarios = ?,Id_orden_detalles = ?, Cantidad = ?, Fecha_Fabricacion = ? where Id_Lote_Produccion = ? ";
+            sql = "update lote_produccion set Id_Usuarios = ?,Id_Ordenes = ?, Cantidad = ? where Id_Lote_Produccion = ? ";
             puente = conexion.prepareStatement(sql);
-            puente.setInt(3, cantidad);
-            puente.setString(4, fecha_Fabricacion);
-            puente.setString(2, id_orden_Detalles);
             puente.setString(1, id_Usuarios);
-            puente.setString(5, id_Lote_Produccion);
+            puente.setString(2, id_orden_Detalles);
+            puente.setInt(3, cantidad);
+            puente.setString(4, id_Lote_Produccion);
 
             puente.executeUpdate();
             operacion = true;
@@ -205,7 +204,7 @@ public class LoteProduccionDAO extends Conexion implements Crud {
 
     }
 
-    public ArrayList<LoteProduccionVO> ListarDos() {
+    /*public ArrayList<LoteProduccionVO> ListarDos() {
 
         ArrayList<LoteProduccionVO> listaLoteProduccion = new ArrayList<>();
         try {
@@ -287,5 +286,5 @@ public class LoteProduccionDAO extends Conexion implements Crud {
         }
 
         return operacion;
-    }
+    }*/
 }

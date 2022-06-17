@@ -66,8 +66,8 @@ public class ProductoControlador extends HttpServlet {
         switch (opcion) {
 
             case 1: //Agregar registro
-                if (prodDAO.verificarProducto(Nombre) == false) {
-                    if (prodDAO.agregarRegistro() == true) {
+                if (prodDAO.verificarProducto(Nombre)) {
+                    if (prodDAO.agregarRegistro()) {
                         out1.println("<label class='text-success'><b>Se ha registrado Correctamente</b></label>");
                     } else {
                         out1.print("<label class='text-danger'><b>Error al Registrar</b></label>");;

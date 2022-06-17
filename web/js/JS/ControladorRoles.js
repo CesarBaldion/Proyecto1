@@ -24,10 +24,10 @@ $('#submitReg').click(function (event) {
 //Accionar ventana Editar
 $(".actualizarTBody").on("click", ".detalles", function (e) {
     document.getElementById("respuestaEdit").innerText = "";
-    document.getElementById("titleIdUsuario").innerText = this.dataset.id2;
-    document.getElementById("opcionIdRolEdit").innerText = this.dataset.id;
-    document.getElementById("idRolEdit").value = this.dataset.id;
-    document.getElementById("IdUsuarioEdit").value = this.dataset.id2;
+    document.getElementById("titleIdUsuario").innerText = this.dataset.nombreusu +"("+this.dataset.documentusu+")";
+    document.getElementById("opcionIdRolEdit").innerText = this.dataset.nombrerol;
+    document.getElementById("opcionIdRolEdit").value = this.dataset.nombrerol;
+    document.getElementById("IdUsuarioEdit").value = this.dataset.idusu;
     $("#editarUsuarioRol").modal("show");
 });
 
@@ -50,16 +50,17 @@ $('#submitEdit').click(function (event) {
 
 //Accionar Ventana Eliminar
 $(".actualizarTBody").on("click", ".eliminar", function (e) {
-    document.getElementById("respuestaDel").innerText = "";
-    document.getElementById("idUsuarioDel").innerText = this.dataset.id4;
-    document.getElementById("idRolDel").innerText = this.dataset.id3;
+    document.getElementById("nombreRolDel").innerText = this.dataset.nombrerol2;
+    document.getElementById("UsuarioDel").innerText = this.dataset.nombreusu2+this.dataset.documentusu2;
+    document.getElementById("idUsuarioDel").value = this.dataset.idusu2;
+    document.getElementById("idRolDel").value = this.dataset.idrol2;
     $("#eliminarUsuarioRolModal").modal("show");
 });
 
 //Envio de Datos por Ajax para Eliminar
 $('#submitDel').click(function (event) {
     alert("messirve");
-    var idUsuarioEditVar = $('#idUsuarioDel').text();
+    var idUsuarioEditVar = $('#idUsuarioDel').val();
     var opcionDelVar = $('#opcioneDel').val();
 
     // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get

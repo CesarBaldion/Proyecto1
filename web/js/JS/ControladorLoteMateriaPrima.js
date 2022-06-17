@@ -2,12 +2,10 @@ $(".actualizarTBody").on("click", ".detalles", function (e) {
     document.getElementById("respuestaEdit").innerText = " ";
     document.getElementById("ObservacionesEdit").value = " ";
     document.getElementById("IdLoteMateriaPrimaEdit").innerText = this.dataset.id;
-    document.getElementById("opcionIdMateriaPrima").text = this.dataset.id2;
+    document.getElementById("opcionIdMateriaPrima").text = this.dataset.nombremt;
     document.getElementById("opcionIdMateriaPrima").value = this.dataset.id2;
     document.getElementById("CantidadEdit").value = this.dataset.id3;
     document.getElementById("ObservacionesEdit").value = this.dataset.id4;
-    document.getElementById("FechaIngresoEdit").value = this.dataset.id5;
-    document.getElementById("FechaSalidaEdit").value = this.dataset.id6;
     $("#editarLoteMateriaPrima").modal("show");
 });
 
@@ -18,8 +16,6 @@ $('#submitEdit').click(function (event) {
     var IdMateriaPrimaEditVar = $('#IdMateriaPrimaEdit').val();
     var CantidadEditVar = $('#CantidadEdit').val();
     var ObservacionesEditVar = $('#ObservacionesEdit').val();
-    var FechaIngresoEditVar = $('#FechaIngresoEdit').val();
-    var FechaSalidaEditVar = $('#FechaSalidaEdit').val();
     var opcioneditVar = $('#opcionEdit').val();
 
     // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
@@ -28,8 +24,6 @@ $('#submitEdit').click(function (event) {
         txtIdMateriaPrima: IdMateriaPrimaEditVar,
         txtCantidad: CantidadEditVar,
         txtObservaciones: ObservacionesEditVar,
-        txtFechaIngreso: FechaIngresoEditVar,
-        txtFechaSalida: FechaSalidaEditVar,
         opcion: opcioneditVar
     }, function (responseText) {
         $('#respuestaEdit').html(responseText);
@@ -41,6 +35,7 @@ $(".actualizarTBody").on("click", ".eliminar", function (e) {
     document.getElementById("respuestaDel").innerText = "";
     document.getElementById("idLoteMateriaPrimaDel").innerText = this.dataset.id7;
     document.getElementById("IdMateriaPrimaDel").innerText = this.dataset.id8;
+    document.getElementById("nombreMateriaPrimaDel").innerText = this.dataset.nombremt2;
     document.getElementById("CantidadDel").innerText = this.dataset.id9;
     document.getElementById("ObservacionesDel").innerText = this.dataset.id10;
     document.getElementById("FechaIngresoDel").innerText = this.dataset.id11;
@@ -56,11 +51,11 @@ $('#modalRegistrar').click(function () {
 //Envio de Datos Por Ajax para Registrar
 $('#submitReg').click(function (event) {
     event.preventDefault();
+    var date = new Date();
     var IdMateriaPrimaRegtVar = $('#IdMateriaPrimaReg').val();
     var CantidadRegVar = $('#CantidadReg').val();
     var ObservacionesRegVar = $('#ObservacionesReg').val();
-    var FechaIngresoRegVar = $('#FechaIngresoReg').val();
-    var FechaSalidaRegVar = $('#FechaSalidaReg').val();
+    var FechaIngresoRegVar = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
     var opcionRegVar = $('#opcionReg').val();
 
     // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
@@ -69,7 +64,6 @@ $('#submitReg').click(function (event) {
         txtCantidad: CantidadRegVar,
         txtObservaciones: ObservacionesRegVar,
         txtFechaIngreso: FechaIngresoRegVar,
-        txtFechaSalida: FechaSalidaRegVar,
         opcion: opcionRegVar
     }, function (responseText) {
         $('#respuestaReg').html(responseText);

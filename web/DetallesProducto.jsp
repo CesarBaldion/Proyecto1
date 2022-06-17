@@ -50,15 +50,20 @@
                             </thead>
                             <tbody>
                                 <%
+                                    ProductoVO proVO = new ProductoVO();
+                                    ProductoDAO proDAO = new ProductoDAO();
+
                                     DetallesProductoVO detProVO = new DetallesProductoVO();
                                     DetallesProductoDAO detProDAO = new DetallesProductoDAO();
                                     ArrayList<DetallesProductoVO> listaDetallesProducto = detProDAO.listar();
                                     for (int i = 0; i < listaDetallesProducto.size(); i++) {
                                         detProVO = listaDetallesProducto.get(i);
+                                        proVO = proDAO.consultarProducto(detProVO.getId_Producto());
+
                                 %>
                                 <tr>
                                     <td><%=detProVO.getId_Detalles_Producto()%></td>
-                                    <td><%=detProVO.getId_Producto()%></td>
+                                    <td><%=proVO.getNombre()%></td>
                                     <td><%=detProVO.getTalla()%></td>
                                     <td><%=detProVO.getDescripcion()%></td>
                                     <td>
@@ -100,10 +105,10 @@
                             <select name="idProductoReg" id="idProductoReg" class="form-select">
                                 <option>Id Producto</option>
                                 <%
-                                    ProductoDAO proDAO = new ProductoDAO();
-                                    for (ProductoVO proVO : proDAO.listar()) {
+                                    ProductoDAO proDAOreg = new ProductoDAO();
+                                    for (ProductoVO proVOreg : proDAOreg.listar()) {
                                 %>
-                                <option value="<%=proVO.getIdProducto()%>"><%=proVO.getNombre()%></option>
+                                <option value="<%=proVOreg.getIdProducto()%>"><%=proVOreg.getNombre()%></option>
                                 <%}%>
                             </select>
                             <select name="txtTalla" id="txtTallaReg" class="form-select">
@@ -138,9 +143,9 @@
                                 <option id="opcionidProductoEdit"></option>
                                 <%
                                     ProductoDAO proDAOedit = new ProductoDAO();
-                                    for (ProductoVO proVO : proDAOedit.listar()) {
+                                    for (ProductoVO proVOedit : proDAOedit.listar()) {
                                 %>
-                                <option value="<%=proVO.getIdProducto()%>"><%=proVO.getNombre()%></option>
+                                <option value="<%=proVOedit.getIdProducto()%>"><%=proVOedit.getNombre()%></option>
                                 <%}%>
                             </select>
                             <select name="txtTalla" id="txtTallaEdit" class="form-select">
@@ -197,6 +202,7 @@
                 </div>
             </div>
         </div>
-            <script src="js/JS/ControladorDetallesProducto.js"></script>
+
+        <script src="js/JS/ControladorDetallesProducto.js"></script>
     </body>
 </html>

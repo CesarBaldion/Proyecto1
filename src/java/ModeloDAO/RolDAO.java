@@ -97,7 +97,7 @@ public class RolDAO extends Conexion implements Crud {
 
     @Override
     public boolean eliminarRegistro() {
-       try {
+        try {
 
             sql = "UPDATE `rol` SET `Estado`= 0 WHERE Id_rol = ?";
             puente = conexion.prepareStatement(sql);
@@ -114,7 +114,7 @@ public class RolDAO extends Conexion implements Crud {
             }
         }
         return operacion;
-    }   
+    }
 
     public RolVO consultarRol(String rol) {
         RolVO RVO = null;
@@ -130,7 +130,7 @@ public class RolDAO extends Conexion implements Crud {
             }
         } catch (Exception e) {
             Logger.getLogger(RolVO.class.getName()).log(Level.SEVERE, null, e);
-        } 
+        }
         return RVO;
     }
 
@@ -139,7 +139,7 @@ public class RolDAO extends Conexion implements Crud {
         ArrayList<RolVO> listaRol = new ArrayList();
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from rolview";
+            sql = "select * from rol where estado = 1";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
 
@@ -159,7 +159,8 @@ public class RolDAO extends Conexion implements Crud {
         }
         return listaRol;
     }
-     public boolean verificarRol(String rolTipo) {
+
+    public boolean verificarRol(String rolTipo) {
 
         RolVO rVO = null;
         try {
@@ -185,7 +186,8 @@ public class RolDAO extends Conexion implements Crud {
         return operacion;
 
     }
- public ArrayList<RolVO> listarDos() {
+}
+/*public ArrayList<RolVO> listarDos() {
 
         ArrayList<RolVO> listaRol = new ArrayList();
         try {
@@ -250,4 +252,4 @@ public class RolDAO extends Conexion implements Crud {
         return operacion;
     }   
 
-}
+}*/

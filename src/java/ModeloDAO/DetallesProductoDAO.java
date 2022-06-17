@@ -167,7 +167,6 @@ public class DetallesProductoDAO extends Conexion implements Crud {
 
         ArrayList<DetallesProductoVO> listarDetallesProducto = new ArrayList<>();
         try {
-
             sql = "select * from detalles_producto where estado = 1";
             conexion = this.obtenerConexion();
             puente = conexion.prepareStatement(sql);
@@ -195,7 +194,35 @@ public class DetallesProductoDAO extends Conexion implements Crud {
         return listarDetallesProducto;
 
     }
-    public ArrayList<DetallesProductoVO> listarDos() {
+
+    public boolean verificarDetallesProducto() {
+        DetallesProductoVO detProVO = null;
+        try {
+            sql = "select * from `detalles_producto` where Id_Producto=? "
+                    + "and talla=? and Descripcion=? and Estado=1";
+            conexion = this.obtenerConexion();
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id_Producto);
+            puente.setString(2, Talla);
+            puente.setString(3, Descripcion);
+            mensajero = puente.executeQuery();
+            while (mensajero.next()) {
+                detProVO = new DetallesProductoVO(mensajero.getString(1), mensajero.getString(2),
+                        mensajero.getString(3), mensajero.getString(4), mensajero.getString(5));
+            }
+            if (detProVO == null) {
+                operacion = true;
+            } else {
+                operacion = false;
+            }
+        } catch (Exception e) {
+            Logger.getLogger(DetallesProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        }
+        return operacion;
+    }
+
+    /*    public ArrayList<DetallesProductoVO> listarDos() {
 
         ArrayList<DetallesProductoVO> listarDetallesProducto = new ArrayList<>();
         try {
@@ -270,6 +297,5 @@ public class DetallesProductoDAO extends Conexion implements Crud {
             }
         }
         return operacion;
-    }
-
+    }*/
 }

@@ -11,7 +11,6 @@
        document.getElementById("opcionOrdenDetEdit").value = this.dataset.id3;
        document.getElementById("opcionOrdenDetEdit").text = this.dataset.id3;
        document.getElementById("cantidadEdit").value = this.dataset.id4;
-       document.getElementById("fechaFrabicacionEdit").value = this.dataset.id5;
         $("#editarLoteProduccion").modal("show");
     });
     
@@ -21,7 +20,6 @@
             var idUsuarioVar = $('#idUsuarioEdit').val();
             var idOrdenDetallesVar = $('#idOrDetallesIdEdit').val();
             var cantidadEditVar = $('#cantidadEdit').val();
-            var fechaFrabicacionEditVar = $('#fechaFrabicacionEdit').val();
             var opcioneditVar = $('#opcionedit').val();
                 
             // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
@@ -30,7 +28,6 @@
                 txtId_Usuarios: idUsuarioVar,
                 txtId_orden_detalles: idOrdenDetallesVar,
                 txtcantidad:cantidadEditVar,
-                txtfecha_Fabricacion:fechaFrabicacionEditVar,
                 opcion: opcioneditVar
             }, function (responseText) {
                 $('#respuestaEdit').html(responseText);
@@ -65,26 +62,29 @@
     });
     
      //Envio de Datos Por Ajax para Registrar
-            $('#submitReg').click(function (event) {
-            
-            var idUsuarioVar = $('#idUsuarioReg').val();
-            var idOrdenDetallesVar = $('#idOrDetallesIdReg').val();
-            var cantidadEditVar = $('#cantidadReg').val();
-            var fechaFrabicacionEditVar = $('#fechaFrabicacionReg').val();
-            var opcioneditVar = $('#opcioneReg').val();
-                
-            // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
-            $.post('LoteProduccion', {
-                txtId_Usuarios: idUsuarioVar,
-                txtId_orden_detalles: idOrdenDetallesVar,
-                txtcantidad:cantidadEditVar,
-                txtfecha_Fabricacion:fechaFrabicacionEditVar,
-                opcion: opcioneditVar
-            }, function (responseText) {
-                $('#respuestaRegistrar').html(responseText);
-                $("#actualizarTBody").load(" #actualizarTBody");
-            });
+    $('#submitReg').click(function (event) {
+    var date = new Date();
+    var idUsuarioVar = $('#idUsuarioReg').val();
+    var idOrdenDetallesVar = $('#idOrDetallesIdReg').val();
+    var cantidadEditVar = $('#cantidadReg').val();
+    var fechaFrabicacionEditVar = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+    
+    var opcioneditVar = $('#opcioneReg').val();
+
+    // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
+    $.post('LoteProduccion', {
+        txtId_Usuarios: idUsuarioVar,
+        txtId_orden_detalles: idOrdenDetallesVar,
+        txtcantidad:cantidadEditVar,
+        txtfecha_Fabricacion:fechaFrabicacionEditVar,
+        opcion: opcioneditVar
+    }, function (responseText) {
+        $('#respuestaRegistrar').html(responseText);
+        $("#actualizarTBody").load(" #actualizarTBody");
+    });
 });
+    
+    
         
     
     

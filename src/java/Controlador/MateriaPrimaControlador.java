@@ -69,8 +69,8 @@ public class MateriaPrimaControlador extends HttpServlet {
 
             case 1: //Agregar registro
 
-                if (matPriDAO.verificarMateriaPrima(Nombre) == false) {
-                    if (matPriDAO.agregarRegistro() == true) {
+                if (matPriDAO.verificarMateriaPrima(Nombre)) {
+                    if (matPriDAO.agregarRegistro()) {
                         out1.println("<label class='text-success'><b>Se ha registrado Correctamente la Materia Prima</b></label>");
                     } else {
                         out1.println("<label class='text-danger'><b>Error al registrar la Materia Prima</b></label>");
