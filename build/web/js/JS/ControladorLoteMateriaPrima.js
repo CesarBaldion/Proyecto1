@@ -1,3 +1,22 @@
+
+$(document).ready(function () {
+    $('#table_id').DataTable({
+        language: {
+            "emptyTable": "No se encontro ningun resultado",
+            "lengthMenu": "Mostar _MENU_ Registros",
+            "info": "Muestra _START_ de _END_ de _TOTAL_ Registros",
+            "infoEmpty": "Muestra 0 to 0 of 0 Registros",
+            "search": "buscar:",
+            "paginate": {
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            },
+        }}
+    );
+});
+
 $(".actualizarTBody").on("click", ".detalles", function (e) {
     document.getElementById("respuestaEdit").innerText = " ";
     document.getElementById("ObservacionesEdit").value = " ";
@@ -55,8 +74,10 @@ $('#submitReg').click(function (event) {
     var IdMateriaPrimaRegtVar = $('#IdMateriaPrimaReg').val();
     var CantidadRegVar = $('#CantidadReg').val();
     var ObservacionesRegVar = $('#ObservacionesReg').val();
-    var FechaIngresoRegVar = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-    var opcionRegVar = $('#opcionReg').val();
+            var FechaIngresoRegVar = `${date.getFullYear()}-$
+    {date.getMonth() + 1}-$
+    {date.getDate()}`;
+            var opcionRegVar = $('#opcionReg').val();
 
     // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
     $.post('loteMateriaPrima', {

@@ -91,7 +91,7 @@ public class UsuarioDAO extends Conexion implements Crud {
     public boolean agregarRegistro() {
         try {
             //Armar sentencia
-            sql = "insert into usuarios( Nombre, `Tipo de documento`, Documento, Telefono, Email, Direccion, Ciudad, Contrasena)"
+            sql = "insert into usuarios( Nombre, Tipo_documento, Documento, Telefono, Email, Direccion, Ciudad, Contrasena)"
                     + "values (?,?,?,?,?,?,?,?)";
             // crear el camino por donde va la sentencia
             puente = conexion.prepareStatement(sql);
@@ -126,7 +126,7 @@ public class UsuarioDAO extends Conexion implements Crud {
     public boolean actualizarRegistro() {
 
         try {
-            sql = " update usuarios set Nombre = ?, `Tipo de documento` = ?, Documento = ?, Telefono = ?, Email = ?"
+            sql = " update usuarios set Nombre = ?, Tipo_documento = ?, Documento = ?, Telefono = ?, Email = ?"
                     + ", Direccion = ?, Ciudad = ? where id_Usuarios = ? ";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Nombre);
@@ -402,14 +402,6 @@ public class UsuarioDAO extends Conexion implements Crud {
         return respuesta;
     }
 
-    public boolean ValidarNumero(String cadena) {
-        try {
-            Integer.parseInt(cadena);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
 
     public boolean enviarCorreoRegistro(String correoDestino) {
 
@@ -571,7 +563,7 @@ public class UsuarioDAO extends Conexion implements Crud {
     public boolean cargarUsuarios(String rutaAbsoluta) throws SQLException, IOException {
 
         try {
-            sql = "insert into usuarios( Nombre, `Tipo de documento`, Documento, Direccion, Ciudad, Telefono, Email, Contrasena)"
+            sql = "insert into usuarios( Nombre, Tipo_documento, Documento, Direccion, Ciudad, Telefono, Email, Contrasena)"
                     + "values (?,?,?,?,?,?,?,?)";
             conexion = obtenerConexion();
             FileInputStream file = new FileInputStream(new File(rutaAbsoluta));

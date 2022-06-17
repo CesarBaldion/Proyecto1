@@ -12,6 +12,12 @@
 <%@page import="ModeloDAO.LoteProduccionDAO"%>
 <%@page import="ModeloVO.LoteProduccionVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    HttpSession buscarSesion = (HttpSession) request.getSession();
+    UsuarioVO usuVO1 = null;
+    usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
+
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -123,7 +129,7 @@
                         <form>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <input type="hidden" value="" id="idUsuarioEdit">
+                                    <input type="hidden" value="<%=usuVO1.getIdUsuarios()%>" id="idUsuarioEdit">
                                     <div class="col-md-12 d-flex"> 
                                         <div class="col-md-6">
                                             <label>Cantidad</label>
@@ -211,7 +217,7 @@
                         <form>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <input type="hidden" value="1" id="idUsuarioReg">
+                                    <input type="hidden" value="<%=usuVO1.getIdUsuarios()%>" id="idUsuarioReg">
                                     <div class="col-md-12 d-flex mt-3"> 
                                         <div class="col-md-6">
                                             <input type="text" id="cantidadReg" placeholder="Cantidad" class="form-control ">

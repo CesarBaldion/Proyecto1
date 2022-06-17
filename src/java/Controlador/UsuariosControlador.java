@@ -6,8 +6,12 @@
 package Controlador;
 
 import ModeloDAO.AdministrarArchivos;
+import ModeloDAO.RolDAO;
 import ModeloDAO.UsuarioDAO;
+import ModeloDAO.UsuarioRolDAO;
+import ModeloVO.RolVO;
 import ModeloVO.UsuarioVO;
+import ModeloVO.Usuario_rolVO;
 import Util.Conexion;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -126,10 +130,23 @@ public class UsuariosControlador extends HttpServlet {
 
             case 4:
                 usuVO = usuDAO.iniciarSesion(Documento, usuDao.Encriptar(Contrasena));
-                if (usuVO != null) {
+                
+                Usuario_rolVO usuRVO = new Usuario_rolVO();
+                UsuarioRolDAO usuRDAO = new UsuarioRolDAO();
+                usuRVO = usuRDAO.consultarRol(usuVO.getIdUsuarios());
+                
+                RolVO rolVO = new RolVO();
+                RolDAO rolDao = new RolDAO();
+                rolVO = rolDao.consultarRol(usuRVO.getId_Rol());
+                
+                if (usuVO != null ) {
                     HttpSession miSesion = request.getSession();
-                    miSesion.setAttribute("datosUsuario", usuVO); 
-                    request.getRequestDispatcher("Usuiarios.jsp").forward(request, response);
+                    miSesion.setAttribute("datosUsuario", usuVO);
+                    
+                    HttpSession miSesionRol = request.getSession();
+                    miSesionRol.setAttribute("datosRol", rolVO);
+
+                    request.getRequestDispatcher("Dashboard.jsp").forward(request, response);
                 } else {
                     request.setAttribute("mensajeError", "Corregir datos!");
                     request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);

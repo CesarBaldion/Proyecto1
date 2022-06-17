@@ -1,3 +1,22 @@
+$(document).ready(function () {
+    $('#table_id').DataTable({
+        language: {
+            "emptyTable": "No se encontro ningun resultado",
+            "lengthMenu": "Mostar _MENU_ Registros",
+            "info": "Muestra _START_ de _END_ de _TOTAL_ Registros",
+            "infoEmpty": "Muestra 0 to 0 of 0 Registros",
+            "search": "buscar:",
+            "paginate": {
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            },
+        }}
+    );
+});
+
+
 $("#bntRegistrar").click(function (e) {
     document.getElementById("respuestaRegistrar").innerText = "";
     $("#registrarDetProModal").modal("show");

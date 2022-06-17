@@ -1,4 +1,28 @@
 
+
+
+$(".modal").on("click", ".botonCerrar", function (e) {
+    $("#CargarVistas").load("Ordenes.jsp");
+});
+$(document).ready(function () {
+    $('#table_id').DataTable({
+        language: {
+            "emptyTable": "No se encontro ningun resultado",
+            "lengthMenu": "Mostar _MENU_ Registros",
+            "info": "Muestra _START_ de _END_ de _TOTAL_ Registros",
+            "infoEmpty": "Muestra 0 to 0 of 0 Registros",
+            "search": "buscar:",
+            "paginate": {
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            },
+        }}
+    );
+});
+
+
 //accionar ventana modal Ingresar Varias Ordenes
 $('#btnAñadirVariasOrdenes').click(function () {
     $("#modalAñadirVariasOrdenes").modal("show");
@@ -53,13 +77,13 @@ $('#submitReg').click(function (event) {
         opcion: opcionRegVar
     }, function (responseText) {
         $('#respuesta').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });
 
 //Envio de Datos Por AJAX para Añadir Datos a la Lista
 $('#submitVarios').click(function (event) {
     event.preventDefault();
+    
     var date = new Date();
     var txtIdUsuariolistVar = $('#txtIdUsuariolist').val();
     var nombresesionVar = $('#txtnombreUsuariolist').val();
@@ -94,7 +118,6 @@ $('#cargarLista').click(function (e) {
     }, function (responseText) {
         $('#respuestaCargaLista').html(responseText);
         $("#contenerdorLista").load(" #contenerdorLista");
-        $("#actualizarTBody").load(" #actualizarTBody");
 
     });
 });
@@ -124,7 +147,6 @@ $('#submitDel').click(function (event) {
         opcion: opcioneDelVar
     }, function (responseText) {
         $('#respuestaDel').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });
 
@@ -147,7 +169,6 @@ $('#submitedit').click(function (event) {
         opcion: opcionVar,
     }, function (responseText) {
         $('#respuestaEdit').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });
 

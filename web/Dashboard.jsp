@@ -1,3 +1,36 @@
+
+<%@page import="ModeloVO.RolVO"%>
+<%@page import="ModeloDAO.RolDAO"%>
+<%@page import="ModeloVO.Usuario_rolVO"%>
+<%@page import="ModeloDAO.UsuarioRolDAO"%>
+<%@page import="ModeloVO.UsuarioVO"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+
+<%
+    response.setHeader("Pragma", "No-cache");
+    response.setHeader("Cache-control", "no-cache, no-store, must-revalidate");
+    response.setDateHeader("Expires", 0);
+%>
+
+
+<%
+    HttpSession buscarSesion = (HttpSession) request.getSession();
+    UsuarioVO usuVO1 = null;
+    RolVO rolVO1 = null;
+
+    if (buscarSesion.getAttribute("datosUsuario") == null) {
+        request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
+    } else {
+        UsuarioRolDAO uRDAO = new UsuarioRolDAO();
+        usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
+
+         rolVO1 = (RolVO) buscarSesion.getAttribute("datosRol");
+        
+
+    }
+
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,6 +47,7 @@
         <link rel="stylesheet" href="Dashboard/assets/vendors/flag-icon-css/css/flag-icon.min.css">
         <link rel="stylesheet" href="Dashboard/assets/vendors/owl-carousel-2/owl.carousel.min.css">
         <link rel="stylesheet" href="Dashboard/assets/vendors/owl-carousel-2/owl.theme.default.min.css">
+
         <!-- End plugin css for this page -->
         <!-- inject:css -->
         <!-- endinject -->
@@ -35,8 +69,8 @@
                         <div class="profile-desc">
                             <div class="profile-pic">
                                 <div class="profile-name">
-                                    <h5 class="mb-0 font-weight-normal">Yefferson Sierra</h5>
-                                    <span>Almacenista</span>
+                                    <h5 class="mb-0 font-weight-normal"><%=usuVO1.getNombre()%></h5>
+                                    <span><%=rolVO1.getRoltipo()%></span>
                                 </div>
                             </div>
                     </li>
@@ -64,7 +98,7 @@
                             <span class="menu-icon">
                                 <i class="mdi mdi-file-document-box"></i>
                             </span>
-                            <span class="menu-title">Orden producción</span>
+                            <span class="menu-title">Orden producciÃ³n</span>
                         </a>
                     </li>
 
@@ -167,12 +201,12 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                                     <div class="navbar-profile">
-                                        <p class="mb-0 d-none d-sm-block navbar-profile-name">Yefferson Sierra</p>
+                                        <p class="mb-0 d-none d-sm-block navbar-profile-name"><%=usuVO1.getNombre()%></p>
                                         <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                                     </div>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
-                                    <h6 class="p-3 mb-0">Almacenista</h6>
+                                    <h6 class="p-3 mb-0"><%=rolVO1.getRoltipo()%></h6>
                                     <div class="dropdown-divider"></div>
                                     <a href="#" class="dropdown-item preview-item">
                                         <div class="preview-thumbnail">
@@ -181,7 +215,7 @@
                                             </div>
                                         </div>
                                         <div class="preview-item-content">
-                                            <p class="preview-subject ellipsis mb-1 text-small">Cambiar contraseña</p>
+                                            <p class="preview-subject ellipsis mb-1 text-small">Cambiar contraseÃ±a</p>
                                         </div>
                                     </a>
 
@@ -253,17 +287,7 @@
         <!-- End custom js for this page -->
         <script src="js/JS/ControladorDashboard.js"></script>
         <script src="http://code.jquery.com/jquery-latest.js"></script>
-        <script src="js/ScriptPaginacion/BuscadorTabla.js"></script>
-        <script src="js/ScriptPaginacion/jquery-1.11.2.min.js"></script>
-        <script src="js/ScriptPaginacion/jquery-1.12.4.js"></script>
         <script src="js/ScriptPaginacion/jquery-2.1.3.js"></script>
-        <script src="js/ScriptPaginacion/jquery.js"></script>
-        <script src="js/ScriptPaginacion/jquery.mCustomScrollbar.concat.min.js"></script>
-        <script src="js/ScriptPaginacion/jquery.prettyPhoto.js"></script>
-        <script src="js/ScriptPaginacion/jquery.scrollUp.min.js"></script>
-        <script src="js/ScriptPaginacion/jqueryn.js"></script>
-        <script src="js/ScriptPaginacion/jqueryy.js"></script>
-
-
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
     </body>
 </html>

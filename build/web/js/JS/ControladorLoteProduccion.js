@@ -7,7 +7,6 @@
     $(".actualizarTBody").on("click", ".detalles", function (e) {
         document.getElementById("respuestaEdit").innerText = "";
        document.getElementById("idLoteProduccionEdit").innerText = this.dataset.id;
-       document.getElementById("idUsuarioEdit").value = this.dataset.id2;
        document.getElementById("opcionOrdenDetEdit").value = this.dataset.id3;
        document.getElementById("opcionOrdenDetEdit").text = this.dataset.id3;
        document.getElementById("cantidadEdit").value = this.dataset.id4;
