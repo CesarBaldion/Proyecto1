@@ -22,12 +22,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="91" splitType="Stretch">
-			<image>
-				<reportElement x="130" y="12" width="373" height="66" uuid="0a96cd97-2ac4-41cc-bf1d-2f0c84469c29"/>
-				<imageExpression><![CDATA["C:\\Users\\1Usuario\\Desktop\\Github\\Proyecto1\\web\\reportes\\Untitled-1.jpg"]]></imageExpression>
-			</image>
-		</band>
+		<band height="91" splitType="Stretch"/>
 	</title>
 	<pageHeader>
 		<band height="50">

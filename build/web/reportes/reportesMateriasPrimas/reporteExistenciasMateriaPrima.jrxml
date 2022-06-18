@@ -1,35 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="18a0f5a2-4cab-4458-828c-895404af05f1">
-	<property name="ireport.zoom" value="6.7274999493257495"/>
-	<property name="ireport.x" value="2019"/>
-	<property name="ireport.y" value="1276"/>
+	<property name="ireport.zoom" value="2.3579476910000547"/>
+	<property name="ireport.x" value="224"/>
+	<property name="ireport.y" value="367"/>
 	<queryString>
-		<![CDATA[SELECT materia_prima.Id_materia_Prima,materia_prima.Nombre,
-   calculadora.existencias,materia_prima.Estado FROM calculadora,
- materia_prima WHERE materia_prima.Id_materia_Prima = calculadora.Id_Materia_Prima and materia_prima.estado =1]]>
+		<![CDATA[select * from cantidadfinal]]>
 	</queryString>
 	<field name="Id_materia_Prima" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="Nombre" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="existencias" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="Estado" class="java.lang.Boolean">
+	<field name="Total" class="java.math.BigDecimal">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="91" splitType="Stretch">
-			<image>
-				<reportElement x="115" y="15" width="373" height="66" uuid="2e5e7071-00fc-4372-9856-9b10422262d0"/>
-				<imageExpression><![CDATA["C:\\Users\\1Usuario\\Desktop\\Github\\Proyecto1\\web\\reportes\\Untitled-1.jpg"]]></imageExpression>
-			</image>
-		</band>
+		<band height="91" splitType="Stretch"/>
 	</title>
 	<pageHeader>
 		<band height="50">
@@ -43,74 +30,58 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="51">
+		<band height="76">
+			<line>
+				<reportElement x="194" y="55" width="200" height="1" uuid="ceeabe65-4d84-4568-b793-787b614429b9"/>
+			</line>
+			<line>
+				<reportElement x="194" y="56" width="1" height="20" uuid="4d65ad2c-08fa-4fd8-b08e-956b29200f0e"/>
+			</line>
+			<line>
+				<reportElement x="293" y="56" width="1" height="20" uuid="ecde2978-fa72-44f2-9e51-9ba850bdc0fa"/>
+			</line>
+			<line>
+				<reportElement x="393" y="56" width="1" height="20" uuid="8ec51899-b563-4289-bfd9-3bd9465506aa"/>
+			</line>
 			<staticText>
-				<reportElement x="114" y="30" width="100" height="20" uuid="af59eab2-e19f-463e-8aa8-a2f0e9dd3ba7"/>
+				<reportElement x="195" y="56" width="98" height="18" uuid="5eea1c6a-0b66-4d4c-858c-14fcd2c95d7a"/>
 				<textElement textAlignment="Center"/>
 				<text><![CDATA[Id_materia_Prima]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="214" y="30" width="100" height="20" uuid="c35f31ce-6f1f-4bb2-8777-02dcaa930ec8"/>
+				<reportElement x="294" y="55" width="100" height="20" uuid="ba1286f9-1ddf-4a36-a729-34acb7810165"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[Nombre]]></text>
+				<text><![CDATA[Total]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="314" y="30" width="100" height="20" uuid="f1a56622-c344-47d2-ba12-99a2b3b97981"/>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[existencias]]></text>
-			</staticText>
-			<line>
-				<reportElement x="114" y="29" width="299" height="1" uuid="ceeabe65-4d84-4568-b793-787b614429b9"/>
-			</line>
-			<line>
-				<reportElement x="114" y="30" width="1" height="20" uuid="4d65ad2c-08fa-4fd8-b08e-956b29200f0e"/>
-			</line>
-			<line>
-				<reportElement x="213" y="30" width="1" height="20" uuid="ecde2978-fa72-44f2-9e51-9ba850bdc0fa"/>
-			</line>
-			<line>
-				<reportElement x="313" y="30" width="1" height="20" uuid="8ec51899-b563-4289-bfd9-3bd9465506aa"/>
-			</line>
-			<line>
-				<reportElement x="412" y="30" width="1" height="20" uuid="a296d208-7eea-4dc7-84fb-3149a0c172cf"/>
-			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20" splitType="Stretch">
+		<band height="21" splitType="Stretch">
+			<line>
+				<reportElement x="194" y="1" width="199" height="1" uuid="1179a7eb-3b9a-40a1-94ca-efb479f184b0"/>
+			</line>
+			<line>
+				<reportElement x="194" y="0" width="199" height="1" uuid="fa660b56-caed-4cb4-875b-98e63f7604f9"/>
+			</line>
+			<line>
+				<reportElement x="195" y="0" width="1" height="20" uuid="6c8203ad-9bfd-4d4d-869f-97d0a85a39fa"/>
+			</line>
+			<line>
+				<reportElement x="294" y="0" width="1" height="20" uuid="00b6a9b0-562c-44a2-98a7-45a60234d695"/>
+			</line>
+			<line>
+				<reportElement x="394" y="0" width="1" height="20" uuid="d92b4138-4b19-4d79-be0e-f3f359ff037f"/>
+			</line>
 			<textField>
-				<reportElement x="114" y="-1" width="100" height="20" uuid="65258b9a-c480-4d81-88e2-38ed3c9dfa52"/>
+				<reportElement x="196" y="1" width="98" height="18" uuid="f8f914c2-8048-4537-8c09-0e6728211304"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{Id_materia_Prima}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="214" y="-1" width="100" height="20" uuid="8d46c06c-e7dd-4274-9992-d3f7525a79c7"/>
+				<reportElement x="295" y="0" width="100" height="20" uuid="6755a7c6-cd67-4c9a-987a-6c6f2fc2ccf5"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="314" y="-1" width="100" height="20" uuid="bdaa32a6-0a98-4e61-a8b0-436081086754"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{existencias}]]></textFieldExpression>
-			</textField>
-			<line>
-				<reportElement x="114" y="19" width="300" height="1" uuid="1179a7eb-3b9a-40a1-94ca-efb479f184b0"/>
-			</line>
-			<line>
-				<reportElement x="114" y="0" width="300" height="1" uuid="fa660b56-caed-4cb4-875b-98e63f7604f9"/>
-			</line>
-			<line>
-				<reportElement x="114" y="0" width="1" height="20" uuid="6c8203ad-9bfd-4d4d-869f-97d0a85a39fa"/>
-			</line>
-			<line>
-				<reportElement x="213" y="0" width="1" height="20" uuid="00b6a9b0-562c-44a2-98a7-45a60234d695"/>
-			</line>
-			<line>
-				<reportElement x="313" y="0" width="1" height="20" uuid="d92b4138-4b19-4d79-be0e-f3f359ff037f"/>
-			</line>
-			<line>
-				<reportElement x="413" y="0" width="1" height="20" uuid="718a3252-fc42-415b-86f6-0263323770ba"/>
-			</line>
 		</band>
 	</detail>
 	<pageFooter>

@@ -25,13 +25,16 @@
     UsuarioVO usuVO1 = null;
     RolVO rolVO1 = null;
     String tipoRol = null;
-
-    if (buscarSesion.getAttribute("datosUsuario") == null) {
-        request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
-    } else {
+    String nombreUsu = null;
+    
         UsuarioRolDAO uRDAO = new UsuarioRolDAO();
         usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
         rolVO1 = (RolVO) buscarSesion.getAttribute("datosRol");
+        
+        
+    if (usuVO1==null | rolVO1==null) {
+        request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
+    } else {
         tipoRol = rolVO1.getRoltipo();
     }
 

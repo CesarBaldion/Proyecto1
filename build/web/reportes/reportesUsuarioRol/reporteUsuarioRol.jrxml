@@ -1,41 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="18a0f5a2-4cab-4458-828c-895404af05f1">
-	<property name="ireport.zoom" value="2.593742460100073"/>
-	<property name="ireport.x" value="310"/>
-	<property name="ireport.y" value="219"/>
+	<property name="ireport.zoom" value="2.853116706110082"/>
+	<property name="ireport.x" value="478"/>
+	<property name="ireport.y" value="347"/>
 	<subDataset name="Table Dataset 1" uuid="7fffd53d-bea2-4a8a-9c54-2601a58d88c9"/>
 	<parameter name="roltipo" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select * from usuariorolview where roltipo = $P{roltipo}]]>
+		<![CDATA[select * from usuario_rol where 
+Id_Rol = $P{roltipo}]]>
 	</queryString>
-	<field name="ROLTIPO" class="java.lang.String">
+	<field name="Id_Rol" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="Nombre" class="java.lang.String">
+	<field name="Id_Usuarios" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Estado" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="93" splitType="Stretch">
-			<image>
-				<reportElement x="119" y="11" width="373" height="66" uuid="beac6ac6-c654-48a0-a216-430b9dae51cc"/>
-				<imageExpression><![CDATA["C:\\Users\\1Usuario\\Desktop\\Github\\Proyecto1\\web\\reportes\\Untitled-1.jpg"]]></imageExpression>
-			</image>
-		</band>
+		<band height="93" splitType="Stretch"/>
 	</title>
 	<pageHeader>
 		<band height="45">
-			<textField>
-				<reportElement x="282" y="21" width="138" height="20" uuid="f7ff79f5-bf2c-4d25-a74e-7675329c3b46"/>
-				<textElement>
-					<font fontName="Arial Narrow" size="14" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{ROLTIPO}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="166" y="21" width="116" height="20" uuid="f41ac84b-9fac-49f7-a6bb-b5fe615c9915"/>
 				<textElement textAlignment="Center">
@@ -43,6 +35,11 @@
 				</textElement>
 				<text><![CDATA[Reporte Usuarios]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="282" y="21" width="98" height="20" uuid="ae49048b-808a-4872-8c37-11bc47fa8bf8"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Id_Rol}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -75,17 +72,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="19" splitType="Stretch">
-			<textField>
-				<reportElement x="174" y="-1" width="100" height="19" uuid="283ba165-6a92-4e65-a201-97a1fc2ec446"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{ROLTIPO}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="273" y="-1" width="101" height="19" uuid="aed48f80-4703-4225-bacf-828e0402cfab"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
-			</textField>
+		<band height="24" splitType="Stretch">
 			<line>
 				<reportElement x="174" y="18" width="200" height="1" uuid="89035aa2-9ade-4ce1-bacd-e5d1b129b439"/>
 			</line>
@@ -98,6 +85,16 @@
 			<line>
 				<reportElement x="373" y="-1" width="1" height="20" uuid="36d116ad-acd5-4e71-9e01-13e1b9b2287e"/>
 			</line>
+			<textField>
+				<reportElement x="175" y="0" width="98" height="20" uuid="613bd0bb-cac9-4b14-b981-444578695176"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Id_Rol}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="273" y="0" width="100" height="20" uuid="8de5a0f2-95fc-40b8-a0b8-f2a64676d174"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Id_Usuarios}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<pageFooter>

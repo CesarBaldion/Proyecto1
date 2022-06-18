@@ -30,8 +30,7 @@
                         <div class="col-md-10 justify-content-center mx-auto ">
                             <h1 class="text-center fs-4 mt-2">Ingrese su Documento de Identidad</h1>
                             <%if (request.getAttribute("mensaje") != null) {%>
-                            <div class="container-fluid d-inline-block d-flex mx-auto">
-                                <img src="img/error.svg" height="100">
+                            <div class="mx-auto">
                                 <p class="text-danger text-center fs-5 mt-5">${mensaje}</p>
                             </div>
                             <% }%>

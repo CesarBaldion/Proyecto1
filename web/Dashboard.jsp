@@ -31,7 +31,7 @@
         <!-- Layout styles -->
         <link rel="stylesheet" href="Dashboard/assets/css/style.css">
         <!-- End layout styles -->
-        <link rel="shortcut icon" href="Dashboard/assets/images/favicon.png" />
+        <link rel="shortcut icon" href="img/menu/logoPeque.png" />
     </head>
     <body>
         <div class="container-scroller">

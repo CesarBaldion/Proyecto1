@@ -29,7 +29,7 @@ public class CantidadNecesariaDAO extends Conexion implements Crud {
     private boolean operacion = false;
     private String sql;
 
-    private String Id_Materia_Prima, Id_Detalles_Producto, materiaprimaenproducto;
+    private String IdCantidadNecesaria,Id_Materia_Prima, Id_Detalles_Producto, materiaprimaenproducto;
 
     public CantidadNecesariaDAO(CantidadNecesariaVO cantNecVO) {
         super();
@@ -39,6 +39,7 @@ public class CantidadNecesariaDAO extends Conexion implements Crud {
             Id_Materia_Prima = cantNecVO.getId_Materia_Prima();
             Id_Detalles_Producto = cantNecVO.getId_Detalles_Producto();
             materiaprimaenproducto = cantNecVO.getMateriaprimaenproducto();
+            IdCantidadNecesaria = cantNecVO.getIdCantidadNecesaria();
         } catch (Exception e) {
             Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -50,11 +51,11 @@ public class CantidadNecesariaDAO extends Conexion implements Crud {
     @Override
     public boolean agregarRegistro() {
         try {
-            sql = "INSERT INTO cantidad_necesaria(Id_materia_Prima,Id_detalles_producto,materiaPrimaEnProducto) values(?,?,?)";
+            sql = "INSERT INTO `cantidad_necesaria` (`Id_CantidadNecesaria`, `Id_detalles_producto`, `Id_materia_Prima`, `materiaPrimaEnProducto`) VALUES (NULL,?, ?, ?);";
 
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, Id_Materia_Prima);
-            puente.setString(2, Id_Detalles_Producto);
+            puente.setString(1, Id_Detalles_Producto);
+            puente.setString(2, Id_Materia_Prima);
             puente.setString(3, materiaprimaenproducto);
             puente.executeUpdate();
             operacion = true;
@@ -74,13 +75,11 @@ public class CantidadNecesariaDAO extends Conexion implements Crud {
     @Override
     public boolean actualizarRegistro() {
         try {
-            sql = "update detalles_producto set Id_materia_Prima = ?,Id_detalles_producto = ?,materiaPrimaEnProducto=? where Id_materia_Prima = ? and Id_detalles_producto = ? and materiaPrimaEnProducto=?";
+            sql = "update cantidad_necesaria set  materiaPrimaEnProducto= ? where Id_CantidadNecesaria=?";
 
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, Id_Materia_Prima);
-            puente.setString(2, Id_Detalles_Producto);
-            puente.setString(3, materiaprimaenproducto);
-            //puente.setString(4, idCantidaNecesaria);
+            puente.setString(1, materiaprimaenproducto);
+            puente.setString(2, IdCantidadNecesaria);
             puente.executeUpdate();
             operacion = true;
         } catch (SQLException e) {
@@ -100,11 +99,9 @@ public class CantidadNecesariaDAO extends Conexion implements Crud {
     public boolean eliminarRegistro() {
 
         try {
-            sql = "delete from cantidad_necesaria where Id_materia_Prima = ? and Id_detalles_producto = ? and materiaPrimaEnProducto=?";
+            sql = "delete from cantidad_necesaria where Id_CantidadNecesaria=?";
             puente = conexion.prepareStatement(sql);
-            puente.setString(1, Id_Materia_Prima);
-            puente.setString(2, Id_Detalles_Producto);
-            puente.setString(3, materiaprimaenproducto);
+            puente.setString(1,IdCantidadNecesaria );
             puente.executeUpdate();
             operacion = true;
 
@@ -132,7 +129,7 @@ public class CantidadNecesariaDAO extends Conexion implements Crud {
             mensajero = puente.executeQuery();
 
             while (mensajero.next()) {
-                cantNecVO = new CantidadNecesariaVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3));
+                cantNecVO = new CantidadNecesariaVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4));
             }
         } catch (Exception e) {
             Logger.getLogger(CantidadNecesariaVO.class.getName()).log(Level.SEVERE, null, e);
@@ -156,7 +153,7 @@ public class CantidadNecesariaDAO extends Conexion implements Crud {
             mensajero = puente.executeQuery();
 
             while (mensajero.next()) {
-                CantidadNecesariaVO cantNecVO = new CantidadNecesariaVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3));
+                CantidadNecesariaVO cantNecVO = new CantidadNecesariaVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4));
 
                 listaCantidadNecesaria.add(cantNecVO);
             }
@@ -183,7 +180,7 @@ public class CantidadNecesariaDAO extends Conexion implements Crud {
             puente.setString(2, Id_Detalles_Producto);
             mensajero = puente.executeQuery();
             while (mensajero.next()) {
-                cantNecVO = new CantidadNecesariaVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3));
+                cantNecVO = new CantidadNecesariaVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3), mensajero.getString(4));
             }
             if (cantNecVO == null) {
                 operacion = true;

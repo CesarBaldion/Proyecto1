@@ -35,14 +35,14 @@ public class CantidadNecesariaControlador extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         ServletOutputStream out1 = response.getOutputStream();
-
+        String idCantidadNecesaria = request.getParameter("txtIdCantidadNec");
         String id_materia_prima = request.getParameter("Id_Materia_Prima");
         String id_detalles_producto = request.getParameter("Id_Detalles_Producto");
         String materiaprimaenproducto = request.getParameter("materiaprimaenproducto");
 
         int opcion = Integer.parseInt(request.getParameter("opcion"));
 
-        CantidadNecesariaVO cantNecVO = new CantidadNecesariaVO(id_materia_prima, id_detalles_producto, materiaprimaenproducto);
+        CantidadNecesariaVO cantNecVO = new CantidadNecesariaVO(idCantidadNecesaria, id_detalles_producto, id_materia_prima, materiaprimaenproducto);
 
         // 3. Quien hace las operaciones? DAO
         CantidadNecesariaDAO cantNecDAO = new CantidadNecesariaDAO(cantNecVO);
@@ -62,18 +62,25 @@ public class CantidadNecesariaControlador extends HttpServlet {
                 }
 
                 break;
+            case 2:
+                if (cantNecDAO.actualizarRegistro()) {
+                    out1.println("<label class='text-success'><b>Se ha Actualizado Correctamente</b></label>");
+                } else {
+                        out1.println("<label class='text-danger'><b>Error al Actualizar</b></label>");
 
-            /*case 3:
+                }
+                break;
+            case 3:
 
                 if (cantNecDAO.eliminarRegistro()) {
-                        out1.println("<label class='text-success'><b>Se ha Eliminado Correctamente</b></label>");
+                    out1.println("<label class='text-success'><b>Se ha Eliminado Correctamente</b></label>");
                 } else {
-                        out1.println("<label class='text-success'><b>Error al Eliminar</b></label>");
+                    out1.println("<label class='text-success'><b>Error al Eliminar</b></label>");
                 }
                 break;
 
             default:
-                break;*/
+                break;
 
             case 4: {
                 cantNecVO = cantNecDAO.consultarCantidadNecesaria(id_materia_prima);

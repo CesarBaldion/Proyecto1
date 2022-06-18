@@ -135,12 +135,6 @@ public class UsuarioRolDAO extends Conexion implements Crud {
             }
         } catch (Exception e) {
             Logger.getLogger(UsuarioRolDAO.class.getName()).log(Level.SEVERE, null, e);
-        }finally{
-            try{
-                this.cerrarConexion();
-            }catch(Exception e){
-                Logger.getLogger(UsuarioRolDAO.class.getName()).log(Level.SEVERE, null, e);
-            }
         }
         return uRVO;
     }

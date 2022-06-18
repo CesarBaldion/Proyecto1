@@ -12,12 +12,7 @@
 <%@page import="ModeloDAO.LoteProduccionDAO"%>
 <%@page import="ModeloVO.LoteProduccionVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    HttpSession buscarSesion = (HttpSession) request.getSession();
-    UsuarioVO usuVO1 = null;
-    usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
 
-%>
 <!DOCTYPE html>
 <html>
     <head>

@@ -15,7 +15,7 @@
 	<field name="Nombre" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="Tipo de documento" class="java.lang.String">
+	<field name="Tipo_documento" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="Documento" class="java.lang.String">
@@ -36,19 +36,14 @@
 	<field name="Contrasena" class="java.lang.Object">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="Estado" class="java.lang.Boolean">
+	<field name="Estado" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="89" splitType="Stretch">
-			<image>
-				<reportElement x="126" y="11" width="373" height="66" uuid="59d477c8-7a7f-4d77-b949-2f514d9e1001"/>
-				<imageExpression><![CDATA["C:\\Users\\1Usuario\\Desktop\\Github\\Proyecto1\\web\\reportes\\Untitled-1.jpg"]]></imageExpression>
-			</image>
-		</band>
+		<band height="89" splitType="Stretch"/>
 	</title>
 	<pageHeader>
 		<band height="44">
@@ -148,11 +143,6 @@
 				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="125" y="0" width="66" height="38" uuid="fd4dc0c1-e29c-437b-a735-d06dc9833a17"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{Tipo de documento}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="191" y="0" width="73" height="38" uuid="3beea48a-250d-4c32-93c0-eb1517f934b0"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{Documento}]]></textFieldExpression>
@@ -210,6 +200,10 @@
 			<line>
 				<reportElement x="549" y="1" width="1" height="38" uuid="5a18def1-1597-402f-9607-ca88ce626771"/>
 			</line>
+			<textField>
+				<reportElement x="126" y="1" width="65" height="37" uuid="b96d0a67-da9d-45eb-97a6-617c86841dfc"/>
+				<textFieldExpression><![CDATA[$F{Tipo_documento}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<pageFooter>

@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="18a0f5a2-4cab-4458-828c-895404af05f1">
-	<property name="ireport.zoom" value="3.797498335832482"/>
-	<property name="ireport.x" value="758"/>
-	<property name="ireport.y" value="426"/>
+	<property name="ireport.zoom" value="1.3310000000000248"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<queryString>
-		<![CDATA[select * from usuariorolview]]>
+		<![CDATA[select * from usuario_rol]]>
 	</queryString>
-	<field name="ROLTIPO" class="java.lang.String">
+	<field name="Id_Rol" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="Nombre" class="java.lang.String">
+	<field name="Id_Usuarios" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Estado" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="91" splitType="Stretch">
-			<image>
-				<reportElement x="129" y="11" width="373" height="66" uuid="a839c9ca-229c-4c2c-9e99-b62d94773001"/>
-				<imageExpression><![CDATA["C:\\Users\\1Usuario\\Desktop\\Github\\Proyecto1\\web\\reportes\\Untitled-1.jpg"]]></imageExpression>
-			</image>
-		</band>
+		<band height="91" splitType="Stretch"/>
 	</title>
 	<pageHeader>
 		<band height="45">
@@ -62,16 +60,6 @@
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
-			<textField>
-				<reportElement x="173" y="-1" width="100" height="20" uuid="79efe341-1e7d-4dbe-b7a9-114d9ce9d1ce"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{ROLTIPO}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="273" y="-1" width="100" height="20" uuid="21192f56-09d8-4e2a-8d5f-eea1fa9f940a"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
-			</textField>
 			<line>
 				<reportElement x="173" y="19" width="200" height="1" uuid="9b8bc53a-bc5b-4035-98d5-0bee5d05ff66"/>
 			</line>
@@ -87,6 +75,16 @@
 			<line>
 				<reportElement x="372" y="-1" width="1" height="21" uuid="67a8c5cb-f904-4a4e-8064-d71e1fd3aac4"/>
 			</line>
+			<textField>
+				<reportElement x="174" y="0" width="100" height="20" uuid="df5a564a-6534-47f7-aa47-cc00baf8ee72"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Id_Rol}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="274" y="0" width="100" height="20" uuid="771575ef-e036-4c82-8167-ca6a68395903"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Id_Usuarios}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<pageFooter>

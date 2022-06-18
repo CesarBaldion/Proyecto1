@@ -134,11 +134,16 @@ public class UsuariosControlador extends HttpServlet {
                 if (usuVO != null) {
                     Usuario_rolVO usuRVO = new Usuario_rolVO();
                     UsuarioRolDAO usuRDAO = new UsuarioRolDAO();
-                    usuRVO = usuRDAO.consultarRol(usuVO.getIdUsuarios());
+                    if(usuRDAO.consultarRol(usuVO.getIdUsuarios())!=null){
+                        usuRVO = usuRDAO.consultarRol(usuVO.getIdUsuarios());
+                    }
 
                     RolVO rolVO = new RolVO();
                     RolDAO rolDao = new RolDAO();
-                    rolVO = rolDao.consultarRol(usuRVO.getId_Rol());
+                    if (rolDao.consultarRol(usuRVO.getId_Rol()) != null ) {
+                        rolVO = rolDao.consultarRol(usuRVO.getId_Rol());
+                    }
+                    
                     HttpSession miSesion = request.getSession();
                     miSesion.setAttribute("datosUsuario", usuVO);
 
@@ -177,6 +182,8 @@ public class UsuariosControlador extends HttpServlet {
                     request.getRequestDispatcher("VerificacionCodigo.jsp").forward(request, response);
                 } else {
                     request.setAttribute("mensaje", "No encontramos ningun Usuario asociado a este documento");
+                    request.getRequestDispatcher("recuperarContrasenaUsuario.jsp").forward(request, response);
+
                 }
 
                 break;

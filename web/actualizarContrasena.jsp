@@ -33,7 +33,7 @@
                     <div class="modal-header">
                     </div>
                     <div class="modal-body">
-                        <div class="col-md-4 mx-auto justify-content-center border-5 border border-info  m caja">
+                        <div class="col-md-12 mx-auto justify-content-center  ">
                             <div class="col-md-8 mx-auto justify-content-center mt-5">
                                 <form   class="form-group" action="Usuarios" method="post" enctype="multipart/form-data"> 
                                     <h3 class="text-center"><label><%=usuVO1.getNombre()%></label></h3>

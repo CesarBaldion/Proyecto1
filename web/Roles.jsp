@@ -52,8 +52,9 @@
                             <%
                                 RolDAO rolDAOreporte = new RolDAO();
                                 for (RolVO rVO : rolDAOreporte.listar()) {
+                                    
                             %>
-                            <option value="<%=rVO.getRoltipo()%>"><%=rVO.getRoltipo()%></option>
+                            <option value="<%=rVO.getId_rol()%>"><%=rVO.getRoltipo()%></option>
                             <%}%>
                             <option value="Todos">Todos</option>
                         </select>

@@ -124,7 +124,7 @@ public class UsuarioRolControlador extends HttpServlet {
                 try {
                     Conexion conexion = new Conexion();
                     String rol = uRVO.getId_Rol();
-                    if (rol.equals("Administrador") | rol.equals("Cliente") | rol.equals("jefe")) {
+                    if (rol.equals("1") | rol.equals("2") | rol.equals("3")) {
                         JasperReport reporte = (JasperReport) JRLoader.loadObject(getServletContext().getRealPath("reportes/reportesUsuarioRol/reporteUsuarioRol.jasper"));
                         Map parametros = new HashMap();
                         parametros.put("roltipo", rol);
@@ -133,7 +133,7 @@ public class UsuarioRolControlador extends HttpServlet {
                         exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
                         exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, out);
                         exporter.exportReport();
-                    } else if (rol.equals("Todos")) {
+                    } else {
                         JasperReport reporte = (JasperReport) JRLoader.loadObject(getServletContext().getRealPath("reportes/reportesUsuarioRol/reporteUsuarioRol2.jasper"));
                         JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, null, conexion.obtenerConexion());
                         JRExporter exporter = new JRPdfExporter();

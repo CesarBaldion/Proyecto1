@@ -10,15 +10,25 @@ package ModeloVO;
  * @author ESCOBAR
  */
 public class CantidadNecesariaVO {
-    private String Id_Materia_Prima, Id_Detalles_Producto, materiaprimaenproducto;
+
+    private String IdCantidadNecesaria, Id_Materia_Prima, Id_Detalles_Producto, materiaprimaenproducto;
 
     public CantidadNecesariaVO() {
     }
 
-    public CantidadNecesariaVO(String Id_Detalles_Producto,String Id_Materia_Prima , String materiaprimaenproducto) {
+    public CantidadNecesariaVO(String IdCantidadNecesaria, String Id_Detalles_Producto, String Id_Materia_Prima, String materiaprimaenproducto) {
         this.Id_Materia_Prima = Id_Materia_Prima;
         this.Id_Detalles_Producto = Id_Detalles_Producto;
-        this.materiaprimaenproducto= materiaprimaenproducto;
+        this.materiaprimaenproducto = materiaprimaenproducto;
+        this.IdCantidadNecesaria = IdCantidadNecesaria;
+    }
+
+    public String getIdCantidadNecesaria() {
+        return IdCantidadNecesaria;
+    }
+
+    public void setIdCantidadNecesaria(String IdCantidadNecesaria) {
+        this.IdCantidadNecesaria = IdCantidadNecesaria;
     }
 
     public String getId_Materia_Prima() {
@@ -45,7 +55,4 @@ public class CantidadNecesariaVO {
         this.materiaprimaenproducto = materiaprimaenproducto;
     }
 
-   
-    
-    
 }
