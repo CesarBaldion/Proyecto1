@@ -15,7 +15,7 @@ public class CantidadNecesariaVO {
     public CantidadNecesariaVO() {
     }
 
-    public CantidadNecesariaVO(String Id_Materia_Prima, String Id_Detalles_Producto, String materiaprimaenproducto) {
+    public CantidadNecesariaVO(String Id_Detalles_Producto,String Id_Materia_Prima , String materiaprimaenproducto) {
         this.Id_Materia_Prima = Id_Materia_Prima;
         this.Id_Detalles_Producto = Id_Detalles_Producto;
         this.materiaprimaenproducto= materiaprimaenproducto;

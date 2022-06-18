@@ -3,6 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+$(document).ready(function () {
+    $('#tableCantidadNec').DataTable({
+        language: {
+            "emptyTable": "No se encontro ningun resultado",
+            "lengthMenu": "Mostar _MENU_ Registros",
+            "info": "Muestra _START_ de _END_ de _TOTAL_ Registros",
+            "infoEmpty": "Muestra 0 to 0 of 0 Registros",
+            "search": "buscar:",
+            "paginate": {
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            },
+        }}
+    );
+});
+
+
 $('#btnAñadir').click(function () {
     $("#respuestaRegistrar").text(" ");
     $("#registrarCantidaNec").modal("show");

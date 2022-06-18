@@ -140,12 +140,12 @@ public class CantidadNecesariaDAO extends Conexion implements Crud {
                 listaCantidadNecesaria.add(cantNecVO);
             }
         } catch (Exception e) {
-            Logger.getLogger(CantidadNecesariaVO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(CantidadNecesariaDAO.class.getName()).log(Level.SEVERE, null, e);
         }finally{
             try{
                 this.cerrarConexion();
             }catch(Exception e){
-                Logger.getLogger(CantidadNecesariaVO.class.getName()).log(Level.SEVERE, null, e);
+                Logger.getLogger(CantidadNecesariaDAO.class.getName()).log(Level.SEVERE, null, e);
             }
         }
         return listaCantidadNecesaria;

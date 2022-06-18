@@ -1,3 +1,5 @@
+
+
 $(document).ready(function () {
     $('#table_id').DataTable({
         language: {
@@ -16,6 +18,12 @@ $(document).ready(function () {
     );
 });
 
+
+$("#bntCantNec").click(function (e) {
+
+    $("#ContenidoCantidadNecesaria").load("CantidadNecesaria.jsp");
+    $("#vistaCantidadNecesaria").modal("show");
+});
 
 $("#bntRegistrar").click(function (e) {
     document.getElementById("respuestaRegistrar").innerText = "";
@@ -36,7 +44,6 @@ $('#registrarDetPro').click(function (event) {
         opcion: opcionreg
     }, function (responseText) {
         $('#respuestaRegistrar').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });
 
@@ -67,7 +74,6 @@ $('#editarDetPro').click(function (event) {
         opcion: opcionedit
     }, function (responseText) {
         $('#respuestaEdit').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });
 
@@ -91,6 +97,5 @@ $('#eliDetPro').click(function (event) {
         opcion: opcionDelVar
     }, function (responseText) {
         $('#respuestaDel').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });

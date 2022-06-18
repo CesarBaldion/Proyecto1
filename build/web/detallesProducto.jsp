@@ -4,6 +4,10 @@
     Author     : AdminSena
 --%>
 
+<%@page import="ModeloDAO.CantidadNecesariaDAO"%>
+<%@page import="ModeloVO.CantidadNecesariaVO"%>
+<%@page import="ModeloVO.MateriaPrimaVO"%>
+<%@page import="ModeloDAO.MateriaPrimaDAO"%>
 <%@page import="ModeloVO.ProductoVO"%>
 <%@page import="ModeloDAO.ProductoDAO"%>
 <%@page import="ModeloDAO.DetallesProductoDAO"%>
@@ -20,10 +24,10 @@
                 integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-
         <link rel="stylesheet" href="css/estilos.css">
     </head>
     <body>
+
         <div class="col-md-10 mx-auto ">
             <h1 class="text-center mb-5 ">Detalles Producto</h1>
             <div class="d-flex"> 
@@ -35,7 +39,14 @@
                         </svg>
                     </button>
                 </div>
-
+                <div class="ms-2">
+                    <button id="bntCantNec" class="boton btn " >Registrar Cantidad Necesaria
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
             <div class="actualizarTBody" id="actualizarTBody">
                 <table id="table_id" class="table text-centerd border-dark ">
@@ -67,7 +78,7 @@
                             <td><%=detProVO.getTalla()%></td>
                             <td><%=detProVO.getDescripcion()%></td>
                             <td>
-                                <div class="d-flex mx-auto justify-content-center" >
+                                <div class="d-flex " >
                                     <button data-id="<%=detProVO.getId_Detalles_Producto()%>" data-id2="<%=detProVO.getId_Producto()%>" 
                                             data-id3="<%=detProVO.getTalla()%>"  data-id4="<%=detProVO.getDescripcion()%>"  class="btn boton mt-2  detalles">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-zoom-in" viewBox="0 0 16 16">
@@ -90,6 +101,7 @@
                 </table>
             </div>
         </div>
+
 
         <%--Modal Registrar--%>
         <div class="modal fade" id="registrarDetProModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -201,7 +213,23 @@
                 </div>
             </div>
         </div>
-
+        <div class="modal fade" id="vistaCantidadNecesaria" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog  modal-fullscreen">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="ContenidoCantidadNecesaria">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Understood</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script src="js/JS/ControladorDetallesProducto.js"></script>
     </body>
 </html>
