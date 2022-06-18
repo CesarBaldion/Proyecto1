@@ -209,6 +209,40 @@ public class OrdenDetallesDAO extends Conexion implements Crud {
         return listaOrdenDetalles;
 
     }
+    public ArrayList<OrdenDetallesVO> ListarMateriaPrimaEnProducto() {
+
+        ArrayList<OrdenDetallesVO> listaOrdenDetalles = new ArrayList<>();
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from materiprimapororden";
+            puente = conexion.prepareStatement(sql);
+            mensajero = puente.executeQuery();
+
+            while (mensajero.next()) {
+
+                OrdenDetallesVO OrdenDetallVO = new OrdenDetallesVO(mensajero.getString(1), mensajero.getString(2),
+                        mensajero.getString(3), mensajero.getString(4), mensajero.getString(5), mensajero.getString(6));
+                listaOrdenDetalles.add(OrdenDetallVO);
+
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(OrdenDetallesDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+
+        return listaOrdenDetalles;
+
+    }
+    
 
     /* public boolean ActivarRegistro() {
         try {

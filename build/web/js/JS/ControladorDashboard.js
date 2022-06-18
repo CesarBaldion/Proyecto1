@@ -36,6 +36,13 @@ $('#DetallesProductoView').click(function (event) {
     $("#CargarVistas").load("DetallesProducto.jsp");
 });
 
+$('#LoteProduccionView').click(function (event) {
+    event.preventDefault();
+    document.getElementById("CargarVistas").innerText = " ";
+    $("#CargarVistas").load("LoteProduccion.jsp");
+});
+
+
 $('#RolesView').click(function (event) {
     event.preventDefault();
     document.getElementById("CargarVistas").innerText = " ";

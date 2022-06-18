@@ -1,9 +1,16 @@
 
 
+$('#btnMateriaPrimaPorOrden').click(function () {
+    event.preventDefault();
+    document.getElementById("CargarVistas").innerText = " ";
+    $("#CargarVistas").load("MateriaPrimaPorOrden.jsp");
+});
+
 
 $(".modal").on("click", ".botonCerrar", function (e) {
     $("#CargarVistas").load("Ordenes.jsp");
 });
+
 $(document).ready(function () {
     $('#table_id').DataTable({
         language: {
@@ -83,7 +90,7 @@ $('#submitReg').click(function (event) {
 //Envio de Datos Por AJAX para Añadir Datos a la Lista
 $('#submitVarios').click(function (event) {
     event.preventDefault();
-    
+
     var date = new Date();
     var txtIdUsuariolistVar = $('#txtIdUsuariolist').val();
     var nombresesionVar = $('#txtnombreUsuariolist').val();
@@ -98,11 +105,11 @@ $('#submitVarios').click(function (event) {
     $.post('OrdenDetalles', {
         txtIdUsuario: txtIdUsuariolistVar,
         txtIdDetallesProducto: txtIdDetallesProductoVar,
-        infoProducto:infoProductoVar,
+        infoProducto: infoProductoVar,
         txtcantidadSolicitada: txtcantidadSolicitadaVar,
         txtFechaRegistro: txtFechaRegistrolistaVar,
         txtFechaEntrega: txtFechaEntregalistVar,
-        nombreUsuario:nombresesionVar,
+        nombreUsuario: nombresesionVar,
         opcion: opcionVar
     }, function (responseText) {
         $('#tabla').html(responseText);

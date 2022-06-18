@@ -12,7 +12,7 @@ package ModeloVO;
 public class OrdenDetallesVO {
 
     String id_Ordenes, id_Usuarios, id_Detalles_Producto, cantidadSolicitada, fecha_registro, fecha_entrega,
-            Estado, nombreUsuario, infoProducto;
+            Estado, nombreUsuario, infoProducto,idMateriaPrima,MateriaPrimaPorUnidad,MateriaPrimaNecesaria;
 
     public OrdenDetallesVO(String id_Ordenes, String id_Usuarios, String id_Detalles_Producto, String cantidadSolicitada,
             String fecha_registro, String fecha_entrega, String Estado, String nombreUsuario, String infoProducto) {
@@ -35,6 +35,39 @@ public class OrdenDetallesVO {
         this.fecha_registro = fecha_registro;
         this.fecha_entrega = fecha_entrega;
         this.Estado = Estado;
+    }
+
+    public OrdenDetallesVO(String id_Ordenes, String id_Detalles_Producto,String idMateriaPrima, String cantidadSolicitada,  String MateriaPrimaPorUnidad, String MateriaPrimaNecesaria) {
+        this.id_Ordenes = id_Ordenes;
+        this.id_Detalles_Producto = id_Detalles_Producto;
+        this.cantidadSolicitada = cantidadSolicitada;
+        this.idMateriaPrima = idMateriaPrima;
+        this.MateriaPrimaPorUnidad = MateriaPrimaPorUnidad;
+        this.MateriaPrimaNecesaria = MateriaPrimaNecesaria;
+    }
+
+    public String getIdMateriaPrima() {
+        return idMateriaPrima;
+    }
+
+    public void setIdMateriaPrima(String idMateriaPrima) {
+        this.idMateriaPrima = idMateriaPrima;
+    }
+
+    public String getMateriaPrimaPorUnidad() {
+        return MateriaPrimaPorUnidad;
+    }
+
+    public void setMateriaPrimaPorUnidad(String MateriaPrimaPorUnidad) {
+        this.MateriaPrimaPorUnidad = MateriaPrimaPorUnidad;
+    }
+
+    public String getMateriaPrimaNecesaria() {
+        return MateriaPrimaNecesaria;
+    }
+
+    public void setMateriaPrimaNecesaria(String MateriaPrimaNecesaria) {
+        this.MateriaPrimaNecesaria = MateriaPrimaNecesaria;
     }
 
     public OrdenDetallesVO() {

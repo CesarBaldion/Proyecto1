@@ -27,7 +27,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-
         <div class="col-md-10 mx-auto">
             <h1 class="text-center mb-5">Usuarios</h1>
             <div class="d-flex">
@@ -64,10 +63,13 @@
             <div class="actualizarTBody" id="actualizarTBody">
                 <table id="table_id" class="table text-centerborder-dark">
                     <thead class="table-dark">
-                    <th>Rol</th>
-                    <th>Usuario</th>
-                    <th>Documento</th>
-                    <th>Acciones</th>
+                        <tr>
+
+                            <th>Rol</th>
+                            <th>Usuario</th>
+                            <th>Documento</th>
+                            <th>Acciones</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <%

@@ -39,7 +39,7 @@
     <body>
 
         <div class="col-md-10 mx-auto ">
-            <h1 class="text-center mb-5 ">Detalles Producto</h1>
+            <h1 class="text-center mb-5 ">Orden de Produccion</h1>
             <div class="d-flex"> 
                 <div>
                     <button id="btnAñadirOrden"  type="button" class="boton btn" data-bs-toggle="modal" data-bs-target="#modalAñadirOrden" >Registrar
@@ -68,6 +68,13 @@
                         </button>
                         <input type="hidden" value="10" name="opcion">
                     </form>
+                </div>
+                <div class="ms-2 me-2">
+                    <button id="btnMateriaPrimaPorOrden" class="boton btn" >Materia Prima Por Orden
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right-circle" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.854 10.803a.5.5 0 1 1-.708-.707L9.243 6H6.475a.5.5 0 1 1 0-1h3.975a.5.5 0 0 1 .5.5v3.975a.5.5 0 1 1-1 0V6.707l-4.096 4.096z"/>
+                        </svg>
+                    </button>
                 </div>
 
 

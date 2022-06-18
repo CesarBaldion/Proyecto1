@@ -12,6 +12,11 @@ package ModeloVO;
 public class MateriaPrimaVO {
     
     String Id_materia_Prima, Nombre, Actualizacion, Estado;
+
+    public MateriaPrimaVO(String Id_materia_Prima, String Actualizacion) {
+        this.Id_materia_Prima = Id_materia_Prima;
+        this.Actualizacion = Actualizacion;
+    }
     
     
     public MateriaPrimaVO() {

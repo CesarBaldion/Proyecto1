@@ -25,8 +25,7 @@
         UsuarioRolDAO uRDAO = new UsuarioRolDAO();
         usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
 
-         rolVO1 = (RolVO) buscarSesion.getAttribute("datosRol");
-        
+        rolVO1 = (RolVO) buscarSesion.getAttribute("datosRol");
 
     }
 
@@ -92,7 +91,6 @@
                         </div>
                     </li>
 
-
                     <li class="nav-item menu-items">
                         <a class="nav-link btn" id="OrdenesView">
                             <span class="menu-icon">
@@ -109,8 +107,17 @@
                             <span class="menu-icon">
                                 <i class="mdi mdi-laptop"></i>
                             </span>
-                            <span class="menu-title" id="ProductoView">Productos</span>
+                            <span class="menu-title">Productos</span>
+                            <i class="menu-arrow"></i>
                         </a>
+                        <div class="collapse" id="productos">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link btn" id="ProductoView">Productos</a></li>
+                                <li class="nav-item"> <a class="nav-link btn" id="DetallesProductoView">Detalles del producto</a></li>
+                                <li class="nav-item"> <a class="nav-link btn" id="LoteProduccionView">Lote de Produccion</a></li>
+
+                            </ul>
+                        </div>
                     </li>
 
                     <li class="nav-item menu-items">
@@ -140,7 +147,47 @@
                             <span class="mdi mdi-menu"></span>
                         </button>
                         <ul class="navbar-nav navbar-nav-right">
-                            
+                            <li class="nav-item dropdown d-none d-lg-block">
+
+                                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">
+                                    <h6 class="p-3 mb-0">Projects</h6>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item preview-item">
+                                        <div class="preview-thumbnail">
+                                            <div class="preview-icon bg-dark rounded-circle">
+                                                <i class="mdi mdi-file-outline text-primary"></i>
+                                            </div>
+                                        </div>
+                                        <div class="preview-item-content">
+                                            <p class="preview-subject ellipsis mb-1">Software Development</p>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item preview-item">
+                                        <div class="preview-thumbnail">
+                                            <div class="preview-icon bg-dark rounded-circle">
+                                                <i class="mdi mdi-web text-info"></i>
+                                            </div>
+                                        </div>
+                                        <div class="preview-item-content">
+                                            <p class="preview-subject ellipsis mb-1">UI Development</p>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item preview-item">
+                                        <div class="preview-thumbnail">
+                                            <div class="preview-icon bg-dark rounded-circle">
+                                                <i class="mdi mdi-layers text-danger"></i>
+                                            </div>
+                                        </div>
+                                        <div class="preview-item-content">
+                                            <p class="preview-subject ellipsis mb-1">Software Testing</p>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <p class="p-3 mb-0 text-center">See all projects</p>
+                                </div>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
                                     <div class="navbar-profile">
