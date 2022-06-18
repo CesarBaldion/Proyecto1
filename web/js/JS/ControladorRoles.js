@@ -16,6 +16,9 @@ $(document).ready(function () {
     );
 });
 
+$(".modal").on("click", ".botonCerrar", function (e) {
+    $("#CargarVistas").load("Roles.jsp");
+    });
 //accionar Ventana Registrar
 $("#registrarRol").click(function (e) {
     document.getElementById("respuestaReg").innerText = "";
@@ -35,14 +38,13 @@ $('#submitReg').click(function (event) {
         opcion: opcionRegVar
     }, function (responseText) {
         $('#respuestaReg').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });
 
 //Accionar ventana Editar
 $(".actualizarTBody").on("click", ".detalles", function (e) {
     document.getElementById("respuestaEdit").innerText = "";
-    document.getElementById("titleIdUsuario").innerText = this.dataset.nombreusu +"("+this.dataset.documentusu+")";
+    document.getElementById("titleIdUsuario").innerText = this.dataset.nombreusu + "(" + this.dataset.documentusu + ")";
     document.getElementById("opcionIdRolEdit").innerText = this.dataset.nombrerol;
     document.getElementById("opcionIdRolEdit").value = this.dataset.nombrerol;
     document.getElementById("IdUsuarioEdit").value = this.dataset.idusu;
@@ -62,14 +64,13 @@ $('#submitEdit').click(function (event) {
         opcion: opcionEditVar
     }, function (responseText) {
         $('#respuestaEdit').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });
 
 //Accionar Ventana Eliminar
 $(".actualizarTBody").on("click", ".eliminar", function (e) {
     document.getElementById("nombreRolDel").innerText = this.dataset.nombrerol2;
-    document.getElementById("UsuarioDel").innerText = this.dataset.nombreusu2+this.dataset.documentusu2;
+    document.getElementById("UsuarioDel").innerText = this.dataset.nombreusu2 + this.dataset.documentusu2;
     document.getElementById("idUsuarioDel").value = this.dataset.idusu2;
     document.getElementById("idRolDel").value = this.dataset.idrol2;
     $("#eliminarUsuarioRolModal").modal("show");
@@ -77,7 +78,6 @@ $(".actualizarTBody").on("click", ".eliminar", function (e) {
 
 //Envio de Datos por Ajax para Eliminar
 $('#submitDel').click(function (event) {
-    alert("messirve");
     var idUsuarioEditVar = $('#idUsuarioDel').val();
     var opcionDelVar = $('#opcioneDel').val();
 
@@ -87,6 +87,5 @@ $('#submitDel').click(function (event) {
         opcion: opcionDelVar
     }, function (responseText) {
         $('#respuestaDel').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });

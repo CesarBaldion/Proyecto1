@@ -18,11 +18,13 @@ $(document).ready(function () {
     );
 });
 
+$(".modal").on("click", ".botonCerrar", function (e) {
+    $("#CargarVistas").load("DetallesProducto.jsp");
+});
+
 
 $("#bntCantNec").click(function (e) {
-
-    $("#ContenidoCantidadNecesaria").load("CantidadNecesaria.jsp");
-    $("#vistaCantidadNecesaria").modal("show");
+    $("#CargarVistas").load("CantidadNecesaria.jsp");
 });
 
 $("#bntRegistrar").click(function (e) {
@@ -31,6 +33,7 @@ $("#bntRegistrar").click(function (e) {
 });
 
 $('#registrarDetPro').click(function (event) {
+    event.preventDefault();
     var idProductoRegVar = $('#idProductoReg').val();
     var tallareg = $('#txtTallaReg').val();
     var descripcionregVar = $('#txtDescripcionReg').val();

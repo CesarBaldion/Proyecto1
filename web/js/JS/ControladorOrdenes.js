@@ -1,15 +1,6 @@
 
 
-$('#btnMateriaPrimaPorOrden').click(function () {
-    event.preventDefault();
-    document.getElementById("CargarVistas").innerText = " ";
-    $("#CargarVistas").load("MateriaPrimaPorOrden.jsp");
-});
 
-
-$(".modal").on("click", ".botonCerrar", function (e) {
-    $("#CargarVistas").load("Ordenes.jsp");
-});
 
 $(document).ready(function () {
     $('#table_id').DataTable({
@@ -29,6 +20,16 @@ $(document).ready(function () {
     );
 });
 
+$('#btnMateriaPrimaPorOrden').click(function () {
+    event.preventDefault();
+    document.getElementById("CargarVistas").innerText = " ";
+    $("#CargarVistas").load("MateriaPrimaPorOrden.jsp");
+});
+
+
+$(".modal").on("click", ".botonCerrar", function (e) {
+    $("#CargarVistas").load("Ordenes.jsp");
+});
 
 //accionar ventana modal Ingresar Varias Ordenes
 $('#btnAñadirVariasOrdenes').click(function () {

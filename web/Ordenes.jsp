@@ -3,7 +3,7 @@
     Created on : 09-jun-2022, 0:27:46
     Author     : 1Usuario
 --%>
-
+<%@include file="Sesiones.jsp" %>
 <%@page import="ModeloDAO.ProductoDAO"%>
 <%@page import="ModeloVO.ProductoVO"%>
 <%@page import="ModeloDAO.UsuarioDAO"%>

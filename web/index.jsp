@@ -7,6 +7,8 @@
 <%@page import="ModeloVO.UsuarioVO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%    HttpSession buscarSesion = (HttpSession) request.getSession();
+%>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -65,7 +67,7 @@
 
                 <!-- Image Logo -->
                 <a class="navbar-brand logo-image" href="index.jsp"><img src="img/menu/logo.svg" alt="alternative"
-                                                                          height="100"></a>
+                                                                         height="100"></a>
 
                 <!-- Mobile Menu Toggle Button -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
@@ -110,9 +112,18 @@
                             <a class="nav-link page-scroll" href="#contact-us">CONTÁCTENOS</a>
                         </li>
                     </ul>
+                    <%if (buscarSesion.getAttribute("datosUsuario") == null) {%>
                     <span class="nav-item">
                         <a class="btn-outline-sm" href="iniciarSesion.jsp">INICIAR SESIÓN</a>
                     </span>
+                    <% } else {%>
+                    <span class="nav-item">
+                        <form method="post" action="Sesiones" name="CerrarSesion">
+                            <input type="hidden" value="1" name="opcion">
+                        </form>
+                        <a class="btn-outline-sm" href="#" id="btnCerrarSesion">CERRAR SESIÓN</a>
+                    </span>
+                    <% }%>
                 </div>
             </div> <!-- end of container -->
         </nav> <!-- end of navbar -->
@@ -580,5 +591,12 @@
         <script src="js/ScriptsIndex/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
         <script src="js/ScriptsIndex/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
         <script src="js/ScriptsIndex/scripts.js"></script> <!-- Custom scripts -->
+        <script>
+           var btnCerrarSession = document.getElementById("btnCerrarSesion")
+            btnCerrarSession.addEventListener("click",()=>{
+                alert("messirve");
+                document.CerrarSesion.submit();
+            })
+        </script>
     </body>
 </html>

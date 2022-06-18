@@ -3,7 +3,7 @@
     Created on : 10-jun-2022, 14:30:36
     Author     : 1Usuario
 --%>
-
+<%@include file="Sesiones.jsp" %>
 <%@page import="ModeloDAO.UsuarioDAO"%>
 <%@page import="ModeloVO.UsuarioVO"%>
 <%@page import="ModeloVO.OrdenDetallesVO"%>
@@ -44,7 +44,7 @@
                         </svg>
                     </button>
                 </div>
-                <div>
+                <div class="ms-2">
                     <form action="LoteProduccion" method="post" class="form-group">
                         <button  class="boton btn mt-5" title="Reporte de Producto">
                             Generar Reporte
@@ -125,7 +125,7 @@
                 <div class="modal-content">
                     <div class="modal-header ">
                         <h5 class="modal-title" id="staticBackdropLabel">Editar Lote Produccion N.<label id="idLoteProduccionEdit"></label></h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close botonCerrar" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form>
@@ -170,7 +170,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header ">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close botonCerrar" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="col-md-10 mx-auto">
@@ -212,7 +212,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header ">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close botonCerrar" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <h5 class="text-center mb-3" id="staticBackdropLabel">Registrar<br>Lote Produccion</h5>

@@ -1,4 +1,4 @@
-
+<%@include file="Sesiones.jsp" %>
 <%@page import="ModeloVO.RolVO"%>
 <%@page import="ModeloDAO.RolDAO"%>
 <%@page import="ModeloVO.Usuario_rolVO"%>
@@ -7,29 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<%
-    response.setHeader("Pragma", "No-cache");
-    response.setHeader("Cache-control", "no-cache, no-store, must-revalidate");
-    response.setDateHeader("Expires", 0);
-%>
 
-
-<%
-    HttpSession buscarSesion = (HttpSession) request.getSession();
-    UsuarioVO usuVO1 = null;
-    RolVO rolVO1 = null;
-
-    if (buscarSesion.getAttribute("datosUsuario") == null) {
-        request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
-    } else {
-        UsuarioRolDAO uRDAO = new UsuarioRolDAO();
-        usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
-
-        rolVO1 = (RolVO) buscarSesion.getAttribute("datosRol");
-
-    }
-
-%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -73,7 +51,7 @@
                                 </div>
                             </div>
                     </li>
-
+                    <%if (tipoRol.equals("Administrador")) {%>
                     <li class="nav-item menu-items">
                         <a class="nav-link" data-toggle="collapse" href="#usuarios" aria-expanded="false" aria-controls="ui-basic">
                             <span class="menu-icon">
@@ -90,7 +68,8 @@
                             </ul>
                         </div>
                     </li>
-
+                    <% }%>
+                    <%if (tipoRol.equals("Administrador") | tipoRol.equals("JefeProduccion")) {%>
                     <li class="nav-item menu-items">
                         <a class="nav-link btn" id="OrdenesView">
                             <span class="menu-icon">
@@ -99,9 +78,9 @@
                             <span class="menu-title">Orden producción</span>
                         </a>
                     </li>
+                    <% }%>
 
-
-
+                    <%if (tipoRol.equals("Administrador") | tipoRol.equals("JefeProduccion") | tipoRol.equals("Almacenista")) {%>
                     <li class="nav-item menu-items">
                         <a class="nav-link" data-toggle="collapse" href="#productos" aria-expanded="false" aria-controls="ui-basic">
                             <span class="menu-icon">
@@ -112,14 +91,17 @@
                         </a>
                         <div class="collapse" id="productos">
                             <ul class="nav flex-column sub-menu">
+
                                 <li class="nav-item"> <a class="nav-link btn" id="ProductoView">Productos</a></li>
                                 <li class="nav-item"> <a class="nav-link btn" id="DetallesProductoView">Detalles del producto</a></li>
+                                    <%if (tipoRol.equals("Administrador") | tipoRol.equals("JefeProduccion")) {%>
                                 <li class="nav-item"> <a class="nav-link btn" id="LoteProduccionView">Lote de Produccion</a></li>
-
+                                    <% }%>
                             </ul>
                         </div>
                     </li>
-
+                    <% }%>
+                    <%if (tipoRol.equals("Administrador") | tipoRol.equals("JefeProduccion") | tipoRol.equals("Almacenista")) {%>
                     <li class="nav-item menu-items">
                         <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                             <span class="menu-icon">
@@ -136,6 +118,7 @@
                             </ul>
                         </div>
                     </li>
+                    <% }%>
                 </ul>
             </nav>
             <!-- partial -->
@@ -210,13 +193,16 @@
                                     </a>
 
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item preview-item">
+                                    <a class="dropdown-item preview-item" id="btnCerrarSesion">
                                         <div class="preview-thumbnail">
                                             <div class="preview-icon bg-dark rounded-circle">
                                                 <i class="mdi mdi-logout text-danger"></i>
                                             </div>
                                         </div>
                                         <div class="preview-item-content">
+                                            <form method="post" action="Sesiones" name="CerrarSesion"> 
+                                                <input type="hidden" value="1" name="opcion">
+                                            </form>
                                             <p class="preview-subject mb-1">Salir</p>
                                         </div>
                                     </a>

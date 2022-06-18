@@ -50,38 +50,30 @@ public class CantidadNecesariaControlador extends HttpServlet {
         switch (opcion) {
 
             case 1: //Agregar registro
-
-                if (cantNecDAO.agregarRegistro()) {
-                    out1.println("<label class='text-success'><b>Se ha registrado Correctamente</b></label>");
+                if (cantNecDAO.verificarCantidadNec()) {
+                    if (cantNecDAO.agregarRegistro()) {
+                        out1.println("<label class='text-success'><b>Se ha registrado Correctamente</b></label>");
+                    } else {
+                        out1.println("<label class='text-danger'><b>Error al Registrar</b></label>");
+                    }
                 } else {
-                    out1.println("<label class='text-danger'><b>Error al Registrar</b></label>");
+                    out1.println("<label class='text-danger'><b>Ya existe esta Cantidad Necesaria Para el Producto</b></label>");
+
                 }
+
                 break;
 
-            case 2:
-
-                if (cantNecDAO.actualizarRegistro()) {
-                    out1.println("<label class='text-success'><b>Se ha Actualizado Correctamente</b></label>");
-                } else {
-                    out1.println("<label class='text-danger'><b>Error al Actualizar</b></label>");
-                }
-                break;
-
-            case 3:
+            /*case 3:
 
                 if (cantNecDAO.eliminarRegistro()) {
-
-                    request.setAttribute("mensajeExito", "El producto se elimino correctamente!");
-
+                        out1.println("<label class='text-success'><b>Se ha Eliminado Correctamente</b></label>");
                 } else {
-
-                    request.setAttribute("mensajeExito", "El producto no se elimino correctamente!");
+                        out1.println("<label class='text-success'><b>Error al Eliminar</b></label>");
                 }
-                request.getRequestDispatcher("menu.jsp").forward(request, response);
                 break;
 
             default:
-                break;
+                break;*/
 
             case 4: {
                 cantNecVO = cantNecDAO.consultarCantidadNecesaria(id_materia_prima);

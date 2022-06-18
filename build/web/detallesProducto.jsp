@@ -3,7 +3,7 @@
     Created on : 7/06/2022, 02:13:49 PM
     Author     : AdminSena
 --%>
-
+<%@include file="Sesiones.jsp" %>
 <%@page import="ModeloDAO.CantidadNecesariaDAO"%>
 <%@page import="ModeloVO.CantidadNecesariaVO"%>
 <%@page import="ModeloVO.MateriaPrimaVO"%>
@@ -108,31 +108,33 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header ">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close botonCerrar" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <h4 class="text-center">Registrar Detalles de Producto</h4>
-                        <div class="d-flex mt-4">
-                            <select name="idProductoReg" id="idProductoReg" class="form-select">
-                                <option>Id Producto</option>
-                                <%
-                                    ProductoDAO proDAOreg = new ProductoDAO();
-                                    for (ProductoVO proVOreg : proDAOreg.listar()) {
-                                %>
-                                <option value="<%=proVOreg.getIdProducto()%>"><%=proVOreg.getNombre()%></option>
-                                <%}%>
-                            </select>
-                            <select name="txtTalla" id="txtTallaReg" class="form-select">
-                                <option>Seleccione Talla</option>
-                                <option>M</option>
-                                <option>L</option>
-                                <option>S</option>
-                                <option>XL</option>
-                            </select>
-                        </div>
-                        <textarea name="txtDescripcion" id="txtDescripcionReg" placeholder="Descripcion" class="form-control mt-3"></textarea>
-                        <button class="btn boton mt-3" id="registrarDetPro">Registrar</button>
-                        <input type="hidden" id="opcionReg" value="1">
+                        <form class="form-group" method="post" action="DetallesProducto" enctype="multipart/form-data">
+                            <div class="d-flex mt-4">
+                                <select name="idProductoReg" id="idProductoReg" class="form-select">
+                                    <option>Id Producto</option>
+                                    <%
+                                        ProductoDAO proDAOreg = new ProductoDAO();
+                                        for (ProductoVO proVOreg : proDAOreg.listar()) {
+                                    %>
+                                    <option value="<%=proVOreg.getIdProducto()%>"><%=proVOreg.getNombre()%></option>
+                                    <%}%>
+                                </select>
+                                <select name="txtTalla" id="txtTallaReg" class="form-select">
+                                    <option>Seleccione Talla</option>
+                                    <option>M</option>
+                                    <option>L</option>
+                                    <option>S</option>
+                                    <option>XL</option>
+                                </select>
+                            </div>
+                            <textarea name="txtDescripcion" id="txtDescripcionReg" placeholder="Descripcion" class="form-control mt-3"></textarea>
+                            <button class="btn boton mt-3" id="registrarDetPro">Registrar</button>
+                            <input type="hidden" id="opcionReg" value="1">
+                        </form>
                         <div id="respuestaRegistrar">
                         </div>
                     </div>
@@ -144,7 +146,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header ">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close botonCerrar" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
 
@@ -181,7 +183,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header ">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close botonCerrar" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="col-md-8 mx-auto">
@@ -213,23 +215,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="vistaCantidadNecesaria" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog  modal-fullscreen">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body" id="ContenidoCantidadNecesaria">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Understood</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <script src="js/JS/ControladorDetallesProducto.js"></script>
     </body>
 </html>

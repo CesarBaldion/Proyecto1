@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 
-
+$('#btnCerrarSesion').click(function (event) {
+    document.CerrarSesion.submit();
+});
 
 $('#UsuariosView').click(function (event) {
     event.preventDefault();

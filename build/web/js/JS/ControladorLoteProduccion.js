@@ -22,6 +22,10 @@ $(document).ready(function () {
     );
 });
 
+$(".modal").on("click", ".botonCerrar", function (e) {
+    $("#CargarVistas").load("LoteProduccion.jsp");
+});
+
 //Accionar ventana Editar
 $(".actualizarTBody").on("click", ".detalles", function (e) {
     document.getElementById("respuestaEdit").innerText = "";
@@ -49,7 +53,6 @@ $('#submitEdit').click(function (event) {
         opcion: opcioneditVar
     }, function (responseText) {
         $('#respuestaEdit').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });
 
@@ -75,7 +78,6 @@ $('#submitDel').click(function (event) {
         opcion: opcionDelVar
     }, function (responseText) {
         $('#respuestaDel').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });
 
@@ -85,10 +87,8 @@ $('#submitReg').click(function (event) {
     var idUsuarioVar = $('#idUsuarioReg').val();
     var idOrdenDetallesVar = $('#idOrDetallesIdReg').val();
     var cantidadEditVar = $('#cantidadReg').val();
-            var fechaFrabicacionEditVar = `${date.getFullYear()}-$
-    {date.getMonth() + 1}-$
-    {date.getDate()}`;
-            var opcioneditVar = $('#opcioneReg').val();
+    var fechaFrabicacionEditVar = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+    var opcioneditVar = $('#opcioneReg').val();
 
     // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
     $.post('LoteProduccion', {
@@ -99,7 +99,6 @@ $('#submitReg').click(function (event) {
         opcion: opcioneditVar
     }, function (responseText) {
         $('#respuestaRegistrar').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });
 

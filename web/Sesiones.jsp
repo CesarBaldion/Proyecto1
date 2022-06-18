@@ -19,25 +19,20 @@
 %>
 
 
+
 <%
     HttpSession buscarSesion = (HttpSession) request.getSession();
     UsuarioVO usuVO1 = null;
+    RolVO rolVO1 = null;
+    String tipoRol = null;
 
     if (buscarSesion.getAttribute("datosUsuario") == null) {
         request.getRequestDispatcher("iniciarSesion.jsp").forward(request, response);
     } else {
         UsuarioRolDAO uRDAO = new UsuarioRolDAO();
         usuVO1 = (UsuarioVO) buscarSesion.getAttribute("datosUsuario");
-        Usuario_rolVO uRVO2 = uRDAO.consultarRol(usuVO1.getIdUsuarios());
-        RolVO rolVO = new RolVO();
-        RolDAO rolDao = new RolDAO();
-        rolVO = rolDao.consultarRol(uRVO2.getId_Rol());
-
-        if (rolVO.getRoltipo().equals("Administrador")) {
-        } else {
-            request.getRequestDispatcher("errorPermisos.jsp").forward(request, response);
-        }
-
+        rolVO1 = (RolVO) buscarSesion.getAttribute("datosRol");
+        tipoRol = rolVO1.getRoltipo();
     }
 
 %>

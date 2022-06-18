@@ -21,6 +21,10 @@ $(document).ready(function () {
     );
 });
 
+$(".modal").on("click", ".botonCerrar", function (e) {
+    $("#CargarVistas").load("CantidadNecesaria.jsp");
+});
+
 
 $('#btnAñadir').click(function () {
     $("#respuestaRegistrar").text(" ");
@@ -28,6 +32,7 @@ $('#btnAñadir').click(function () {
 });
 $('#registrarCantNec').click(function (event) {
     event.preventDefault();
+    alert("messirve")
     var IdMateriaPrimaRegVar = $('#IdMateriaPrimaReg').val();
     var idDetProdRegVar = $('#idDetProdReg').val();
     var materiaprimaenproductoRegVar = $('#materiaprimaenproductoReg').val();
@@ -40,37 +45,11 @@ $('#registrarCantNec').click(function (event) {
         opcion: opcionRegVar
     }, function (responseText) {
         $('#respuestaRegistrar').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });
 
-$(".actualizarTBody").on("click", ".detalles", function (e) {
-    document.getElementById("respuestaEdit").innerText = " ";
-    document.getElementById("opcionidMateriaPrimaEdit").value = this.dataset.id;
-    document.getElementById("opcionidMateriaPrimaEdit").innerText = this.dataset.id2;
-    document.getElementById("opcionidDetProdEdit").value = this.dataset.id3;
-    document.getElementById("opcionidDetProdEdit").innerText = this.dataset.id4+" talla-"+this.dataset.id5;
-    document.getElementById("materiaprimaenproductoEdit").value = this.dataset.id7;
-    $("#editarCantidadNecModal").modal("show");
-});
 
-$('#editarCantNec').click(function (event) {
-    event.preventDefault();
-    var IdMateriaPrimaEditVar = $('#IdMateriaPrimaEdit').val();
-    var idDetProdEditVar = $('#idDetProdEdit').val();
-    var materiaprimaenproductoEditVar = $('#materiaprimaenproductoEdit').val();
-    var opcionEditVar = $('#opcionEdit').val();
-    // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
-    $.post('CantidadNecesaria', {
-        Id_Materia_Prima: IdMateriaPrimaEditVar,
-        Id_Detalles_Producto: idDetProdEditVar,
-        materiaprimaenproducto: materiaprimaenproductoEditVar,
-        opcion: opcionEditVar
-    }, function (responseText) {
-        $('#respuestaEdit').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
-    });
-});
+
 
 $(".actualizarTBody").on("click", ".eliminar", function (e) {
     document.getElementById("respuestaDel").innerText = " ";
@@ -86,18 +65,17 @@ $(".actualizarTBody").on("click", ".eliminar", function (e) {
 
 $('#EliCanNec').click(function (event) {
     event.preventDefault();
-    var idCantNec = $('#idCantNec').val();
-    var idDetProdEditVar = $('#idDetProdEdit').val();
-    var materiaprimaenproductoEditVar = $('#materiaprimaenproductoEdit').val();
-    var opcionEditVar = $('#opcionEdit').val();
+    var idMtDelVar = $('#idMtDel').text();
+    var idDetProDelVar = $('#idDetProDel').text();
+    var mtEnProDelVar = $('#mtEnProDel').text();
+    var opcionDelVar = $('#opcionDel').val();
     // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
     $.post('CantidadNecesaria', {
-        Id_Materia_Prima: IdMateriaPrimaEditVar,
-        Id_Detalles_Producto: idDetProdEditVar,
-        materiaprimaenproducto: materiaprimaenproductoEditVar,
-        opcion: opcionEditVar
+        Id_Materia_Prima: idMtDelVar,
+        Id_Detalles_Producto: idDetProDelVar,
+        materiaprimaenproducto: mtEnProDelVar,
+        opcion: opcionDelVar
     }, function (responseText) {
         $('#respuestaEdit').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });

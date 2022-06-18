@@ -3,7 +3,7 @@
     Created on : 7/06/2022, 02:13:49 PM
     Author     : AdminSena
 --%>
-
+<%@include file="Sesiones.jsp" %>
 <%@page import="ModeloDAO.ProductoDAO"%>
 <%@page import="ModeloVO.ProductoVO"%>
 <%@page import="java.util.ArrayList"%>
@@ -107,7 +107,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header ">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close botonCerrar" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="col-md-5 mx-auto">
@@ -131,7 +131,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header ">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close botonCerrar" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <label>Carga Masiva <b>Archivo Excel(xlsx)</b></label>
@@ -158,7 +158,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header ">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close botonCerrar" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="col-md-5 mx-auto">
@@ -182,12 +182,12 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header ">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close botonCerrar" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="col-md-5 mx-auto">
                             <h5 class="text-center text-danger mb-5" id="staticBackdropLabel">¿Esta seguro que desea Eliminar este Producto?</h5>
-                            <table class="table table-hover table-light table-responsive text-center">
+                            <table class="table table-hover table-light  text-center">
                                 <thead>
                                     <tr>
                                         <th>Id</th>

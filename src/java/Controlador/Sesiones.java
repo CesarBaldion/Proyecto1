@@ -40,6 +40,7 @@ public class Sesiones extends HttpServlet {
             case 1:
                 HttpSession buscarSesion = request.getSession();
                 buscarSesion.removeAttribute("datosUsuario");
+                buscarSesion.removeAttribute("datosRol");
                 buscarSesion.invalidate();
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 break;

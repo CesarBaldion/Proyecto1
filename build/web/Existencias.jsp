@@ -3,7 +3,7 @@
     Created on : 16/06/2022, 01:35:54 PM
     Author     : Juan Pablo
 --%>
-
+<%@include file="Sesiones.jsp" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="ModeloDAO.MateriaPrimaDAO"%>
 <%@page import="ModeloVO.MateriaPrimaVO"%>
@@ -24,7 +24,7 @@
     </head>
     <body>
         <div class="col-md-8 mx-auto ">
-            <h1 class="text-center mb-5 ">Detalles Producto</h1>
+            <h1 class="text-center mb-5 ">Existencias Materia Prima</h1>
             <div class="d-flex"> 
                 <form action="MateriaPrima" method="post" class="form-group">
                     <button  class="boton btn" title="Reporte de existencias">

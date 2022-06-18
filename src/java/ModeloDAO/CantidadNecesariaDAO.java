@@ -28,10 +28,10 @@ public class CantidadNecesariaDAO extends Conexion implements Crud {
 
     private boolean operacion = false;
     private String sql;
-    
+
     private String Id_Materia_Prima, Id_Detalles_Producto, materiaprimaenproducto;
-    
-    public CantidadNecesariaDAO(CantidadNecesariaVO cantNecVO){
+
+    public CantidadNecesariaDAO(CantidadNecesariaVO cantNecVO) {
         super();
         try {
             conexion = this.obtenerConexion();
@@ -74,7 +74,7 @@ public class CantidadNecesariaDAO extends Conexion implements Crud {
     @Override
     public boolean actualizarRegistro() {
         try {
-            sql = "update detalles_producto set Id_materia_Prima = ?,Id_detalles_producto = ?,materiaPrimaEnProducto=? where idcantidadnecesaria = ?";
+            sql = "update detalles_producto set Id_materia_Prima = ?,Id_detalles_producto = ?,materiaPrimaEnProducto=? where Id_materia_Prima = ? and Id_detalles_producto = ? and materiaPrimaEnProducto=?";
 
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Id_Materia_Prima);
@@ -98,10 +98,31 @@ public class CantidadNecesariaDAO extends Conexion implements Crud {
 
     @Override
     public boolean eliminarRegistro() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        try {
+            sql = "delete from cantidad_necesaria where Id_materia_Prima = ? and Id_detalles_producto = ? and materiaPrimaEnProducto=?";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id_Materia_Prima);
+            puente.setString(2, Id_Detalles_Producto);
+            puente.setString(3, materiaprimaenproducto);
+            puente.executeUpdate();
+            operacion = true;
+
+        } catch (SQLException e) {
+            Logger.getLogger(DetallesProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+
+            try {
+                this.cerrarConexion();
+
+            } catch (SQLException e) {
+                Logger.getLogger(DetallesProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+            }
+        }
+        return operacion;
     }
-    
-    public CantidadNecesariaVO consultarCantidadNecesaria(String Id){
+
+    public CantidadNecesariaVO consultarCantidadNecesaria(String Id) {
         CantidadNecesariaVO cantNecVO = null;
         try {
             conexion = this.obtenerConexion();
@@ -109,45 +130,73 @@ public class CantidadNecesariaDAO extends Conexion implements Crud {
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Id_Materia_Prima);
             mensajero = puente.executeQuery();
-            
-            while(mensajero.next()){
+
+            while (mensajero.next()) {
                 cantNecVO = new CantidadNecesariaVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3));
             }
         } catch (Exception e) {
             Logger.getLogger(CantidadNecesariaVO.class.getName()).log(Level.SEVERE, null, e);
-        }finally{
-            try{
+        } finally {
+            try {
                 this.cerrarConexion();
-            }catch(Exception e){
+            } catch (Exception e) {
                 Logger.getLogger(CantidadNecesariaVO.class.getName()).log(Level.SEVERE, null, e);
             }
         }
         return cantNecVO;
     }
-    
-    public ArrayList<CantidadNecesariaVO> listar(){
-        
+
+    public ArrayList<CantidadNecesariaVO> listar() {
+
         ArrayList<CantidadNecesariaVO> listaCantidadNecesaria = new ArrayList();
         try {
             conexion = this.obtenerConexion();
             sql = "select * from cantidad_necesaria";
             puente = conexion.prepareStatement(sql);
             mensajero = puente.executeQuery();
-            
-            while(mensajero.next()){
-                CantidadNecesariaVO cantNecVO = new CantidadNecesariaVO(mensajero.getString(1),mensajero.getString(2),mensajero.getString(3));
-                
+
+            while (mensajero.next()) {
+                CantidadNecesariaVO cantNecVO = new CantidadNecesariaVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3));
+
                 listaCantidadNecesaria.add(cantNecVO);
             }
         } catch (Exception e) {
             Logger.getLogger(CantidadNecesariaDAO.class.getName()).log(Level.SEVERE, null, e);
-        }finally{
-            try{
+        } finally {
+            try {
                 this.cerrarConexion();
-            }catch(Exception e){
+            } catch (Exception e) {
                 Logger.getLogger(CantidadNecesariaDAO.class.getName()).log(Level.SEVERE, null, e);
             }
         }
         return listaCantidadNecesaria;
+    }
+
+    public boolean verificarCantidadNec() {
+
+        CantidadNecesariaVO cantNecVO = null;
+        try {
+            conexion = this.obtenerConexion();
+            sql = "select * from cantidad_necesaria where Id_materia_Prima = ? and Id_detalles_producto= ? ";
+            puente = conexion.prepareStatement(sql);
+            puente.setString(1, Id_Materia_Prima);
+            puente.setString(2, Id_Detalles_Producto);
+            mensajero = puente.executeQuery();
+            while (mensajero.next()) {
+                cantNecVO = new CantidadNecesariaVO(mensajero.getString(1), mensajero.getString(2), mensajero.getString(3));
+            }
+            if (cantNecVO == null) {
+                operacion = true;
+            } else {
+                operacion = false;
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(ProductoDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        }
+
+        return operacion;
+
     }
 }

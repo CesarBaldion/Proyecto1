@@ -16,6 +16,9 @@ $(document).ready(function () {
     );
 });
 
+$(".modal").on("click", ".botonCerrar", function (e) {
+    $("#CargarVistas").load("Producto.jsp");
+});
 
 //Accionar Ventana Modal para Editar
 $(".actualizarTBody").on("click", ".detalles", function (e) {
@@ -46,7 +49,6 @@ $('#submit').click(function (event) {
         txtId: idVar,
     }, function (responseText) {
         $('#response').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
 
     });
 });
@@ -63,7 +65,6 @@ $('#submitEdit').click(function (event) {
         txtId: idVar,
     }, function (responseText) {
         $('#responseEdit').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });
 
@@ -79,7 +80,6 @@ $('#submitDel').click(function (event) {
         txtId: idVar,
     }, function (responseText) {
         $('#responseDel').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });
 
@@ -98,7 +98,6 @@ $("#formCargaMasiva").on("submit", function (e) {
         processData: false
     }).done(function (res) {
         $("#mensaje").html("Respuesta: " + res);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });
 

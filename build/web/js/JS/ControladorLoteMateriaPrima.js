@@ -17,6 +17,11 @@ $(document).ready(function () {
     );
 });
 
+$(".modal").on("click", ".botonCerrar", function (e) {
+    $("#CargarVistas").load("LoteMateriaPrima.jsp");
+});
+
+
 $(".actualizarTBody").on("click", ".detalles", function (e) {
     document.getElementById("respuestaEdit").innerText = " ";
     document.getElementById("ObservacionesEdit").value = " ";
@@ -46,7 +51,6 @@ $('#submitEdit').click(function (event) {
         opcion: opcioneditVar
     }, function (responseText) {
         $('#respuestaEdit').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });
 
@@ -74,10 +78,8 @@ $('#submitReg').click(function (event) {
     var IdMateriaPrimaRegtVar = $('#IdMateriaPrimaReg').val();
     var CantidadRegVar = $('#CantidadReg').val();
     var ObservacionesRegVar = $('#ObservacionesReg').val();
-            var FechaIngresoRegVar = `${date.getFullYear()}-$
-    {date.getMonth() + 1}-$
-    {date.getDate()}`;
-            var opcionRegVar = $('#opcionReg').val();
+    var FechaIngresoRegVar = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+    var opcionRegVar = $('#opcionReg').val();
 
     // Si en vez de por post lo queremos hacer por get, cambiamos el $.post por $.get
     $.post('loteMateriaPrima', {
@@ -88,7 +90,6 @@ $('#submitReg').click(function (event) {
         opcion: opcionRegVar
     }, function (responseText) {
         $('#respuestaReg').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });
 
@@ -104,7 +105,6 @@ $('#submitDel').click(function (event) {
         opcion: opcioneditVar
     }, function (responseText) {
         $('#respuestaDel').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });
 

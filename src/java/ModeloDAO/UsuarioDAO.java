@@ -185,7 +185,7 @@ public class UsuarioDAO extends Conexion implements Crud {
 
         try {
             conexion = this.obtenerConexion();
-            sql = "select * from usuarios where Documento = ? and Contrasena = ?";
+            sql = "select * from usuarios where Documento = ? and Contrasena = ? and estado = 1";
             puente = conexion.prepareStatement(sql);
             puente.setString(1, Documento);
             puente.setString(2, Contrasena);

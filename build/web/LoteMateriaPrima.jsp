@@ -3,7 +3,7 @@
     Created on : 10-jun-2022, 22:47:06
     Author     : 1Usuario
 --%>
-
+<%@include file="Sesiones.jsp" %>
 <%@page import="ModeloVO.MateriaPrimaVO"%>
 <%@page import="ModeloDAO.MateriaPrimaDAO"%>
 <%@page import="java.util.ArrayList"%>
@@ -115,7 +115,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header ">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close botonCerrar" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <h5 class="text-center mb-3" >Actualizar<br>Lote Materia Prima <label id="IdLoteMateriaPrimaEdit"></label></h5>
@@ -150,7 +150,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header ">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close botonCerrar" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="col-md-12 mx-auto">
@@ -197,7 +197,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header ">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close botonCerrar" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <h5 class="text-center mb-3" >Registrar<br>Lote Materia Prima</h5>

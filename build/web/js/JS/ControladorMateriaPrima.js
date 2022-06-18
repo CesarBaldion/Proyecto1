@@ -22,6 +22,10 @@ $(document).ready(function () {
     )
 });
 
+$(".modal").on("click", ".botonCerrar", function (e) {
+    $("#CargarVistas").load("MateriaPrima.jsp");
+});
+
 //Accionar Ventana Modal para Editar
 $(".actualizarTBody").on("click", ".detalles", function (e) {
     document.getElementById('responseEdit').innerText = " ";
@@ -43,7 +47,6 @@ $('#submitEdit').click(function (event) {
         txtNombre: nombreMateriaPrimaEditVar,
     }, function (responseText) {
         $('#responseEdit').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });
 
@@ -68,7 +71,6 @@ $('#submitDel').click(function (event) {
         opcion: opcioneDelVar
     }, function (responseText) {
         $('#responseDel').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });
 
@@ -88,7 +90,6 @@ $('#submitReg').click(function (event) {
         opcion: opcionRegVar
     }, function (responseText) {
         $('#respuestaReg').html(responseText);
-        $("#actualizarTBody").load(" #actualizarTBody");
 
     });
 });
@@ -116,6 +117,5 @@ $("#formCargaMasiva").on("submit", function (e) {
         processData: false
     }).done(function (res) {
         $("#repuestaCargaMasiva").html(res);
-        $("#actualizarTBody").load(" #actualizarTBody");
     });
 });
